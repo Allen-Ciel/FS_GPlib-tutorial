@@ -1,0 +1,67 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2026, Allen Guo
+# This file is distributed under the same license as the FS_GPlib-tutorial package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: FS_GPlib-tutorial \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-03-02 20:24+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../source/bibliography.rst:2
+#: 62d0648f178f435e974526589241e51d
+msgid "Bibliography"
+msgstr ""
+
+#: ../../source/bibliography.rst:5
+#: b15f6124ed794d82a2456326f1dd94c2
+msgid "Example"
+msgstr ""
+
+#: ../../source/bibliography.rst:8
+#: 19dc66ace2e547ff9064b9b5d32f5260
+msgid "Import"
+msgstr ""
+
+#: ../../source/bibliography.rst:11
+#: 1642269523c74c1f870124014b9766c3
+msgid "Data"
+msgstr ""
+
+#: ../../source/bibliography.rst:15
+#: c0197e5ddfd34dc0b97b54ddaa955051
+msgid "Model"
+msgstr ""
+
+#: ../../source/bibliography.rst:20
+#: b2cd5cea53464d93b0488f583d41827a
+msgid "About Batch"
+msgstr ""
+
+#: ../../source/bibliography.rst:23
+#: 8dee11931dfc43d9af070f625fa156c9
+msgid "How to use batch"
+msgstr ""
+
+#: ../../source/bibliography.rst:25
+#: 18ec174cafbd4fd7956adfc74039f791
+msgid "First, clone the FS_GPlib project from GitHub:"
+msgstr ""
+
+#: ../../source/bibliography.rst:29
+#: f42d81acbc5a479cb45014373be13db7
+msgid "About Distributed"
+msgstr ""
+
+#: ../../source/bibliography.rst:32
+#: a44d6efb93cb4a5f8244c1bf4af60595
+msgid "How to use distributed computing"
+msgstr ""

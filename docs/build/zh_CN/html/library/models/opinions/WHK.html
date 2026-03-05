@@ -1,0 +1,370 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Weighted Hegselmann-Krause &mdash; FS_GPlib-tutorial v0.1.0 文档</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=f17d22cc"></script>
+      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../_static/copybutton.js?v=f281be69"></script>
+      <script src="../../../_static/translations.js?v=beaddf03"></script>
+      <script src="../../../_static/my_custom.js?v=31f6922f"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../../../genindex.html" />
+    <link rel="search" title="搜索" href="../../../search.html" />
+    <link rel="next" title="Dynamic Network Models" href="../../dynamic_network.html" />
+    <link rel="prev" title="Hegselmann-Krause" href="HK.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+  
+
+          
+          
+          <a href="../../../index.html">
+            
+              <img src="../../../_static/logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+  
+  <div class="language-switcher" style="margin: 8px 0; padding: 4px 0;">
+    <select id="language-select" onchange="switchLanguage(this.value)"
+            style="width: 100%; padding: 4px 8px; border: 1px solid #ccc; border-radius: 3px;
+                   background: #fcfcfc; font-size: 0.9em; cursor: pointer;">
+      
+      <option value="en" >
+        English
+      </option>
+      
+      <option value="zh_CN" selected>
+        中文
+      </option>
+      
+    </select>
+  </div>
+  
+
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../overview.html">概述</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../overview.html#motivation">研究动机</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../overview.html#core-capabilities">核心能力</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../overview.html#project-structure">项目结构</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../overview.html#get-started">快速开始</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">安装</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../installation.html#environment">环境配置</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../installation.html#python-version">Python 版本</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../installation.html#required-packages">必需的依赖包</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../installation.html#gpu-support-optional">GPU 支持（可选）</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../installation.html#install">安装步骤</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../installation.html#clone-the-repository">克隆仓库</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../installation.html#install-in-editable-mode-optional">以可编辑模式安装（可选）</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../installation.html#test-installation">测试安装</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorial.html">Tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorial.html#example">Example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../tutorial.html#import">Import</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../tutorial.html#data">Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../tutorial.html#seeds">Seeds</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../tutorial.html#instantiate-model">Instantiate Model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../tutorial.html#execute-simulation">Execute simulation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorial.html#example-code">Example code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorial.html#about-batch">About Batch</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../tutorial.html#how-to-use-batch">How to use batch</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorial.html#about-distributed">About Distributed</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../tutorial.html#how-to-use-distributed-computing">How to use distributed computing</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Library</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../epidemic.html">Epidemic Models</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../epidemics/SI.html">SI</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../epidemics/SI.html#status">Status</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../epidemics/SI.html#parameters">Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../epidemics/SI.html#implementation">Implementation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../epidemics/SI.html#references">References</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../epidemics/SIS.html">SIS</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../epidemics/SIS.html#status">Status</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../epidemics/SIS.html#parameters">Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../epidemics/SIS.html#implementation">Implementation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../epidemics/SIS.html#references">References</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../epidemics/SIR.html">SIR</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../epidemics/SIR.html#status">Status</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../epidemics/SIR.html#parameters">Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../epidemics/SIR.html#implementation">Implementation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../epidemics/SIR.html#references">References</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../epidemics/SEIR.html">SEIR</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../epidemics/SEIR.html#status">Status</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../epidemics/SEIR.html#parameters">Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../epidemics/SEIR.html#implementation">Implementation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../epidemics/SEIR.html#references">References</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../epidemics/SEIR_ct.html">SEIR_ct</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../epidemics/SEIR_ct.html#status">Status</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../epidemics/SEIR_ct.html#parameters">Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../epidemics/SEIR_ct.html#implementation">Implementation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../epidemics/SEIR_ct.html#references">References</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../epidemics/SEIS.html">SEIS</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../epidemics/SEIS.html#status">Status</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../epidemics/SEIS.html#parameters">Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../epidemics/SEIS.html#implementation">Implementation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../epidemics/SEIS.html#references">References</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../epidemics/SEIS_ct.html">SEIS_ct</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../epidemics/SEIS_ct.html#status">Status</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../epidemics/SEIS_ct.html#parameters">Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../epidemics/SEIS_ct.html#implementation">Implementation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../epidemics/SEIS_ct.html#references">References</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../epidemics/SWIR.html">SWIR(TBD)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../epidemics/SWIR.html#status">Status</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../epidemics/SWIR.html#parameters">Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../epidemics/SWIR.html#implementation">Implementation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../epidemics/SWIR.html#references">References</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../epidemics/Threshold.html">Threshold</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../epidemics/Threshold.html#status">Status</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../epidemics/Threshold.html#parameters">Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../epidemics/Threshold.html#model-description">Model Description</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../epidemics/Threshold.html#references">References</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../epidemics/KThreshold.html">Kertesz Threshold</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../epidemics/IndependentCascades.html">Independent Cascades</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../epidemics/IndependentCascades.html#status">Status</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../epidemics/IndependentCascades.html#parameters">Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../epidemics/IndependentCascades.html#implementation">Implementation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../epidemics/IndependentCascades.html#references">References</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../epidemics/Profile.html">Profile</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../epidemics/ProfileThreshold.html">Profile Threshold</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../opinion.html">Opinion Dynamic Models</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="Voter.html">Voter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QVoter.html">Q-Voter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MajorityRule.html">Majority Rule</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Snajzd.html">Snajzd</a></li>
+<li class="toctree-l3"><a class="reference internal" href="HK.html">Hegselmann-Krause</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="HK.html#status">Status</a></li>
+<li class="toctree-l4"><a class="reference internal" href="HK.html#parameters">Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="HK.html#implementation">Implementation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="HK.html#references">References</a></li>
+</ul>
+</li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Weighted Hegselmann-Krause</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../dynamic_network.html">Dynamic Network Models</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../dynamics/DySI.html">DySI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dynamics/DySIS.html">DySIS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dynamics/DySIR.html">DySIR</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dynamics/DySEIR.html">DySEIR</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dynamics/DySEIR_ct.html">DySEIR_ct</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dynamics/DySEIS.html">DySEIS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dynamics/DySEIS_ct.html">DySEIS_ct</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dynamics/DySWIR.html">DySWIR</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dynamics/DyThreshold.html">DyThreshold</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dynamics/DyKThreshold.html">dySI</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advanced.html">Advanced</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../advanced.html#distributed-computing">Distributed Computing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../advanced.html#other-functions-and-parameters">Other Functions and Parameters</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../custom_model.html">Custom Model</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../custom_model.html#example">Example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../custom_model.html#import">Import</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../custom_model.html#data">Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../custom_model.html#model">Model</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../custom_model.html#about-batch">About Batch</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../custom_model.html#how-to-use-batch">How to use batch</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../custom_model.html#about-distributed">About Distributed</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../custom_model.html#how-to-use-distributed-computing">How to use distributed computing</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../bibliography.html">Bibliography</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../bibliography.html#example">Example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../bibliography.html#import">Import</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../bibliography.html#data">Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../bibliography.html#model">Model</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../bibliography.html#about-batch">About Batch</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../bibliography.html#how-to-use-batch">How to use batch</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../bibliography.html#about-distributed">About Distributed</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../bibliography.html#how-to-use-distributed-computing">How to use distributed computing</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../rst_template.html">RST Template Example</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../rst_template.html#section-heading">Section Heading</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../rst_template.html#lists">Lists</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../rst_template.html#code-block">Code Block</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../rst_template.html#table-example">Table Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../rst_template.html#hyperlink">Hyperlink</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../rst_template.html#toctree">Toctree</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../overview.html">概述</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../overview.html#motivation">研究动机</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../overview.html#core-capabilities">核心能力</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../overview.html#project-structure">项目结构</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../overview.html#get-started">快速开始</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../installation.html">安装</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../installation.html#environment">环境配置</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../../../installation.html#python-version">Python 版本</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../installation.html#required-packages">必需的依赖包</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../installation.html#gpu-support-optional">GPU 支持（可选）</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../../installation.html#install">安装步骤</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../../../installation.html#clone-the-repository">克隆仓库</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../installation.html#install-in-editable-mode-optional">以可编辑模式安装（可选）</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../installation.html#test-installation">测试安装</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../rst_template.html#admonitions">Admonitions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../rst_template.html#footnotes">Footnotes</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api_example.html">API Documentation Template</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../api_example.html#mathematical-formulae">Mathematical Formulae</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api_example.html#function-documentation-manual">Function Documentation (Manual)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../api_example.html#calculate_energy"><code class="docutils literal notranslate"><span class="pre">calculate_energy()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api_example.html#class-documentation-manual">Class Documentation (Manual)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../api_example.html#GravNetConv"><code class="docutils literal notranslate"><span class="pre">GravNetConv</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api_example.html#autodoc-example">Autodoc Example</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">FS_GPlib-tutorial</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Library</a></li>
+          <li class="breadcrumb-item"><a href="../../opinion.html">Opinion Dynamic Models</a></li>
+      <li class="breadcrumb-item active">Weighted Hegselmann-Krause</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/Allen-Ciel/FS_GPlib-tutorial/blob/docs/source/library/models/opinions/WHK.rst" class="fa fa-github"> 在 GitHub 上编辑</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="weighted-hegselmann-krause">
+<h1>Weighted Hegselmann-Krause<a class="headerlink" href="#weighted-hegselmann-krause" title="Link to this heading"></a></h1>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="页脚">
+        <a href="HK.html" class="btn btn-neutral float-left" title="Hegselmann-Krause" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="../../dynamic_network.html" class="btn btn-neutral float-right" title="Dynamic Network Models" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2026, Allen Guo。</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

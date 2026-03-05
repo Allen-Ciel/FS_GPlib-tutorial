@@ -1,0 +1,167 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2026, Allen Guo
+# This file is distributed under the same license as the FS_GPlib-tutorial package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: FS_GPlib-tutorial \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-03-02 20:24+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../source/installation.rst:2
+#: a4237ed2a1d649778d73448565d63aa8
+msgid "Installation"
+msgstr ""
+
+#: ../../source/installation.rst:5
+#: 253b17eb427345c2b11d255aa7643a8b
+msgid "Environment"
+msgstr ""
+
+#: ../../source/installation.rst:7
+#: 9e015b77fa924f24972640bd94ae8a89
+msgid "This section describes how to prepare the environment necessary for running FS_GPlib."
+msgstr ""
+
+#: ../../source/installation.rst:10
+#: 4d68f33c686f4fb686a1dac0b0008d50
+msgid "Python Version"
+msgstr ""
+
+#: ../../source/installation.rst:13
+#: d3d753a917124307899880bec1a1b4e3
+msgid "FS_GPlib is developed and tested with:"
+msgstr ""
+
+#: ../../source/installation.rst:15
+#: aacd5fd116ae48308cac8b0c5e0bc84b
+msgid "Python 3.8 or above"
+msgstr ""
+
+#: ../../source/installation.rst:17
+#: 4d8a9b3179b6499b8eceb0ef83fba1c9
+msgid "We recommend using a virtual environment to avoid conflicts with existing packages."
+msgstr ""
+
+#: ../../source/installation.rst:19
+#: 5cbdf69e1695417486e81b14da1f8cbe
+msgid "Create and activate a virtual environment:"
+msgstr ""
+
+#: ../../source/installation.rst:27
+#: b44592f28e1248a8ab6087e1019c4637
+msgid "Required Packages"
+msgstr ""
+
+#: ../../source/installation.rst:29
+#: 689110988a3d4838bd232bc400fc2e06
+msgid "The core dependencies include:"
+msgstr ""
+
+#: ../../source/installation.rst:31
+#: a895f9187c6248df9df7ca1c80fe3752
+msgid "``numpy`` and ``scipy`` for numerical operations"
+msgstr ""
+
+#: ../../source/installation.rst:32
+#: 89fd0bf0bd094b6f91d43affd7f72037
+msgid "``networkx`` for graph construction"
+msgstr ""
+
+#: ../../source/installation.rst:33
+#: eff68d84de6a4593b17ced5982ff4acd
+msgid "``torch`` for tensor-based batch simulation"
+msgstr ""
+
+#: ../../source/installation.rst:34
+#: 16572820a4bd4cb493acfc866bfb90d1
+msgid "``mpi4py`` (optional) for distributed simulations"
+msgstr ""
+
+#: ../../source/installation.rst:36
+#: 63b666a862394c70ae32b54cf7e5ce3b
+msgid "You can install the dependencies manually, or use the provided `requirements.txt`:"
+msgstr ""
+
+#: ../../source/installation.rst:43
+#: cd2470279bfd4436954eaf28245ba605
+msgid "GPU Support (Optional)"
+msgstr ""
+
+#: ../../source/installation.rst:45
+#: 70a6dffeabc448f8934026e9a9f97538
+msgid "If you plan to run FS_GPlib on a GPU-enabled system, ensure that:"
+msgstr ""
+
+#: ../../source/installation.rst:47
+#: 316b4f1400fb40e29e195c9deaee15df
+msgid "CUDA and cuDNN are properly installed"
+msgstr ""
+
+#: ../../source/installation.rst:48
+#: 2519416d5b3b424e8b572570c5bfcadd
+msgid "You install the appropriate version of PyTorch with GPU support:"
+msgstr ""
+
+#: ../../source/installation.rst:54
+#: 84596280c9534631ab3bbfd156062c79
+msgid "You can verify PyTorch sees the GPU:"
+msgstr ""
+
+#: ../../source/installation.rst:64
+#: 179ec1ff0ae949a8aa5b8efb84956c96
+msgid "Install"
+msgstr ""
+
+#: ../../source/installation.rst:66
+#: 16b204eb021c48f09d21d4cfa75fedee
+msgid "This guide explains how to install FS_GPlib from source or via cloning the repository."
+msgstr ""
+
+#: ../../source/installation.rst:69
+#: 11badf6603cf412ab80ffcce14183801
+msgid "Clone the Repository"
+msgstr ""
+
+#: ../../source/installation.rst:71
+#: 7840b8c0f8994ac2a82e4e459904157c
+msgid "First, clone the FS_GPlib project from GitHub:"
+msgstr ""
+
+#: ../../source/installation.rst:78
+#: 1618e1367f154ce8af5eae111f64f534
+msgid "Then install the required dependencies:"
+msgstr ""
+
+#: ../../source/installation.rst:85
+#: b439551499f244448c45dac3c846e05f
+msgid "Install in Editable Mode (Optional)"
+msgstr ""
+
+#: ../../source/installation.rst:87
+#: 0e68a6704dad49bebaf4c7d95f4cdcf0
+msgid "If you want to make modifications to the source code and have them reflected without reinstalling, use editable mode:"
+msgstr ""
+
+#: ../../source/installation.rst:94
+#: f6aa89980fa34cf39f73d50115c2f9bd
+msgid "Test Installation"
+msgstr ""
+
+#: ../../source/installation.rst:96
+#: 204bf8e56bc44b68a20820d5f7c48dc1
+msgid "To verify the installation was successful, you can try importing the library in Python:"
+msgstr ""
+
+#: ../../source/installation.rst:103
+#: 5b4f9d68a7c74eb1bc7343659b83187f
+msgid "If no errors are raised, the installation is complete."
+msgstr ""

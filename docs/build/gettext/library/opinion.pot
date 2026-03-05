@@ -1,0 +1,32 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2026, Allen Guo
+# This file is distributed under the same license as the FS_GPlib-tutorial package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: FS_GPlib-tutorial \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-03-02 20:24+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../source/library/opinion.rst:2
+#: 9c511417651b4ff6bed727b3564495a6
+msgid "Opinion Dynamic Models"
+msgstr ""
+
+#: ../../source/library/opinion.rst:3
+#: 00add2435aee4d30b1e9b7cf44e9f6c4
+msgid "abababa"
+msgstr ""
+
+#: ../../source/library/opinion.rst:5
+#: 29e508082a2f4a229fe27c14764eeed5
+msgid "In ``FS_GPlib`` are implemented the following **Opinion Dynamics** models:"
+msgstr ""

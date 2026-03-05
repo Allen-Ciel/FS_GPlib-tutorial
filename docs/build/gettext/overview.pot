@@ -1,0 +1,102 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2026, Allen Guo
+# This file is distributed under the same license as the FS_GPlib-tutorial package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: FS_GPlib-tutorial \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-03-02 20:24+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../source/overview.rst:2
+#: 7781ae90e4344eaebb39ced9d6924534
+msgid "Overview"
+msgstr ""
+
+#: ../../source/overview.rst:4
+#: 955b97dc0830467881118aec54ddd7d0
+msgid "**FS_GPlib** is a flexible and scalable Python library designed for simulating a wide range of graph-based propagation processes. It supports classical epidemic models, opinion dynamics, and simulations on dynamic networks. The library is built to facilitate high-efficiency simulation through support for Message Passing based dual-acceleration framework and distributed computing."
+msgstr ""
+
+#: ../../source/overview.rst:6
+#: f21d58cab78b4e8c95e6c0577c6d1ddb
+msgid "This documentation provides a structured overview of FS_GPlib, from installation and usage to the implementation of custom models. Whether you're a researcher studying network diffusion or a developer looking to integrate propagation models into your pipeline, FS_GPlib offers a modular and extensible foundation."
+msgstr ""
+
+#: ../../source/overview.rst:9
+#: cbc6536e7a7f4521b5ee9e4a8126bfad
+msgid "Motivation"
+msgstr ""
+
+#: ../../source/overview.rst:11
+#: 309d13e9e3f447f8b1d173c02f07c945
+msgid "Propagation models are essential tools in understanding how information, behaviors, or diseases spread through complex networks. FS_GPlib is developed to address the following challenges:"
+msgstr ""
+
+#: ../../source/overview.rst:13
+#: 0b1b714459344204b97fe2ee0e4f3fff
+msgid "The need for **efficient simulation** on large-scale graphs."
+msgstr ""
+
+#: ../../source/overview.rst:14
+#: 79a03ef2134a4ac0ae2eec69fcd5f15f
+msgid "The demand for **modular design** that supports custom models."
+msgstr ""
+
+#: ../../source/overview.rst:15
+#: ef7807aa05914bb0a92089386fb1ae7a
+msgid "The importance of **distributed simulation** to overcome scalability bottlenecks."
+msgstr ""
+
+#: ../../source/overview.rst:18
+#: 9e5e5457d6644c82a52156d406810eda
+msgid "Core Capabilities"
+msgstr ""
+
+#: ../../source/overview.rst:20
+#: 7835fd8d79a14cc7a941588817339618
+msgid "**Model Support**: Built-in support for classical epidemic models (SI, SIS, SIR), opinion dynamics, and network evolution processes."
+msgstr ""
+
+#: ../../source/overview.rst:21
+#: 6af7d4e460734a6fba0cbc3d82721bc4
+msgid "**Batch Simulation**: Perform multiple simulations in parallel using high-dimensional tensor operations."
+msgstr ""
+
+#: ../../source/overview.rst:22
+#: abff24da8a7843169ad20643c26cfb19
+msgid "**Distributed Execution**: Supports graph partitioning to enable distribution across multiple processors or nodes."
+msgstr ""
+
+#: ../../source/overview.rst:23
+#: a59f196c8d1e4072803449b2b566e3f9
+msgid "**Extensibility**: Easily implement your own propagation rules through the custom model interface."
+msgstr ""
+
+#: ../../source/overview.rst:26
+#: 117187f99a8d45368a4c85649e4f814d
+msgid "Project Structure"
+msgstr ""
+
+#: ../../source/overview.rst:29
+#: 3b6e93545d0e4ffbb483589466bcbd60
+msgid "To be determined"
+msgstr ""
+
+#: ../../source/overview.rst:39
+#: a18b9ac13ebc4d1abb186606e5a667f3
+msgid "Get Started"
+msgstr ""
+
+#: ../../source/overview.rst:41
+#: 5950bccbb0e4455ab6c3b135f10cedec
+msgid "To begin using FS_GPlib, proceed to the :doc:`installation` section and follow the setup instructions. Then explore the :doc:`tutorial` for example workflows and usage patterns."
+msgstr ""

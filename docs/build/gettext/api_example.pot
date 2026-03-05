@@ -1,0 +1,138 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2026, Allen Guo
+# This file is distributed under the same license as the FS_GPlib-tutorial package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: FS_GPlib-tutorial \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-03-02 20:24+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../source/api_example.rst:2
+#: 140e341a8e05464684aa6f0dfc2259b7
+msgid "API Documentation Template"
+msgstr ""
+
+#: ../../source/api_example.rst:4
+#: f612fa8a54864eaca629c6bfe16cf7da
+msgid "This page demonstrates how to document Python APIs, including classes, functions, and mathematical formulas."
+msgstr ""
+
+#: ../../source/api_example.rst:7
+#: 9832769a8ab14b649a6b0d8770b45962
+msgid "Mathematical Formulae"
+msgstr ""
+
+#: ../../source/api_example.rst:9
+#: 36a1adc5dc8f4b7dbb1896b614510019
+msgid "Inline formula: :math:`E = mc^2`"
+msgstr ""
+
+#: ../../source/api_example.rst:11
+#: 684bca3a8f444e4db286e5f5717d44aa
+msgid "Block formula:"
+msgstr ""
+
+#: ../../source/api_example.rst:13
+#: d86f036e4d3c4d92860c6e84789316ca
+msgid "\\nabla \\cdot \\vec{E} = \\frac{\\rho}{\\varepsilon_0}"
+msgstr ""
+
+#: ../../source/api_example.rst:19
+#: f78effc2fc254cb1b7fed79746331012
+msgid "Function Documentation (Manual)"
+msgstr ""
+
+#: ../../source/api_example.rst:23
+#: cb897ebaa8024bb3bfe5926375adb798
+msgid "Calculates energy using the formula :math:`E = mc^2`."
+msgstr ""
+
+#: ../../source/api_example.rst:0
+#: 5718c687db7042fcb4cc5bed6acedb19
+#: e3104e303caa4359b67da9f145a4ad83
+msgid "Parameters"
+msgstr ""
+
+#: ../../source/api_example.rst:25
+#: ed5f9956ebfc414a89c0ded5c0aca73e
+msgid "The mass of the object."
+msgstr ""
+
+#: ../../source/api_example.rst:28
+#: d19865079e9e4c68ab0d39a9035d9d61
+msgid "Speed of light in vacuum. Default is 3e8."
+msgstr ""
+
+#: ../../source/api_example.rst:0
+#: 4c20dab452c94d38803ee8bb38066e2f
+msgid "Returns"
+msgstr ""
+
+#: ../../source/api_example.rst:31
+#: 460ee880879b4a4d801dc44f161a3427
+msgid "Computed energy value."
+msgstr ""
+
+#: ../../source/api_example.rst:0
+#: 932bf3ee016d4da09017b669c614358c
+msgid "Return type"
+msgstr ""
+
+#: ../../source/api_example.rst:36
+#: 27e0152e6e994e12816e694554960824
+msgid "Class Documentation (Manual)"
+msgstr ""
+
+#: ../../source/api_example.rst:40
+#: 69a82197744843aeb213b7a09de931c5
+msgid "The GravNet operator from the `\"Learning Representations of Irregular Particle-detector Geometry with Distance-weighted Graph Networks\" <https://arxiv.org/abs/1902.07987>`_ paper."
+msgstr ""
+
+#: ../../source/api_example.rst:42
+#: 193d5ee17a6448748861f50edc0cb285
+msgid "Size of each input sample, or ``-1`` to infer from input."
+msgstr ""
+
+#: ../../source/api_example.rst:45
+#: c298bf23b590418aa840561b687a25f7
+msgid "Number of output channels."
+msgstr ""
+
+#: ../../source/api_example.rst:48
+#: 3c1c3d053d254cd2894d7830d15a8e56
+msgid "Dimension of the projection space."
+msgstr ""
+
+#: ../../source/api_example.rst:51
+#: 9e6e21ba74bc48aab10f746dcb9af873
+msgid "Feature dimension propagated through the graph."
+msgstr ""
+
+#: ../../source/api_example.rst:54
+#: b0fb368a5c4f4261b88465689182d1cb
+msgid "Number of nearest neighbors."
+msgstr ""
+
+#: ../../source/api_example.rst:57
+#: 2af5f6d130b946628830cf24b2c82623
+msgid "Number of parallel workers."
+msgstr ""
+
+#: ../../source/api_example.rst:62
+#: dd2a10fb72214b4585f2aba5d70bc1c4
+msgid "Autodoc Example"
+msgstr ""
+
+#: ../../source/api_example.rst:64
+#: bda5022206fb4a02b98a41a20ade1f7c
+msgid "If you enable ``sphinx.ext.autodoc`` in ``conf.py``, you can document modules automatically:"
+msgstr ""

@@ -1,0 +1,32 @@
+Custom Model
+============
+
+Example
+-------
+
+Import
+~~~~~~
+
+Data
+~~~~
+
+
+Model
+~~~~~
+
+
+
+About Batch
+-----------
+
+How to use batch
+~~~~~~~~~~~~~~~~
+
+First, clone the FS_GPlib project from GitHub:
+
+
+About Distributed
+-----------------
+
+How to use distributed computing
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

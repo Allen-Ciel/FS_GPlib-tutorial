@@ -1,0 +1,271 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2026, Allen Guo
+# This file is distributed under the same license as the FS_GPlib-tutorial package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: FS_GPlib-tutorial \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-03-03 09:49+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../source/library/models/opinions/HK.rst:2
+#: 10c7a5a7ea8f4650b98c1de2d3daef6d
+msgid "Hegselmann-Krause"
+msgstr ""
+
+#: ../../source/library/models/opinions/HK.rst:5
+#: f967a1aac6f14729a66763783e96b00a
+msgid "The HK model [1]_ describes continuous opinion dynamics. Each node holds an initial opinion :math:`h \\in [-1,1]` and updates it in discrete rounds. At each step: 1) :math:`\\epsilon` neighbor identification: find the set :math:`\\Gamma_\\epsilon` of each node, :math:`d_{i,j}=\\left|h_i-h_j\\right|\\le\\epsilon`, :math:`j\\in\\Gamma_\\epsilon`; 2) update the opinion value: The opinion of node :math:`i` at the next time step is updated as follows:"
+msgstr ""
+
+#: ../../source/library/models/opinions/HK.rst:12
+#: bfb5b6d2c9d447ce936682bd6aabd5b7
+msgid "h_i^{\\left(k\\right)}=\\frac{\\sum_{j\\in\\Gamma_\\epsilon}{h_j^{\\left(k-1\\right)}}}{\\#\\Gamma_\\epsilon}"
+msgstr ""
+
+#: ../../source/library/models/opinions/HK.rst:17
+#: 1816e1ca765f467ca53f1457ce3ab5ce
+msgid "where :math:`\\#\\Gamma_\\epsilon` denotes the number of :math:`\\epsilon` neighbors."
+msgstr ""
+
+#: ../../source/library/models/opinions/HK.rst:21
+#: ../../source/library/models/opinions/HK.rst:25
+#: c01a65099ecb451ab98ec0af7751b1b0
+#: 884ad450dc5f44938bf84067243bedf9
+msgid "Status"
+msgstr ""
+
+#: ../../source/library/models/opinions/HK.rst:22
+#: 6aaaad46530d4ca9b6fc0f3a5a123c35
+msgid "During the simulation, a node holds a continuous opinion value:"
+msgstr ""
+
+#: ../../source/library/models/opinions/HK.rst:25
+#: bf4e9e4f94e9470fb42f2112f815e51d
+msgid "Range"
+msgstr ""
+
+#: ../../source/library/models/opinions/HK.rst:27
+#: 23b5a2f289324061baecbc80d5c76b86
+msgid "Opinion"
+msgstr ""
+
+#: ../../source/library/models/opinions/HK.rst:27
+#: f75999c71b2447bdbaa1f950f0183144
+msgid "Float in [-1,1]"
+msgstr ""
+
+#: ../../source/library/models/opinions/HK.rst:31
+#: 132eb41d8bef49199b67aaf82f2a395b
+msgid "Parameters"
+msgstr ""
+
+#: ../../source/library/models/opinions/HK.rst:33
+#: d6d0970b8333473aa0473e111c8048ba
+msgid "Name"
+msgstr ""
+
+#: ../../source/library/models/opinions/HK.rst:33
+#: ef8a688ded9b44c598289bd7b5d95e5c
+msgid "Type"
+msgstr ""
+
+#: ../../source/library/models/opinions/HK.rst:33
+#: 01efc5dde1f2408b90ffe1491ed3456d
+msgid "Default"
+msgstr ""
+
+#: ../../source/library/models/opinions/HK.rst:33
+#: 2dfc0078e9bf4d78894ebd232ab79cb8
+msgid "Required"
+msgstr ""
+
+#: ../../source/library/models/opinions/HK.rst:33
+#: 193c43eacdb74e478a736b8951888fc1
+msgid "Description"
+msgstr ""
+
+#: ../../source/library/models/opinions/HK.rst:35
+#: f09778293fc340fc88bbc1c48d15b3f8
+msgid "data"
+msgstr ""
+
+#: ../../source/library/models/opinions/HK.rst:35
+#: b2734794e3ee4cebbd027cd057193516
+msgid "Data"
+msgstr ""
+
+#: ../../source/library/models/opinions/HK.rst:35
+#: ../../source/library/models/opinions/HK.rst:37
+#: ../../source/library/models/opinions/HK.rst:39
+#: 0361ef7d56764198a2ade6a0641cb541
+#: 5066146d5d55490b80695f3d5de92b1a
+#: 375129b85324479f90ec38a9769b9deb
+msgid "Yes"
+msgstr ""
+
+#: ../../source/library/models/opinions/HK.rst:35
+#: 3eaaef69aaa94afab576d43e6cae8c08
+msgid "Data of graph."
+msgstr ""
+
+#: ../../source/library/models/opinions/HK.rst:37
+#: f01d52b260c44eb08d9476ad35867688
+msgid "seeds"
+msgstr ""
+
+#: ../../source/library/models/opinions/HK.rst:37
+#: 7081f7db84814048a7d1f330d29de13b
+msgid "List[float] / None"
+msgstr ""
+
+#: ../../source/library/models/opinions/HK.rst:37
+#: 7de9f519e7a8440cbd543974eae229cd
+msgid "List of initial opinion values or None to generate randomly."
+msgstr ""
+
+#: ../../source/library/models/opinions/HK.rst:39
+#: 0fe052659c304c8bb672ff364be2f6fe
+msgid "epsilon"
+msgstr ""
+
+#: ../../source/library/models/opinions/HK.rst:39
+#: c99b3ff1be4442c8b362b7743d649e81
+msgid "float in [0, 1]"
+msgstr ""
+
+#: ../../source/library/models/opinions/HK.rst:39
+#: 15c9bf59b51e457aab7bc3d45a329c82
+msgid "Confidence bound determining which neighbors influence the opinion update."
+msgstr ""
+
+#: ../../source/library/models/opinions/HK.rst:41
+#: 7ca9a85b451a4c7fa85703d53a6a3061
+msgid "device"
+msgstr ""
+
+#: ../../source/library/models/opinions/HK.rst:41
+#: ad241904d50a41dc9d0e7853d016402e
+msgid "'cpu'/int (CUDA index)"
+msgstr ""
+
+#: ../../source/library/models/opinions/HK.rst:41
+#: 64f84926c00b44479d65970a33375547
+msgid "'cpu'"
+msgstr ""
+
+#: ../../source/library/models/opinions/HK.rst:41
+#: ../../source/library/models/opinions/HK.rst:43
+#: 63c70d4c23be48c0b5290497538287ce
+#: fe5cd7effa42435e8b5a4a609e3d8ce2
+msgid "No"
+msgstr ""
+
+#: ../../source/library/models/opinions/HK.rst:41
+#: d6213aa293ab4fa0bc53d7f524e7fd82
+msgid "Device to run the model on."
+msgstr ""
+
+#: ../../source/library/models/opinions/HK.rst:43
+#: f30568a0a51b43919dcbd90de17b426a
+msgid "rand_seed"
+msgstr ""
+
+#: ../../source/library/models/opinions/HK.rst:43
+#: 1f2e0035dc5b465b92d98ccbb6063ca8
+msgid "Int"
+msgstr ""
+
+#: ../../source/library/models/opinions/HK.rst:43
+#: a021740a08084e768aa422ff12d2120a
+msgid "None"
+msgstr ""
+
+#: ../../source/library/models/opinions/HK.rst:43
+#: 44baf067d2404419badcbba17380efe7
+msgid "Random seed for generating the initial opinion values."
+msgstr ""
+
+#: ../../source/library/models/opinions/HK.rst:47
+#: 12b758d2ec3d4950a8a445b8ca7cb41e
+msgid "Implementation"
+msgstr ""
+
+#: ../../source/library/models/opinions/HK.rst:48
+#: a83320c993ab463888bd99adfeb55476
+msgid "Unlike the SIR model with three discrete states, the HK model uses a continuous opinion space. To avoid infinitely many states, we consider only two cases (Figure \\ref{fig:HK}): if $\\#\\Gamma_\\epsilon=0$, the opinion remains unchanged; otherwise, it is updated to the $\\epsilon$-neighbors’ average."
+msgstr ""
+
+#: ../../source/library/models/opinions/HK.rst:50
+#: c49f436bd0534376a3f0e30323682659
+msgid "HK model diagram"
+msgstr ""
+
+#: ../../source/library/models/opinions/HK.rst:56
+#: 8a69db12836041a1b958a746c05564e1
+msgid "For each neighbor :math:`j \\in N(i)`, generate two message terms:"
+msgstr ""
+
+#: ../../source/library/models/opinions/HK.rst:58
+#: d1aac0db08ff44ec9cb7f4c7a947a82a
+msgid "\\begin{aligned}\n"
+"    m_{ji\\_c}^{(k)} &=\\mathbf{1}\\!\\left( |h_i^{(k-1)} - h_j^{(k-1)}| < \\varepsilon \\right) \\cdot h_j^{(k-1)}, \\\\[6pt]\n"
+"    m_{ji\\_v}^{(k)} &= \\mathbf{1}\\!\\left( |h_i^{(k-1)} - h_j^{(k-1)}| < \\varepsilon \\right).\n"
+"\\end{aligned}"
+msgstr ""
+
+#: ../../source/library/models/opinions/HK.rst:65
+#: d08635e3425345d7aa2bbba1c62223af
+msgid "where :math:`\\mathbf{1}(\\cdot)` is the indicator function."
+msgstr ""
+
+#: ../../source/library/models/opinions/HK.rst:67
+#: 1b063ee34af1454a8cb74f7b467a64c9
+msgid "Node :math:`i` aggregates received messages by averaging opinions of :math:`\\varepsilon`-neighbors:"
+msgstr ""
+
+#: ../../source/library/models/opinions/HK.rst:69
+#: 21aa16a062944a98aa9509a5c9f0a8e8
+msgid "\\begin{aligned}\n"
+"    m_i^{(k)} &=\n"
+"    \\begin{cases}\n"
+"        \\dfrac{\\sum\\limits_{j \\in N(i)} m_{ji\\_c}^{(k)}}{\\sum\\limits_{j \\in N(i)} m_{ji\\_v}^{(k)}},\n"
+"        & \\text{if } \\sum\\limits_{j \\in N(i)} m_{ji\\_v}^{(k)} > 0, \\\\[8pt]\n"
+"    \\mathrm{NaN}, & \\text{otherwise}.\n"
+"    \\end{cases} \\\\[10pt]\n"
+"\\end{aligned}"
+msgstr ""
+
+#: ../../source/library/models/opinions/HK.rst:81
+#: de94ad1baba743f5811fd5cdbd049bc7
+msgid "Finally, the opinion of node :math:`i` is updated as"
+msgstr ""
+
+#: ../../source/library/models/opinions/HK.rst:83
+#: 9a8c6d141fde4833a5788fd3c85f5837
+msgid "    \\begin{aligned}\n"
+"    h_i^{(k)} &=\n"
+"    \\begin{cases}\n"
+"            m_i^{(k)}, & \\text{if } m_i^{(k)} \\neq \\mathrm{NaN}, \\\\[6pt]\n"
+"            h_i^{(k-1)}, &  \\text{otherwise}.\n"
+"    \\end{cases}\n"
+"\\end{aligned}"
+msgstr ""
+
+#: ../../source/library/models/opinions/HK.rst:96
+#: 2603c46317984b41815241d28145b9b3
+msgid "References"
+msgstr ""
+
+#: ../../source/library/models/opinions/HK.rst:98
+#: 3aa935154fb144d4aea43beebb3ea8a1
+msgid "Hegselmann R. Opinion dynamics and bounded confidence: models, analysis and simulation[J]. *The Journal of Artificial Societies and Social Simulation*, 2015."
+msgstr ""

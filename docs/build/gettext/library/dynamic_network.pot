@@ -1,0 +1,32 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2026, Allen Guo
+# This file is distributed under the same license as the FS_GPlib-tutorial package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: FS_GPlib-tutorial \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-03-02 20:24+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../source/library/dynamic_network.rst:2
+#: 99fedb91f1c94a08bcad9d70a229cede
+msgid "Dynamic Network Models"
+msgstr ""
+
+#: ../../source/library/dynamic_network.rst:3
+#: 8f19c44f4fe94be0a12291461be40c8b
+msgid "abababa"
+msgstr ""
+
+#: ../../source/library/dynamic_network.rst:5
+#: 0106b25b2f6b431391ace5990f1a7146
+msgid "In particular ``FS_GPlib`` implements dynamic network versions of the following models:"
+msgstr ""

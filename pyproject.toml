@@ -1,0 +1,41 @@
+[build-system]
+requires = ["setuptools>=68", "wheel", "setuptools-scm>=8"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "fs-gplib"
+dynamic = ["version"]
+description = "Faster and more Scalable python library for Graph Propagation models"
+readme = "README.md"
+requires-python = ">=3.8"
+license = {file = "LICENSE"}
+authors = [{name="Chang Guo", email="guochangcc@mail.ustc.edu.cn"}]
+keywords = ["graph", "epidemics", "diffusion", "GNN", "PyTorch"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3 :: Only",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent",
+]
+
+dependencies = [
+  "torch>=2.1.2",
+  "torch_geometric>=2.5.3",
+  "numpy>=1.24.1, <2",
+  "tqdm>=4.64.1",
+  "scipy>=1.10.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/Allen-Ciel/FS_GPlib"
+Issues = "https://github.com/Allen-Ciel/FS_GPlib/issues"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools_scm]
+version_scheme = "release-branch-semver"
+local_scheme = "no-local-version"

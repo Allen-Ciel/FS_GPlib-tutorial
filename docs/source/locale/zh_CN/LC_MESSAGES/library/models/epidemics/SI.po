@@ -1,0 +1,311 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2026, Allen Guo
+# This file is distributed under the same license as the FS_GPlib-tutorial
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: FS_GPlib-tutorial \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-03-03 09:49+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.16.0\n"
+
+#: ../../source/library/models/epidemics/SI.rst:2
+#: f68d73e5ebe64f9bb19356a34b1cc447
+msgid "SI"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SI.rst:3
+#: ce598d1352bf4c4fb70cbec2407952bc
+msgid ""
+"The SI Model [1]_ assumes that infection spreads only through links "
+"between neighboring nodes in a graph :math:`G=(V,E)`. Each node is in one"
+" of two states: :math:`S` (susceptible) or :math:`I` (infected). A "
+"susceptible node :math:`i` becomes infected by its infected neighbors "
+":math:`j \\in N(i)` with rate :math:`\\beta`:"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SI.rst:7
+#: 1a49ff3e77b64aa9916b2c3cbe4bb38a
+msgid ""
+"\\begin{aligned}\n"
+"\\frac{dS_i}{dt} &= -\\beta \\sum_{j\\in N(i)} S_i I_j, \\\\\n"
+"\\frac{dI_i}{dt} &= \\beta \\sum_{j\\in N(i)} S_i I_j .\n"
+"\\end{aligned}"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SI.rst:14
+#: 6cf1ecf23e904a9b8c333a5210b3929f
+msgid "test"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SI.rst:18
+#: ../../source/library/models/epidemics/SI.rst:22
+#: 6a9683e7fbab492998eb350c4fbcc7fe
+msgid "Status"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SI.rst:19
+#: 0908da307d5d497b86a74c2d194c001f
+msgid "During the simulation, a node can be in one of the following states:"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SI.rst:22
+#: a73a3c58af1e4b98bb469cc8e989c19f
+msgid "Code"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SI.rst:24
+#: 04c2486e3d364e91bc45537768a1fe29
+msgid "Susceptible"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SI.rst:24
+#: 55d94bfeeb314876a4de9d9a8426e154
+msgid "0"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SI.rst:26
+#: 68c35b4f03094eaaa81f3f6d1674d37b
+msgid "Infected"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SI.rst:26
+#: 906b90e2f388479ea6ea1e2a3f348c74
+msgid "1"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SI.rst:30
+#: 12cec0ebb4af40f4b063ce7982b07998
+msgid "Parameters"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SI.rst:32
+#: ed46ea3de7dc4225810eec807c2d737c
+msgid "Name"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SI.rst:32
+#: fb91886851f84cdabd29dbb501fff094
+msgid "Value Type"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SI.rst:32
+#: 2e62fda783234052a2ca325ae5ac3f41
+msgid "Default"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SI.rst:32
+#: 80b4e5e11dbe432ea94453c3b3123673
+msgid "Mandatory"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SI.rst:32
+#: fd0b4313f19f4f119339d53d00dfc5c5
+msgid "Description"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SI.rst:34
+#: 9c5dd3c3758f4fd0a1f3fdf145155cb3
+msgid "data"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SI.rst:34
+#: 48ba9ce2de6f433a8e4bd54121d241f3
+msgid "Data"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SI.rst:34
+#: ../../source/library/models/epidemics/SI.rst:36
+#: ../../source/library/models/epidemics/SI.rst:38
+#: 2900802b44a84756bb2ccfad7ab667d1
+msgid "Yes"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SI.rst:34
+#: 920156f68a054cdeba08d93d12c52c56
+msgid "Data of graph."
+msgstr ""
+
+#: ../../source/library/models/epidemics/SI.rst:36
+#: 94198b7f982b4f14a281d918c5397be6
+msgid "seeds"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SI.rst:36
+#: c8c19d8d7a39418e9c34518eed5786f7
+msgid "List[int]/float in (0, 1)"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SI.rst:36
+#: 28f41050d2d04a48a6538193ab46ba04
+msgid "List of seed node IDs or a ratio in (0, 1)."
+msgstr ""
+
+#: ../../source/library/models/epidemics/SI.rst:38
+#: 524ff52e5202411cb81253640c81c4dd
+msgid "beta"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SI.rst:38
+#: 0b1039c3263545418b19a34d8b09c55b
+msgid "float in [0, 1]"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SI.rst:38
+#: 4763d288837a4142994cdd56b46d7c28
+msgid "Infection probability."
+msgstr ""
+
+#: ../../source/library/models/epidemics/SI.rst:40
+#: 8bf988f5af26489cac357fd5ee3dbee4
+msgid "device"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SI.rst:40
+#: 5e70f1a47d2a4e1b84280db6b3b7a4ae
+msgid "'cpu'/int (CUDA index)"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SI.rst:40
+#: 9107641fe9564963a2ab914c22fefe94
+msgid "'cpu'"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SI.rst:40
+#: ../../source/library/models/epidemics/SI.rst:42
+#: ../../source/library/models/epidemics/SI.rst:44
+#: 129831873dcd4b789dd423ef1abb4d39
+msgid "No"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SI.rst:40
+#: b92946d1a05547e7aba8c6f4ca581431
+msgid "Device to run the model on."
+msgstr ""
+
+#: ../../source/library/models/epidemics/SI.rst:42
+#: 16b75484f3f54dfa9e25bd9a3c76d966
+msgid "use_weight"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SI.rst:42
+#: 4f8f4fa554cd4300bf645c6a6af66909
+msgid "Bool"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SI.rst:42
+#: b665b56cbb50473f91c29bd7d0860db9
+msgid "False"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SI.rst:42
+#: 1240fc8cce084223b30fa11457e1b480
+msgid "Whether to use edge weights."
+msgstr ""
+
+#: ../../source/library/models/epidemics/SI.rst:44
+#: bdb905d7a3b048e9aad487215189d3df
+msgid "rand_seed"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SI.rst:44
+#: d428707934df4be7bb2ca11a2af5d2c9
+msgid "Int"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SI.rst:44
+#: 1457739ad4324105b2d612aa72707767
+msgid "None"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SI.rst:44
+#: 2f34e8995e7f4041a4a7f690aa1e347e
+msgid "Random seed for generating the seed set."
+msgstr ""
+
+#: ../../source/library/models/epidemics/SI.rst:48
+#: d71ee3ec67d74b06ad6fb3c578379e0f
+msgid "Implementation"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SI.rst:50
+#: 4df8c6ab4f2c4d418b2651227fea04c1
+msgid ""
+"Node transitions follow two rules: 1) if a :math:`S` state node has "
+":math:`I` state neighbors, each :math:`I` state neighbor transmits the "
+"infection to the :math:`S` state node with probability :math:`\\beta`; 2)"
+" once infected, the node remains infected forever."
+msgstr ""
+
+#: ../../source/library/models/epidemics/SI.rst:54
+#: 9e0a82d1766146baa633547d6f6a5c03
+msgid "SI model diagram"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SI.rst:59
+#: 3cbd64797096492cb8426b3e86412b9b
+msgid ""
+"Node states are represented by a Boolean indicator vector :math:`h \\in "
+"\\{0,1\\}^N`, where :math:`h_i=1` denotes ``infected`` and :math:`h_i=0` "
+"denotes ``susceptible``. The update of the system at step :math:`k` is "
+"decomposed into three stages:"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SI.rst:63
+#: 9d2567cebd3745418f2f156809bc2ca8
+msgid ""
+"Each infected neighbor :math:`j` of node :math:`i` transmits a log-"
+"probability contribution"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SI.rst:65
+#: c5db6382173f42ba968c60481ef4fc72
+msgid "m_{ji}^{(k)} = h_j^{(k-1)} \\cdot \\log(1-\\beta)"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SI.rst:69
+#: a614c740a11d49548a5d0fdbe11d0118
+msgid ""
+"Node :math:`i` collects contributions from all neighbors :math:`N(i)` to "
+"compute its infection probability"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SI.rst:71
+#: d45b3e74eeee4443b6ab555b0283a239
+msgid "m_i^{(k)} = 1 - \\exp\\!\\left( \\sum_{j \\in N(i)} m_{ji}^{(k)} \\right)"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SI.rst:75
+#: 29e70f79ecb14cdc8556a6a97a9f870e
+msgid ""
+"The indicator variable is updated with independent uniform random "
+"variables :math:`U_i^{\\mathrm{inf}} \\sim \\mathrm{Uniform}(0,1)`:"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SI.rst:77
+#: 8b072722fdcc412f9a80e99e1e16f619
+msgid ""
+"h_i^{(k)} =\n"
+"\\begin{cases}\n"
+"   1, & \\text{if } h_i^{(k-1)}=0 \\land (U_i^{\\mathrm{inf}} < "
+"m_i^{(k)}), \\\\[4pt]\n"
+"   h_i^{(k-1)}, & \\text{otherwise}.\n"
+"\\end{cases}"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SI.rst:86
+#: 3bdaa733746e47a5ba9540a1d08b8cd3
+msgid "References"
+msgstr ""
+

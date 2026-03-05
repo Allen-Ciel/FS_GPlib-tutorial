@@ -1,0 +1,589 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tutorial &mdash; FS_GPlib-tutorial v0.1.0 文档</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=f17d22cc"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="_static/copybutton.js?v=f281be69"></script>
+      <script src="_static/translations.js?v=beaddf03"></script>
+      <script src="_static/my_custom.js?v=52495bde"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="搜索" href="search.html" />
+    <link rel="next" title="Library" href="library/index.html" />
+    <link rel="prev" title="安装" href="installation.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+  
+
+          
+          
+          <a href="index.html">
+            
+              <img src="_static/logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+  
+  <div class="language-switcher" style="margin: 8px 0; padding: 4px 0;">
+    <select id="language-select" onchange="switchLanguage(this.value)"
+            style="width: 100%; padding: 4px 8px; border: 1px solid #ccc; border-radius: 3px;
+                   background: #fcfcfc; font-size: 0.9em; cursor: pointer;">
+      
+      <option value="en" >
+        English
+      </option>
+      
+      <option value="zh_CN" selected>
+        中文
+      </option>
+      
+    </select>
+  </div>
+  
+
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="overview.html">概述</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="overview.html#motivation">研究动机</a></li>
+<li class="toctree-l2"><a class="reference internal" href="overview.html#core-capabilities">核心能力</a></li>
+<li class="toctree-l2"><a class="reference internal" href="overview.html#project-structure">项目结构</a></li>
+<li class="toctree-l2"><a class="reference internal" href="overview.html#get-started">快速开始</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">安装</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#environment">环境配置</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#python-version">Python 版本</a></li>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#required-packages">必需的依赖包</a></li>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#gpu-support-optional">GPU 支持（可选）</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#install">安装步骤</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#clone-the-repository">克隆仓库</a></li>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#install-in-editable-mode-optional">以可编辑模式安装（可选）</a></li>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#test-installation">测试安装</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#example">Example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#import">Import</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#data">Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#seeds">Seeds</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#instantiate-model">Instantiate Model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#execute-simulation">Execute simulation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#example-code">Example code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#about-batch">About Batch</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#how-to-use-batch">How to use batch</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#about-distributed">About Distributed</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#how-to-use-distributed-computing">How to use distributed computing</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="library/index.html">Library</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="library/epidemic.html">Epidemic Models</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="library/models/epidemics/SI.html">SI</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="library/models/epidemics/SI.html#status">Status</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/models/epidemics/SI.html#parameters">Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/models/epidemics/SI.html#implementation">Implementation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/models/epidemics/SI.html#references">References</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="library/models/epidemics/SIS.html">SIS</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="library/models/epidemics/SIS.html#status">Status</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/models/epidemics/SIS.html#parameters">Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/models/epidemics/SIS.html#implementation">Implementation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/models/epidemics/SIS.html#references">References</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="library/models/epidemics/SIR.html">SIR</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="library/models/epidemics/SIR.html#status">Status</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/models/epidemics/SIR.html#parameters">Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/models/epidemics/SIR.html#implementation">Implementation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/models/epidemics/SIR.html#references">References</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="library/models/epidemics/SEIR.html">SEIR</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="library/models/epidemics/SEIR.html#status">Status</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/models/epidemics/SEIR.html#parameters">Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/models/epidemics/SEIR.html#implementation">Implementation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/models/epidemics/SEIR.html#references">References</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="library/models/epidemics/SEIR_ct.html">SEIR_ct</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="library/models/epidemics/SEIR_ct.html#status">Status</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/models/epidemics/SEIR_ct.html#parameters">Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/models/epidemics/SEIR_ct.html#implementation">Implementation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/models/epidemics/SEIR_ct.html#references">References</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="library/models/epidemics/SEIS.html">SEIS</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="library/models/epidemics/SEIS.html#status">Status</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/models/epidemics/SEIS.html#parameters">Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/models/epidemics/SEIS.html#implementation">Implementation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/models/epidemics/SEIS.html#references">References</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="library/models/epidemics/SEIS_ct.html">SEIS_ct</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="library/models/epidemics/SEIS_ct.html#status">Status</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/models/epidemics/SEIS_ct.html#parameters">Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/models/epidemics/SEIS_ct.html#implementation">Implementation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/models/epidemics/SEIS_ct.html#references">References</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="library/models/epidemics/SWIR.html">SWIR(TBD)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="library/models/epidemics/SWIR.html#status">Status</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/models/epidemics/SWIR.html#parameters">Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/models/epidemics/SWIR.html#implementation">Implementation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/models/epidemics/SWIR.html#references">References</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="library/models/epidemics/Threshold.html">Threshold</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="library/models/epidemics/Threshold.html#status">Status</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/models/epidemics/Threshold.html#parameters">Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/models/epidemics/Threshold.html#model-description">Model Description</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/models/epidemics/Threshold.html#references">References</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="library/models/epidemics/KThreshold.html">Kertesz Threshold</a></li>
+<li class="toctree-l3"><a class="reference internal" href="library/models/epidemics/IndependentCascades.html">Independent Cascades</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="library/models/epidemics/IndependentCascades.html#status">Status</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/models/epidemics/IndependentCascades.html#parameters">Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/models/epidemics/IndependentCascades.html#implementation">Implementation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/models/epidemics/IndependentCascades.html#references">References</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="library/models/epidemics/Profile.html">Profile</a></li>
+<li class="toctree-l3"><a class="reference internal" href="library/models/epidemics/ProfileThreshold.html">Profile Threshold</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="library/opinion.html">Opinion Dynamic Models</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="library/models/opinions/Voter.html">Voter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="library/models/opinions/QVoter.html">Q-Voter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="library/models/opinions/MajorityRule.html">Majority Rule</a></li>
+<li class="toctree-l3"><a class="reference internal" href="library/models/opinions/Snajzd.html">Snajzd</a></li>
+<li class="toctree-l3"><a class="reference internal" href="library/models/opinions/HK.html">Hegselmann-Krause</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="library/models/opinions/HK.html#status">Status</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/models/opinions/HK.html#parameters">Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/models/opinions/HK.html#implementation">Implementation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/models/opinions/HK.html#references">References</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="library/models/opinions/WHK.html">Weighted Hegselmann-Krause</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="library/dynamic_network.html">Dynamic Network Models</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="library/models/dynamics/DySI.html">DySI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="library/models/dynamics/DySIS.html">DySIS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="library/models/dynamics/DySIR.html">DySIR</a></li>
+<li class="toctree-l3"><a class="reference internal" href="library/models/dynamics/DySEIR.html">DySEIR</a></li>
+<li class="toctree-l3"><a class="reference internal" href="library/models/dynamics/DySEIR_ct.html">DySEIR_ct</a></li>
+<li class="toctree-l3"><a class="reference internal" href="library/models/dynamics/DySEIS.html">DySEIS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="library/models/dynamics/DySEIS_ct.html">DySEIS_ct</a></li>
+<li class="toctree-l3"><a class="reference internal" href="library/models/dynamics/DySWIR.html">DySWIR</a></li>
+<li class="toctree-l3"><a class="reference internal" href="library/models/dynamics/DyThreshold.html">DyThreshold</a></li>
+<li class="toctree-l3"><a class="reference internal" href="library/models/dynamics/DyKThreshold.html">dySI</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="advanced.html">Advanced</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="advanced.html#distributed-computing">Distributed Computing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="advanced.html#other-functions-and-parameters">Other Functions and Parameters</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="custom_model.html">Custom Model</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="custom_model.html#example">Example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="custom_model.html#import">Import</a></li>
+<li class="toctree-l3"><a class="reference internal" href="custom_model.html#data">Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="custom_model.html#model">Model</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="custom_model.html#about-batch">About Batch</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="custom_model.html#how-to-use-batch">How to use batch</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="custom_model.html#about-distributed">About Distributed</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="custom_model.html#how-to-use-distributed-computing">How to use distributed computing</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="bibliography.html">Bibliography</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="bibliography.html#example">Example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="bibliography.html#import">Import</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bibliography.html#data">Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bibliography.html#model">Model</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="bibliography.html#about-batch">About Batch</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="bibliography.html#how-to-use-batch">How to use batch</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="bibliography.html#about-distributed">About Distributed</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="bibliography.html#how-to-use-distributed-computing">How to use distributed computing</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="rst_template.html">RST Template Example</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="rst_template.html#section-heading">Section Heading</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rst_template.html#lists">Lists</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rst_template.html#code-block">Code Block</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rst_template.html#table-example">Table Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rst_template.html#hyperlink">Hyperlink</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rst_template.html#toctree">Toctree</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="overview.html">概述</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="overview.html#motivation">研究动机</a></li>
+<li class="toctree-l4"><a class="reference internal" href="overview.html#core-capabilities">核心能力</a></li>
+<li class="toctree-l4"><a class="reference internal" href="overview.html#project-structure">项目结构</a></li>
+<li class="toctree-l4"><a class="reference internal" href="overview.html#get-started">快速开始</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="installation.html">安装</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="installation.html#environment">环境配置</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="installation.html#python-version">Python 版本</a></li>
+<li class="toctree-l5"><a class="reference internal" href="installation.html#required-packages">必需的依赖包</a></li>
+<li class="toctree-l5"><a class="reference internal" href="installation.html#gpu-support-optional">GPU 支持（可选）</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="installation.html#install">安装步骤</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="installation.html#clone-the-repository">克隆仓库</a></li>
+<li class="toctree-l5"><a class="reference internal" href="installation.html#install-in-editable-mode-optional">以可编辑模式安装（可选）</a></li>
+<li class="toctree-l5"><a class="reference internal" href="installation.html#test-installation">测试安装</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="rst_template.html#admonitions">Admonitions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rst_template.html#footnotes">Footnotes</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api_example.html">API Documentation Template</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api_example.html#mathematical-formulae">Mathematical Formulae</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api_example.html#function-documentation-manual">Function Documentation (Manual)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api_example.html#calculate_energy"><code class="docutils literal notranslate"><span class="pre">calculate_energy()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api_example.html#class-documentation-manual">Class Documentation (Manual)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api_example.html#GravNetConv"><code class="docutils literal notranslate"><span class="pre">GravNetConv</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api_example.html#autodoc-example">Autodoc Example</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">FS_GPlib-tutorial</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Tutorial</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/Allen-Ciel/FS_GPlib-tutorial/blob/docs/source/tutorial.rst" class="fa fa-github"> 在 GitHub 上编辑</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="tutorial">
+<h1>Tutorial<a class="headerlink" href="#tutorial" title="Link to this heading"></a></h1>
+<section id="example">
+<h2>Example<a class="headerlink" href="#example" title="Link to this heading"></a></h2>
+<section id="import">
+<h3>Import<a class="headerlink" href="#import" title="Link to this heading"></a></h3>
+<p>导入需要的包，并选择传播模型</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">from</span> <span class="nn">torch_geometric.datasets</span> <span class="kn">import</span> <span class="n">Planetoid</span>
+<span class="kn">from</span> <span class="nn">torch_geometric.utils</span> <span class="kn">import</span> <span class="n">degree</span>
+<span class="kn">from</span> <span class="nn">FS_GPlib.Epidemics.SIRModel</span> <span class="kn">import</span> <span class="n">SIRModel</span>
+</pre></div>
+</div>
+</section>
+<section id="data">
+<h3>Data<a class="headerlink" href="#data" title="Link to this heading"></a></h3>
+<p>读取图数据，使用PyG包的数据，其数据结构为压缩矩阵行。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">dataset</span> <span class="o">=</span> <span class="n">Planetoid</span><span class="p">(</span><span class="n">root</span><span class="o">=</span><span class="s1">&#39;./dataset&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;Cora&#39;</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>若数据为不是压缩矩阵行结构，需要进行转换。数据结构构建见 <a class="reference external" href="https://pytorch-geometric.readthedocs.io/en/stable/generated/torch_geometric.data.Data.html#torch_geometric.data.Data">Data</a>。</p>
+<p>若数据是Networkx.Graph()，可以 <code class="docutils literal notranslate"><span class="pre">from_networkx</span></code> 进行转换</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>
+<span class="kn">from</span> <span class="nn">torch_geometric.utils</span> <span class="kn">import</span> <span class="n">from_networkx</span>
+
+<span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">florentine_families_graph</span><span class="p">()</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">from_networkx</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
+
+<span class="n">mapping</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">nodes</span><span class="p">(),</span> <span class="nb">range</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">number_of_nodes</span><span class="p">())))</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p>注意两个数据格式对节点的编码方式不一样，需要通过mapping进行对照。</p>
+</div>
+</section>
+<section id="seeds">
+<h3>Seeds<a class="headerlink" href="#seeds" title="Link to this heading"></a></h3>
+<p>种子节点的格式可以是 <code class="docutils literal notranslate"><span class="pre">list</span></code> 或者 <code class="docutils literal notranslate"><span class="pre">float</span></code> 。</p>
+<p>种子集合可以是通过各种算法计算或者用户指定的节点列表，以下是一个简单示例，通过度中心性选取前10%的节点作为种子：</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">Degree_centrality_seeds</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">num_seeds</span><span class="p">):</span>
+    <span class="n">target</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">edge_index</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">N</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">num_nodes</span>
+    <span class="n">D</span> <span class="o">=</span> <span class="n">degree</span><span class="p">(</span><span class="n">target</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
+    <span class="n">_</span><span class="p">,</span> <span class="n">index</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">D</span><span class="p">,</span> <span class="n">descending</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">seeds</span> <span class="o">=</span> <span class="n">index</span><span class="p">[:</span><span class="n">num_seeds</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">seeds</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+
+<span class="n">num_seeds</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">num_nodes</span><span class="o">*</span><span class="mf">0.1</span><span class="p">)</span>
+<span class="n">seeds</span> <span class="o">=</span> <span class="n">Degree_centrality_seeds</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">num_seeds</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>当然也可以通过随机生成的方式生成种子集合，细节看下一节Model。</p>
+</section>
+<section id="instantiate-model">
+<h3>Instantiate Model<a class="headerlink" href="#instantiate-model" title="Link to this heading"></a></h3>
+<p>导入数据，种子集合，以及确认模型参数之后构建模型：</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">i_beta</span><span class="o">=</span><span class="mf">0.01</span> <span class="c1"># infection</span>
+<span class="n">r_lambda</span><span class="o">=</span><span class="mf">0.005</span> <span class="c1"># recovery</span>
+<span class="n">device</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1"># device</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">SIRModel</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">seeds</span><span class="p">,</span> <span class="n">i_beta</span><span class="p">,</span> <span class="n">r_lambda</span><span class="p">,</span> <span class="n">device</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>每个模型所需的参数见模型介绍部分。</p>
+<p>如果没有种子集合，希望通过随机方式生成种子集合，将seeds设置为 <code class="docutils literal notranslate"><span class="pre">float</span></code> ，可以生成对应比例的种子集合：</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">seeds</span> <span class="o">=</span> <span class="mf">0.3</span> <span class="c1"># ratio of seeds</span>
+<span class="n">i_beta</span><span class="o">=</span><span class="mf">0.01</span> <span class="c1"># infection</span>
+<span class="n">r_lambda</span><span class="o">=</span><span class="mf">0.005</span> <span class="c1"># recovery</span>
+<span class="n">device</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1"># device</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">SIRModel</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">seeds</span><span class="p">,</span> <span class="n">i_beta</span><span class="p">,</span> <span class="n">r_lambda</span><span class="p">,</span> <span class="n">device</span><span class="p">)</span>
+
+<span class="c1"># check the seeds set</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">seeds</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>如果希望随机生成的种子可以复现，请在构建模型时加入随机种子：</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">seeds</span> <span class="o">=</span> <span class="mf">0.3</span> <span class="c1"># ratio of seeds</span>
+<span class="n">i_beta</span><span class="o">=</span><span class="mf">0.01</span> <span class="c1"># infection</span>
+<span class="n">r_lambda</span><span class="o">=</span><span class="mf">0.005</span> <span class="c1"># recovery</span>
+<span class="n">device</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1"># device</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">SIRModel</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">seeds</span><span class="p">,</span> <span class="n">i_beta</span><span class="p">,</span> <span class="n">r_lambda</span><span class="p">,</span> <span class="n">device</span><span class="p">,</span> <span class="n">rand_seed</span><span class="o">=</span><span class="mi">33</span><span class="p">)</span>
+
+<span class="c1"># check the seeds set</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">seeds</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="execute-simulation">
+<h3>Execute simulation<a class="headerlink" href="#execute-simulation" title="Link to this heading"></a></h3>
+<p>可以选择四种不同的运行接口：</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Model.run_iteration()</span></code>: Execute one time step from the current node state and return the updated node state.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Model.run_iterations(times)</span></code>: Execute multiple time steps starting from the current node state and return the final node state after all iterations.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Model.run_epoch(times)</span></code>: Execute multiple time steps starting from the initial state and return the final node state after all iterations.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Model.run_epochs(epochs,</span> <span class="pre">times,</span> <span class="pre">batch_size)</span></code>: Perform multiple Monte Carlo simulations in batches, each starting from the initial state, and return the final node states.</p></li>
+</ul>
+<p>以下是一个运行示例：</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">MC</span> <span class="o">=</span> <span class="mi">10000</span> <span class="c1"># simulation times</span>
+<span class="n">it</span> <span class="o">=</span> <span class="mi">100</span> <span class="c1"># iteration times</span>
+<span class="n">bs</span> <span class="o">=</span> <span class="mi">2000</span> <span class="c1"># batch size</span>
+<span class="n">finals</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">run_epochs</span><span class="p">(</span><span class="n">MC</span><span class="p">,</span> <span class="n">it</span><span class="p">,</span> <span class="n">bs</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="example-code">
+<h2>Example code<a class="headerlink" href="#example-code" title="Link to this heading"></a></h2>
+<p>一份完整的示例：</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">from</span> <span class="nn">torch_geometric.datasets</span> <span class="kn">import</span> <span class="n">Planetoid</span>
+<span class="kn">from</span> <span class="nn">torch_geometric.utils</span> <span class="kn">import</span> <span class="n">degree</span>
+<span class="kn">from</span> <span class="nn">FS_GPlib.Epidemics.SIRModel</span> <span class="kn">import</span> <span class="n">SIRModel</span>
+
+<span class="k">def</span> <span class="nf">Degree_centrality_seeds</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">num_seeds</span><span class="p">):</span>
+    <span class="n">target</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">edge_index</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">N</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">num_nodes</span>
+    <span class="n">D</span> <span class="o">=</span> <span class="n">degree</span><span class="p">(</span><span class="n">target</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
+    <span class="n">_</span><span class="p">,</span> <span class="n">index</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">D</span><span class="p">,</span> <span class="n">descending</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">seeds</span> <span class="o">=</span> <span class="n">index</span><span class="p">[:</span><span class="n">num_seeds</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">seeds</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+
+<span class="n">dataset</span> <span class="o">=</span> <span class="n">Planetoid</span><span class="p">(</span><span class="n">root</span><span class="o">=</span><span class="s1">&#39;./dataset&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;Cora&#39;</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">num_seeds</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">num_nodes</span><span class="o">*</span><span class="mf">0.1</span><span class="p">)</span>
+<span class="n">seeds</span> <span class="o">=</span> <span class="n">Degree_centrality_seeds</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">num_seeds</span><span class="p">)</span>
+
+<span class="n">i_beta</span><span class="o">=</span><span class="mf">0.01</span>
+<span class="n">r_lambda</span><span class="o">=</span><span class="mf">0.005</span>
+<span class="n">device</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">SIRModel</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">seeds</span><span class="p">,</span> <span class="n">i_beta</span><span class="p">,</span> <span class="n">r_lambda</span><span class="p">,</span> <span class="n">device</span><span class="p">)</span>
+
+<span class="n">MC</span> <span class="o">=</span> <span class="mi">10000</span>
+<span class="n">it</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">bs</span> <span class="o">=</span> <span class="mi">2000</span>
+<span class="n">finals</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">run_epochs</span><span class="p">(</span><span class="n">MC</span><span class="p">,</span> <span class="n">it</span><span class="p">,</span> <span class="n">bs</span><span class="p">)</span>
+
+<span class="n">count</span> <span class="o">=</span> <span class="p">(</span><span class="n">finals</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">item</span><span class="p">()</span><span class="o">/</span><span class="n">MC</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Final spread range is </span><span class="si">{</span><span class="n">count</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="about-batch">
+<h2>About Batch<a class="headerlink" href="#about-batch" title="Link to this heading"></a></h2>
+<p>Batch并行算法宏观加速的核心，用于 <code class="docutils literal notranslate"><span class="pre">Model.run_epochs(epochs,</span> <span class="pre">times,</span> <span class="pre">batch_size)</span></code> 。</p>
+<section id="how-to-use-batch">
+<h3>How to use batch<a class="headerlink" href="#how-to-use-batch" title="Link to this heading"></a></h3>
+<p>Batch并行使得多个模拟可以同时进行，但batch大小不能无限放大，而是受硬件性能限制。batch大小设置过大时会提示out of memory，通过实验验证并不是batch 大小越大运行效率越高。</p>
+<p>用户可以通过指数级递减的方式寻找合适的batch大小。</p>
+</section>
+</section>
+<section id="about-distributed">
+<h2>About Distributed<a class="headerlink" href="#about-distributed" title="Link to this heading"></a></h2>
+<p>分布式方法适用于单机无法处理的超大规模数据。分布式方法的核心是按目标节点划分数据，实现子图之间数据量不倾斜，并且每个时间步只进行一次同步。</p>
+<p>该方法可以在单机单卡设备、单机多卡设备和多机多卡设备上实现超大规模图的传播模拟。</p>
+<section id="how-to-use-distributed-computing">
+<h3>How to use distributed computing<a class="headerlink" href="#how-to-use-distributed-computing" title="Link to this heading"></a></h3>
+<p>算法库不集成分布式代码，但提供了数据划分方法。</p>
+<p>并给出一个实现案例，<a class="reference external" href="comingsoon.">test_DC.py</a></p>
+<p>该代码运行方式为：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">CUDA_VISIBLE_DEVICES</span><span class="o">=</span><span class="m">1</span>,2,3,4,5,6<span class="w"> </span>torchrun<span class="w"> </span>--nnodes<span class="o">=</span><span class="m">1</span><span class="w"> </span>--nproc_per_node<span class="o">=</span><span class="m">6</span><span class="w"> </span>--node_rank<span class="o">=</span><span class="m">0</span><span class="w"> </span>--master_addr<span class="o">=</span><span class="m">127</span>.0.0.1<span class="w"> </span>--master_port<span class="o">=</span><span class="m">12345</span><span class="w"> </span>test_DC.py<span class="w"> </span>-d<span class="w"> </span>Webbase<span class="w"> </span>-s<span class="w"> </span><span class="m">100</span><span class="w"> </span>-mc<span class="w"> </span><span class="m">1000</span>
+</pre></div>
+</div>
+<p>命令行解读：</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">CUDA_VISIBLE_DEVICES=1,2,3,4,5,6</span></code></p>
+<blockquote>
+<div><p>Restricts the script to only use GPUs with device IDs 1 through 6. These are the GPU IDs made visible to the process.</p>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">torchrun</span></code></p>
+<blockquote>
+<div><p>The PyTorch launcher used for distributed training/simulation across multiple processes or GPUs.</p>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--nnodes=1</span></code></p>
+<blockquote>
+<div><p>Specifies that only one physical machine (node) is involved in the computation.</p>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--nproc_per_node=6</span></code></p>
+<blockquote>
+<div><p>Launches 6 separate processes on the single node, typically one per GPU (corresponding to the 6 visible GPUs).</p>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--node_rank=0</span></code></p>
+<blockquote>
+<div><p>Indicates the rank of this node in a multi-node setup. Since there’s only one node, it’s rank 0.</p>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--master_addr=127.0.0.1</span></code></p>
+<blockquote>
+<div><p>Sets the IP address of the master node (localhost in this case).</p>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--master_port=12345</span></code></p>
+<blockquote>
+<div><p>Sets the port used for inter-process communication.</p>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">test_DC.py</span></code></p>
+<blockquote>
+<div><p>The Python script to be executed, which performs a distributed SIR simulation.</p>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-d</span> <span class="pre">Webbase</span></code></p>
+<blockquote>
+<div><p>Specifies the dataset to use (Webbase in this case).</p>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-s</span> <span class="pre">100</span></code></p>
+<blockquote>
+<div><p>Sets the number of simulation steps per Monte Carlo run to 100.</p>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-mc</span> <span class="pre">1000</span></code></p>
+<blockquote>
+<div><p>Specifies that 1000 Monte Carlo simulations will be run.</p>
+</div></blockquote>
+</li>
+</ul>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="页脚">
+        <a href="installation.html" class="btn btn-neutral float-left" title="安装" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="library/index.html" class="btn btn-neutral float-right" title="Library" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2026, Allen Guo。</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

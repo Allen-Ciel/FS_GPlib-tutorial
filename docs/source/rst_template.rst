@@ -1,0 +1,87 @@
+RST Template Example
+====================
+
+This is a sample reStructuredText (.rst) document demonstrating common formatting used in Sphinx documentation.
+
+Section Heading
+---------------
+
+This section contains various formatting examples.
+
+**Bold Text**, *Italic Text*, and ``Inline Code``.
+
+Lists
+-----
+
+Unordered list:
+
+- Item 1
+- Item 2
+  - Subitem 2a
+
+Ordered list:
+
+1. Step 1
+2. Step 2
+   a. Substep a
+
+Code Block
+----------
+
+Python example:
+
+.. code-block:: python
+
+   def greet(name):
+       print(f"Hello, {name}")
+
+Shell command:
+
+.. code-block:: bash
+
+   pip install -r requirements.txt
+
+Table Example
+-------------
+
++------------+------------------------+
+| Name       | Description            |
++============+========================+
+| Python     | Programming language   |
++------------+------------------------+
+| Sphinx     | Documentation tool     |
++------------+------------------------+
+
+Hyperlink
+---------
+
+Link to `Sphinx documentation <https://www.sphinx-doc.org>`_.
+
+Toctree
+-------
+
+.. toctree::
+   :maxdepth: 1
+   :caption: Subpages
+
+   overview
+   installation
+   tutorial/index
+
+Admonitions
+-----------
+
+.. note::
+
+   This is a note block for extra information.
+
+.. warning::
+
+   Be careful with this step!
+
+Footnotes
+---------
+
+You can reference something important [#f1]_.
+
+.. [#f1] This is the content of the footnote.

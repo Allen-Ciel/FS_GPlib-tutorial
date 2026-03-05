@@ -1,0 +1,309 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2026, Allen Guo
+# This file is distributed under the same license as the FS_GPlib-tutorial package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: FS_GPlib-tutorial \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-03-02 20:24+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../source/library/models/epidemics/IndependentCascades.rst:2
+#: 0678a51fcb49480fb5b3b3220cd86f83
+msgid "Independent Cascades"
+msgstr ""
+
+#: ../../source/library/models/epidemics/IndependentCascades.rst:4
+#: fb4fa2ebab0e42d49b084c4415df7ec2
+msgid "The Independent Cascades (IC) model describes information diffusion or contagion processes on a static graph :math:`G=(V,E)`, where each node can be either **active (infected and recovered)** or **inactive (susceptible)**. Once a node becomes active, it gets **one chance** to activate each of its inactive neighbors with a given probability (**infected**); whether or not it succeeds, it has no more chance to activate others (**recovered**)."
+msgstr ""
+
+#: ../../source/library/models/epidemics/IndependentCascades.rst:12
+#: ../../source/library/models/epidemics/IndependentCascades.rst:16
+#: 2927db3dad3b429d91c829fcf87f7329
+#: 6ed7356b4f6c40a48cdee069131cd569
+msgid "Status"
+msgstr ""
+
+#: ../../source/library/models/epidemics/IndependentCascades.rst:13
+#: 83222d25d417409a9179a2cc2f41cbd8
+msgid "During the simulation, a node can be in one of the following states:"
+msgstr ""
+
+#: ../../source/library/models/epidemics/IndependentCascades.rst:16
+#: 569e761e5e5b49f4b7d6047b44398574
+msgid "Code"
+msgstr ""
+
+#: ../../source/library/models/epidemics/IndependentCascades.rst:18
+#: 2ac6f398dadf46bea988214f448fd2d9
+msgid "Susceptible"
+msgstr ""
+
+#: ../../source/library/models/epidemics/IndependentCascades.rst:18
+#: ec32f1917b29425e8c5b0baf34134744
+msgid "0"
+msgstr ""
+
+#: ../../source/library/models/epidemics/IndependentCascades.rst:20
+#: 55dfb56a6bfa4ab58b0a6cef4f451b48
+msgid "Infected"
+msgstr ""
+
+#: ../../source/library/models/epidemics/IndependentCascades.rst:20
+#: b61748efcc4a4068b40375000aea7dfa
+msgid "1"
+msgstr ""
+
+#: ../../source/library/models/epidemics/IndependentCascades.rst:24
+#: 00b4302432544e718255f2d7105e0c35
+msgid "Parameters"
+msgstr ""
+
+#: ../../source/library/models/epidemics/IndependentCascades.rst:26
+#: 8b343a79a4c4426e9726b32490653b63
+msgid "Name"
+msgstr ""
+
+#: ../../source/library/models/epidemics/IndependentCascades.rst:26
+#: 26ca8f738bea4cc08225f6266fb4722d
+msgid "Value Type"
+msgstr ""
+
+#: ../../source/library/models/epidemics/IndependentCascades.rst:26
+#: a309ed9f51594f85a96db3c6fc8b7639
+msgid "Default"
+msgstr ""
+
+#: ../../source/library/models/epidemics/IndependentCascades.rst:26
+#: dea978701e174d5cb5ff8665c8860d20
+msgid "Mandatory"
+msgstr ""
+
+#: ../../source/library/models/epidemics/IndependentCascades.rst:26
+#: c47f94c0dcee42eaaa71ab708f9d7eaf
+msgid "Description"
+msgstr ""
+
+#: ../../source/library/models/epidemics/IndependentCascades.rst:28
+#: f333894422a0453a8f599e8aea8798ea
+msgid "data"
+msgstr ""
+
+#: ../../source/library/models/epidemics/IndependentCascades.rst:28
+#: 5a03d46bf1404be6a36cc581f54ea406
+msgid "Data"
+msgstr ""
+
+#: ../../source/library/models/epidemics/IndependentCascades.rst:28
+#: ../../source/library/models/epidemics/IndependentCascades.rst:30
+#: ../../source/library/models/epidemics/IndependentCascades.rst:32
+#: 5fef914dc69b454e8bd5c7cbd85b00e9
+#: 55783bed1a9740e092de3a4ad8d5ab23
+#: 01d8bd2e5f7045439506c7667ac13a79
+msgid "Yes"
+msgstr ""
+
+#: ../../source/library/models/epidemics/IndependentCascades.rst:28
+#: 0c201ec386bc4057b026482c02712b95
+msgid "Graph data."
+msgstr ""
+
+#: ../../source/library/models/epidemics/IndependentCascades.rst:30
+#: ee31377f67224791b5af1f6d387c27b3
+msgid "seeds"
+msgstr ""
+
+#: ../../source/library/models/epidemics/IndependentCascades.rst:30
+#: f839a80dedd9448ea069d580b6bac81d
+msgid "List[int]/float in (0, 1)"
+msgstr ""
+
+#: ../../source/library/models/epidemics/IndependentCascades.rst:30
+#: 3fa761b1ae9f4a8e897e3b1d8efed920
+msgid "Seed node IDs or a ratio in (0, 1)."
+msgstr ""
+
+#: ../../source/library/models/epidemics/IndependentCascades.rst:32
+#: 8ee83f3aaecb419b962efffbf4b17ad5
+msgid "beta"
+msgstr ""
+
+#: ../../source/library/models/epidemics/IndependentCascades.rst:32
+#: 34714e2fc99243edaf85dec970ad13ff
+msgid "float in [0, 1]"
+msgstr ""
+
+#: ../../source/library/models/epidemics/IndependentCascades.rst:32
+#: 4434a387bfdd4b9f85f122d3234a0855
+msgid "Infection probability per contact (activation probability)."
+msgstr ""
+
+#: ../../source/library/models/epidemics/IndependentCascades.rst:34
+#: cebce04b27b24e92af874577dc20ee3a
+msgid "device"
+msgstr ""
+
+#: ../../source/library/models/epidemics/IndependentCascades.rst:34
+#: fe503331307b40cabf76ea41e83612ec
+msgid "'cpu' / int (CUDA index)"
+msgstr ""
+
+#: ../../source/library/models/epidemics/IndependentCascades.rst:34
+#: 89493bcc3c9b489d94a651c1e7d371e5
+msgid "'cpu'"
+msgstr ""
+
+#: ../../source/library/models/epidemics/IndependentCascades.rst:34
+#: ../../source/library/models/epidemics/IndependentCascades.rst:36
+#: ../../source/library/models/epidemics/IndependentCascades.rst:38
+#: a9c7d9ad2b434e20b2243c121bd5fd34
+#: 13af1640e7884824a1b1243b582bf059
+#: 7a259423d85f468c88c487c7634e8fd7
+msgid "No"
+msgstr ""
+
+#: ../../source/library/models/epidemics/IndependentCascades.rst:34
+#: df14580adf604d95b52ff500b78fd73f
+msgid "Device to run the model on."
+msgstr ""
+
+#: ../../source/library/models/epidemics/IndependentCascades.rst:36
+#: 6e8ac6b1cc394d51b507ff3e6229040c
+msgid "use_weight"
+msgstr ""
+
+#: ../../source/library/models/epidemics/IndependentCascades.rst:36
+#: c493e0eefc4f4e79ae7d153d4605173b
+msgid "Bool"
+msgstr ""
+
+#: ../../source/library/models/epidemics/IndependentCascades.rst:36
+#: a838fd7dc40b4e499ac5a18a08a70ab9
+msgid "False"
+msgstr ""
+
+#: ../../source/library/models/epidemics/IndependentCascades.rst:36
+#: fe4a71013e7247f6adf923d24076220d
+msgid "Whether to use edge weights."
+msgstr ""
+
+#: ../../source/library/models/epidemics/IndependentCascades.rst:38
+#: a4a58c641f44487bb46b94b046b60a9d
+msgid "rand_seed"
+msgstr ""
+
+#: ../../source/library/models/epidemics/IndependentCascades.rst:38
+#: 27e080f7848541b2b842024d40d2d5d2
+msgid "Int"
+msgstr ""
+
+#: ../../source/library/models/epidemics/IndependentCascades.rst:38
+#: 6b31e724e234456196d44ae35af9792f
+msgid "None"
+msgstr ""
+
+#: ../../source/library/models/epidemics/IndependentCascades.rst:38
+#: f3af46971b5b4471afbb41a42b64fefd
+msgid "Random seed for generating the initial seed set."
+msgstr ""
+
+#: ../../source/library/models/epidemics/IndependentCascades.rst:42
+#: 37a7b60c973e4dc6975f6dac6310a586
+msgid "Implementation"
+msgstr ""
+
+#: ../../source/library/models/epidemics/IndependentCascades.rst:43
+#: b6ecf67478c443d19765a5e4e2489d79
+msgid "Independent Cascades is the special case of the SIR Model, where :math: `\\gamma=1`."
+msgstr ""
+
+#: ../../source/library/models/epidemics/IndependentCascades.rst:45
+#: 92455e8a4b9a40a2be52642788424308
+msgid "Node transitions follow two rules: 1) if a :math:`S` state node has :math:`I` state neighbors, each :math:`I` state neighbor transmits the infection to the :math:`S` state node with probability :math:`\\beta`; 2) the :math:`I` state node is recovered to the :math:`R` state with probability :math:`1`."
+msgstr ""
+
+#: ../../source/library/models/epidemics/IndependentCascades.rst:50
+#: 0a65a7c32e2849df82555e69742a60b8
+msgid "Independent Cascades model diagram"
+msgstr ""
+
+#: ../../source/library/models/epidemics/IndependentCascades.rst:56
+#: 9d49f203fd324b88a4b4c855b972e64d
+msgid "Node states are represented by two Boolean indicator vectors :math:`h, r \\in \\{0,1\\}^N`:"
+msgstr ""
+
+#: ../../source/library/models/epidemics/IndependentCascades.rst:58
+#: 4d332e1303524cdc8816ece8a2444915
+msgid ":math:`h_i=1` denotes ``infected`` (**Active**)"
+msgstr ""
+
+#: ../../source/library/models/epidemics/IndependentCascades.rst:59
+#: a1dfac67ef764bf3ae4f3004fe498d40
+msgid ":math:`r_i=1` denotes ``recovered`` (**Active**)"
+msgstr ""
+
+#: ../../source/library/models/epidemics/IndependentCascades.rst:60
+#: c818648d62ee4edf876d0bf4926ffb40
+msgid ":math:`(h_i,r_i)=(0,0)` denotes ``susceptible`` (**Inactive**)"
+msgstr ""
+
+#: ../../source/library/models/epidemics/IndependentCascades.rst:62
+#: bedd425dc83a4ea0ae2f1f5f7802bd61
+msgid "The update of the system at step :math:`k` is decomposed into three stages:"
+msgstr ""
+
+#: ../../source/library/models/epidemics/IndependentCascades.rst:64
+#: 24a55645fd7b4e42813582b37d6b0670
+msgid "Each infected neighbor :math:`j` of node :math:`i` transmits a log-probability contribution"
+msgstr ""
+
+#: ../../source/library/models/epidemics/IndependentCascades.rst:66
+#: 1f165cca12c64dde85734b8d41318d96
+msgid "m_{ji}^{(k)} = h_j^{(k-1)} \\cdot \\log(1-\\beta)"
+msgstr ""
+
+#: ../../source/library/models/epidemics/IndependentCascades.rst:71
+#: 79c921a5cd8d4878919597b563c85d75
+msgid "Node :math:`i` collects contributions from all neighbors :math:`N(i)` to compute its infection probability"
+msgstr ""
+
+#: ../../source/library/models/epidemics/IndependentCascades.rst:73
+#: 4388d28883a8448898e514aad25a780c
+msgid "m_i^{(k)} = 1 - \\exp\\!\\left( \\sum_{j \\in N(i)} m_{ji}^{(k)} \\right)"
+msgstr ""
+
+#: ../../source/library/models/epidemics/IndependentCascades.rst:78
+#: dc4fa4a218944ce3bc444c9894322b1e
+msgid "The indicator variables are updated with independent uniform random variables :math:`U_i^{\\mathrm{inf}}, U_i^{\\mathrm{rec}} \\sim \\mathrm{Uniform}(0,1)`"
+msgstr ""
+
+#: ../../source/library/models/epidemics/IndependentCascades.rst:80
+#: 74d2a823497d4ae39c53c98080c17e50
+msgid "\\begin{aligned}\n"
+"    h_i^{(k)} &=\n"
+"    \\begin{cases}\n"
+"            1, & \\text{if } (h_i^{(k-1)}=0 \\land r_i^{(k-1)}=0) \\land (U_i^{\\mathrm{inf}} < m_i^{(k)}), \\\\[4pt]\n"
+"            0, & \\text{if } h_i^{(k-1)}=1, \\\\[4pt]\n"
+"            h_i^{(k-1)}, & \\text{otherwise},\n"
+"    \\end{cases} \\\\[6pt]\n"
+"    r_i^{(k)} &=\n"
+"    \\begin{cases}\n"
+"            1, & \\text{if } h_i^{(k-1)}=1, \\\\[4pt]\n"
+"            r_i^{(k-1)}, & \\text{otherwise}.\n"
+"    \\end{cases}\n"
+"\\end{aligned}"
+msgstr ""
+
+#: ../../source/library/models/epidemics/IndependentCascades.rst:97
+#: 88cb57e35a5f40008d1df2488aa74fa3
+msgid "References"
+msgstr ""

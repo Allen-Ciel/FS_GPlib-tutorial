@@ -1,0 +1,280 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2026, Allen Guo
+# This file is distributed under the same license as the FS_GPlib-tutorial package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: FS_GPlib-tutorial \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-03-03 09:49+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../source/library/models/epidemics/Threshold.rst:2
+#: b71815ad181944748fb3478a6d2b5804
+msgid "Threshold"
+msgstr ""
+
+#: ../../source/library/models/epidemics/Threshold.rst:4
+#: 74cff8c2eca040b9af64341475c6aeb0
+msgid "The Threshold model describes a diffusion process in which each node in a network adopts a behavior (becomes active) when a sufficient fraction or weighted sum of its neighbors are already active. Unlike the Independent Cascades model, which uses independent stochastic activations, the Threshold model relies on **deterministic or probabilistic thresholds** that control adoption."
+msgstr ""
+
+#: ../../source/library/models/epidemics/Threshold.rst:9
+#: ../../source/library/models/epidemics/Threshold.rst:13
+#: bdc329d5783345c392e67320f0ce4634
+#: cdc83f7d438e44e387a01663b8612e57
+msgid "Status"
+msgstr ""
+
+#: ../../source/library/models/epidemics/Threshold.rst:10
+#: ec8740dff669407997704ee211ef8052
+msgid "During the simulation, each node can be in one of two states:"
+msgstr ""
+
+#: ../../source/library/models/epidemics/Threshold.rst:13
+#: 85dadacae4514748b1d2e434fc39e98d
+msgid "Code"
+msgstr ""
+
+#: ../../source/library/models/epidemics/Threshold.rst:15
+#: 90f166a1b0ee4e60abfe7ac0d67e7827
+msgid "Inactive"
+msgstr ""
+
+#: ../../source/library/models/epidemics/Threshold.rst:15
+#: 79e93cb5fd554b699bf3df8f23274d83
+msgid "0"
+msgstr ""
+
+#: ../../source/library/models/epidemics/Threshold.rst:17
+#: 6bf84bed9d14449aa227e184b61a5b52
+msgid "Active"
+msgstr ""
+
+#: ../../source/library/models/epidemics/Threshold.rst:17
+#: fc4c562243824b62a7c52b60fb61e999
+msgid "1"
+msgstr ""
+
+#: ../../source/library/models/epidemics/Threshold.rst:21
+#: 54ab0fb43f8243338d3b38fdeb9dca03
+msgid "Parameters"
+msgstr ""
+
+#: ../../source/library/models/epidemics/Threshold.rst:23
+#: 8b637fb9f13547dab0f968d622f2629f
+msgid "Name"
+msgstr ""
+
+#: ../../source/library/models/epidemics/Threshold.rst:23
+#: 6b13a060f4454971876794fee8a563dc
+msgid "Value Type"
+msgstr ""
+
+#: ../../source/library/models/epidemics/Threshold.rst:23
+#: 5ca5fdf88ac941ee9c805264c594557c
+msgid "Default"
+msgstr ""
+
+#: ../../source/library/models/epidemics/Threshold.rst:23
+#: 8d0c9123829147189660b5b2d672bca6
+msgid "Mandatory"
+msgstr ""
+
+#: ../../source/library/models/epidemics/Threshold.rst:23
+#: a0668ee435534602bd5cf9941485f27f
+msgid "Description"
+msgstr ""
+
+#: ../../source/library/models/epidemics/Threshold.rst:25
+#: 9c695592a2d040ce9912962475df6be7
+msgid "data"
+msgstr ""
+
+#: ../../source/library/models/epidemics/Threshold.rst:25
+#: fa9c8b3b9437498d8de83f8fd5cf864f
+msgid "Data"
+msgstr ""
+
+#: ../../source/library/models/epidemics/Threshold.rst:25
+#: ../../source/library/models/epidemics/Threshold.rst:27
+#: ../../source/library/models/epidemics/Threshold.rst:29
+#: 3a406f5bfe0e48759951a7d1506025e1
+#: 47a976ab56d84e6bb427ec48814ae6a1
+#: a9fe43f434984e3c9afca9f5835a9176
+msgid "Yes"
+msgstr ""
+
+#: ../../source/library/models/epidemics/Threshold.rst:25
+#: 2cf18b82663e445082bdc412799f6d2d
+msgid "Graph data."
+msgstr ""
+
+#: ../../source/library/models/epidemics/Threshold.rst:27
+#: 92186eb3bc1e4eeaaf445cc51a8d2b2c
+msgid "seeds"
+msgstr ""
+
+#: ../../source/library/models/epidemics/Threshold.rst:27
+#: cf5f2ddae56642f29113742f389e6bd7
+msgid "List[int]/float in (0, 1)"
+msgstr ""
+
+#: ../../source/library/models/epidemics/Threshold.rst:27
+#: 85bef10510684f8b85eee6ac02de221d
+msgid "Initial seed nodes or a ratio in (0, 1)."
+msgstr ""
+
+#: ../../source/library/models/epidemics/Threshold.rst:29
+#: 63966ecf5c114517a4906eb78bc9d12d
+msgid "threshold"
+msgstr ""
+
+#: ../../source/library/models/epidemics/Threshold.rst:29
+#: fdf6f5fa76c54380a5664127b92a2293
+msgid "float in [0, 1)"
+msgstr ""
+
+#: ../../source/library/models/epidemics/Threshold.rst:29
+#: eeeb7ee91fa249b886dce02b55881d0c
+msgid "Adoption threshold per node (randomly generated if 0)."
+msgstr ""
+
+#: ../../source/library/models/epidemics/Threshold.rst:31
+#: 35761342af6a4dedbce6e3687f423343
+msgid "use_weight"
+msgstr ""
+
+#: ../../source/library/models/epidemics/Threshold.rst:31
+#: 54a9bbe449fa4ba7becd7f662c916fb8
+msgid "Bool"
+msgstr ""
+
+#: ../../source/library/models/epidemics/Threshold.rst:31
+#: 23a576b90b6444e796f8c43a0bbc6c35
+msgid "False"
+msgstr ""
+
+#: ../../source/library/models/epidemics/Threshold.rst:31
+#: ../../source/library/models/epidemics/Threshold.rst:33
+#: ../../source/library/models/epidemics/Threshold.rst:35
+#: 27b3abf182c84c19a32a6ba7e3495813
+#: b4f0d819fd82483da3c25b4670cfc5dd
+#: 9be0137dd4a144df94c06dd5a5301a66
+msgid "No"
+msgstr ""
+
+#: ../../source/library/models/epidemics/Threshold.rst:31
+#: 0420cfea83fb4e52ad18a913b8931281
+msgid "Whether to use edge weights for influence aggregation."
+msgstr ""
+
+#: ../../source/library/models/epidemics/Threshold.rst:33
+#: 54e2de70da99449b813318d5a2918d38
+msgid "device"
+msgstr ""
+
+#: ../../source/library/models/epidemics/Threshold.rst:33
+#: ab789f833eb64e0f8513e8fcb3a516ac
+msgid "'cpu' / int (CUDA index)"
+msgstr ""
+
+#: ../../source/library/models/epidemics/Threshold.rst:33
+#: 9f941052837f4b4da2b670971abc97ec
+msgid "'cpu'"
+msgstr ""
+
+#: ../../source/library/models/epidemics/Threshold.rst:33
+#: 546ed4c6720448af90d0d87ae092aeab
+msgid "Device to run the model on."
+msgstr ""
+
+#: ../../source/library/models/epidemics/Threshold.rst:35
+#: 0b2e8b0016ea4164ab54e24f51422624
+msgid "rand_seed"
+msgstr ""
+
+#: ../../source/library/models/epidemics/Threshold.rst:35
+#: ee5cdfa9c9cd476fbf724c1693175045
+msgid "Int"
+msgstr ""
+
+#: ../../source/library/models/epidemics/Threshold.rst:35
+#: 4cafb69f018d4d02b3fb8e77f38ff2e6
+msgid "None"
+msgstr ""
+
+#: ../../source/library/models/epidemics/Threshold.rst:35
+#: 319cc97c5b7d4609a0e50831c7aa1dbd
+msgid "Random seed for generating initial seeds (if ratio given)."
+msgstr ""
+
+#: ../../source/library/models/epidemics/Threshold.rst:39
+#: a0668ee435534602bd5cf9941485f27f
+msgid "Model Description"
+msgstr ""
+
+#: ../../source/library/models/epidemics/Threshold.rst:40
+#: c612e4c374284ba4a4c261a637095e87
+msgid "At each iteration :math:`k`, every inactive node :math:`i` checks the fraction (or weighted fraction) of its neighbors that are active. If this value exceeds its threshold :math:`\\theta_i`, the node becomes active in the next iteration."
+msgstr ""
+
+#: ../../source/library/models/epidemics/Threshold.rst:43
+#: f79a9f1ef59b4004ab680010e254c030
+msgid "Threshold model diagram"
+msgstr ""
+
+#: ../../source/library/models/epidemics/Threshold.rst:48
+#: a9510ab3b2fa4088b3b62b78dd9398da
+msgid "We use one Boolean indicator vector :math:`h \\in \\{0,1\\}^N`, where :math:`h_i=1` denotes ``Active``, :math:`h_i=0` denotes ``Inactive``."
+msgstr ""
+
+#: ../../source/library/models/epidemics/Threshold.rst:50
+#: 84f57630ee4640648ba998ee9e121b09
+msgid "Each active neighbor :math:`j` of node :math:`i` transmits a contribution"
+msgstr ""
+
+#: ../../source/library/models/epidemics/Threshold.rst:52
+#: 9ac224cc8a984cf4b97d36d061357682
+msgid "m_{ji}^{(k)} = h_j^{(k-1)}\n"
+"\n"
+""
+msgstr ""
+
+#: ../../source/library/models/epidemics/Threshold.rst:55
+#: 4cd3a870cca24272a1de73654d9c068a
+msgid "Node :math:`i` collects contributions from all neighbors :math:`N(i)` to compute its active probability:"
+msgstr ""
+
+#: ../../source/library/models/epidemics/Threshold.rst:57
+#: 2aaab66379634980afa3a4124e47c12e
+msgid "m_i^{(k)} = \\frac{1}{|N(i)|}\\sum_{j \\in N(i)} m_{ji}^{(k)}\n"
+"\n"
+""
+msgstr ""
+
+#: ../../source/library/models/epidemics/Threshold.rst:60
+#: 10f08e4142c64cef91abeb0d7b23c9e1
+msgid "The indicator variables are updated by:"
+msgstr ""
+
+#: ../../source/library/models/epidemics/Threshold.rst:62
+#: 21ef1805be274a15afaa31006356dd2d
+msgid " h_i^{(k)} =\n"
+"\\begin{cases}\n"
+"    1,  \\text{if} (\\theta_i \\leq m_i^{(k)}) \\land h_i^{(k-1)}=0 , \\\\[4pt]\n"
+"    h_i^{(k-1)},  \\text{otherwise},\n"
+"\\end{cases} \\\\[6pt]"
+msgstr ""
+
+#: ../../source/library/models/epidemics/Threshold.rst:72
+#: c7d87a74fcd84bcd8d019a1371f8f976
+msgid "References"
+msgstr ""

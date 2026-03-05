@@ -1,0 +1,18 @@
+{% extends "!layout.html" %}
+
+{% block sidebartitle %}
+  {{ super() }}
+  {% if languages and languages|length > 1 %}
+  <div class="language-switcher" style="margin: 8px 0; padding: 4px 0;">
+    <select id="language-select" onchange="switchLanguage(this.value)"
+            style="width: 100%; padding: 4px 8px; border: 1px solid #ccc; border-radius: 3px;
+                   background: #fcfcfc; font-size: 0.9em; cursor: pointer;">
+      {% for code, name in languages.items() %}
+      <option value="{{ code }}" {% if code == current_language %}selected{% endif %}>
+        {{ name }}
+      </option>
+      {% endfor %}
+    </select>
+  </div>
+  {% endif %}
+{% endblock %}

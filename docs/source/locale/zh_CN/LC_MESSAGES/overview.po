@@ -1,0 +1,126 @@
+# Chinese (Simplified) translations for FS_GPlib-tutorial.
+# Copyright (C) 2026, Allen Guo
+# This file is distributed under the same license as the FS_GPlib-tutorial
+# package.
+# Allen Guo, 2026.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: FS_GPlib-tutorial \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-03-02 20:24+0800\n"
+"PO-Revision-Date: 2026-03-02 20:30+0800\n"
+"Last-Translator: Allen Guo\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.16.0\n"
+
+#: ../../source/overview.rst:2
+msgid "Overview"
+msgstr "概述"
+
+#: ../../source/overview.rst:4
+msgid ""
+"**FS_GPlib** is a flexible and scalable Python library designed for "
+"simulating a wide range of graph-based propagation processes. It supports"
+" classical epidemic models, opinion dynamics, and simulations on dynamic "
+"networks. The library is built to facilitate high-efficiency simulation "
+"through support for Message Passing based dual-acceleration framework and"
+" distributed computing."
+msgstr ""
+"**FS_GPlib** 是一个灵活且可扩展的 Python 库，专为模拟各种基于图的传播过程而"
+"设计。它支持经典传染病模型、舆论动力学以及动态网络上的模拟。该库通过支持基于"
+"消息传递的双加速框架和分布式计算来实现高效模拟。"
+
+#: ../../source/overview.rst:6
+msgid ""
+"This documentation provides a structured overview of FS_GPlib, from "
+"installation and usage to the implementation of custom models. Whether "
+"you're a researcher studying network diffusion or a developer looking to "
+"integrate propagation models into your pipeline, FS_GPlib offers a "
+"modular and extensible foundation."
+msgstr ""
+"本文档提供了 FS_GPlib 的结构化概述，涵盖从安装使用到自定义模型的实现。无论您"
+"是研究网络扩散的科研人员，还是希望将传播模型集成到工作流中的开发者，FS_GPlib "
+"都提供了模块化且可扩展的基础。"
+
+#: ../../source/overview.rst:9
+msgid "Motivation"
+msgstr "研究动机"
+
+#: ../../source/overview.rst:11
+msgid ""
+"Propagation models are essential tools in understanding how information, "
+"behaviors, or diseases spread through complex networks. FS_GPlib is "
+"developed to address the following challenges:"
+msgstr ""
+"传播模型是理解信息、行为或疾病如何在复杂网络中传播的重要工具。FS_GPlib 旨在"
+"解决以下挑战："
+
+#: ../../source/overview.rst:13
+msgid "The need for **efficient simulation** on large-scale graphs."
+msgstr "大规模图上 **高效模拟** 的需求。"
+
+#: ../../source/overview.rst:14
+msgid "The demand for **modular design** that supports custom models."
+msgstr "支持自定义模型的 **模块化设计** 需求。"
+
+#: ../../source/overview.rst:15
+msgid ""
+"The importance of **distributed simulation** to overcome scalability "
+"bottlenecks."
+msgstr "**分布式模拟** 以克服可扩展性瓶颈的重要性。"
+
+#: ../../source/overview.rst:18
+msgid "Core Capabilities"
+msgstr "核心能力"
+
+#: ../../source/overview.rst:20
+msgid ""
+"**Model Support**: Built-in support for classical epidemic models (SI, "
+"SIS, SIR), opinion dynamics, and network evolution processes."
+msgstr ""
+"**模型支持**：内置经典传染病模型（SI、SIS、SIR）、舆论动力学及网络演化过程。"
+
+#: ../../source/overview.rst:21
+msgid ""
+"**Batch Simulation**: Perform multiple simulations in parallel using "
+"high-dimensional tensor operations."
+msgstr "**批量模拟**：使用高维张量运算并行执行多次模拟。"
+
+#: ../../source/overview.rst:22
+msgid ""
+"**Distributed Execution**: Supports graph partitioning to enable "
+"distribution across multiple processors or nodes."
+msgstr "**分布式执行**：支持图分区，以实现跨多个处理器或节点的分布式计算。"
+
+#: ../../source/overview.rst:23
+msgid ""
+"**Extensibility**: Easily implement your own propagation rules through "
+"the custom model interface."
+msgstr "**可扩展性**：通过自定义模型接口轻松实现您自己的传播规则。"
+
+#: ../../source/overview.rst:26
+msgid "Project Structure"
+msgstr "项目结构"
+
+#: ../../source/overview.rst:29
+msgid "To be determined"
+msgstr "待定"
+
+#: ../../source/overview.rst:39
+msgid "Get Started"
+msgstr "快速开始"
+
+#: ../../source/overview.rst:41
+msgid ""
+"To begin using FS_GPlib, proceed to the :doc:`installation` section and "
+"follow the setup instructions. Then explore the :doc:`tutorial` for "
+"example workflows and usage patterns."
+msgstr ""
+"要开始使用 FS_GPlib，请前往 :doc:`installation` 章节并按照安装说明操作。"
+"然后浏览 :doc:`tutorial` 了解示例工作流程和使用模式。"

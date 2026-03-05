@@ -1,0 +1,414 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2026, Allen Guo
+# This file is distributed under the same license as the FS_GPlib-tutorial
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: FS_GPlib-tutorial \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-03-02 20:24+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.16.0\n"
+
+#: ../../source/library/models/epidemics/SEIR_ct.rst:2
+#: 8802f0b988da4a47af6d7ec09c2283ae
+msgid "SEIR_ct"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SEIR_ct.rst:4
+#: 7b46634a8a3e4838af3eb2c057edd779
+msgid ""
+"The SEIR_ct Model assumes that infection spreads only through links "
+"between neighboring nodes in a graph :math:`G=(V,E)`. Each node is in one"
+" of four states: :math:`S` (susceptible), :math:`E` (exposed/incubating),"
+" :math:`I` (infected), or :math:`R` (recovered). Compared with the "
+"discrete-step SEIR, **SEIR_ct uses elapsed-time–dependent transition "
+"probabilities** for :math:`E\\to I` and :math:`I\\to R` based on the time"
+" since the last state entry."
+msgstr ""
+
+#: ../../source/library/models/epidemics/SEIR_ct.rst:9
+#: ../../source/library/models/epidemics/SEIR_ct.rst:13
+#: 33be511b8b184e16a9108b8ab2521839 d507dadb594c423390d841a4b27ca045
+msgid "Status"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SEIR_ct.rst:10
+#: f78d3c292011443cb113736ce9ed3513
+msgid "During the simulation, a node can be in one of the following states:"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SEIR_ct.rst:13
+#: fee70969bd6e4e11965c670a1d4bdfca
+msgid "Code"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SEIR_ct.rst:15
+#: ba838c53126d43728c17b8fa4955a47a
+msgid "Susceptible"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SEIR_ct.rst:15
+#: 22257994863d430dbf9ab347c0ee63cc
+msgid "0"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SEIR_ct.rst:17
+#: a28eb1fc2d2d4d58832bb13a03f0c9f2
+msgid "Infected"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SEIR_ct.rst:17
+#: 3dc4bcfe3a614a938cedde4501d1e96c
+msgid "1"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SEIR_ct.rst:19
+#: a48c4a31f3c54ad7bf88a4282dbdedc1
+msgid "Exposed"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SEIR_ct.rst:19
+#: ba03f3db2a824e3786c7f30858c6fd93
+msgid "2"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SEIR_ct.rst:21
+#: 21ea0392660a4305b46fc73310cc5716
+msgid "Recovered"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SEIR_ct.rst:21
+#: 9f5a679d8ab748d1a8339463dab94036
+msgid "3"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SEIR_ct.rst:25
+#: 7791aca1513045e484585ca564404198
+msgid "Parameters"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SEIR_ct.rst:27
+#: 40c3395d864e443697d44d786dead81e
+msgid "Name"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SEIR_ct.rst:27
+#: 665ce44eac6b4c7badffaaef7294a36d
+msgid "Value Type"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SEIR_ct.rst:27
+#: 3439f437f0e846b782bf1ae5aa2c0984
+msgid "Default"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SEIR_ct.rst:27
+#: 4fe4e79f738046398da1db1d01f086a6
+msgid "Mandatory"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SEIR_ct.rst:27
+#: aad6797d2a0e42269d37205bcc723f1e
+msgid "Description"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SEIR_ct.rst:29
+#: 36eb0517574b499295b2bd62a151e332
+msgid "data"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SEIR_ct.rst:29
+#: 5d1e5eb252be4ddd96022b5743392830
+msgid "Data"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SEIR_ct.rst:29
+#: ../../source/library/models/epidemics/SEIR_ct.rst:31
+#: ../../source/library/models/epidemics/SEIR_ct.rst:33
+#: ../../source/library/models/epidemics/SEIR_ct.rst:35
+#: ../../source/library/models/epidemics/SEIR_ct.rst:37
+#: 0b2db16cf3e248fc96c6167919c366ef 356d6396c6ff406ab7ebb94bddb8a844
+#: 68290f0d832c4538a50cb5d677bc1b00 cd335a3160564f5bb3e683d34f9f810e
+#: ce9323ae0d02466a819764c2e1cc5ac3
+msgid "Yes"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SEIR_ct.rst:29
+#: fa1037a8866946c4970222b746661f1b
+msgid "Graph data."
+msgstr ""
+
+#: ../../source/library/models/epidemics/SEIR_ct.rst:31
+#: cb000621bdf24eb0b07fed606b2708e8
+msgid "seeds"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SEIR_ct.rst:31
+#: deed5137fdd34875aae63c00453c2451
+msgid "List[int]/float in (0, 1)"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SEIR_ct.rst:31
+#: de42365b41674c48819d7317fa42f0b7
+msgid "Seed node IDs or a ratio in (0, 1)."
+msgstr ""
+
+#: ../../source/library/models/epidemics/SEIR_ct.rst:33
+#: b3ab962d6ee44995b9541a895571cb20
+msgid "beta"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SEIR_ct.rst:33
+#: ../../source/library/models/epidemics/SEIR_ct.rst:35
+#: ../../source/library/models/epidemics/SEIR_ct.rst:37
+#: 1747acd40a8649828031b47f600a7d8e 6947b51b116a483d8ccda23bba5a3bd9
+#: fd4bd719fb8a4d7f98ec8f983fc44789
+msgid "float in [0, 1]"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SEIR_ct.rst:33
+#: 38e59fc1e39247e58c94dbe02a70b5e4
+msgid "Infection probability per contact (S→E)."
+msgstr ""
+
+#: ../../source/library/models/epidemics/SEIR_ct.rst:35
+#: eaed136e2df6419ca28de6de776f521c
+msgid "alpha"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SEIR_ct.rst:35
+#: a06406f4edeb4ac8bebf5a2496d2d164
+msgid "Incubation rate parameter (controls E→I hazard)."
+msgstr ""
+
+#: ../../source/library/models/epidemics/SEIR_ct.rst:37
+#: 29584fb4a9a04cffa2a219cccb3d7b11
+msgid "gamma"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SEIR_ct.rst:37
+#: 1ca1ca7671e04abc92956df7fb656ec9
+msgid "Recovery rate parameter (controls I→R hazard)."
+msgstr ""
+
+#: ../../source/library/models/epidemics/SEIR_ct.rst:39
+#: 4852d6de718046beb7af8924ce5969ad
+msgid "device"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SEIR_ct.rst:39
+#: 56ccf107604b4a0a87c3d9dc7f9a8e57
+msgid "'cpu'/int (CUDA index)"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SEIR_ct.rst:39
+#: 26766e30fb1c432eadc7817abad0c11a
+msgid "'cpu'"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SEIR_ct.rst:39
+#: ../../source/library/models/epidemics/SEIR_ct.rst:41
+#: ../../source/library/models/epidemics/SEIR_ct.rst:43
+#: 546e2b881d4c45fda0fef18e5574199d a166904de6084902a6349104715a5f8e
+#: b2d9741bf1d747af96da311e7965bf82
+msgid "No"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SEIR_ct.rst:39
+#: 6222c05554e64ea39a8373e6e3ac2eca
+msgid "Device to run the model on."
+msgstr ""
+
+#: ../../source/library/models/epidemics/SEIR_ct.rst:41
+#: d3ff246ee58244429a14d5e5827fe5a3
+msgid "use_weight"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SEIR_ct.rst:41
+#: bba68b31f98742a681e322e003d9a818
+msgid "Bool"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SEIR_ct.rst:41
+#: e91bafef6fa7424382731b9f1203f866
+msgid "False"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SEIR_ct.rst:41
+#: bbe1460ada304d3faad36928d8821ed2
+msgid "Whether to use edge weights."
+msgstr ""
+
+#: ../../source/library/models/epidemics/SEIR_ct.rst:43
+#: b722449c456b4ba8bcb7078e3e4a9370
+msgid "rand_seed"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SEIR_ct.rst:43
+#: dac41b9bb22b4e4daf1a7ca71c3e5179
+msgid "Int"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SEIR_ct.rst:43
+#: 86be9b62df5246798df9f979977d0c06
+msgid "None"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SEIR_ct.rst:43
+#: b884c168200c403d842c545064631fa8
+msgid "Random seed for generating the initial seed set."
+msgstr ""
+
+#: ../../source/library/models/epidemics/SEIR_ct.rst:47
+#: 64d417f4b626427d91784a16e5512d1e
+msgid "Implementation"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SEIR_ct.rst:49
+#: f7384ffef71048529b427ea9f13f45f2
+msgid ""
+"We use three Boolean indicator vectors :math:`h, e, r \\in \\{0,1\\}^N` "
+"and two integer tensors that store **entry times**:"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SEIR_ct.rst:51
+#: 47f838fa0c744000a666acd61668c4d5
+msgid ""
+":math:`h_i=1` indicates node :math:`i` is ``infected`` or ``exposed``; "
+":math:`h_i=0` indicates ``susceptible`` or ``recovered``."
+msgstr ""
+
+#: ../../source/library/models/epidemics/SEIR_ct.rst:52
+#: da13a115de2945d0865131b446df39a8
+msgid ""
+":math:`(h_i,e_i,r_i)=(1,0,0)` denotes ``infected``, "
+":math:`(h_i,e_i,r_i)=(1,1,0)` denotes ``exposed``."
+msgstr ""
+
+#: ../../source/library/models/epidemics/SEIR_ct.rst:53
+#: 60cc701cb80548568919e96045c9f15b
+msgid ""
+":math:`(h_i,e_i,r_i)=(0,0,1)` denotes ``recovered``, "
+":math:`(h_i,e_i,r_i)=(0,0,0)` denotes ``susceptible``."
+msgstr ""
+
+#: ../../source/library/models/epidemics/SEIR_ct.rst:54
+#: d5924f18aa384418b32724435d897b8f
+msgid ""
+":math:`t_i^{E}` records the iteration :math:`k` when node :math:`i` "
+"**entered E**."
+msgstr ""
+
+#: ../../source/library/models/epidemics/SEIR_ct.rst:55
+#: f514df4c6a434c9cae056209b049bda3
+msgid ""
+":math:`t_i^{I}` records the iteration :math:`k` when node :math:`i` "
+"**entered I**."
+msgstr ""
+
+#: ../../source/library/models/epidemics/SEIR_ct.rst:57
+#: 81dfec229cf149d2a5d567269e457e4f
+msgid ""
+"With :math:`k` denoting the current iteration, define duration variables "
+":math:`\\Delta t_i^{E} = k - t_i^{E}` and :math:`\\Delta t_i^{I} = k - "
+"t_i^{I}`. The update of the system at step :math:`k` is decomposed into "
+"three stages:"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SEIR_ct.rst:62
+#: 7de81223da9242d494e9cb313af59886
+msgid "SEIR_ct model diagram"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SEIR_ct.rst:67
+#: dcc2dfcde20a413eb01ca24208427624
+msgid ""
+"Each infected neighbor :math:`j` of node :math:`i` transmits a log-"
+"probability contribution for exposure (S→E)"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SEIR_ct.rst:69
+#: d1c12d0ab794413bb1ce774747dac05b
+msgid ""
+"m_{ji}^{(k)} = \\mathbf{1}\\!\\left(h_j^{(k-1)}=1 \\land "
+"e_j^{(k-1)}=0\\right)\\,\\log(1-\\beta)"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SEIR_ct.rst:75
+#: 6e4c53836cc840cc9a14c108da50f690
+msgid ""
+"Node :math:`i` collects contributions from all neighbors :math:`N(i)` to "
+"compute its exposure probability"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SEIR_ct.rst:77
+#: 4cc41a1e27eb45ca9a55e492facc52e3
+msgid "m_i^{(k)} = 1 - \\exp\\!\\left( \\sum_{j \\in N(i)} m_{ji}^{(k)} \\right)"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SEIR_ct.rst:82
+#: b08ba297ed254c87a8ea9479975548b5
+msgid ""
+"The integer tensors and indicator variables are updated with independent "
+"uniform random variables :math:`U_i^{\\mathrm{exp}}, U_i^{\\mathrm{inf}},"
+" U_i^{\\mathrm{rec}} \\sim \\mathrm{Uniform}(0,1)`"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SEIR_ct.rst:86
+#: 741b3a9c7ee344338518ba56b2a21a4b
+msgid ""
+"\\begin{aligned}\n"
+"t_i^E &= k, \\text{if } (U_i^{\\mathrm{exp}}<m_i^{(k)}) \\land "
+"(h_i^{(k-1)}=0 \\land r_i^{(k-1)}=0) \\\\\n"
+"t_i^I &= k, \\text{if } (U_i^{\\mathrm{inf}}<1-exp(-\\alpha \\cdot "
+"\\Delta t_i^E)) \\land e_i^{(k-1)}=1\n"
+"\\end{aligned}\n"
+"\n"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SEIR_ct.rst:92
+#: ca4efb9e08054c58bf543f27c9316e9e
+msgid ""
+"\\begin{aligned}\n"
+" h_i^{(k)} &=\n"
+"\\begin{cases}\n"
+"    1, & \\text{if } (U_i^{\\mathrm{exp}} < m_i^{(k)}) \\land "
+"(h_i^{(k-1)}=0 \\land r_i^{(k-1)}=0), \\\\[4pt]\n"
+"    0, & \\text{if } (U_i^{\\mathrm{rec}} < 1-exp(-\\gamma\\cdot \\Delta "
+"t_i^I)) \\land (h_i^{(k-1)}=1 \\land e_i^{(k-1)}=0), \\\\[4pt]\n"
+"    h_i^{(k-1)}, & \\text{otherwise},\n"
+"\\end{cases} \\\\[6pt]\n"
+"e_i^{(k)} &=\n"
+"\\begin{cases}\n"
+"    1, & \\text{if } (U_i^{\\mathrm{exp}} < m_i^{(k)}) \\land "
+"(h_i^{(k-1)}=0 \\land r_i^{(k-1)}=0), \\\\[4pt]\n"
+"    0, & \\text{if } (U_i^{\\mathrm{inf}} < 1-exp(-\\alpha \\cdot \\Delta"
+" t_i^E)) \\land e_i^{(k-1)}=1 , \\\\[4pt]\n"
+"    e_i^{(k-1)}, & \\text{otherwise},\n"
+"\\end{cases} \\\\[6pt]\n"
+"r_i^{(k)} &=\n"
+"\\begin{cases}\n"
+"    1, & \\text{if } (U_i^{\\mathrm{rec}} < 1-exp(-\\gamma\\cdot \\Delta "
+"t_i^I)) \\land (h_i^{(k-1)}=1 \\land e_i^{(k-1)}=0), \\\\[4pt]\n"
+"    r_i^{(k-1)}, & \\text{otherwise}.\n"
+"\\end{cases}\n"
+"\\end{aligned}\n"
+"\n"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SEIR_ct.rst:116
+#: 38ae0d3e666f484884d47db82236968d
+msgid "References"
+msgstr ""
+

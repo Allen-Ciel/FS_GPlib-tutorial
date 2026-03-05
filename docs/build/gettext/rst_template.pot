@@ -1,0 +1,177 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2026, Allen Guo
+# This file is distributed under the same license as the FS_GPlib-tutorial package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: FS_GPlib-tutorial \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-03-03 09:49+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../source/rst_template.rst:63
+#: 
+msgid "Subpages"
+msgstr ""
+
+#: ../../source/rst_template.rst:2
+#: 0e9cb6f2ddcb4ddaa1ee99c9a574e352
+msgid "RST Template Example"
+msgstr ""
+
+#: ../../source/rst_template.rst:4
+#: 21b77a250d2049cba4a7e51fa9ce6ede
+msgid "This is a sample reStructuredText (.rst) document demonstrating common formatting used in Sphinx documentation."
+msgstr ""
+
+#: ../../source/rst_template.rst:7
+#: 78237d9879f14b1bac3d6e7f26e88663
+msgid "Section Heading"
+msgstr ""
+
+#: ../../source/rst_template.rst:9
+#: 76f8204eabc94cb0a0816e5a73b53af3
+msgid "This section contains various formatting examples."
+msgstr ""
+
+#: ../../source/rst_template.rst:11
+#: 59a7dd3dbb064fceb55bbc37c88ffb4a
+msgid "**Bold Text**, *Italic Text*, and ``Inline Code``."
+msgstr ""
+
+#: ../../source/rst_template.rst:14
+#: 649fb71593174f4291c568b341430fc9
+msgid "Lists"
+msgstr ""
+
+#: ../../source/rst_template.rst:16
+#: dc88276718aa4186981836a56acd9e78
+msgid "Unordered list:"
+msgstr ""
+
+#: ../../source/rst_template.rst:18
+#: fbcb59bb5aef4bc8bab076fe507cd6b3
+msgid "Item 1"
+msgstr ""
+
+#: ../../source/rst_template.rst:19
+#: 3c03ce238828460c8a2d4430b85f392e
+msgid "Item 2 - Subitem 2a"
+msgstr ""
+
+#: ../../source/rst_template.rst:22
+#: 5353772d28174941a0fae8246b2cbe81
+msgid "Ordered list:"
+msgstr ""
+
+#: ../../source/rst_template.rst:24
+#: 67639e40f72940d9bc6aef2c7c815d3d
+msgid "Step 1"
+msgstr ""
+
+#: ../../source/rst_template.rst:25
+#: bf9a744879214f599b5be699cc5b2c60
+msgid "Step 2 a. Substep a"
+msgstr ""
+
+#: ../../source/rst_template.rst:29
+#: 7d381172b6294488b07566fe51219feb
+msgid "Code Block"
+msgstr ""
+
+#: ../../source/rst_template.rst:31
+#: 57fa18fced224eb184b08402e2fb5f16
+msgid "Python example:"
+msgstr ""
+
+#: ../../source/rst_template.rst:38
+#: 65ab28e4283b42499e33242baaecfc80
+msgid "Shell command:"
+msgstr ""
+
+#: ../../source/rst_template.rst:45
+#: bad50ca2420f471c9e9abbd7d39de878
+msgid "Table Example"
+msgstr ""
+
+#: ../../source/rst_template.rst:48
+#: aee86592c9a74a22b8dce062f65c1995
+msgid "Name"
+msgstr ""
+
+#: ../../source/rst_template.rst:48
+#: 71e1674474394d3e9aca356f860e7750
+msgid "Description"
+msgstr ""
+
+#: ../../source/rst_template.rst:50
+#: 33fd63a91c0c4dababa0b36b0dae9f22
+msgid "Python"
+msgstr ""
+
+#: ../../source/rst_template.rst:50
+#: bcf8ff7f012e41d08b8c501cebf476fe
+msgid "Programming language"
+msgstr ""
+
+#: ../../source/rst_template.rst:52
+#: 789a008f539b4da691371391c2f818e2
+msgid "Sphinx"
+msgstr ""
+
+#: ../../source/rst_template.rst:52
+#: e0ceceddb6e742aea1dad50bbc20583d
+msgid "Documentation tool"
+msgstr ""
+
+#: ../../source/rst_template.rst:56
+#: 9e16d68fa7bf4c0cb67eb44bf7dc9ba7
+msgid "Hyperlink"
+msgstr ""
+
+#: ../../source/rst_template.rst:58
+#: 8737509c8e2a4f79a45fd7544d331889
+msgid "Link to `Sphinx documentation <https://www.sphinx-doc.org>`_."
+msgstr ""
+
+#: ../../source/rst_template.rst:61
+#: 7e39e8fb3fcf4d669fd6172891e40d15
+msgid "Toctree"
+msgstr ""
+
+#: ../../source/rst_template.rst:72
+#: 71e1674474394d3e9aca356f860e7750
+msgid "Admonitions"
+msgstr ""
+
+#: ../../source/rst_template.rst:76
+#: 9dbd9e5cdf7344a8adc3578f4fb9d4c3
+msgid "This is a note block for extra information."
+msgstr ""
+
+#: ../../source/rst_template.rst:80
+#: e90cf916deca4ce39e55053bd6907bad
+msgid "Be careful with this step!"
+msgstr ""
+
+#: ../../source/rst_template.rst:83
+#: cf98e4b4275f45b7af063e07874aa176
+msgid "Footnotes"
+msgstr ""
+
+#: ../../source/rst_template.rst:85
+#: 38853168a04f40f590d459d5ffb3195e
+msgid "You can reference something important [#f1]_."
+msgstr ""
+
+#: ../../source/rst_template.rst:87
+#: 8191adb0a61f4913a7da521c4d50dcee
+msgid "This is the content of the footnote."
+msgstr ""

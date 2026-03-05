@@ -1,0 +1,62 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2026, Allen Guo
+# This file is distributed under the same license as the FS_GPlib-tutorial
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: FS_GPlib-tutorial \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-03-02 20:24+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.16.0\n"
+
+#: ../../source/custom_model.rst:2 d18bc2572f0842e886e6fd1f80b92e43
+msgid "Custom Model"
+msgstr ""
+
+#: ../../source/custom_model.rst:5 097679156390496b8fbbf0afda1824e1
+msgid "Example"
+msgstr ""
+
+#: ../../source/custom_model.rst:8 e95902d7b54c47d3a4ac69829c511eae
+msgid "Import"
+msgstr ""
+
+#: ../../source/custom_model.rst:11 b11d2db46fc44322bfdae138ac30ea1e
+msgid "Data"
+msgstr ""
+
+#: ../../source/custom_model.rst:15 b9aa0a889afd4e11ac56bb2e49951728
+msgid "Model"
+msgstr ""
+
+#: ../../source/custom_model.rst:20 23be2bdb264c41488b1ef492be65eb4c
+msgid "About Batch"
+msgstr ""
+
+#: ../../source/custom_model.rst:23 3e3ea6394dbf4edb8c1acf825524284b
+msgid "How to use batch"
+msgstr ""
+
+#: ../../source/custom_model.rst:25 20213cf68be348c59b062f664d38a2c8
+msgid "First, clone the FS_GPlib project from GitHub:"
+msgstr ""
+
+#: ../../source/custom_model.rst:29 08f6bdf1aca54a01a351eb6a9b708bc3
+msgid "About Distributed"
+msgstr ""
+
+#: ../../source/custom_model.rst:32 bf9de8e3da264f9b8b406915ddf2a871
+msgid "How to use distributed computing"
+msgstr ""
+

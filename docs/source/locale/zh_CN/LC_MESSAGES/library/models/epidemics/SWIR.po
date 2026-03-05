@@ -1,0 +1,508 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2026, Allen Guo
+# This file is distributed under the same license as the FS_GPlib-tutorial
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: FS_GPlib-tutorial \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-03-02 20:24+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.16.0\n"
+
+#: ../../source/library/models/epidemics/SWIR.rst:2
+#: 63a047d491a3443c9e681436b94379cf
+msgid "SWIR(TBD)"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SWIR.rst:4
+#: b660e6e4be9c4f12a920c0024a65f90c
+msgid ""
+"The SWIR Model [1]_ extends the classic SIR framework by introducing a "
+"**Weakened (W)** state between Susceptible (S) and Infected (I). "
+"Infection spreads only through links between neighboring nodes in a graph"
+" :math:`G=(V,E)`. Each node is in one of four states: :math:`S` "
+"(susceptible), :math:`W` (weakened), :math:`I` (infected), or :math:`R` "
+"(recovered). At a high level, a susceptible node can either be weakened "
+"or directly infected by its infected neighbors; weakened nodes can "
+"subsequently become infected; infected nodes recover and become immune "
+"(R). The model is parameterized by three per-contact rates: "
+":math:`\\kappa` (direct infection), :math:`\\mu` (weakening), and "
+":math:`\\nu` (weak-to-infected)."
+msgstr ""
+
+#: ../../source/library/models/epidemics/SWIR.rst:9
+#: ../../source/library/models/epidemics/SWIR.rst:13
+#: 43345b92be19447cac5fdd3ac4ad72c0 edd8e7160e544cecab0372649ef4dce2
+msgid "Status"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SWIR.rst:10
+#: 1c4beb7cf4e84f318f8a5a4c0e2c102d
+msgid "During the simulation, a node can be in one of the following states:"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SWIR.rst:13
+#: 4a4136f6b1104498b7e0107ef23e09e7
+msgid "Code"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SWIR.rst:15
+#: 9c8dfccd7e4e4a7abaf6fc2685885c79
+msgid "Susceptible"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SWIR.rst:15
+#: ab509e32ae184cd590fa814bd0e81efc
+msgid "0"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SWIR.rst:17
+#: fb23485722b54b48877e7d39b8358ba1
+msgid "Infected"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SWIR.rst:17
+#: ../../source/library/models/epidemics/SWIR.rst:39
+#: 5bf9c1778568445e8510897862bd7353 786ebce782494aaa845ef666e94d34b1
+msgid "1"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SWIR.rst:19
+#: 4f8546d2c1d74983a86c7fc07ce3ebe9
+msgid "Weakened"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SWIR.rst:19
+#: a8f01b0cb1064e6b8084057c6b9642db
+msgid "2"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SWIR.rst:21
+#: 5f1ee61834334559a2e9226539efdb84
+msgid "Recovered"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SWIR.rst:21
+#: f6704c7f4eba40238495f8502a69d55c
+msgid "3"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SWIR.rst:25
+#: 448d84e09ba34c94aadc1029b4e2bb8c
+msgid "Parameters"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SWIR.rst:27
+#: f00854cab7cd4ab9abf015437e53a2f9
+msgid "Name"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SWIR.rst:27
+#: 97d3e156b92f4432aa6da3c90d446d59
+msgid "Value Type"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SWIR.rst:27
+#: 77b9b813ee6c4594b6c1272e49f1385d
+msgid "Default"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SWIR.rst:27
+#: b5643176e4864582add908510753856a
+msgid "Mandatory"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SWIR.rst:27
+#: b2a0623025434d38967eb0a20d182fb3
+msgid "Description"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SWIR.rst:29
+#: 55d16e51afe84201848b7cb8a32efb5a
+msgid "data"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SWIR.rst:29
+#: fa99a67fb648402e8bd60d9584800b68
+msgid "Data"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SWIR.rst:29
+#: ../../source/library/models/epidemics/SWIR.rst:31
+#: ../../source/library/models/epidemics/SWIR.rst:33
+#: ../../source/library/models/epidemics/SWIR.rst:35
+#: ../../source/library/models/epidemics/SWIR.rst:37
+#: 1b675d8c320c49eb9fb9987c3e962cbe 27709f03e74a4208921f1857b58f0724
+#: 2d8befa0071640a6ae7f5a3697b1d455 340523aa8996478cbfe61825e1b2d629
+#: 99a15a6e637b460d9c92e96082e8d549
+msgid "Yes"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SWIR.rst:29
+#: 718dba6ee770466d96015ac1cca54f42
+msgid "Graph data."
+msgstr ""
+
+#: ../../source/library/models/epidemics/SWIR.rst:31
+#: 3e6f6d35f4084543a1604f3e7e2c9ffa
+msgid "seeds"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SWIR.rst:31
+#: 687831fbae0c484f962082c7609ae409
+msgid "List[int]/float in (0, 1)"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SWIR.rst:31
+#: eaf82039a1844b0789301e93180a4e89
+msgid "Seed node IDs or a ratio in (0, 1)."
+msgstr ""
+
+#: ../../source/library/models/epidemics/SWIR.rst:33
+#: 5a8075a9c3c74da0a33e16835a495ffd
+msgid "kappa"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SWIR.rst:33
+#: ../../source/library/models/epidemics/SWIR.rst:35
+#: ../../source/library/models/epidemics/SWIR.rst:37
+#: 18a25aa58bc14d0ebda039e9ddc4e80c 42b6b8611fd542a6b8b009fe75e8cb4c
+#: 48f7f1e1b9f94280a8950babb34b8378
+msgid "float in [0, 1]"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SWIR.rst:33
+#: 9137d14481ce42d298174eaa8c3ab7c9
+msgid "Direct infection probability per contact (S→I)."
+msgstr ""
+
+#: ../../source/library/models/epidemics/SWIR.rst:35
+#: 62a7500054bf4b78b863f3cd68ea567c
+msgid "mu"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SWIR.rst:35
+#: e70c8b66ec48456f830db6e2a2841db8
+msgid "Weakening probability per contact (S→W).  mu+kappa<1"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SWIR.rst:37
+#: 3631f7d7405d4640a952f64dcdffe456
+msgid "nu"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SWIR.rst:37
+#: e6f1b1fab5e249208e21c451de54526e
+msgid "Weak-to-infected probability per contact (W→I)."
+msgstr ""
+
+#: ../../source/library/models/epidemics/SWIR.rst:39
+#: a5a4371c157c4a46a2b7b6a55075a356
+msgid "iterations_times"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SWIR.rst:39
+#: ../../source/library/models/epidemics/SWIR.rst:45
+#: 6ca003f298b745c2960f40c5ee8186e8 700cc46d18ab4996827d48cfdcfb082b
+msgid "Int"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SWIR.rst:39
+#: ../../source/library/models/epidemics/SWIR.rst:41
+#: ../../source/library/models/epidemics/SWIR.rst:43
+#: ../../source/library/models/epidemics/SWIR.rst:45
+#: 384c3dbedee54228a6560ab0abfd2322 3c5607f486a54e94ad671b2852baf211
+#: 5c6de8146af348a68d6676f1c3c1d91d a23301cd48c14b4fa83650097acbbe9c
+msgid "No"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SWIR.rst:39
+#: c4c65b34d486499b851ea7186f08d81c
+msgid "Maximum number of simulation steps to run."
+msgstr ""
+
+#: ../../source/library/models/epidemics/SWIR.rst:41
+#: 87bd70dcbc524070aa3d58d3fcc87aab
+msgid "device"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SWIR.rst:41
+#: ec4203277a85487f805c935deee1d83f
+msgid "'cpu'/int (CUDA index)"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SWIR.rst:41
+#: 4bd564bac8d141e690e3e83195beb083
+msgid "'cpu'"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SWIR.rst:41
+#: d7d9c1932c6f446c9339870d5250ad05
+msgid "Device to run the model on."
+msgstr ""
+
+#: ../../source/library/models/epidemics/SWIR.rst:43
+#: 6891160342a6438dbf34442c2364ffc5
+msgid "use_weight"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SWIR.rst:43
+#: 8c0836a7dc8946b9bf4250e8426fa21e
+msgid "Bool"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SWIR.rst:43
+#: 578903eb42e94427b87d830f388886be
+msgid "False"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SWIR.rst:43
+#: 23f22a20f3cb4c5a9a253de019042bb2
+msgid "Whether to use edge weights."
+msgstr ""
+
+#: ../../source/library/models/epidemics/SWIR.rst:45
+#: 48b3aa15ef1442f693a5baa03611fe3c
+msgid "rand_seed"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SWIR.rst:45
+#: a0a77082189b43d5b1abe76220438e53
+msgid "None"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SWIR.rst:45
+#: c18fbbaaf35c466ea7f3f98e5af13e05
+msgid "Random seed for generating the initial seed set."
+msgstr ""
+
+#: ../../source/library/models/epidemics/SWIR.rst:49
+#: 896c4f33faab47d98ab9283403bb1664
+msgid "Implementation"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SWIR.rst:51
+#: f2ef5dea649846a8a51bd8bd0b3dc3b1
+msgid "Node transitions follow rules:"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SWIR.rst:53
+#: 28ef4c6a810c48f7b973bb2638fe1abd
+msgid ""
+"if a :math:`S` state node has :math:`I` state neighbors, i) each "
+":math:`I` state neighbor exposes the :math:`S` state node to `W` with "
+"probability :math:`\\mu` **(S→W)** or ii) each :math:`I` state neighbor "
+"exposes the :math:`S` state node to `I` with probability :math:`\\kappa` "
+"**(S→I)**;"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SWIR.rst:54
+#: 14992d06222c48a98d63f47ae5d81b87
+msgid ""
+"the :math:`W` state node has :math:`I` state neighbors, each :math:`I` "
+"state neighbor exposes the :math:`W` state node with probability "
+":math:`\\nu` **(W→I)**;"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SWIR.rst:55
+#: 67b24d4c392e424bae55c73714be573e
+msgid ""
+"the :math:`I` state node is recovered to the :math:`R` state with "
+"probability 1 **(I→R)**."
+msgstr ""
+
+#: ../../source/library/models/epidemics/SWIR.rst:59
+#: 82dfbd4ca9f54fdab6617db9c5f02b4c
+msgid "SWIR model diagram"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SWIR.rst:64
+#: 0c0e1ab7a7924452aedbd2c5a50474e1
+msgid ""
+"We represent node states with three Boolean indicator vectors :math:`h, "
+"w, r \\in \\{0,1\\}^N`. Let :math:`N(i)` be the neighbor set of node "
+":math:`i`. The update at discrete step :math:`k` is performed in the "
+"following stages (matching the reference implementation):"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SWIR.rst:66
+#: fbd6db9c032e42cab49467af55d8cadb
+msgid ""
+":math:`h_i=1` indicates node :math:`i` is ``infected`` or ``weakened``; "
+":math:`h_i=0` indicates ``susceptible`` or ``recovered``."
+msgstr ""
+
+#: ../../source/library/models/epidemics/SWIR.rst:67
+#: b0d6c0b5a6514085b239f487fb3e1262
+msgid ""
+":math:`(h_i,w_i,r_i)=(1,0,0)` denotes ``infected``, "
+":math:`(h_i,w_i,r_i)=(1,1,0)` denotes ``weakened``."
+msgstr ""
+
+#: ../../source/library/models/epidemics/SWIR.rst:68
+#: 98eeb05b676648dd96b21cc0e2caf4f9
+msgid ""
+":math:`(h_i,w_i,r_i)=(0,0,1)` denotes ``recovered``, "
+":math:`(h_i,w_i,r_i)=(0,0,0)` denotes ``susceptible``."
+msgstr ""
+
+#: ../../source/library/models/epidemics/SWIR.rst:70
+#: 6d642428128b41dd8e49d17c7858cbbc
+msgid ""
+"Each infected neighbor :math:`j` of node :math:`i` transmits a log-"
+"probability contribution"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SWIR.rst:72
+#: 7db98396c4f64bf8a2c0c0c11e1a6b23
+msgid ""
+"For each edge :math:`j\\to i`, an infected neighbor contributes to the "
+"log-survival; the per-step infection probability for node :math:`i` is"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SWIR.rst:74
+#: 9bb2a54518194721b0f9bb71c774f80d
+msgid ""
+"m_{ji}^{(k)} = \\mathbf{1}\\!\\left(h_j^{(k-1)}=1 \\land "
+"w_j^{(k-1)}=0\\right) \\cdot \\log(1-\\kappa), \\qquad\n"
+"I_i^{(k)} = 1 - \\exp\\!\\left( \\sum_{j\\in N(i)} m_{ji}^{(k)} \\right),"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SWIR.rst:79
+#: ac31dd5f6d8c4302afbf1552140b08c9
+msgid "applied only to currently susceptible and not recovered nodes."
+msgstr ""
+
+#: ../../source/library/models/epidemics/SWIR.rst:81
+#: 81542f51554c4289a351a35d407f47fb
+msgid "**Weakening (S→W)**"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SWIR.rst:83
+#: 8e1aebb040df4af7a30433b8c367adc5
+msgid "Analogously, the probability to become weakened is"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SWIR.rst:85
+#: 4d11d282aaca4ea79decfbc8e082989f
+msgid ""
+"\\widetilde{m}_{ji}^{(k)} = \\mathbf{1}\\!\\left(h_j^{(k-1)}=1 \\land "
+"w_j^{(k-1)}=0\\right) \\cdot \\log(1-\\mu), \\qquad\n"
+"W_i^{(k)} = 1 - \\exp\\!\\left( \\sum_{j\\in N(i)} "
+"\\widetilde{m}_{ji}^{(k)} \\right),"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SWIR.rst:90
+#: 8e6237ac29ae4f009ea4e5f25a81cd99
+msgid "again only for nodes that are susceptible and not recovered."
+msgstr ""
+
+#: ../../source/library/models/epidemics/SWIR.rst:92
+#: 0f1b704c6984422b921a81924d8824ab
+msgid "**Weakened to infected (W→I)**"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SWIR.rst:94
+#: 9caf559ccd97464e9443d4a6274d073a
+msgid ""
+"A weakened node may become infected via infected neighbors with rate "
+":math:`\\nu`:"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SWIR.rst:96
+#: 3054d18efa4e4812b94ce656c7a2ca7b
+msgid ""
+"\\widehat{m}_{ji}^{(k)} = \\mathbf{1}\\!\\left(h_j^{(k-1)}=1 \\land "
+"w_j^{(k-1)}=0\\right) \\cdot \\log(1-\\nu), \\qquad\n"
+"WI_i^{(k)} = 1 - \\exp\\!\\left( \\sum_{j\\in N(i)} "
+"\\widehat{m}_{ji}^{(k)} \\right),"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SWIR.rst:101
+#: 13308d66b9994780b21aed2c227e34f4
+msgid "applied only to currently weakened nodes (:math:`w_i^{(k-1)}=1`)."
+msgstr ""
+
+#: ../../source/library/models/epidemics/SWIR.rst:103
+#: 78d92beb415e48d3893694923f4d41d4
+msgid "**Recovery (I→R)**"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SWIR.rst:105
+#: 60ad84a3a27348c1816934c7dcba3e28
+msgid ""
+"In this implementation, infected and not-weakened nodes deterministically"
+" recover at each step (no parameter :math:`\\gamma`). We model this as"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SWIR.rst:107
+#: bbfa16c575634601a73278350d541d60
+msgid ""
+"r_i^{(k)} = r_i^{(k-1)} \\;\\lor\\; \\big( h_i^{(k-1)} = 1 \\land "
+"w_i^{(k-1)} = 0 \\big),"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SWIR.rst:111
+#: d5c8d6b05ebd43b3a33607d6bc683232
+msgid ""
+"and recovered nodes remain immune: they neither get weakened nor re-"
+"infected."
+msgstr ""
+
+#: ../../source/library/models/epidemics/SWIR.rst:113
+#: dac5354430f945808d6179e587f109d2
+msgid "**Sampling and state update**"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SWIR.rst:115
+#: 930098e632be4b78a9a40ae72f808cd4
+msgid ""
+"Let :math:`U_i^{\\mathrm{inf}}, U_i^{\\mathrm{wk}}, U_i^{\\mathrm{wi}} "
+"\\sim \\mathrm{Uniform}(0,1)` be independent. The indicators are updated "
+"as"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SWIR.rst:117
+#: 58e327a3bc7c4fd98df6ed0b6ec45d9b
+msgid ""
+"\\begin{aligned}\n"
+"w_i^{(k)} &= \\begin{cases}\n"
+"   1, & \\text{if } w_i^{(k-1)}=0 \\land r_i^{(k-1)}=0 \\land "
+"U_i^{\\mathrm{wk}} < W_i^{(k)}, \\\\\n"
+"   0, & \\text{if } w_i^{(k-1)}=1 \\land U_i^{\\mathrm{wi}} < WI_i^{(k)},"
+" \\\\\n"
+"   w_i^{(k-1)}, & \\text{otherwise},\n"
+"\\end{cases} \\\\\n"
+"h_i^{(k)} &= \\begin{cases}\n"
+"   1, & \\text{if } h_i^{(k-1)}=0 \\land r_i^{(k-1)}=0 \\land "
+"U_i^{\\mathrm{inf}} < I_i^{(k)}, \\\\\n"
+"   1, & \\text{if } w_i^{(k-1)}=1 \\land U_i^{\\mathrm{wi}} < WI_i^{(k)},"
+" \\\\\n"
+"   0, & \\text{if } h_i^{(k-1)}=1 \\land w_i^{(k-1)}=0 \\text{ "
+"(recovery)}, \\\\\n"
+"   h_i^{(k-1)}, & \\text{otherwise},\n"
+"\\end{cases}\n"
+"\\end{aligned}"
+msgstr ""
+
+#: ../../source/library/models/epidemics/SWIR.rst:133
+#: 8d9430d90d4049c79217f5070fa12735
+msgid "which mirrors the code path: S→W, S→I, W→I, I→R."
+msgstr ""
+
+#: ../../source/library/models/epidemics/SWIR.rst:136
+#: 73368db4bf91492ca78ae559320213e8
+msgid "References"
+msgstr ""
+
