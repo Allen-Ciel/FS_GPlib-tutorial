@@ -7,10 +7,10 @@ build:
 
 python:
   install:
-    - requirements: ./requirements.txt
+    - requirements: docs/requirements.txt
 
 sphinx:
-  configuration: ./source/conf.py
+  configuration: docs/source/conf.py
 
 # i18n: RTD will detect the language from this project's settings.
 # Create a separate RTD project for zh_CN translation, linking it
