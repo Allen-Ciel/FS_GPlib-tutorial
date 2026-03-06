@@ -1,10 +1,45 @@
+## 分支与发布
+
+- **main**：发行版本。库代码、打 tag、`python -m build` 都在 main 上；Read the Docs 不从这里构建。
+- **docs**：说明书开发分支。改 `docs/` 在这里做，推上去后由 Read the Docs 从 docs 分支构建。
+
+**只更新说明书（日常）：**
+
+```bash
+git checkout docs
+# 编辑 docs/ 下内容...
+git add docs/
+git commit -m "docs: 更新 xxx"
+git push origin docs
+```
+
+**发新库版本（如 0.8.0）：**
+
+```bash
+git checkout main
+# 可选：把 docs 分支最新说明合并进来
+# git merge docs
+git tag -a v0.8.0 -m "Release 0.8.0"
+python -m build
+git push origin main
+git push origin v0.8.0
+```
+
+**让 docs 分支跟上 main 的发行代码（例如 API 变了）：**
+
+```bash
+git checkout docs
+git merge main
+# 若有冲突解决后...
+git push origin docs
+```
 
 ## upload
 
-```ssh
+```bash
 git push -u origin docs
 ```
-上传到docs分支，设置构建的也是docs分支
+上传到 docs 分支；Read the Docs 构建的也是 docs 分支。
 
 ## 本地
 
