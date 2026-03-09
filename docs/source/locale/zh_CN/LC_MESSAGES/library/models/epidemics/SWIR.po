@@ -7,136 +7,140 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: FS_GPlib-tutorial \n"
+"Project-Id-Version: FS_GPlib-tutorial\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-03-02 20:24+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language: zh_CN\n"
 "Language-Team: zh_CN <LL@li.org>\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
+"Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 "Generated-By: Babel 2.16.0\n"
 
 #: ../../source/library/models/epidemics/SWIR.rst:2
 #: 63a047d491a3443c9e681436b94379cf
 msgid "SWIR(TBD)"
-msgstr ""
+msgstr "SWIR( TBD) 系统"
 
 #: ../../source/library/models/epidemics/SWIR.rst:4
 #: b660e6e4be9c4f12a920c0024a65f90c
 msgid ""
 "The SWIR Model [1]_ extends the classic SIR framework by introducing a "
-"**Weakened (W)** state between Susceptible (S) and Infected (I). "
-"Infection spreads only through links between neighboring nodes in a graph"
-" :math:`G=(V,E)`. Each node is in one of four states: :math:`S` "
+"**Weakened (W)** state between Susceptible (S) and Infected (I). Infection "
+"spreads only through links between neighboring nodes in a graph "
+":math:`G=(V,E)`. Each node is in one of four states: :math:`S` "
 "(susceptible), :math:`W` (weakened), :math:`I` (infected), or :math:`R` "
-"(recovered). At a high level, a susceptible node can either be weakened "
-"or directly infected by its infected neighbors; weakened nodes can "
-"subsequently become infected; infected nodes recover and become immune "
-"(R). The model is parameterized by three per-contact rates: "
-":math:`\\kappa` (direct infection), :math:`\\mu` (weakening), and "
-":math:`\\nu` (weak-to-infected)."
+"(recovered). At a high level, a susceptible node can either be weakened or "
+"directly infected by its infected neighbors; weakened nodes can subsequently"
+" become infected; infected nodes recover and become immune (R). The model is"
+" parameterized by three per-contact rates: :math:`\\kappa` (direct "
+"infection), :math:`\\mu` (weakening), and :math:`\\nu` (weak-to-infected)."
 msgstr ""
+"SWIR模型[1] 扩展经典的SIR框架,在可感知(S)和受感染(I)之间引入**微弱(W)**状态. "
+"感染只通过相邻节点之间的联系在图:`G=(V,E)'中传播。 每个节点在四个状态中之一: "
+"发音:`S'(疑似),发音:`W'(微弱),发音:`I'(感染),或发音:`R'(恢复). "
+"在高水平上,易感节点可以被其感染的邻居削弱或直接感染;弱节点随后会感染;感染的节点恢复并免疫(R). "
+"该模型以3个每接触率参数::math:`\\kappa'(直接感染),math:`\\mu'(微弱),math:`\\nu'(微弱感染)."
 
 #: ../../source/library/models/epidemics/SWIR.rst:9
 #: ../../source/library/models/epidemics/SWIR.rst:13
 #: 43345b92be19447cac5fdd3ac4ad72c0 edd8e7160e544cecab0372649ef4dce2
 msgid "Status"
-msgstr ""
+msgstr "状态"
 
 #: ../../source/library/models/epidemics/SWIR.rst:10
 #: 1c4beb7cf4e84f318f8a5a4c0e2c102d
 msgid "During the simulation, a node can be in one of the following states:"
-msgstr ""
+msgstr "在模拟期间,一个节点可以处于以下状态之一: 1."
 
 #: ../../source/library/models/epidemics/SWIR.rst:13
 #: 4a4136f6b1104498b7e0107ef23e09e7
 msgid "Code"
-msgstr ""
+msgstr "代码"
 
 #: ../../source/library/models/epidemics/SWIR.rst:15
 #: 9c8dfccd7e4e4a7abaf6fc2685885c79
 msgid "Susceptible"
-msgstr ""
+msgstr "可疑"
 
 #: ../../source/library/models/epidemics/SWIR.rst:15
 #: ab509e32ae184cd590fa814bd0e81efc
 msgid "0"
-msgstr ""
+msgstr "0 个"
 
 #: ../../source/library/models/epidemics/SWIR.rst:17
 #: fb23485722b54b48877e7d39b8358ba1
 msgid "Infected"
-msgstr ""
+msgstr "感染"
 
 #: ../../source/library/models/epidemics/SWIR.rst:17
 #: ../../source/library/models/epidemics/SWIR.rst:39
 #: 5bf9c1778568445e8510897862bd7353 786ebce782494aaa845ef666e94d34b1
 msgid "1"
-msgstr ""
+msgstr "页:1"
 
 #: ../../source/library/models/epidemics/SWIR.rst:19
 #: 4f8546d2c1d74983a86c7fc07ce3ebe9
 msgid "Weakened"
-msgstr ""
+msgstr "变弱"
 
 #: ../../source/library/models/epidemics/SWIR.rst:19
 #: a8f01b0cb1064e6b8084057c6b9642db
 msgid "2"
-msgstr ""
+msgstr "2个"
 
 #: ../../source/library/models/epidemics/SWIR.rst:21
 #: 5f1ee61834334559a2e9226539efdb84
 msgid "Recovered"
-msgstr ""
+msgstr "已恢复"
 
 #: ../../source/library/models/epidemics/SWIR.rst:21
 #: f6704c7f4eba40238495f8502a69d55c
 msgid "3"
-msgstr ""
+msgstr "3个"
 
 #: ../../source/library/models/epidemics/SWIR.rst:25
 #: 448d84e09ba34c94aadc1029b4e2bb8c
 msgid "Parameters"
-msgstr ""
+msgstr "参数"
 
 #: ../../source/library/models/epidemics/SWIR.rst:27
 #: f00854cab7cd4ab9abf015437e53a2f9
 msgid "Name"
-msgstr ""
+msgstr "名称"
 
 #: ../../source/library/models/epidemics/SWIR.rst:27
 #: 97d3e156b92f4432aa6da3c90d446d59
 msgid "Value Type"
-msgstr ""
+msgstr "数值类型"
 
 #: ../../source/library/models/epidemics/SWIR.rst:27
 #: 77b9b813ee6c4594b6c1272e49f1385d
 msgid "Default"
-msgstr ""
+msgstr "默认"
 
 #: ../../source/library/models/epidemics/SWIR.rst:27
 #: b5643176e4864582add908510753856a
 msgid "Mandatory"
-msgstr ""
+msgstr "强制性"
 
 #: ../../source/library/models/epidemics/SWIR.rst:27
 #: b2a0623025434d38967eb0a20d182fb3
 msgid "Description"
-msgstr ""
+msgstr "说明"
 
 #: ../../source/library/models/epidemics/SWIR.rst:29
 #: 55d16e51afe84201848b7cb8a32efb5a
 msgid "data"
-msgstr ""
+msgstr "数据"
 
 #: ../../source/library/models/epidemics/SWIR.rst:29
 #: fa99a67fb648402e8bd60d9584800b68
 msgid "Data"
-msgstr ""
+msgstr "数据"
 
 #: ../../source/library/models/epidemics/SWIR.rst:29
 #: ../../source/library/models/epidemics/SWIR.rst:31
@@ -147,32 +151,32 @@ msgstr ""
 #: 2d8befa0071640a6ae7f5a3697b1d455 340523aa8996478cbfe61825e1b2d629
 #: 99a15a6e637b460d9c92e96082e8d549
 msgid "Yes"
-msgstr ""
+msgstr "对"
 
 #: ../../source/library/models/epidemics/SWIR.rst:29
 #: 718dba6ee770466d96015ac1cca54f42
 msgid "Graph data."
-msgstr ""
+msgstr "图表数据。"
 
 #: ../../source/library/models/epidemics/SWIR.rst:31
 #: 3e6f6d35f4084543a1604f3e7e2c9ffa
 msgid "seeds"
-msgstr ""
+msgstr "种子"
 
 #: ../../source/library/models/epidemics/SWIR.rst:31
 #: 687831fbae0c484f962082c7609ae409
 msgid "List[int]/float in (0, 1)"
-msgstr ""
+msgstr "列表[int]/浮动在(0, 1)中"
 
 #: ../../source/library/models/epidemics/SWIR.rst:31
 #: eaf82039a1844b0789301e93180a4e89
 msgid "Seed node IDs or a ratio in (0, 1)."
-msgstr ""
+msgstr "种子节点ID或比例(0,1)."
 
 #: ../../source/library/models/epidemics/SWIR.rst:33
 #: 5a8075a9c3c74da0a33e16835a495ffd
 msgid "kappa"
-msgstr ""
+msgstr "app"
 
 #: ../../source/library/models/epidemics/SWIR.rst:33
 #: ../../source/library/models/epidemics/SWIR.rst:35
@@ -180,43 +184,43 @@ msgstr ""
 #: 18a25aa58bc14d0ebda039e9ddc4e80c 42b6b8611fd542a6b8b009fe75e8cb4c
 #: 48f7f1e1b9f94280a8950babb34b8378
 msgid "float in [0, 1]"
-msgstr ""
+msgstr "在 [0, 1] 中浮动"
 
 #: ../../source/library/models/epidemics/SWIR.rst:33
 #: 9137d14481ce42d298174eaa8c3ab7c9
 msgid "Direct infection probability per contact (S→I)."
-msgstr ""
+msgstr "每一次接触的直接感染概率(S-I)。"
 
 #: ../../source/library/models/epidemics/SWIR.rst:35
 #: 62a7500054bf4b78b863f3cd68ea567c
 msgid "mu"
-msgstr ""
+msgstr "吴"
 
 #: ../../source/library/models/epidemics/SWIR.rst:35
 #: e70c8b66ec48456f830db6e2a2841db8
 msgid "Weakening probability per contact (S→W).  mu+kappa<1"
-msgstr ""
+msgstr "降低每次接触的概率(S W)。 mu+kappa < 1 (英语)."
 
 #: ../../source/library/models/epidemics/SWIR.rst:37
 #: 3631f7d7405d4640a952f64dcdffe456
 msgid "nu"
-msgstr ""
+msgstr "无效"
 
 #: ../../source/library/models/epidemics/SWIR.rst:37
 #: e6f1b1fab5e249208e21c451de54526e
 msgid "Weak-to-infected probability per contact (W→I)."
-msgstr ""
+msgstr "每一次接触的弱到感染概率(W I)."
 
 #: ../../source/library/models/epidemics/SWIR.rst:39
 #: a5a4371c157c4a46a2b7b6a55075a356
 msgid "iterations_times"
-msgstr ""
+msgstr "重复时间( T)"
 
 #: ../../source/library/models/epidemics/SWIR.rst:39
 #: ../../source/library/models/epidemics/SWIR.rst:45
 #: 6ca003f298b745c2960f40c5ee8186e8 700cc46d18ab4996827d48cfdcfb082b
 msgid "Int"
-msgstr ""
+msgstr "输入"
 
 #: ../../source/library/models/epidemics/SWIR.rst:39
 #: ../../source/library/models/epidemics/SWIR.rst:41
@@ -225,123 +229,128 @@ msgstr ""
 #: 384c3dbedee54228a6560ab0abfd2322 3c5607f486a54e94ad671b2852baf211
 #: 5c6de8146af348a68d6676f1c3c1d91d a23301cd48c14b4fa83650097acbbe9c
 msgid "No"
-msgstr ""
+msgstr "没有"
 
 #: ../../source/library/models/epidemics/SWIR.rst:39
 #: c4c65b34d486499b851ea7186f08d81c
 msgid "Maximum number of simulation steps to run."
-msgstr ""
+msgstr "要运行的最大模拟步骤数 。"
 
 #: ../../source/library/models/epidemics/SWIR.rst:41
 #: 87bd70dcbc524070aa3d58d3fcc87aab
 msgid "device"
-msgstr ""
+msgstr "设备"
 
 #: ../../source/library/models/epidemics/SWIR.rst:41
 #: ec4203277a85487f805c935deee1d83f
 msgid "'cpu'/int (CUDA index)"
-msgstr ""
+msgstr "“ cpu” / int( CUDA 指数)"
 
 #: ../../source/library/models/epidemics/SWIR.rst:41
 #: 4bd564bac8d141e690e3e83195beb083
 msgid "'cpu'"
-msgstr ""
+msgstr "\"cpu\" (英语)."
 
 #: ../../source/library/models/epidemics/SWIR.rst:41
 #: d7d9c1932c6f446c9339870d5250ad05
 msgid "Device to run the model on."
-msgstr ""
+msgstr "运行模型的设备 。"
 
 #: ../../source/library/models/epidemics/SWIR.rst:43
 #: 6891160342a6438dbf34442c2364ffc5
 msgid "use_weight"
-msgstr ""
+msgstr "使用量  重量"
 
 #: ../../source/library/models/epidemics/SWIR.rst:43
 #: 8c0836a7dc8946b9bf4250e8426fa21e
 msgid "Bool"
-msgstr ""
+msgstr "布尔"
 
 #: ../../source/library/models/epidemics/SWIR.rst:43
 #: 578903eb42e94427b87d830f388886be
 msgid "False"
-msgstr ""
+msgstr "虚假"
 
 #: ../../source/library/models/epidemics/SWIR.rst:43
 #: 23f22a20f3cb4c5a9a253de019042bb2
 msgid "Whether to use edge weights."
-msgstr ""
+msgstr "是否使用边重 。"
 
 #: ../../source/library/models/epidemics/SWIR.rst:45
 #: 48b3aa15ef1442f693a5baa03611fe3c
 msgid "rand_seed"
-msgstr ""
+msgstr "兰德种子"
 
 #: ../../source/library/models/epidemics/SWIR.rst:45
 #: a0a77082189b43d5b1abe76220438e53
 msgid "None"
-msgstr ""
+msgstr "无"
 
 #: ../../source/library/models/epidemics/SWIR.rst:45
 #: c18fbbaaf35c466ea7f3f98e5af13e05
 msgid "Random seed for generating the initial seed set."
-msgstr ""
+msgstr "生成初始种子集的随机种子 。"
 
 #: ../../source/library/models/epidemics/SWIR.rst:49
 #: 896c4f33faab47d98ab9283403bb1664
 msgid "Implementation"
-msgstr ""
+msgstr "执行情况"
 
 #: ../../source/library/models/epidemics/SWIR.rst:51
 #: f2ef5dea649846a8a51bd8bd0b3dc3b1
 msgid "Node transitions follow rules:"
-msgstr ""
+msgstr "节点过渡遵循规则 :"
 
 #: ../../source/library/models/epidemics/SWIR.rst:53
 #: 28ef4c6a810c48f7b973bb2638fe1abd
 msgid ""
-"if a :math:`S` state node has :math:`I` state neighbors, i) each "
-":math:`I` state neighbor exposes the :math:`S` state node to `W` with "
-"probability :math:`\\mu` **(S→W)** or ii) each :math:`I` state neighbor "
-"exposes the :math:`S` state node to `I` with probability :math:`\\kappa` "
-"**(S→I)**;"
+"if a :math:`S` state node has :math:`I` state neighbors, i) each :math:`I` "
+"state neighbor exposes the :math:`S` state node to `W` with probability "
+":math:`\\mu` **(S→W)** or ii) each :math:`I` state neighbor exposes the "
+":math:`S` state node to `I` with probability :math:`\\kappa` **(S→I)**;"
 msgstr ""
+"如果:math:`S ' 州节点有:math:`I ' 州邻居,i) 每一个:math:`I ' 州邻居暴露:`S ' 州节点为`W ' "
+",概率为:math:``\\(S W)**(或ii) 每一个:math:`I ' 州邻居暴露:`S ' 州节点为`I',概率为:``\\(S I)**;"
 
 #: ../../source/library/models/epidemics/SWIR.rst:54
 #: 14992d06222c48a98d63f47ae5d81b87
 msgid ""
-"the :math:`W` state node has :math:`I` state neighbors, each :math:`I` "
-"state neighbor exposes the :math:`W` state node with probability "
-":math:`\\nu` **(W→I)**;"
+"the :math:`W` state node has :math:`I` state neighbors, each :math:`I` state"
+" neighbor exposes the :math:`W` state node with probability :math:`\\nu` "
+"**(W→I)**;"
 msgstr ""
+":math:`W ' 州节点有:math:`我'州邻居,每个:math:`我'州邻居揭露:math:`W'州节点有概率:math:``\\nu ' "
+"**(W I)**;"
 
 #: ../../source/library/models/epidemics/SWIR.rst:55
 #: 67b24d4c392e424bae55c73714be573e
 msgid ""
 "the :math:`I` state node is recovered to the :math:`R` state with "
 "probability 1 **(I→R)**."
-msgstr ""
+msgstr ":math:`I ' 状态节点恢复到:math:`R ' 状态,概率1**(I R)**。"
 
 #: ../../source/library/models/epidemics/SWIR.rst:59
 #: 82dfbd4ca9f54fdab6617db9c5f02b4c
 msgid "SWIR model diagram"
-msgstr ""
+msgstr "SWIR 模型图"
 
 #: ../../source/library/models/epidemics/SWIR.rst:64
 #: 0c0e1ab7a7924452aedbd2c5a50474e1
 msgid ""
-"We represent node states with three Boolean indicator vectors :math:`h, "
-"w, r \\in \\{0,1\\}^N`. Let :math:`N(i)` be the neighbor set of node "
-":math:`i`. The update at discrete step :math:`k` is performed in the "
-"following stages (matching the reference implementation):"
+"We represent node states with three Boolean indicator vectors :math:`h, w, r"
+" \\in \\{0,1\\}^N`. Let :math:`N(i)` be the neighbor set of node :math:`i`. "
+"The update at discrete step :math:`k` is performed in the following stages "
+"(matching the reference implementation):"
 msgstr ""
+"我们代表三个布尔指标矢量的节点状态:`h, w, r\\ in \\{0, 1\\}^n'。 让:math:`N(i)'成为邻接的一组节点:`i'。 "
+"`k'分以下几个阶段进行(匹配参考执行):"
 
 #: ../../source/library/models/epidemics/SWIR.rst:66
 #: fbd6db9c032e42cab49467af55d8cadb
 msgid ""
 ":math:`h_i=1` indicates node :math:`i` is ``infected`` or ``weakened``; "
 ":math:`h_i=0` indicates ``susceptible`` or ``recovered``."
-msgstr ""
+msgstr ":math:`h i=1'表示节点:`i'表示\"感染\"或\"微弱\";`h i=0'表示\"疑似\"或\"恢复\"."
 
 #: ../../source/library/models/epidemics/SWIR.rst:67
 #: b0d6c0b5a6514085b239f487fb3e1262
@@ -349,160 +358,170 @@ msgid ""
 ":math:`(h_i,w_i,r_i)=(1,0,0)` denotes ``infected``, "
 ":math:`(h_i,w_i,r_i)=(1,1,0)` denotes ``weakened``."
 msgstr ""
+":math:`(h i,w i,r i)=(1,0)'表示“感染者”,math:`(h i,w i,r i)=(1,1,0)'表示“弱化”。"
 
 #: ../../source/library/models/epidemics/SWIR.rst:68
 #: 98eeb05b676648dd96b21cc0e2caf4f9
 msgid ""
 ":math:`(h_i,w_i,r_i)=(0,0,1)` denotes ``recovered``, "
 ":math:`(h_i,w_i,r_i)=(0,0,0)` denotes ``susceptible``."
-msgstr ""
+msgstr ":math:`(h i,w i,r i)=(0,0,1)'表示\"恢复\",\"(h i,w i,r i)=(0,0)\"表示\"可接受\"."
 
 #: ../../source/library/models/epidemics/SWIR.rst:70
 #: 6d642428128b41dd8e49d17c7858cbbc
 msgid ""
 "Each infected neighbor :math:`j` of node :math:`i` transmits a log-"
 "probability contribution"
-msgstr ""
+msgstr "每个受感染的邻居:math:节点的`j':math:`i ' 传递日志概率贡献"
 
 #: ../../source/library/models/epidemics/SWIR.rst:72
 #: 7db98396c4f64bf8a2c0c0c11e1a6b23
 msgid ""
-"For each edge :math:`j\\to i`, an infected neighbor contributes to the "
-"log-survival; the per-step infection probability for node :math:`i` is"
-msgstr ""
+"For each edge :math:`j\\to i`, an infected neighbor contributes to the log-"
+"survival; the per-step infection probability for node :math:`i` is"
+msgstr "每个边缘:`j\\to i',感染的邻居对日志存活作出贡献;节点的每步感染概率:`i'是:"
 
 #: ../../source/library/models/epidemics/SWIR.rst:74
 #: 9bb2a54518194721b0f9bb71c774f80d
 msgid ""
-"m_{ji}^{(k)} = \\mathbf{1}\\!\\left(h_j^{(k-1)}=1 \\land "
-"w_j^{(k-1)}=0\\right) \\cdot \\log(1-\\kappa), \\qquad\n"
+"m_{ji}^{(k)} = \\mathbf{1}\\!\\left(h_j^{(k-1)}=1 \\land w_j^{(k-1)}=0\\right) \\cdot \\log(1-\\kappa), \\qquad\n"
 "I_i^{(k)} = 1 - \\exp\\!\\left( \\sum_{j\\in N(i)} m_{ji}^{(k)} \\right),"
 msgstr ""
+"m {ji}^{(k)}=\\ mathbf{1}\\!\\左(h j^{(k-1)}\\land w j^{(k-1)\\0\\右)\\cdot\\log(1-\\kappa),\\qquad\n"
+"I i^{(k)}=1 -\\exp\\!\\左(\\sum {j\\in N(i)}m {ji}^{(k)}\\右),"
 
 #: ../../source/library/models/epidemics/SWIR.rst:79
 #: ac31dd5f6d8c4302afbf1552140b08c9
 msgid "applied only to currently susceptible and not recovered nodes."
-msgstr ""
+msgstr "仅适用于目前易发而不回收的节点。"
 
 #: ../../source/library/models/epidemics/SWIR.rst:81
 #: 81542f51554c4289a351a35d407f47fb
 msgid "**Weakening (S→W)**"
-msgstr ""
+msgstr "** 擦伤(S-W)**"
 
 #: ../../source/library/models/epidemics/SWIR.rst:83
 #: 8e1aebb040df4af7a30433b8c367adc5
 msgid "Analogously, the probability to become weakened is"
-msgstr ""
+msgstr "类似地,被削弱的概率是"
 
 #: ../../source/library/models/epidemics/SWIR.rst:85
 #: 4d11d282aaca4ea79decfbc8e082989f
 msgid ""
-"\\widetilde{m}_{ji}^{(k)} = \\mathbf{1}\\!\\left(h_j^{(k-1)}=1 \\land "
-"w_j^{(k-1)}=0\\right) \\cdot \\log(1-\\mu), \\qquad\n"
-"W_i^{(k)} = 1 - \\exp\\!\\left( \\sum_{j\\in N(i)} "
-"\\widetilde{m}_{ji}^{(k)} \\right),"
+"\\widetilde{m}_{ji}^{(k)} = \\mathbf{1}\\!\\left(h_j^{(k-1)}=1 \\land w_j^{(k-1)}=0\\right) \\cdot \\log(1-\\mu), \\qquad\n"
+"W_i^{(k)} = 1 - \\exp\\!\\left( \\sum_{j\\in N(i)} \\widetilde{m}_{ji}^{(k)} \\right),"
 msgstr ""
+"\\ glassintilde{ m} {ji}^{(k)} =\\ mathbf{1}\\!\\ 左 (h j^{(k-1)}\\land w j^{(k-1)}\\cdot\\log(1-\\mu),\\qquad\n"
+"W i^{(k)}=1 -\\exp\\!\\左(\\sum {j\\in N(i)}\\glasstilde{m} {ji}^{(k)}\\右),"
 
 #: ../../source/library/models/epidemics/SWIR.rst:90
 #: 8e6237ac29ae4f009ea4e5f25a81cd99
 msgid "again only for nodes that are susceptible and not recovered."
-msgstr ""
+msgstr "也只针对易发而不恢复的节点。"
 
 #: ../../source/library/models/epidemics/SWIR.rst:92
 #: 0f1b704c6984422b921a81924d8824ab
 msgid "**Weakened to infected (W→I)**"
-msgstr ""
+msgstr "** 被感染(W I)**"
 
 #: ../../source/library/models/epidemics/SWIR.rst:94
 #: 9caf559ccd97464e9443d4a6274d073a
 msgid ""
 "A weakened node may become infected via infected neighbors with rate "
 ":math:`\\nu`:"
-msgstr ""
+msgstr "一个弱小的节点可能会被感染,"
 
 #: ../../source/library/models/epidemics/SWIR.rst:96
 #: 3054d18efa4e4812b94ce656c7a2ca7b
 msgid ""
-"\\widehat{m}_{ji}^{(k)} = \\mathbf{1}\\!\\left(h_j^{(k-1)}=1 \\land "
-"w_j^{(k-1)}=0\\right) \\cdot \\log(1-\\nu), \\qquad\n"
-"WI_i^{(k)} = 1 - \\exp\\!\\left( \\sum_{j\\in N(i)} "
-"\\widehat{m}_{ji}^{(k)} \\right),"
+"\\widehat{m}_{ji}^{(k)} = \\mathbf{1}\\!\\left(h_j^{(k-1)}=1 \\land w_j^{(k-1)}=0\\right) \\cdot \\log(1-\\nu), \\qquad\n"
+"WI_i^{(k)} = 1 - \\exp\\!\\left( \\sum_{j\\in N(i)} \\widehat{m}_{ji}^{(k)} \\right),"
 msgstr ""
+"\\ gladhat{ m} {ji}^{(k)} =\\ mathbf{ 1}\\!\\ 左 (h j^{(k-1)}\\ land w j^{(k-1)}\\ cdot\\log(1-\\nu),\\qquad\n"
+"======================================================"
 
 #: ../../source/library/models/epidemics/SWIR.rst:101
 #: 13308d66b9994780b21aed2c227e34f4
 msgid "applied only to currently weakened nodes (:math:`w_i^{(k-1)}=1`)."
-msgstr ""
+msgstr "仅适用于目前被削弱的节点(:math:`w i^{(k-1)}=1')。"
 
 #: ../../source/library/models/epidemics/SWIR.rst:103
 #: 78d92beb415e48d3893694923f4d41d4
 msgid "**Recovery (I→R)**"
-msgstr ""
+msgstr "** 复原(I R)**"
 
 #: ../../source/library/models/epidemics/SWIR.rst:105
 #: 60ad84a3a27348c1816934c7dcba3e28
 msgid ""
-"In this implementation, infected and not-weakened nodes deterministically"
-" recover at each step (no parameter :math:`\\gamma`). We model this as"
-msgstr ""
+"In this implementation, infected and not-weakened nodes deterministically "
+"recover at each step (no parameter :math:`\\gamma`). We model this as"
+msgstr "在这一实施中,每个步骤(没有参数:math:QQgamma`)都会被感染且未微弱的节点确定恢复。 我们模拟这个"
 
 #: ../../source/library/models/epidemics/SWIR.rst:107
 #: bbfa16c575634601a73278350d541d60
 msgid ""
 "r_i^{(k)} = r_i^{(k-1)} \\;\\lor\\; \\big( h_i^{(k-1)} = 1 \\land "
 "w_i^{(k-1)} = 0 \\big),"
-msgstr ""
+msgstr "r i^{(k)}= r i^{(k-1)}\\;\\lor\\;\\big(h i^{(k-1))}= 1\\land w(k-1)}=0\\big),"
 
 #: ../../source/library/models/epidemics/SWIR.rst:111
 #: d5c8d6b05ebd43b3a33607d6bc683232
 msgid ""
 "and recovered nodes remain immune: they neither get weakened nor re-"
 "infected."
-msgstr ""
+msgstr "并且恢复的节点仍然保持免疫力:它们既不被削弱,也不被再次感染。"
 
 #: ../../source/library/models/epidemics/SWIR.rst:113
 #: dac5354430f945808d6179e587f109d2
 msgid "**Sampling and state update**"
-msgstr ""
+msgstr "** 抽样和状态更新**"
 
 #: ../../source/library/models/epidemics/SWIR.rst:115
 #: 930098e632be4b78a9a40ae72f808cd4
 msgid ""
-"Let :math:`U_i^{\\mathrm{inf}}, U_i^{\\mathrm{wk}}, U_i^{\\mathrm{wi}} "
-"\\sim \\mathrm{Uniform}(0,1)` be independent. The indicators are updated "
-"as"
+"Let :math:`U_i^{\\mathrm{inf}}, U_i^{\\mathrm{wk}}, U_i^{\\mathrm{wi}} \\sim"
+" \\mathrm{Uniform}(0,1)` be independent. The indicators are updated as"
 msgstr ""
+"让 : math: 'U i^{\\ mathrm{inf}}, U i^{\\ mathrm{wk}}, U i^{\\ "
+"mathrm{wi}}\\sim\\mathrm{Uniform}(0,1)' 独立. 这些指标更新为:"
 
 #: ../../source/library/models/epidemics/SWIR.rst:117
 #: 58e327a3bc7c4fd98df6ed0b6ec45d9b
 msgid ""
 "\\begin{aligned}\n"
 "w_i^{(k)} &= \\begin{cases}\n"
-"   1, & \\text{if } w_i^{(k-1)}=0 \\land r_i^{(k-1)}=0 \\land "
-"U_i^{\\mathrm{wk}} < W_i^{(k)}, \\\\\n"
-"   0, & \\text{if } w_i^{(k-1)}=1 \\land U_i^{\\mathrm{wi}} < WI_i^{(k)},"
-" \\\\\n"
+"   1, & \\text{if } w_i^{(k-1)}=0 \\land r_i^{(k-1)}=0 \\land U_i^{\\mathrm{wk}} < W_i^{(k)}, \\\\\n"
+"   0, & \\text{if } w_i^{(k-1)}=1 \\land U_i^{\\mathrm{wi}} < WI_i^{(k)}, \\\\\n"
 "   w_i^{(k-1)}, & \\text{otherwise},\n"
 "\\end{cases} \\\\\n"
 "h_i^{(k)} &= \\begin{cases}\n"
-"   1, & \\text{if } h_i^{(k-1)}=0 \\land r_i^{(k-1)}=0 \\land "
-"U_i^{\\mathrm{inf}} < I_i^{(k)}, \\\\\n"
-"   1, & \\text{if } w_i^{(k-1)}=1 \\land U_i^{\\mathrm{wi}} < WI_i^{(k)},"
-" \\\\\n"
-"   0, & \\text{if } h_i^{(k-1)}=1 \\land w_i^{(k-1)}=0 \\text{ "
-"(recovery)}, \\\\\n"
+"   1, & \\text{if } h_i^{(k-1)}=0 \\land r_i^{(k-1)}=0 \\land U_i^{\\mathrm{inf}} < I_i^{(k)}, \\\\\n"
+"   1, & \\text{if } w_i^{(k-1)}=1 \\land U_i^{\\mathrm{wi}} < WI_i^{(k)}, \\\\\n"
+"   0, & \\text{if } h_i^{(k-1)}=1 \\land w_i^{(k-1)}=0 \\text{ (recovery)}, \\\\\n"
 "   h_i^{(k-1)}, & \\text{otherwise},\n"
 "\\end{cases}\n"
 "\\end{aligned}"
 msgstr ""
+"开始{对齐}\n"
+"w i^{(k)}\\ begin{ cases} (中文(简体) ).\n"
+"1, &\\ text{if} w i^{(k-1)}\\\\\\\\\\}\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
+"0, &\\ text{if} w i^{(k-1)}\\land U i^{\\mathrm{wi}} < WI i^{(k)},\\\\\\\n"
+"w i^{(k-1)}, &\\ text{另类},\n"
+"结束{大小写}\\\\\\\\\n"
+"h i (k)}\\\\ begin{ cases} (韩语)\n"
+"1, &\\ text{if} h i^{(k-1)}\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
+"1, &\\ text{if} w i^{(k-1)}=1\\land U i^{\\-mathrm{wi} < WI i^{(k)},\\\\\\\n"
+"0, &\\ text{if} h i^{(k-1)}\\land w i^{(k-1)\\0\\ text{(恢复)},\\\\\\\n"
+"h i^{(k-1)}, &\\ text{另类},\n"
+"结束{ cases}\n"
+"结束{对齐}"
 
 #: ../../source/library/models/epidemics/SWIR.rst:133
 #: 8d9430d90d4049c79217f5070fa12735
 msgid "which mirrors the code path: S→W, S→I, W→I, I→R."
-msgstr ""
+msgstr "它反映了代码路径: S W, S I, W I, I R."
 
 #: ../../source/library/models/epidemics/SWIR.rst:136
 #: 73368db4bf91492ca78ae559320213e8
 msgid "References"
-msgstr ""
-
+msgstr "参考资料"

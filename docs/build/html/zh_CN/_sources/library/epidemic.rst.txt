@@ -20,4 +20,5 @@ In ``FS_GPlib`` are implemented the following **Epidemic** models:
    models/epidemics/IndependentCascades.rst
    models/epidemics/Profile.rst
    models/epidemics/ProfileThreshold.rst
+   models/epidemics/test.rst
 

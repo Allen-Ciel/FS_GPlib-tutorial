@@ -7,290 +7,297 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: FS_GPlib-tutorial \n"
+"Project-Id-Version: FS_GPlib-tutorial\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-03-02 20:24+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language: zh_CN\n"
 "Language-Team: zh_CN <LL@li.org>\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
+"Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 "Generated-By: Babel 2.16.0\n"
 
 #: ../../source/tutorial.rst:2 afb53f1e4d3a48379a436d40684eaf15
 msgid "Tutorial"
-msgstr ""
+msgstr "教学"
 
 #: ../../source/tutorial.rst:5 c8dc951db8304f0385bad2e5a912c02a
 msgid "Example"
-msgstr ""
+msgstr "示例"
 
 #: ../../source/tutorial.rst:8 2872b845d60645b2818ef363fec7ee77
 msgid "Import"
-msgstr ""
+msgstr "导入"
 
 #: ../../source/tutorial.rst:10 9095fe4761204b4ab788e32dcbaff0e0
 msgid "导入需要的包，并选择传播模型"
-msgstr ""
+msgstr "导入需要的包,并选择传播模型"
 
 #: ../../source/tutorial.rst:20 4e1eeed35b9046d69b3548ac679a0578
 msgid "Data"
-msgstr ""
+msgstr "数据"
 
 #: ../../source/tutorial.rst:22 932bfd8ae80f4154b4da9f6430948684
 msgid "读取图数据，使用PyG包的数据，其数据结构为压缩矩阵行。"
-msgstr ""
+msgstr "读取图数据,使用,使用"
 
 #: ../../source/tutorial.rst:30 b2c812a20c264acb947153124841f6ce
 msgid ""
 "若数据为不是压缩矩阵行结构，需要进行转换。数据结构构建见 `Data <https://pytorch-"
 "geometric.readthedocs.io/en/stable/generated/torch_geometric.data.Data.html#torch_geometric.data.Data>`_。"
 msgstr ""
+"==============================================================================================================================================================================================================================================================="
 
 #: ../../source/tutorial.rst:32 3ef71bb6cefa492a85099de9ce4396d7
 msgid "若数据是Networkx.Graph()，可以 ``from_networkx`` 进行转换"
-msgstr ""
+msgstr "QQNetworkx.Graph (), (10) 出自 networkx QX"
 
 #: ../../source/tutorial.rst:45 e0e9299656694bc89851c7369b51b644
 msgid "注意两个数据格式对节点的编码方式不一样，需要通过mapping进行对照。"
-msgstr ""
+msgstr "注意两个数据格式对节点的编码方式不一样,需要通过图进行对照。."
 
 #: ../../source/tutorial.rst:48 db5ac79cacf2486c98d673721c708776
 msgid "Seeds"
-msgstr ""
+msgstr "种子"
 
 #: ../../source/tutorial.rst:50 2d377997a1784c82b3587f3c941b5ae2
 msgid "种子节点的格式可以是 ``list`` 或者 ``float`` 。"
-msgstr ""
+msgstr "· 名单 · 浮动 · ·"
 
 #: ../../source/tutorial.rst:52 4ec5c8e1ee1e4980b425d12dec459eb5
 msgid "种子集合可以是通过各种算法计算或者用户指定的节点列表，以下是一个简单示例，通过度中心性选取前10%的节点作为种子："
-msgstr ""
+msgstr "(笑声)"
 
 #: ../../source/tutorial.rst:67 4dee3a9ec94246bc9b31b92670989245
 msgid "当然也可以通过随机生成的方式生成种子集合，细节看下一节Model。"
-msgstr ""
+msgstr "(原始内容存档于2019-09-21). QQ, 细节看下一节模."
 
 #: ../../source/tutorial.rst:70 bed989fd704944be892c09bef1f65c01
 msgid "Instantiate Model"
-msgstr ""
+msgstr "证明模式"
 
 #: ../../source/tutorial.rst:72 545e358226844f0e9d51f8ee5e514d84
 msgid "导入数据，种子集合，以及确认模型参数之后构建模型："
-msgstr ""
+msgstr "(笑声)"
 
 #: ../../source/tutorial.rst:81 5ac2deaa19104efeb3d31c5d96426a41
 msgid "每个模型所需的参数见模型介绍部分。"
-msgstr ""
+msgstr "每个模型所需的参数见模型介绍部分。"
 
 #: ../../source/tutorial.rst:83 33b7edbf9b3b436495ad4c8e3b7f8ca0
 msgid "如果没有种子集合，希望通过随机方式生成种子集合，将seeds设置为 ``float`` ，可以生成对应比例的种子集合："
 msgstr ""
+"==================================================================================================="
+" "
+"==========================================================================================================================================================="
 
 #: ../../source/tutorial.rst:96 1875cb16ed9444ca9a38f6eb21b04386
 msgid "如果希望随机生成的种子可以复现，请在构建模型时加入随机种子："
-msgstr ""
+msgstr "校对:Soup"
 
 #: ../../source/tutorial.rst:110 0ed3d6f66cfe45d59cb69fee559f01ed
 msgid "Execute simulation"
-msgstr ""
+msgstr "执行模拟"
 
 #: ../../source/tutorial.rst:112 90f6d86641f3491c986104cf2111510b
 msgid "可以选择四种不同的运行接口："
-msgstr ""
+msgstr "可以选择四种不同的运行接口:"
 
 #: ../../source/tutorial.rst:114 84d5d084e9014492bb560e84e9bf6e5c
 msgid ""
-"``Model.run_iteration()``: Execute one time step from the current node "
-"state and return the updated node state."
-msgstr ""
+"``Model.run_iteration()``: Execute one time step from the current node state"
+" and return the updated node state."
+msgstr "\"Model.run itration ()\" : 执行当前节点状态的一次步骤并返回更新的节点状态 。"
 
 #: ../../source/tutorial.rst:115 c68e27ef5cff43d4a5d003e9e77cca38
 msgid ""
-"``Model.run_iterations(times)``: Execute multiple time steps starting "
-"from the current node state and return the final node state after all "
-"iterations."
-msgstr ""
+"``Model.run_iterations(times)``: Execute multiple time steps starting from "
+"the current node state and return the final node state after all iterations."
+msgstr "\"Model.run itrations(时间)\": 执行从当前节点状态开始的多个时间步骤,并在所有迭代后返回最终节点状态."
 
 #: ../../source/tutorial.rst:116 df1fca38667f4938ac245e26d8296427
 msgid ""
-"``Model.run_epoch(times)``: Execute multiple time steps starting from the"
-" initial state and return the final node state after all iterations."
-msgstr ""
+"``Model.run_epoch(times)``: Execute multiple time steps starting from the "
+"initial state and return the final node state after all iterations."
+msgstr "\"Model.run epoch(时间)\": 执行从初始状态开始的多个时间步骤,并在所有迭代后返回最终节点状态."
 
 #: ../../source/tutorial.rst:117 c8976c9a50a24e08bfb527e0f86cbc86
 msgid ""
 "``Model.run_epochs(epochs, times, batch_size)``: Perform multiple Monte "
 "Carlo simulations in batches, each starting from the initial state, and "
 "return the final node states."
-msgstr ""
+msgstr "“Model.run epocts(日期、时间、批次 大小)”“: 分批进行多次蒙特卡洛模拟,每场从初始状态开始,并返回最终节点状态."
 
 #: ../../source/tutorial.rst:119 10a3a4d5f41b4efb8b2f434bab88c418
 msgid "以下是一个运行示例："
-msgstr ""
+msgstr "以下是一个运行示例:"
 
 #: ../../source/tutorial.rst:129 2a1a8eb559dd46cdaeecd06c19e5344c
 msgid "Example code"
-msgstr ""
+msgstr "示例代码"
 
 #: ../../source/tutorial.rst:131 b51c76da25834f618f5c40562d9de639
 msgid "一份完整的示例："
-msgstr ""
+msgstr "一份完整的示例:"
 
 #: ../../source/tutorial.rst:167 b8d0ccf38a9e4dbe9dfecf25169b7713
 msgid "About Batch"
-msgstr ""
+msgstr "关于批次"
 
 #: ../../source/tutorial.rst:169 116451dbbea54ba5ac6dcdcbc6d71979
 msgid "Batch并行算法宏观加速的核心，用于 ``Model.run_epochs(epochs, times, batch_size)`` 。"
-msgstr ""
+msgstr "批次 , \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\"
 
 #: ../../source/tutorial.rst:172 6cf605656c3d4733bd4d8028112499f2
 msgid "How to use batch"
-msgstr ""
+msgstr "如何使用批量"
 
 #: ../../source/tutorial.rst:174 07947057f0be4688b2e42bd7849a6263
 msgid ""
 "Batch并行使得多个模拟可以同时进行，但batch大小不能无限放大，而是受硬件性能限制。batch大小设置过大时会提示out of "
 "memory，通过实验验证并不是batch 大小越大运行效率越高。"
-msgstr ""
+msgstr "贝奇 贝奇 贝奇 贝奇 贝奇"
 
 #: ../../source/tutorial.rst:176 1c4f950783364779a94c66495481f18b
 msgid "用户可以通过指数级递减的方式寻找合适的batch大小。"
-msgstr ""
+msgstr "{\\fn黑体\\fs22\\bord1\\shad0\\3aHBE\\4aH00\\fscx67\\fscy66\\2cHFFFFFF\\3cH808080}你觉得呢?"
 
 #: ../../source/tutorial.rst:179 9314b529e3b642d9b26b7d080f57b1f2
 msgid "About Distributed"
-msgstr ""
+msgstr "关于分配"
 
 #: ../../source/tutorial.rst:181 8924c3feca8948b9a1b1baf8b1127add
 msgid "分布式方法适用于单机无法处理的超大规模数据。分布式方法的核心是按目标节点划分数据，实现子图之间数据量不倾斜，并且每个时间步只进行一次同步。"
 msgstr ""
+"分布式方法适用于单机无法处理的超大规模数据。分布式方法的核心是按目标节点划分数据,实现子图之间数据量不倾斜,并且每个时间步只进行一次同步。."
 
 #: ../../source/tutorial.rst:183 77d7b24e924541f496fd0a87c77d1375
 msgid "该方法可以在单机单卡设备、单机多卡设备和多机多卡设备上实现超大规模图的传播模拟。"
-msgstr ""
+msgstr "该方法可以在单机单卡设备、单机多卡设备和多机多卡设备上实现超大规模图的传播模拟。"
 
 #: ../../source/tutorial.rst:186 41655e5e75b04daead35b5c9a0d17d39
 msgid "How to use distributed computing"
-msgstr ""
+msgstr "如何使用分布式计算"
 
 #: ../../source/tutorial.rst:188 19f1428eac6b4538a7576b97476ccfcd
 msgid "算法库不集成分布式代码，但提供了数据划分方法。"
-msgstr ""
+msgstr "算法库不集成分布式代码,但提供了数据划分方法。"
 
 #: ../../source/tutorial.rst:190 70ac264ea53e455eaacada1d99379e41
 msgid "并给出一个实现案例，`test_DC.py <coming soon.>`_"
-msgstr ""
+msgstr "QQ, 'test DC.py '即将到来."
 
 #: ../../source/tutorial.rst:192 5926178f7dec4b2180de9f4a0df8246a
 msgid "该代码运行方式为："
-msgstr ""
+msgstr "该代码运行方式为:"
 
 #: ../../source/tutorial.rst:198 a2a712a2c45347cfa9327f5c08faa71a
 msgid "命令行解读："
-msgstr ""
+msgstr "命令行解读:"
 
 #: ../../source/tutorial.rst:200 d56969277a074f1dba112cacf7d6dd78
 msgid "``CUDA_VISIBLE_DEVICES=1,2,3,4,5,6``"
-msgstr ""
+msgstr "“CUDA VISIBLE DEVICES = 1,2,3,4,5,6”"
 
 #: ../../source/tutorial.rst:202 4fb1576317a04d9a99e39dc0370f3083
 msgid ""
-"Restricts the script to only use GPUs with device IDs 1 through 6. These "
-"are the GPU IDs made visible to the process."
-msgstr ""
+"Restricts the script to only use GPUs with device IDs 1 through 6. These are"
+" the GPU IDs made visible to the process."
+msgstr "限制脚本只使用设备ID 1至6的GPU. 这些是GPU的识别码 被显示在这个过程中。"
 
 #: ../../source/tutorial.rst:204 418121af0ed745f99cfe389034518081
 msgid "``torchrun``"
-msgstr ""
+msgstr "缩写"
 
 #: ../../source/tutorial.rst:206 2c89dc9c2d944f05989486c98caeadaa
 msgid ""
 "The PyTorch launcher used for distributed training/simulation across "
 "multiple processes or GPUs."
-msgstr ""
+msgstr "PyTorch发射器用于分布于多个进程或GPU的训练/模拟."
 
 #: ../../source/tutorial.rst:208 9b7ed09f8fe24123a2194a9c46281b1c
 msgid "``--nnodes=1``"
 msgstr ""
+"======================================= "
+"(================================================================================================================================================================"
 
 #: ../../source/tutorial.rst:210 846a844d021b4aa2bb62afd0e6ddc5f5
 msgid ""
 "Specifies that only one physical machine (node) is involved in the "
 "computation."
-msgstr ""
+msgstr "指定只有一台物理机器(节点)参与计算。"
 
 #: ../../source/tutorial.rst:212 22543c5a9cf44ae490197b17bf4716a7
 msgid "``--nproc_per_node=6``"
-msgstr ""
+msgstr "\\ -nproc per node=6\\\\x"
 
 #: ../../source/tutorial.rst:214 49ef7c66f2d64b018e30a8cc9ca1a5bd
 msgid ""
 "Launches 6 separate processes on the single node, typically one per GPU "
 "(corresponding to the 6 visible GPUs)."
-msgstr ""
+msgstr "在单节点上发射6个独立的过程,一般每个GPU一个(对应6个可见的GPU)."
 
 #: ../../source/tutorial.rst:216 b22dd264926645c794a1eaa5c195212f
 msgid "``--node_rank=0``"
-msgstr ""
+msgstr "\\ -node rank=0\\\\\\ n"
 
 #: ../../source/tutorial.rst:218 4dd8fdf56b44414f83ae13211bc75874
 msgid ""
-"Indicates the rank of this node in a multi-node setup. Since there’s only"
-" one node, it’s rank 0."
-msgstr ""
+"Indicates the rank of this node in a multi-node setup. Since there’s only "
+"one node, it’s rank 0."
+msgstr "在多节点设置中指示此节点的级别。 因为只有一个节点,"
 
 #: ../../source/tutorial.rst:220 ca874a2d141747388e10eb5821b4b9f2
 msgid "``--master_addr=127.0.0.1``"
 msgstr ""
+"===127.0.0.1=== - - - - - - - - - - - - - - - - - - - - - - addr== "
+"127.0.0.1= - = - ="
 
 #: ../../source/tutorial.rst:222 cde8adc5398b4118806e4f2502350b17
 msgid "Sets the IP address of the master node (localhost in this case)."
-msgstr ""
+msgstr "设置主节点( 此处为本地主机) 的 IP 地址 。"
 
 #: ../../source/tutorial.rst:224 6f7867cce65c4765b5d6b687ebbd4dc1
 msgid "``--master_port=12345``"
-msgstr ""
+msgstr "\" - 端口为12345\""
 
 #: ../../source/tutorial.rst:226 044e566f0208418e84bf5bebef203de3
 msgid "Sets the port used for inter-process communication."
-msgstr ""
+msgstr "设置用于进程间通信的端口。"
 
 #: ../../source/tutorial.rst:228 e76407a8770e4aa58d781be95426ee91
 msgid "``test_DC.py``"
-msgstr ""
+msgstr "“ test DC.py” (测试)"
 
 #: ../../source/tutorial.rst:230 f43baee8cec9404db2291358a04f1685
 msgid ""
 "The Python script to be executed, which performs a distributed SIR "
 "simulation."
-msgstr ""
+msgstr "要执行的 Python 脚本, 执行分布的 SIR 模拟 。"
 
 #: ../../source/tutorial.rst:232 01eb3e6a551a4f4bb5b53384d846f03e
 msgid "``-d Webbase``"
-msgstr ""
+msgstr "网站库"
 
 #: ../../source/tutorial.rst:234 44ce7e306a384389b8e3a862e38c5d4b
 msgid "Specifies the dataset to use (Webbase in this case)."
-msgstr ""
+msgstr "指定要使用的数据集(此处的Webbase)。"
 
 #: ../../source/tutorial.rst:236 845ef7c0c1fd45f6b706edd5ef50c1b6
 msgid "``-s 100``"
-msgstr ""
+msgstr "``100``"
 
 #: ../../source/tutorial.rst:238 df393cdca83148f1b2f768ba2230f61a
 msgid "Sets the number of simulation steps per Monte Carlo run to 100."
-msgstr ""
+msgstr "设定每个蒙特卡洛运行的模拟步数为100."
 
 #: ../../source/tutorial.rst:240 3f18d8a4df07427f84a19dcb6159a0b0
 msgid "``-mc 1000``"
-msgstr ""
+msgstr "缩略语 1000"
 
 #: ../../source/tutorial.rst:242 bd657e19af8d45ff8a5585f587c6f640
 msgid "Specifies that 1000 Monte Carlo simulations will be run."
-msgstr ""
-
+msgstr "指定将运行1,000个蒙特卡洛模拟。"

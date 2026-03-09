@@ -1,0 +1,40 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2026, Allen Guo
+# This file is distributed under the same license as the FS_GPlib-tutorial
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: FS_GPlib-tutorial\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-03-09 21:10+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"Generated-By: Babel 2.16.0\n"
+
+#: ../../source/library/models/epidemics/test.rst:2
+#: 186b3c43f4e8492aaff624efb8a8cccf
+msgid "Test"
+msgstr "测试"
+
+#: ../../source/library/models/epidemics/test.rst:4
+#: f00ed924eb3249abae3846bc6d382ebc
+msgid ""
+"The Independent Cascades (IC) model describes information diffusion or "
+"contagion processes on a static graph :math:`G=(V,E)`, where each node can "
+"be either **active (infected and recovered)** or **inactive (susceptible)**."
+" Once a node becomes active, it gets **one chance** to activate each of its "
+"inactive neighbors with a given probability (**infected**); whether or not "
+"it succeeds, it has no more chance to activate others (**recovered**)."
+msgstr ""
+"独立卡片(IC)模型在静态图上描述了信息传播或传染过程:`G=(V,E)',其中每个节点可以是**活性(感染和回收)**,也可以是**不活性(疑似)**。"
+" "
+"一旦一个节点活动起来,它就会得到**一个机会**以给定的概率(**感染**)激活每一个不活跃的邻居;无论它是否成功,它都不再有机会激活其他人(**恢复**)."

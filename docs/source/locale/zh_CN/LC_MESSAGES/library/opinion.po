@@ -7,28 +7,28 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: FS_GPlib-tutorial \n"
+"Project-Id-Version: FS_GPlib-tutorial\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-03-02 20:24+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language: zh_CN\n"
 "Language-Team: zh_CN <LL@li.org>\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
+"Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 "Generated-By: Babel 2.16.0\n"
 
 #: ../../source/library/opinion.rst:2 9c511417651b4ff6bed727b3564495a6
 msgid "Opinion Dynamic Models"
-msgstr ""
+msgstr "动态模型"
 
 #: ../../source/library/opinion.rst:3 00add2435aee4d30b1e9b7cf44e9f6c4
 msgid "abababa"
-msgstr ""
+msgstr "巴巴巴语Name"
 
 #: ../../source/library/opinion.rst:5 29e508082a2f4a229fe27c14764eeed5
-msgid "In ``FS_GPlib`` are implemented the following **Opinion Dynamics** models:"
-msgstr ""
-
+msgid ""
+"In ``FS_GPlib`` are implemented the following **Opinion Dynamics** models:"
+msgstr "在“FS GPlib”中,采用了下列“Opinion Dynamics**”模型:"

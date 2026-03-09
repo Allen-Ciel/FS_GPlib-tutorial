@@ -7,33 +7,32 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: FS_GPlib-tutorial \n"
+"Project-Id-Version: FS_GPlib-tutorial\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-03-02 20:24+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language: zh_CN\n"
 "Language-Team: zh_CN <LL@li.org>\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
+"Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 "Generated-By: Babel 2.16.0\n"
 
 #: ../../source/advanced.rst:2 e48f8766ecc147adb88ecd72ac661a93
 msgid "Advanced"
-msgstr ""
+msgstr "高级"
 
 #: ../../source/advanced.rst:5 62719ca8578f48528bde856911c44bce
 msgid "Distributed Computing"
-msgstr ""
+msgstr "分布式计算"
 
 #: ../../source/advanced.rst:7 ../../source/advanced.rst:13
 #: 3800aa290e2047b987e0edec38536aa2 55dc16a3e7cd4611b4d8fc5c213b06a9
 msgid "abab"
-msgstr ""
+msgstr "数据包"
 
 #: ../../source/advanced.rst:11 bcf298b8af784704ab33e30225574d0b
 msgid "Other Functions and Parameters"
-msgstr ""
-
+msgstr "其他职能和参数"

@@ -11,7 +11,7 @@ A susceptible node :math:`i` becomes infected by its infected neighbors :math:`j
    \frac{dI_i}{dt} &= \beta \sum_{j\in N(i)} S_i I_j .
    \end{aligned}
 
-test
+
 
 
 Status

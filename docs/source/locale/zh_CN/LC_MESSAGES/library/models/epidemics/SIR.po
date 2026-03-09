@@ -7,131 +7,137 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: FS_GPlib-tutorial \n"
+"Project-Id-Version: FS_GPlib-tutorial\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-03-02 20:24+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language: zh_CN\n"
 "Language-Team: zh_CN <LL@li.org>\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
+"Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 "Generated-By: Babel 2.16.0\n"
 
 #: ../../source/library/models/epidemics/SIR.rst:2
 #: d686a0596cbc48a096cf1f95d2a64f0d
 msgid "SIR"
-msgstr ""
+msgstr "处长"
 
 #: ../../source/library/models/epidemics/SIR.rst:4
 #: 2064271cec3d42a8841bc12ee4bc3b32
 msgid ""
-"The SIR Model [1]_ assumes that infection spreads only through links "
-"between neighboring nodes in a graph :math:`G=(V,E)`. Each node is in one"
-" of three states: :math:`S`, :math:`I`, or :math:`R`. A susceptible node "
-":math:`i` is infected by its infected neighbors :math:`j \\in N(i)` with "
-"rate :math:`\\beta`, while infected nodes recover with rate "
-":math:`\\gamma`:"
+"The SIR Model [1]_ assumes that infection spreads only through links between"
+" neighboring nodes in a graph :math:`G=(V,E)`. Each node is in one of three "
+"states: :math:`S`, :math:`I`, or :math:`R`. A susceptible node :math:`i` is "
+"infected by its infected neighbors :math:`j \\in N(i)` with rate "
+":math:`\\beta`, while infected nodes recover with rate :math:`\\gamma`:"
 msgstr ""
+"SIR模型 [1] 假设感染只通过相邻节点之间的连接在图:math:`G=(V,E)'中传播. 每个节点位于三个州之一:`S'、`I'或`R'。 "
+"一个易发节点:math:`i'被其感染的邻居感染 :math:`j\\in "
+"N(i)',比例:math:``\\beta',而受感染的节点恢复率:math:``\\gamma':"
 
 #: ../../source/library/models/epidemics/SIR.rst:9
 #: 7b0bde77f2df4840bb204962109daa63
 msgid ""
 "\\begin{aligned}\n"
 "\\frac{dS_i}{dt} &= -\\beta \\sum_{j\\in N(i)} S_i I_j, \\\\\n"
-"\\frac{dI_i}{dt} &= \\beta \\sum_{j\\in N(i)} S_i I_j - \\gamma I_i, \\\\"
-"\n"
+"\\frac{dI_i}{dt} &= \\beta \\sum_{j\\in N(i)} S_i I_j - \\gamma I_i, \\\\\n"
 "\\frac{dR_i}{dt} &= \\gamma I_i .\n"
 "\\end{aligned}"
 msgstr ""
+"开始{对齐}\n"
+"\\ frac{ dS i}{dt}\\\\\\\\\\ beta\\ sum\\j\\ in N(i)}S i I j,\\\\\\\\\n"
+"\\ frac{ dI i}{dt}\\ beta\\ sum {j\\ in N(i)} S i I j -\\gamma I i,\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n"
+"\\ frac{ dR i}{dt}\\\\\\gamma I i 。\n"
+"结束{对齐}"
 
 #: ../../source/library/models/epidemics/SIR.rst:19
 #: ../../source/library/models/epidemics/SIR.rst:23
 #: 742acd74c707428f8a526e5a308d1b14 c0f2f60b4ed147d8b68e998dbddc2073
 msgid "Status"
-msgstr ""
+msgstr "状态"
 
 #: ../../source/library/models/epidemics/SIR.rst:20
 #: a915c1e5671f4a90bf62c91020dd0845
 msgid "During the simulation, a node can be in one of the following states:"
-msgstr ""
+msgstr "在模拟期间,一个节点可以处于以下状态之一: 1."
 
 #: ../../source/library/models/epidemics/SIR.rst:23
 #: bdb985923cd5441a82929241731721a1
 msgid "Code"
-msgstr ""
+msgstr "代码"
 
 #: ../../source/library/models/epidemics/SIR.rst:25
 #: 919b2d147f28405bb60a5a72ac7fa7af
 msgid "Susceptible"
-msgstr ""
+msgstr "可疑"
 
 #: ../../source/library/models/epidemics/SIR.rst:25
 #: 5f042116840d4652b00a6ff9d420c432
 msgid "0"
-msgstr ""
+msgstr "0 个"
 
 #: ../../source/library/models/epidemics/SIR.rst:27
 #: 7992e60b228b435c9cf68c26e9a6e40b
 msgid "Infected"
-msgstr ""
+msgstr "感染"
 
 #: ../../source/library/models/epidemics/SIR.rst:27
 #: ab40963d4f914d3fb8c8c64b748b17a7
 msgid "1"
-msgstr ""
+msgstr "页:1"
 
 #: ../../source/library/models/epidemics/SIR.rst:29
 #: ce8eaafc6b094d52a225041499801dda
 msgid "Recovered"
-msgstr ""
+msgstr "已恢复"
 
 #: ../../source/library/models/epidemics/SIR.rst:29
 #: e3544923a2994475b7dc2eb93f612f77
 msgid "2"
-msgstr ""
+msgstr "2个"
 
 #: ../../source/library/models/epidemics/SIR.rst:33
 #: db53baf2202a416a83648f8c0251f561
 msgid "Parameters"
-msgstr ""
+msgstr "参数"
 
 #: ../../source/library/models/epidemics/SIR.rst:35
 #: b1b115f7bcd540cab4f9d245d80bedfa
 msgid "Name"
-msgstr ""
+msgstr "名称"
 
 #: ../../source/library/models/epidemics/SIR.rst:35
 #: a76ba165b1df4badbe4d8995faeca744
 msgid "Value Type"
-msgstr ""
+msgstr "数值类型"
 
 #: ../../source/library/models/epidemics/SIR.rst:35
 #: 7039f6b323b24f74bd8e30144acf3283
 msgid "Default"
-msgstr ""
+msgstr "默认"
 
 #: ../../source/library/models/epidemics/SIR.rst:35
 #: f96177fe4d3e4eb087c7ca9ba13a7970
 msgid "Mandatory"
-msgstr ""
+msgstr "强制性"
 
 #: ../../source/library/models/epidemics/SIR.rst:35
 #: 3b145bec70ae4d8c932c1d12795dfa11
 msgid "Description"
-msgstr ""
+msgstr "说明"
 
 #: ../../source/library/models/epidemics/SIR.rst:37
 #: 67546354c4844946aa56a9c587c89bb0
 msgid "data"
-msgstr ""
+msgstr "数据"
 
 #: ../../source/library/models/epidemics/SIR.rst:37
 #: 942b420b68fb4b57a2f799fecaf346dd
 msgid "Data"
-msgstr ""
+msgstr "数据"
 
 #: ../../source/library/models/epidemics/SIR.rst:37
 #: ../../source/library/models/epidemics/SIR.rst:39
@@ -140,68 +146,68 @@ msgstr ""
 #: 525f28a9a6ae4274b351295b2900133d 64554ec44999489fa289e2eb59a3630e
 #: 8508cf89545344c0abc54ef0d6a13e6d 9232aa6659174978b1e3af40ae653bf6
 msgid "Yes"
-msgstr ""
+msgstr "对"
 
 #: ../../source/library/models/epidemics/SIR.rst:37
 #: 77b0ca62ac6746f1b5060c59947b212d
 msgid "Data of graph."
-msgstr ""
+msgstr "图示数据."
 
 #: ../../source/library/models/epidemics/SIR.rst:39
 #: db9a1d689437457db7190e5142648268
 msgid "seeds"
-msgstr ""
+msgstr "种子"
 
 #: ../../source/library/models/epidemics/SIR.rst:39
 #: 5b83e5382bec45fb95d0817d2dcb15ef
 msgid "List[int]/float in (0, 1)"
-msgstr ""
+msgstr "列表[int]/浮动在(0, 1)中"
 
 #: ../../source/library/models/epidemics/SIR.rst:39
 #: 20f802f6c3414121a4472ae2b01877bd
 msgid "List of seed node IDs or a ratio in (0, 1)."
-msgstr ""
+msgstr "种子节点ID列表或比例为(0,1)."
 
 #: ../../source/library/models/epidemics/SIR.rst:41
 #: 27d434c4b36743afb74aea36eb1cf086
 msgid "beta"
-msgstr ""
+msgstr "贝塔"
 
 #: ../../source/library/models/epidemics/SIR.rst:41
 #: ../../source/library/models/epidemics/SIR.rst:43
 #: 74b284bc25a2444fba079206891a1e65 bb3c7b60b48d43ac81ecc3f2b3de8020
 msgid "float in [0, 1]"
-msgstr ""
+msgstr "在 [0, 1] 中浮动"
 
 #: ../../source/library/models/epidemics/SIR.rst:41
 #: 1ee45c369dd2482f8f31619d8b218a50
 msgid "Infection probability."
-msgstr ""
+msgstr "感染概率。"
 
 #: ../../source/library/models/epidemics/SIR.rst:43
 #: ff2824a14dbc4df29fd91ec2f617bf86
 msgid "gamma"
-msgstr ""
+msgstr "伽马"
 
 #: ../../source/library/models/epidemics/SIR.rst:43
 #: 113b289ec9f7449aad3f281492b472b4
 msgid "Recovery probability."
-msgstr ""
+msgstr "复原概率。"
 
 #: ../../source/library/models/epidemics/SIR.rst:45
 #: 59c43335b8144f3780cf29cd52cddd65
 msgid "device"
-msgstr ""
+msgstr "设备"
 
 #: ../../source/library/models/epidemics/SIR.rst:45
 #: ba4488a2e6644684844d7f76534f7a7e
 msgid "'cpu'/int (CUDA index)"
-msgstr ""
+msgstr "“ cpu” / int( CUDA 指数)"
 
 #: ../../source/library/models/epidemics/SIR.rst:45
 #: 3f66bc4439ac43c2af2a37bf91b01f9e
 msgid "'cpu'"
-msgstr ""
+msgstr "\"cpu\" (英语)."
 
 #: ../../source/library/models/epidemics/SIR.rst:45
 #: ../../source/library/models/epidemics/SIR.rst:47
@@ -209,106 +215,108 @@ msgstr ""
 #: 748bc0a2d1ad45c2b5adc5290a07c6e6 cfacd11e7e354ba19e48e2f8750b5617
 #: ea0c250242be45628e84cd77dd9c0039
 msgid "No"
-msgstr ""
+msgstr "没有"
 
 #: ../../source/library/models/epidemics/SIR.rst:45
 #: 646b3e7f89b848fead3c9e8ede1bbf7f
 msgid "Device to run the model on."
-msgstr ""
+msgstr "运行模型的设备 。"
 
 #: ../../source/library/models/epidemics/SIR.rst:47
 #: fbea57401cdd42a4ac6e427d150648d2
 msgid "use_weight"
-msgstr ""
+msgstr "使用量  重量"
 
 #: ../../source/library/models/epidemics/SIR.rst:47
 #: dd94f9c4d8bb48a584a9647a719ed295
 msgid "Bool"
-msgstr ""
+msgstr "布尔"
 
 #: ../../source/library/models/epidemics/SIR.rst:47
 #: 5d4cefa4abaf429f9d454b9c2715dab8
 msgid "False"
-msgstr ""
+msgstr "虚假"
 
 #: ../../source/library/models/epidemics/SIR.rst:47
 #: 71c59666e6a74a6a9de336cad751fbed
 msgid "Whether to use edge weights."
-msgstr ""
+msgstr "是否使用边重 。"
 
 #: ../../source/library/models/epidemics/SIR.rst:49
 #: 1f4a30405975484698a67e7cb69041ed
 msgid "rand_seed"
-msgstr ""
+msgstr "兰德种子"
 
 #: ../../source/library/models/epidemics/SIR.rst:49
 #: a388579f52f14e03a2993e9e97e88449
 msgid "Int"
-msgstr ""
+msgstr "输入"
 
 #: ../../source/library/models/epidemics/SIR.rst:49
 #: c0c272345bdf40b796c5700dcf7803c6
 msgid "None"
-msgstr ""
+msgstr "无"
 
 #: ../../source/library/models/epidemics/SIR.rst:49
 #: a714420040e7445886ef6053375cd9a3
 msgid "Random seed for generating the seed set."
-msgstr ""
+msgstr "生成种子集的随机种子 。"
 
 #: ../../source/library/models/epidemics/SIR.rst:53
 #: 3748b1824d21433fab2390975141ed92
 msgid "Implementation"
-msgstr ""
+msgstr "执行情况"
 
 #: ../../source/library/models/epidemics/SIR.rst:55
 #: 23d745e41b0d434aa17936b47eab349e
 msgid ""
 "Node transitions follow two rules: 1) if a :math:`S` state node has "
 ":math:`I` state neighbors, each :math:`I` state neighbor transmits the "
-"infection to the :math:`S` state node with probability :math:`\\beta`; 2)"
-" the :math:`I` state node is recovered to the :math:`R` state with "
+"infection to the :math:`S` state node with probability :math:`\\beta`; 2) "
+"the :math:`I` state node is recovered to the :math:`R` state with "
 "probability :math:`\\gamma`."
 msgstr ""
+"节点过渡遵循两个规则:1)如果一个:math:‘S'州节点有:math:‘I'州邻居,每个:math:‘I'州邻居将感染传染到:math:‘S'州节点有:math:`\\beta';2):math:‘I'州节点恢复到:math:‘R'州有:math:`\\gamma'."
 
 #: ../../source/library/models/epidemics/SIR.rst:60
 #: eb8d4d1a96354f9db2ca76f69a0c7e63
 msgid "SIR model diagram"
-msgstr ""
+msgstr "SIR 模型图"
 
 #: ../../source/library/models/epidemics/SIR.rst:65
 #: 07f34a3aa5a54f0292905e00c253325b
 msgid ""
 "Node states are represented by two Boolean indicator vectors :math:`h, r "
-"\\in \\{0,1\\}^N`, where :math:`h_i=1` denotes ``infected``, "
-":math:`r_i=1` denotes ``recovered``, and :math:`(h_i,r_i)=(0,0)` denotes "
-"``susceptible``. The update of the system at step :math:`k` is decomposed"
-" into three stages:"
+"\\in \\{0,1\\}^N`, where :math:`h_i=1` denotes ``infected``, :math:`r_i=1` "
+"denotes ``recovered``, and :math:`(h_i,r_i)=(0,0)` denotes ``susceptible``. "
+"The update of the system at step :math:`k` is decomposed into three stages:"
 msgstr ""
+"节点状态由两个布尔指标矢量表示:`h, r\\ in \\{0, 1\\}^N',其中:`h i=1'表示“感染',`r i=1'表示“恢复',`(h "
+"i, r i)=(0)'表示“可接受”。 系统分三个阶段更新:"
 
 #: ../../source/library/models/epidemics/SIR.rst:70
 #: d3e4740fd9204c43b662153ac0c86728
 msgid ""
 "Each infected neighbor :math:`j` of node :math:`i` transmits a log-"
 "probability contribution"
-msgstr ""
+msgstr "每个受感染的邻居:math:节点的`j':math:`i ' 传递日志概率贡献"
 
 #: ../../source/library/models/epidemics/SIR.rst:72
 #: 05a848a9009d413db3695b26bb075633
 msgid "m_{ji}^{(k)} = h_j^{(k-1)} \\cdot \\log(1-\\beta)"
-msgstr ""
+msgstr "m {ji}^{(k)}=h j^{(k-1)}\\cdot\\log(1-\\β)"
 
 #: ../../source/library/models/epidemics/SIR.rst:77
 #: 3c1e3819db1a4a70beffdaaa644f2528
 msgid ""
 "Node :math:`i` collects contributions from all neighbors :math:`N(i)` to "
 "compute its infection probability"
-msgstr ""
+msgstr "节点: \" i \" 收集所有邻居的贡献: \" N(i) \" 计算感染概率"
 
 #: ../../source/library/models/epidemics/SIR.rst:79
 #: 5367fdb81fdf4b2db4841b972eff8c61
 msgid "m_i^{(k)} = 1 - \\exp\\!\\left( \\sum_{j \\in N(i)} m_{ji}^{(k)} \\right)"
-msgstr ""
+msgstr "m i^{(k)}=1 -\\exp\\!\\左(\\sum {j\\in N(i)} m {ji}^{(k)}\\右)"
 
 #: ../../source/library/models/epidemics/SIR.rst:84
 #: ea10f44502c0435ea9c7329a07535dba
@@ -317,6 +325,8 @@ msgid ""
 "variables :math:`U_i^{\\mathrm{inf}}, U_i^{\\mathrm{rec}} \\sim "
 "\\mathrm{Uniform}(0,1)`"
 msgstr ""
+"指标变量以独立的统一随机变量更新 : math :`U i^{\\ mathrm{inf}}, U i^{\\ "
+"mathrm{rec}}\\sim\\mathrm{Uniform}(0,1)'"
 
 #: ../../source/library/models/epidemics/SIR.rst:86
 #: ae28048d0a9b469cbf9ca9979fcd1850
@@ -324,25 +334,35 @@ msgid ""
 "\\begin{aligned}\n"
 "    h_i^{(k)} &=\n"
 "    \\begin{cases}\n"
-"            1, & \\text{if } (h_i^{(k-1)}=0 \\land r_i^{(k-1)}=0) \\land "
-"(U_i^{\\mathrm{inf}} < m_i^{(k)}), \\\\[4pt]\n"
-"            0, & \\text{if } h_i^{(k-1)}=1 \\land (U_i^{\\mathrm{rec}} "
-"\\ge \\gamma), \\\\[4pt]\n"
+"            1, & \\text{if } (h_i^{(k-1)}=0 \\land r_i^{(k-1)}=0) \\land (U_i^{\\mathrm{inf}} < m_i^{(k)}), \\\\[4pt]\n"
+"            0, & \\text{if } h_i^{(k-1)}=1 \\land (U_i^{\\mathrm{rec}} \\ge \\gamma), \\\\[4pt]\n"
 "            h_i^{(k-1)}, & \\text{otherwise},\n"
 "    \\end{cases} \\\\[6pt]\n"
 "    r_i^{(k)} &=\n"
 "    \\begin{cases}\n"
-"            1, & \\text{if } h_i^{(k-1)}=1 \\land (U_i^{\\mathrm{rec}} < "
-"\\gamma), \\\\[4pt]\n"
+"            1, & \\text{if } h_i^{(k-1)}=1 \\land (U_i^{\\mathrm{rec}} < \\gamma), \\\\[4pt]\n"
 "            r_i^{(k-1)}, & \\text{otherwise}.\n"
 "    \\end{cases}\n"
 "\\end{aligned}"
 msgstr ""
+"开始{对齐}\n"
+"h(k)}\n"
+"开始{ cases}\n"
+"1, &\\ text{if} (h i^{(k-1)}=0\\land r i^{(k-1)}=0)\\land (U i^{\\mathrm{inf}}} < m i^{(k)}),\\\\[4pt]\n"
+"0, &\\ text{if} h i^{(k-1)}=1\\land (U i^{\\ mathrm{rec}}}\\ge\\gamma),\\\\[4pt]\n"
+"h i^{(k-1)}, &\\ text{另类},\n"
+"\\ end{ cases}\\\\\\ [6pt]\n"
+"r i^{(k)}\n"
+"开始{ cases}\n"
+"1, &\\ text{if} h i^{(k-1)}\\%1\\land(U i^{\\ mathrm{rec}}} <\\gamma),\\\\[4pt]\n"
+"r i^{(k-1)}, &\\ text{另类}.\n"
+"结束{ cases}\n"
+"结束{对齐}"
 
 #: ../../source/library/models/epidemics/SIR.rst:105
 #: 1c88cd190080467c8f3052d7d8f0ab23
 msgid "References"
-msgstr ""
+msgstr "参考资料"
 
 #: ../../source/library/models/epidemics/SIR.rst:107
 #: 2535d3e748d0424696c65f4c7a75a2be
@@ -351,4 +371,4 @@ msgid ""
 "contact networks[J]. *Journal of theoretical biology*, 2011, 283(1): "
 "136-144."
 msgstr ""
-
+"Youssef M, Scoglio C. 联系网中针对SIR流行病的个别方法[J]. *理论生物学杂志*, 2011, 283(1):136-144."

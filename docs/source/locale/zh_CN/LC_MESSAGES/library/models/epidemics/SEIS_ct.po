@@ -7,122 +7,124 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: FS_GPlib-tutorial \n"
+"Project-Id-Version: FS_GPlib-tutorial\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-03-02 20:24+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language: zh_CN\n"
 "Language-Team: zh_CN <LL@li.org>\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
+"Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 "Generated-By: Babel 2.16.0\n"
 
 #: ../../source/library/models/epidemics/SEIS_ct.rst:2
 #: 7cf09cfda41646b8b966a7f3c224f56e
 msgid "SEIS_ct"
-msgstr ""
+msgstr "SEIS  ct (简体中文)."
 
 #: ../../source/library/models/epidemics/SEIS_ct.rst:4
 #: d26efe5ea6934be98cf6fbf6f1b50d9f
 msgid ""
-"The SEIS_ct Model assumes that infection spreads only through links "
-"between neighboring nodes in a graph :math:`G=(V,E)`. Each node is in one"
-" of three states: :math:`S` (susceptible), :math:`E` "
-"(exposed/incubating), or :math:`I` (infected). Compared with the "
-"discrete-step SEIS, **SEIS_ct uses elapsed-time–dependent transition "
-"probabilities** for :math:`E\\to I` and :math:`I\\to S` based on the time"
-" since the last state entry."
+"The SEIS_ct Model assumes that infection spreads only through links between "
+"neighboring nodes in a graph :math:`G=(V,E)`. Each node is in one of three "
+"states: :math:`S` (susceptible), :math:`E` (exposed/incubating), or "
+":math:`I` (infected). Compared with the discrete-step SEIS, **SEIS_ct uses "
+"elapsed-time–dependent transition probabilities** for :math:`E\\to I` and "
+":math:`I\\to S` based on the time since the last state entry."
 msgstr ""
+"SEIS ct模型假设感染只通过相邻的节点之间的联系在图:`G=(V,E)'中传播。 每个节点在三个州中之一: \" S \" (疑似), \" E "
+"\" (暴露/孵化),或 \" I \" (感染)。 与离散步骤SEIS相比,**SEIS "
+"ct基于自上次进入国家以来的时间,使用过时的依赖性过渡概率**:math:`E\\to I ' 和:math:`I\\to S ' 。"
 
 #: ../../source/library/models/epidemics/SEIS_ct.rst:9
 #: ../../source/library/models/epidemics/SEIS_ct.rst:13
 #: 1a8a432bb7ed46fb83c406fe431db397 88deed290ca14911947e5993c2bbfce1
 msgid "Status"
-msgstr ""
+msgstr "状态"
 
 #: ../../source/library/models/epidemics/SEIS_ct.rst:10
 #: 42c54583e81c4249b692fa01dfeb0c0a
 msgid "During the simulation, a node can be in one of the following states:"
-msgstr ""
+msgstr "在模拟期间,一个节点可以处于以下状态之一: 1."
 
 #: ../../source/library/models/epidemics/SEIS_ct.rst:13
 #: d53b38e32eae43cea083ae7814f0f560
 msgid "Code"
-msgstr ""
+msgstr "代码"
 
 #: ../../source/library/models/epidemics/SEIS_ct.rst:15
 #: 6fc59f1ca92e4883b6f156a34e2d40a3
 msgid "Susceptible"
-msgstr ""
+msgstr "可疑"
 
 #: ../../source/library/models/epidemics/SEIS_ct.rst:15
 #: 4ae6b4769cb944f2b40470e27654b595
 msgid "0"
-msgstr ""
+msgstr "0 个"
 
 #: ../../source/library/models/epidemics/SEIS_ct.rst:17
 #: 8bd4ce872d854e2abd1970669af35c74
 msgid "Infected"
-msgstr ""
+msgstr "感染"
 
 #: ../../source/library/models/epidemics/SEIS_ct.rst:17
 #: ../../source/library/models/epidemics/SEIS_ct.rst:37
 #: 19e8b443c8d94232af2f47a8c014db0a 7880dcce1a51455f9a17ea47dff3a6cc
 msgid "1"
-msgstr ""
+msgstr "页:1"
 
 #: ../../source/library/models/epidemics/SEIS_ct.rst:19
 #: 1a98c35115d84f24ad4f203a61a992e9
 msgid "Exposed"
-msgstr ""
+msgstr "已曝光"
 
 #: ../../source/library/models/epidemics/SEIS_ct.rst:19
 #: 0784e734f0e74f3b99a6b71751985fae
 msgid "2"
-msgstr ""
+msgstr "2个"
 
 #: ../../source/library/models/epidemics/SEIS_ct.rst:23
 #: e96b915132ff4e92ab21f8b38bafdb09
 msgid "Parameters"
-msgstr ""
+msgstr "参数"
 
 #: ../../source/library/models/epidemics/SEIS_ct.rst:25
 #: 86d654fe8b00470da0627b7d43b90941
 msgid "Name"
-msgstr ""
+msgstr "名称"
 
 #: ../../source/library/models/epidemics/SEIS_ct.rst:25
 #: fb20400ae9c8450f80c1a5c8751e1360
 msgid "Value Type"
-msgstr ""
+msgstr "数值类型"
 
 #: ../../source/library/models/epidemics/SEIS_ct.rst:25
 #: a268f614c3814784b3bc91cad098ed4e
 msgid "Default"
-msgstr ""
+msgstr "默认"
 
 #: ../../source/library/models/epidemics/SEIS_ct.rst:25
 #: b8370b394bdc40dbb3234ad9e9954377
 msgid "Mandatory"
-msgstr ""
+msgstr "强制性"
 
 #: ../../source/library/models/epidemics/SEIS_ct.rst:25
 #: b307405a2bd84430841be725ca46284f
 msgid "Description"
-msgstr ""
+msgstr "说明"
 
 #: ../../source/library/models/epidemics/SEIS_ct.rst:27
 #: 906a2acfdf1c4fafb6766a47a2829ef2
 msgid "data"
-msgstr ""
+msgstr "数据"
 
 #: ../../source/library/models/epidemics/SEIS_ct.rst:27
 #: d4ba8b40dd464e448ee0316ac88bbfe3
 msgid "Data"
-msgstr ""
+msgstr "数据"
 
 #: ../../source/library/models/epidemics/SEIS_ct.rst:27
 #: ../../source/library/models/epidemics/SEIS_ct.rst:29
@@ -133,32 +135,32 @@ msgstr ""
 #: 33e7d4b9111145c9b71e3012de9dbd7b 4c3e8974ed014cfdb7a86f5dcfa84f59
 #: ebbecf0d20584973ac198a9cdda053d3
 msgid "Yes"
-msgstr ""
+msgstr "对"
 
 #: ../../source/library/models/epidemics/SEIS_ct.rst:27
 #: 735bb7f9de694e94baca2291b9821b96
 msgid "Graph data."
-msgstr ""
+msgstr "图表数据。"
 
 #: ../../source/library/models/epidemics/SEIS_ct.rst:29
 #: 8ca03c278e854e14a4f53e597b4e54bd
 msgid "seeds"
-msgstr ""
+msgstr "种子"
 
 #: ../../source/library/models/epidemics/SEIS_ct.rst:29
 #: 1a0a1d1f880f4dd0a566b94f5c2c8410
 msgid "List[int]/float in (0, 1)"
-msgstr ""
+msgstr "列表[int]/浮动在(0, 1)中"
 
 #: ../../source/library/models/epidemics/SEIS_ct.rst:29
 #: 073a8b5b71f647eeaa0a907a16c8b7e0
 msgid "Seed node IDs or a ratio in (0, 1)."
-msgstr ""
+msgstr "种子节点ID或比例(0,1)."
 
 #: ../../source/library/models/epidemics/SEIS_ct.rst:31
 #: eac140ed6ecb45f39bf0ad8d8bda67a6
 msgid "beta"
-msgstr ""
+msgstr "贝塔"
 
 #: ../../source/library/models/epidemics/SEIS_ct.rst:31
 #: ../../source/library/models/epidemics/SEIS_ct.rst:33
@@ -166,43 +168,43 @@ msgstr ""
 #: 17e1522c5c91430694e80bb05f1737bd 8952c92eddd84eb59ed1fefa6d018b97
 #: b6d343b635984c7db9fd1f9488ae1c23
 msgid "float in [0, 1]"
-msgstr ""
+msgstr "在 [0, 1] 中浮动"
 
 #: ../../source/library/models/epidemics/SEIS_ct.rst:31
 #: ffcef85ffc5f417596cd05777f1ca90a
 msgid "Infection probability per contact (S→E)."
-msgstr ""
+msgstr "每一次接触的感染概率(S-E)。"
 
 #: ../../source/library/models/epidemics/SEIS_ct.rst:33
 #: ea6219dc60c74135ab4fb38403c5a56e
 msgid "alpha"
-msgstr ""
+msgstr "α"
 
 #: ../../source/library/models/epidemics/SEIS_ct.rst:33
 #: ef4f59b97219454f8cc33559a9885fc7
 msgid "Incubation rate parameter (controls E→I hazard)."
-msgstr ""
+msgstr "孵化速率参数(控制E−I危险)."
 
 #: ../../source/library/models/epidemics/SEIS_ct.rst:35
 #: 8b42c78e342a414db1768cce31d16680
 msgid "gamma"
-msgstr ""
+msgstr "伽马"
 
 #: ../../source/library/models/epidemics/SEIS_ct.rst:35
 #: 1d040145a6fb458a9f49895df0d99c06
 msgid "Recovery rate parameter (controls I→S hazard)."
-msgstr ""
+msgstr "回收率参数(控制I S危险)。"
 
 #: ../../source/library/models/epidemics/SEIS_ct.rst:37
 #: 470287b65f574adbba848efc5fb1d1e1
 msgid "iterations_times"
-msgstr ""
+msgstr "重复时间( T)"
 
 #: ../../source/library/models/epidemics/SEIS_ct.rst:37
 #: ../../source/library/models/epidemics/SEIS_ct.rst:43
 #: 6e41530e2fdd495886f68b388e90d6c1 fbc1d51adcef4331befc22035ae0fbc6
 msgid "Int"
-msgstr ""
+msgstr "输入"
 
 #: ../../source/library/models/epidemics/SEIS_ct.rst:37
 #: ../../source/library/models/epidemics/SEIS_ct.rst:39
@@ -211,108 +213,108 @@ msgstr ""
 #: 180efecf6752491abe276f04a92a5571 8f788ba0e1c6446698f49573a413acc0
 #: 9929f63b96384b78a8351b36b365b7f6 dea93c3bd7724cb08df052c164edaf8b
 msgid "No"
-msgstr ""
+msgstr "没有"
 
 #: ../../source/library/models/epidemics/SEIS_ct.rst:37
 #: 22ab983ad41b41e1a45a9098958b5e84
 msgid "Maximum number of simulation steps to run."
-msgstr ""
+msgstr "要运行的最大模拟步骤数 。"
 
 #: ../../source/library/models/epidemics/SEIS_ct.rst:39
 #: 53b78685dbe7485991a831ecbd154d15
 msgid "device"
-msgstr ""
+msgstr "设备"
 
 #: ../../source/library/models/epidemics/SEIS_ct.rst:39
 #: b79fd9440de24337bfb18addc2172b3f
 msgid "'cpu' / int (CUDA index)"
-msgstr ""
+msgstr "“ cpu” / int( CUDA 指数)"
 
 #: ../../source/library/models/epidemics/SEIS_ct.rst:39
 #: 4b47c2457e104a489b87914a56f558da
 msgid "'cpu'"
-msgstr ""
+msgstr "\"cpu\" (英语)."
 
 #: ../../source/library/models/epidemics/SEIS_ct.rst:39
 #: 7dd6cebc2dd74477b1a9f52ff3ac9e36
 msgid "Device to run the model on."
-msgstr ""
+msgstr "运行模型的设备 。"
 
 #: ../../source/library/models/epidemics/SEIS_ct.rst:41
 #: 10d1203084e8457aab2bf0edf3df16bd
 msgid "use_weight"
-msgstr ""
+msgstr "使用量  重量"
 
 #: ../../source/library/models/epidemics/SEIS_ct.rst:41
 #: ac6b5a20bd3743369d412de5b8603435
 msgid "Bool"
-msgstr ""
+msgstr "布尔"
 
 #: ../../source/library/models/epidemics/SEIS_ct.rst:41
 #: 1b4db5f5504544f8805f997ba6c41259
 msgid "False"
-msgstr ""
+msgstr "虚假"
 
 #: ../../source/library/models/epidemics/SEIS_ct.rst:41
 #: 2daaf127f82f470c8694c63e2732198f
 msgid "Whether to use edge weights."
-msgstr ""
+msgstr "是否使用边重 。"
 
 #: ../../source/library/models/epidemics/SEIS_ct.rst:43
 #: 5a74ab7cb271420c8500f8b7de8647a2
 msgid "rand_seed"
-msgstr ""
+msgstr "兰德种子"
 
 #: ../../source/library/models/epidemics/SEIS_ct.rst:43
 #: 26897585a88e4842889d939fab4adb48
 msgid "None"
-msgstr ""
+msgstr "无"
 
 #: ../../source/library/models/epidemics/SEIS_ct.rst:43
 #: 364874583a5440109f660574206b0650
 msgid "Random seed for generating the initial seed set."
-msgstr ""
+msgstr "生成初始种子集的随机种子 。"
 
 #: ../../source/library/models/epidemics/SEIS_ct.rst:47
 #: 342ec69533a94db6960474fd7a28d177
 msgid "Implementation"
-msgstr ""
+msgstr "执行情况"
 
 #: ../../source/library/models/epidemics/SEIS_ct.rst:49
 #: 30024f25f3864ea4a52eed16716f6899
 msgid ""
-"We use two Boolean indicator vectors :math:`h, e \\in \\{0,1\\}^N` and "
-"two integer tensors that store **entry times**:"
-msgstr ""
+"We use two Boolean indicator vectors :math:`h, e \\in \\{0,1\\}^N` and two "
+"integer tensors that store **entry times**:"
+msgstr "我们使用两个布尔指标矢量:`h, e \\ in \\\\0, 1} ^N 和两组增压器,存储**输入时间**:"
 
 #: ../../source/library/models/epidemics/SEIS_ct.rst:51
 #: 4cf47025ad264c98892923b57147a1e8
 msgid ""
 ":math:`h_i=1` indicates node :math:`i` is ``infected`` or ``exposed``; "
 ":math:`h_i=0` indicates ``susceptible``."
-msgstr ""
+msgstr ":math:`h i=1'表示节点:`i'表示`感染'或`暴露';`h i=0'表示`可能'。"
 
 #: ../../source/library/models/epidemics/SEIS_ct.rst:52
 #: 9f41fa5add884e9faf4af7977d1f63c1
 msgid ":math:`(h_i,e_i)=(0,0)` denotes **Susceptible (S)**."
-msgstr ""
+msgstr ":math:`(h i,e i)=(0,0)'表示**可接受(S)**。"
 
 #: ../../source/library/models/epidemics/SEIS_ct.rst:53
 #: 89350f33eaae4bc39f114c9f9a116229
 msgid ":math:`(h_i,e_i)=(1,1)` denotes **Exposed (E)**."
-msgstr ""
+msgstr ":math:`(h i,e i)=(1,1)'表示**已出口(E)**。"
 
 #: ../../source/library/models/epidemics/SEIS_ct.rst:54
 #: 650107498be940e9a071c5dacf347949
 msgid ":math:`(h_i,e_i)=(1,0)` denotes **Infected (I)**."
-msgstr ""
+msgstr ":math:`(h i,e i)=(1,0)'表示**感染(I)**。"
 
 #: ../../source/library/models/epidemics/SEIS_ct.rst:55
 #: 6a4fa045da9e4ff6a4b2eab108275a9c
 msgid ""
 ":math:`t_i^{E}` records the iteration :math:`k` when node :math:`i` "
 "**entered E**."
-msgstr ""
+msgstr ": math: 't i^{E}` 记录迭代 : math: 'k' 当节点: 'i' ** E**."
 
 #: ../../source/library/models/epidemics/SEIS_ct.rst:56
 #: 5c0252cb6a1d43c38d60894e23e92a2a
@@ -320,6 +322,14 @@ msgid ""
 ":math:`t_i^{I}` records the iteration :math:`k` when node :math:`i` "
 "**entered I**."
 msgstr ""
+":math:`t i^{i}`i}`  records  records  records  records  records  it  it  it"
+"  it  it  it  it  it  it  it  it  it  it  it  it  it  it }`  it  it  it }` "
+"}` }` }`  it   }`   }` }` }` }` }` }` entered entered }` entered entered "
+"entered entered entered }` entered entered entered entered entered entered  "
+"entered entered entered }` }` entered entered entered entered entered }` "
+"entered entered }` }` entered entered entered entered entered entered "
+"entered entered }` }` }` }` }` }` }` }` }` }` }` }` }` }` }` }` }` }` }` }` "
+"}` }` }` }` }` }` }` }` }` }` }` }` }` }` }` }` }` }` }` }` }` }` "
 
 #: ../../source/library/models/epidemics/SEIS_ct.rst:58
 #: 0fafe5ba22f24262befd9370c60f2ef5
@@ -329,57 +339,63 @@ msgid ""
 "t_i^{I}`. The update of the system at step :math:`k` is decomposed into "
 "three stages:"
 msgstr ""
+"使用 : math: 'k' 解析当前迭代,定义持续时间变量 : math: QQDelta t i^{E} = k - t i^{E}`和: "
+"math: QXDelta t i^{I} = k - t i^{I}`. 系统分三个阶段更新:"
 
 #: ../../source/library/models/epidemics/SEIS_ct.rst:63
 #: 93cc8046eef94313b70c757855dd82b2
 msgid "SEISct model diagram"
-msgstr ""
+msgstr "SEISct 模型图"
 
 #: ../../source/library/models/epidemics/SEIS_ct.rst:68
 #: 917b405562e644478aa0d28cb5534430
 msgid ""
 "Each infected neighbor :math:`j` of node :math:`i` transmits a log-"
 "probability contribution for exposure (S→E)"
-msgstr ""
+msgstr "每个受感染的邻居:math:`j' 节点:math:`i ' 传递接触的日志概率(S E)"
 
 #: ../../source/library/models/epidemics/SEIS_ct.rst:70
 #: 7ad7c051d06048fd825e9f543649cb7d
 msgid ""
 "m_{ji}^{(k)} = \\mathbf{1}\\!\\left(h_j^{(k-1)}=1 \\land "
 "e_j^{(k-1)}=0\\right)\\,\\log(1-\\beta)"
-msgstr ""
+msgstr "m {ji}^{(k)}=\\ mathbf{1}\\!}\\左(h j^{(k-1)}\\land e j^{(k-1)\\0\\右)\\,\\log(1-\\β)"
 
 #: ../../source/library/models/epidemics/SEIS_ct.rst:76
 #: 0e54e91bb59444669f24108fec00767c
 msgid ""
 "Node :math:`i` collects contributions from all neighbors :math:`N(i)` to "
 "compute its exposure probability"
-msgstr ""
+msgstr "节点 : math:`i'收集所有邻居的贡献 : math:`N(i)'计算其暴露概率"
 
 #: ../../source/library/models/epidemics/SEIS_ct.rst:78
 #: fd6b30a5e84a4091b4bb1606cf0f072c
 msgid "m_i^{(k)} = 1 - \\exp\\!\\left( \\sum_{j \\in N(i)} m_{ji}^{(k)} \\right)"
-msgstr ""
+msgstr "m i^{(k)}=1 -\\exp\\!\\左(\\sum {j\\in N(i)} m {ji}^{(k)}\\右)"
 
 #: ../../source/library/models/epidemics/SEIS_ct.rst:83
 #: 6670b952be7a4718bb35bf076b9030bf
 msgid ""
 "The integer tensors and indicator variables are updated with independent "
-"uniform random variables :math:`U_i^{\\mathrm{exp}}, U_i^{\\mathrm{inf}},"
-" U_i^{\\mathrm{rec}} \\sim \\mathrm{Uniform}(0,1)`"
+"uniform random variables :math:`U_i^{\\mathrm{exp}}, U_i^{\\mathrm{inf}}, "
+"U_i^{\\mathrm{rec}} \\sim \\mathrm{Uniform}(0,1)`"
 msgstr ""
+"整数计数器和指标变量以独立的统一随机变量更新 : math : 'U i^{\\ mathrm{exp}}, U i^{\\ mathrm{inf}},"
+" U i^{\\ mathrm{rec}}\\sim\\mathrm{Uniform}(0,1)'"
 
 #: ../../source/library/models/epidemics/SEIS_ct.rst:87
 #: 26a64850ce9c46758467865f9230025e
 msgid ""
 "\\begin{aligned}\n"
-"t_i^E &= k, \\text{if } (U_i^{\\mathrm{exp}}<m_i^{(k)}) \\land "
-"h_i^{(k-1)}=0 \\\\\n"
-"t_i^I &= k, \\text{if } (U_i^{\\mathrm{inf}}<1-exp(-\\alpha \\cdot "
-"\\Delta t_i^E)) \\land e_i^{(k-1)}=1\n"
+"t_i^E &= k, \\text{if } (U_i^{\\mathrm{exp}}<m_i^{(k)}) \\land h_i^{(k-1)}=0 \\\\\n"
+"t_i^I &= k, \\text{if } (U_i^{\\mathrm{inf}}<1-exp(-\\alpha \\cdot \\Delta t_i^E)) \\land e_i^{(k-1)}=1\n"
 "\\end{aligned}\n"
 "\n"
 msgstr ""
+"开始{对齐}\n"
+"t i^E & k,\\text{if} (U i^{\\mathrm{exp}}<m i^{(k)})\\land h i^{(k-1)}\\\\\\0\n"
+"t i^I \\ k,\\ text{if} (U i i mathrm{inf}}<1-exp(-\\ alpha\\cdot\\Delta t i^E))\\land e i^{(k-1)\\1)\\1\n"
+"结束{对齐}"
 
 #: ../../source/library/models/epidemics/SEIS_ct.rst:93
 #: e9e7eb16933740faaaafd3a914d683df
@@ -387,26 +403,35 @@ msgid ""
 "\\begin{aligned}\n"
 " h_i^{(k)} &=\n"
 "\\begin{cases}\n"
-"    1, & \\text{if } (U_i^{\\mathrm{exp}} < m_i^{(k)}) \\land "
-"h_i^{(k-1)}=0 \\\\[4pt]\n"
-"    0, & \\text{if } (U_i^{\\mathrm{rec}} < 1-exp(-\\gamma\\cdot \\Delta "
-"t_i^I)) \\land (h_i^{(k-1)}=1 \\land e_i^{(k-1)}=0), \\\\[4pt]\n"
+"    1, & \\text{if } (U_i^{\\mathrm{exp}} < m_i^{(k)}) \\land h_i^{(k-1)}=0 \\\\[4pt]\n"
+"    0, & \\text{if } (U_i^{\\mathrm{rec}} < 1-exp(-\\gamma\\cdot \\Delta t_i^I)) \\land (h_i^{(k-1)}=1 \\land e_i^{(k-1)}=0), \\\\[4pt]\n"
 "    h_i^{(k-1)}, & \\text{otherwise},\n"
 "\\end{cases} \\\\[6pt]\n"
 "e_i^{(k)} &=\n"
 "\\begin{cases}\n"
-"    1, & \\text{if } (U_i^{\\mathrm{exp}} < m_i^{(k)}) \\land "
-"h_i^{(k-1)}=0 \\\\[4pt]\n"
-"    0, & \\text{if } (U_i^{\\mathrm{inf}} < 1-exp(-\\alpha \\cdot \\Delta"
-" t_i^E)) \\land e_i^{(k-1)}=1 , \\\\[4pt]\n"
+"    1, & \\text{if } (U_i^{\\mathrm{exp}} < m_i^{(k)}) \\land h_i^{(k-1)}=0 \\\\[4pt]\n"
+"    0, & \\text{if } (U_i^{\\mathrm{inf}} < 1-exp(-\\alpha \\cdot \\Delta t_i^E)) \\land e_i^{(k-1)}=1 , \\\\[4pt]\n"
 "    e_i^{(k-1)}, & \\text{otherwise},\n"
 "\\end{cases}\n"
 "\\end{aligned}\n"
 "\n"
 msgstr ""
+"开始{对齐}\n"
+"h(k)}\n"
+"开始{ cases}\n"
+"1, &\\ text{if} (U i^{\\ mathrm{exp} < m i^{(k)})\\land h i^{(k-1)}\\\\[4pt]\n"
+"0, &\\text{if} (U i ^{\\mathrm{rec} < 1-exp(-\\gamma\\cdot\\Delta t i^I))\\land(h i^{(k-1)\\1)\\i^{(k-1)\\0)\\[4pt]\n"
+"h i^{(k-1)}, &\\ text{另类},\n"
+"\\ end{ cases}\\\\\\ [6pt]\n"
+"e i^{(k) }\n"
+"开始{ cases}\n"
+"1, &\\ text{if} (U i^{\\ mathrm{exp} < m i^{(k)})\\land h i^{(k-1)}\\\\[4pt]\n"
+"0, &\\ text{if} (U i^{\\ mathrm{inf}}} < 1-exp(-\\ alpha\\cdot\\Delta t i^E))\\land e i^{(k-1)}\\\\[4pt]\n"
+"e i  (k-1)}, &\\ text{另类},\n"
+"结束{ cases}\n"
+"结束{对齐}"
 
 #: ../../source/library/models/epidemics/SEIS_ct.rst:111
 #: b932902309654d78afe7c7c4eea291cb
 msgid "References"
-msgstr ""
-
+msgstr "参考资料"

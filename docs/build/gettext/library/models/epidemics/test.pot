@@ -1,0 +1,27 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2026, Allen Guo
+# This file is distributed under the same license as the FS_GPlib-tutorial package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: FS_GPlib-tutorial \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-03-09 21:10+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../source/library/models/epidemics/test.rst:2
+#: 186b3c43f4e8492aaff624efb8a8cccf
+msgid "Test"
+msgstr ""
+
+#: ../../source/library/models/epidemics/test.rst:4
+#: f00ed924eb3249abae3846bc6d382ebc
+msgid "The Independent Cascades (IC) model describes information diffusion or contagion processes on a static graph :math:`G=(V,E)`, where each node can be either **active (infected and recovered)** or **inactive (susceptible)**. Once a node becomes active, it gets **one chance** to activate each of its inactive neighbors with a given probability (**infected**); whether or not it succeeds, it has no more chance to activate others (**recovered**)."
+msgstr ""
