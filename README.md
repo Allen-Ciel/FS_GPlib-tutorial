@@ -1,5 +1,10 @@
 # FS_GPlib
 
+
+## Documentation
+
+Online documentation: https://fs-gplib-tutorial.readthedocs.io/en/latest/
+
 ## Installation
 
 ```bash
@@ -106,7 +111,7 @@ from fs_gplib.DistributedComputing.DistributedComputing import (
 from fs_gplib.utils import *
 
 parser = argparse.ArgumentParser(description="Distributed SIR Simulation")
-parser.add_argument("-d", "--dataset", default="Yelp",
+parser.add_argument("-d", "--dataset", default="Cora",
                     choices=['Cora', 'PubMed'])
 parser.add_argument("-p", "--parts", type=int, default=4,
                     help="Number of partitions")

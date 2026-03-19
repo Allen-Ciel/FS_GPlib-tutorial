@@ -145,7 +145,7 @@ class ProfileThreshold_process(Diffusion_process):
 
 
             threshold_p = self.propagate(self.edge_index, x=x.float()) * ~B_mask# * D_in
-            mask_threshold = (~x & ~mask_ai) & (node_threshold <= threshold_p)
+            mask_threshold = (~x & ~B_mask) & (ai_rand_p >= self.adopter_rate) & (node_threshold <= threshold_p)
 
             I_p = threshold_p.bool()
             i_rand_p = torch.rand_like(x, dtype=torch.float32)

@@ -1,6 +1,6 @@
 Metadata-Version: 2.4
-Name: fs_gplib
-Version: 0.7.0
+Name: fs-gplib
+Version: 0.1.0.dev4
 Summary: Faster and more Scalable python library for Graph Propagation models
 Author-email: Chang Guo <guochangcc@mail.ustc.edu.cn>
 License: Copyright (c) 2021 The Python Packaging Authority

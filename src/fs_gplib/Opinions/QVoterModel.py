@@ -159,10 +159,8 @@ class QVoter_process(Diffusion_process):
                 rand_vals_epsilon = torch.rand(non_homogeneous_indices.shape[0], device=x.device)
                 update_rand_mask = rand_vals_epsilon < self.epsilon
                 if update_rand_mask.any():
-                    # Generate random boolean values (True/False) for the selected indices
-                    random_bool = torch.randint(0, 2, (update_rand_mask.sum(),), device=x.device, dtype=torch.bool)
-                    indices_to_random_update = non_homogeneous_indices[update_rand_mask]
-                    x[batch_indices[indices_to_random_update], rand_indices[indices_to_random_update],
-                    :] = random_bool.unsqueeze(-1)
+                    indices_to_flip = non_homogeneous_indices[update_rand_mask]
+                    x[batch_indices[indices_to_flip], rand_indices[indices_to_flip], :] = \
+                        ~x[batch_indices[indices_to_flip], rand_indices[indices_to_flip], :]
             self.times += 1
         return x

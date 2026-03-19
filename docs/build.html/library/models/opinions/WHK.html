@@ -19,6 +19,8 @@
       <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
       <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
       <script src="../../../_static/copybutton.js?v=f281be69"></script>
+      <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       <script src="../../../_static/my_custom.js?v=52495bde"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
@@ -174,7 +176,13 @@
 <li class="toctree-l4"><a class="reference internal" href="../epidemics/Threshold.html#references">References</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../epidemics/KThreshold.html">Kertesz Threshold</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../epidemics/KThreshold.html">Kertesz Threshold</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../epidemics/KThreshold.html#status">Status</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../epidemics/KThreshold.html#parameters">Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../epidemics/KThreshold.html#model-description">Model Description</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../epidemics/KThreshold.html#references">References</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="../epidemics/IndependentCascades.html">Independent Cascades</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../epidemics/IndependentCascades.html#status">Status</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../epidemics/IndependentCascades.html#parameters">Parameters</a></li>
@@ -182,8 +190,20 @@
 <li class="toctree-l4"><a class="reference internal" href="../epidemics/IndependentCascades.html#references">References</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../epidemics/Profile.html">Profile</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../epidemics/ProfileThreshold.html">Profile Threshold</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../epidemics/Profile.html">Profile</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../epidemics/Profile.html#status">Status</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../epidemics/Profile.html#parameters">Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../epidemics/Profile.html#model-description">Model Description</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../epidemics/Profile.html#references">References</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../epidemics/ProfileThreshold.html">Profile Threshold</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../epidemics/ProfileThreshold.html#status">Status</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../epidemics/ProfileThreshold.html#parameters">Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../epidemics/ProfileThreshold.html#model-description">Model Description</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../epidemics/ProfileThreshold.html#references">References</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2 current"><a class="reference internal" href="../../opinion.html">Opinion Dynamic Models</a><ul class="current">
@@ -198,7 +218,13 @@
 <li class="toctree-l4"><a class="reference internal" href="HK.html#references">References</a></li>
 </ul>
 </li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Weighted Hegselmann-Krause</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Weighted Hegselmann-Krause</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#status">Status</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#parameters">Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#implementation">Implementation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#references">References</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../dynamic_network.html">Dynamic Network Models</a><ul>
@@ -333,6 +359,127 @@
              
   <section id="weighted-hegselmann-krause">
 <h1>Weighted Hegselmann-Krause<a class="headerlink" href="#weighted-hegselmann-krause" title="Link to this heading"></a></h1>
+<p>The WHK (Weighted Hegselmann-Krause) model extends the classical HK model <a class="footnote-reference brackets" href="#id2" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a> by introducing a weight parameter <span class="math notranslate nohighlight">\(w\)</span> that controls the influence strength of <span class="math notranslate nohighlight">\(\varepsilon\)</span>-neighbors. Each node holds an initial opinion <span class="math notranslate nohighlight">\(h \in [-1,1]\)</span> and updates it in discrete rounds. At each step:
+1) <span class="math notranslate nohighlight">\(\varepsilon\)</span>-neighbor identification: find the set <span class="math notranslate nohighlight">\(\Gamma_\varepsilon\)</span> of each node, <span class="math notranslate nohighlight">\(d_{i,j}=\left|h_i-h_j\right|\le\varepsilon\)</span>, <span class="math notranslate nohighlight">\(j\in\Gamma_\varepsilon\)</span>;
+2) update the opinion value: The opinion of node <span class="math notranslate nohighlight">\(i\)</span> at the next time step is updated as follows:</p>
+<div class="math notranslate nohighlight">
+\[h_i^{(k)}=h_i^{(k-1)}+\frac{\sum_{j\in\Gamma_\varepsilon}{h_j^{(k-1)}\cdot w_{ij}}}{\#\Gamma_\varepsilon}\cdot\left(1-\left|h_i^{(k-1)}\right|\right)\]</div>
+<p>where <span class="math notranslate nohighlight">\(\#\Gamma_\varepsilon\)</span> denotes the number of <span class="math notranslate nohighlight">\(\varepsilon\)</span>-neighbors, and <span class="math notranslate nohighlight">\(w_{ij}\)</span> is the influence weight of edge <span class="math notranslate nohighlight">\((i,j)\in E\)</span>. The factor <span class="math notranslate nohighlight">\((1-|h_i^{(k-1)}|)\)</span> ensures that opinions remain bounded in <span class="math notranslate nohighlight">\([-1,1]\)</span> and that opinions closer to the extremes are harder to shift.</p>
+<section id="status">
+<h2>Status<a class="headerlink" href="#status" title="Link to this heading"></a></h2>
+<p>During the simulation, a node holds a continuous opinion value:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Status</p></th>
+<th class="head"><p>Range</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Opinion</p></td>
+<td><p>Float in [-1,1]</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="parameters">
+<h2>Parameters<a class="headerlink" href="#parameters" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Required</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>data</p></td>
+<td><p>Data</p></td>
+<td></td>
+<td><p>Yes</p></td>
+<td><p>Data of graph.</p></td>
+</tr>
+<tr class="row-odd"><td><p>seeds</p></td>
+<td><p>List[float] / None</p></td>
+<td></td>
+<td><p>Yes</p></td>
+<td><p>List of initial opinion values or None to generate randomly.</p></td>
+</tr>
+<tr class="row-even"><td><p>epsilon</p></td>
+<td><p>float in [0, 1]</p></td>
+<td></td>
+<td><p>Yes</p></td>
+<td><p>Confidence bound determining which neighbors influence the opinion update.</p></td>
+</tr>
+<tr class="row-odd"><td><p>weight</p></td>
+<td><p>float in [0, 1] / List[float]</p></td>
+<td></td>
+<td><p>Yes</p></td>
+<td><p>Influence weight applied to the neighbor average. Scalar for global
+weight, or list of per-node weights.</p></td>
+</tr>
+<tr class="row-even"><td><p>device</p></td>
+<td><p>'cpu'/int (CUDA index)</p></td>
+<td><p>'cpu'</p></td>
+<td><p>No</p></td>
+<td><p>Device to run the model on.</p></td>
+</tr>
+<tr class="row-odd"><td><p>rand_seed</p></td>
+<td><p>Int</p></td>
+<td><p>None</p></td>
+<td><p>No</p></td>
+<td><p>Random seed for generating the initial opinion values.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="implementation">
+<h2>Implementation<a class="headerlink" href="#implementation" title="Link to this heading"></a></h2>
+<p>The WHK model extends the HK model by (i) weighting the neighbor average with a parameter <span class="math notranslate nohighlight">\(w_{ij}\)</span> and (ii) applying a bounded update rule that keeps opinions within <span class="math notranslate nohighlight">\([-1,1]\)</span>. Similar to HK, if <span class="math notranslate nohighlight">\(\#\Gamma_\varepsilon=0\)</span>, the opinion remains unchanged; otherwise it is updated via the weighted aggregation.</p>
+<a class="reference internal image-reference" href="../../../_images/WHK-state.png"><img alt="WHK model diagram" class="align-center" src="../../../_images/WHK-state.png" style="width: 70%;" />
+</a>
+<ol class="arabic simple">
+<li><p>For each neighbor <span class="math notranslate nohighlight">\(j \in N(i)\)</span>, generate two message terms:</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    m_{ji\_c}^{(k)} &amp;=\mathbf{1}\!\left( |h_i^{(k-1)} - h_j^{(k-1)}| &lt; \varepsilon \right) \cdot w_{ij} \cdot h_j^{(k-1)}, \\[6pt]
+    m_{ji\_v}^{(k)} &amp;= \mathbf{1}\!\left( |h_i^{(k-1)} - h_j^{(k-1)}| &lt; \varepsilon \right).
+\end{aligned}\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\mathbf{1}(\cdot)\)</span> is the indicator function and <span class="math notranslate nohighlight">\(w_{ij}\)</span> is the influence weight of edge <span class="math notranslate nohighlight">\((i,j)\in E\)</span>.</p>
+<ol class="arabic simple" start="2">
+<li><p>Node <span class="math notranslate nohighlight">\(i\)</span> aggregates received messages by computing the weighted average of <span class="math notranslate nohighlight">\(\varepsilon\)</span>-neighbors:</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    m_i^{(k)} &amp;=
+    \begin{cases}
+        \dfrac{\sum\limits_{j \in N(i)} m_{ji\_c}^{(k)}}{\sum\limits_{j \in N(i)} m_{ji\_v}^{(k)}},
+        &amp; \text{if } \sum\limits_{j \in N(i)} m_{ji\_v}^{(k)} &gt; 0, \\[8pt]
+    \mathrm{NaN}, &amp; \text{otherwise}.
+    \end{cases} \\[10pt]
+\end{aligned}\end{split}\]</div>
+<ol class="arabic simple" start="3">
+<li><p>Finally, the opinion of node <span class="math notranslate nohighlight">\(i\)</span> is updated with the bounded update rule:</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[\begin{split}    \begin{aligned}
+    h_i^{(k)} &amp;=
+    \begin{cases}
+            h_i^{(k-1)} + m_i^{(k)} \cdot \left(1 - \left|h_i^{(k-1)}\right|\right), &amp; \text{if } m_i^{(k)} \neq \mathrm{NaN}, \\[6pt]
+            h_i^{(k-1)}, &amp;  \text{otherwise}.
+    \end{cases}
+\end{aligned}\end{split}\]</div>
+<p>The factor <span class="math notranslate nohighlight">\((1 - |h_i^{(k-1)}|)\)</span> acts as a damping term: nodes with opinions close to the boundary values <span class="math notranslate nohighlight">\(\pm 1\)</span> receive smaller updates, naturally preventing the opinion from exceeding the valid range.</p>
+</section>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Link to this heading"></a></h2>
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="id2" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
+</aside>
+</aside>
+</section>
 </section>
 
 

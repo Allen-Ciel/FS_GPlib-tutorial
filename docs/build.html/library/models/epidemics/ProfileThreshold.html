@@ -19,6 +19,8 @@
       <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
       <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
       <script src="../../../_static/copybutton.js?v=f281be69"></script>
+      <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       <script src="../../../_static/my_custom.js?v=52495bde"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
@@ -174,7 +176,13 @@
 <li class="toctree-l4"><a class="reference internal" href="Threshold.html#references">References</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="KThreshold.html">Kertesz Threshold</a></li>
+<li class="toctree-l3"><a class="reference internal" href="KThreshold.html">Kertesz Threshold</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="KThreshold.html#status">Status</a></li>
+<li class="toctree-l4"><a class="reference internal" href="KThreshold.html#parameters">Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="KThreshold.html#model-description">Model Description</a></li>
+<li class="toctree-l4"><a class="reference internal" href="KThreshold.html#references">References</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="IndependentCascades.html">Independent Cascades</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="IndependentCascades.html#status">Status</a></li>
 <li class="toctree-l4"><a class="reference internal" href="IndependentCascades.html#parameters">Parameters</a></li>
@@ -182,8 +190,20 @@
 <li class="toctree-l4"><a class="reference internal" href="IndependentCascades.html#references">References</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="Profile.html">Profile</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Profile Threshold</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Profile.html">Profile</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Profile.html#status">Status</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Profile.html#parameters">Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Profile.html#model-description">Model Description</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Profile.html#references">References</a></li>
+</ul>
+</li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Profile Threshold</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#status">Status</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#parameters">Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#model-description">Model Description</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#references">References</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../opinion.html">Opinion Dynamic Models</a><ul>
@@ -198,7 +218,13 @@
 <li class="toctree-l4"><a class="reference internal" href="../opinions/HK.html#references">References</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../opinions/WHK.html">Weighted Hegselmann-Krause</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../opinions/WHK.html">Weighted Hegselmann-Krause</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../opinions/WHK.html#status">Status</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../opinions/WHK.html#parameters">Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../opinions/WHK.html#implementation">Implementation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../opinions/WHK.html#references">References</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../dynamic_network.html">Dynamic Network Models</a><ul>
@@ -333,6 +359,145 @@
              
   <section id="profile-threshold">
 <h1>Profile Threshold<a class="headerlink" href="#profile-threshold" title="Link to this heading"></a></h1>
+<p>The Profile Threshold model combines the <strong>Threshold</strong> model with the <strong>Profile</strong> model to describe a social contagion process governed by two node-level attributes: a <strong>threshold</strong> <span class="math notranslate nohighlight">\(\theta_i\)</span> and a <strong>profile</strong> <span class="math notranslate nohighlight">\(p_i\)</span>. An inactive node can become active through two pathways: (1) <strong>spontaneous adoption</strong> with a fixed probability, or (2) <strong>threshold-gated profile adoption</strong> — the node first checks whether the fraction of its active neighbors exceeds its threshold, and if so, adopts with a probability equal to its profile value. If a node passes the threshold gate but fails the profile check, it may become <strong>blocked</strong> and permanently ineligible for future activation.</p>
+<section id="status">
+<h2>Status<a class="headerlink" href="#status" title="Link to this heading"></a></h2>
+<p>During the simulation, each node can be in one of three states:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Status</p></th>
+<th class="head"><p>Code</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Inactive</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>Active</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-even"><td><p>Blocked</p></td>
+<td><p>-1</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="parameters">
+<h2>Parameters<a class="headerlink" href="#parameters" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Value Type</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Mandatory</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>data</p></td>
+<td><p>Data</p></td>
+<td></td>
+<td><p>Yes</p></td>
+<td><p>Graph data.</p></td>
+</tr>
+<tr class="row-odd"><td><p>seeds</p></td>
+<td><p>List[int]/float in (0, 1)</p></td>
+<td></td>
+<td><p>Yes</p></td>
+<td><p>Initial seed nodes or a ratio in (0, 1).</p></td>
+</tr>
+<tr class="row-even"><td><p>threshold</p></td>
+<td><p>float in [0, 1)</p></td>
+<td></td>
+<td><p>Yes</p></td>
+<td><p>Adoption threshold per node (randomly generated if 0).</p></td>
+</tr>
+<tr class="row-odd"><td><p>profile</p></td>
+<td><p>float in [0, 1]</p></td>
+<td></td>
+<td><p>Yes</p></td>
+<td><p>Node profile value (randomly generated per node if 0).</p></td>
+</tr>
+<tr class="row-even"><td><p>adopter_rate</p></td>
+<td><p>float in [0, 1]</p></td>
+<td></td>
+<td><p>Yes</p></td>
+<td><p>Probability of spontaneous adoption per iteration.</p></td>
+</tr>
+<tr class="row-odd"><td><p>blocked_rate</p></td>
+<td><p>float in [0, 1]</p></td>
+<td></td>
+<td><p>Yes</p></td>
+<td><p>Probability of becoming blocked upon failed profile check.</p></td>
+</tr>
+<tr class="row-even"><td><p>device</p></td>
+<td><p>'cpu' / int (CUDA index)</p></td>
+<td><p>'cpu'</p></td>
+<td><p>No</p></td>
+<td><p>Device to run the model on.</p></td>
+</tr>
+<tr class="row-odd"><td><p>rand_seed</p></td>
+<td><p>Int</p></td>
+<td><p>None</p></td>
+<td><p>No</p></td>
+<td><p>Random seed for generating initial seeds (if ratio given).</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="model-description">
+<h2>Model Description<a class="headerlink" href="#model-description" title="Link to this heading"></a></h2>
+<p>Node transitions follow three mechanisms at each iteration <span class="math notranslate nohighlight">\(k\)</span>:</p>
+<ol class="arabic simple">
+<li><p><strong>Spontaneous adoption.</strong> Each non-blocked inactive node <span class="math notranslate nohighlight">\(i\)</span> independently adopts with probability <span class="math notranslate nohighlight">\(\alpha\)</span> (<code class="docutils literal notranslate"><span class="pre">adopter_rate</span></code>).</p></li>
+<li><p><strong>Threshold-gated profile adoption.</strong> If node <span class="math notranslate nohighlight">\(i\)</span> was not spontaneously adopted, the model first checks whether the mean activation of its neighbors exceeds its threshold <span class="math notranslate nohighlight">\(\theta_i\)</span>. If so, the node adopts with probability equal to its profile value <span class="math notranslate nohighlight">\(p_i\)</span>.</p></li>
+<li><p><strong>Blocking.</strong> If node <span class="math notranslate nohighlight">\(i\)</span> passes the threshold gate but fails the profile check, it becomes blocked with probability <span class="math notranslate nohighlight">\(\beta\)</span> (<code class="docutils literal notranslate"><span class="pre">blocked_rate</span></code>).</p></li>
+</ol>
+<p>We use two Boolean indicator vectors <span class="math notranslate nohighlight">\(h, b \in \{0,1\}^N\)</span> to represent node states:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(h_i=1\)</span> and <span class="math notranslate nohighlight">\(b_i=0\)</span> denotes <strong>Active</strong>,</p></li>
+<li><p><span class="math notranslate nohighlight">\(h_i=0\)</span> and <span class="math notranslate nohighlight">\(b_i=0\)</span> denotes <strong>Inactive</strong>,</p></li>
+<li><p><span class="math notranslate nohighlight">\(h_i=0\)</span> and <span class="math notranslate nohighlight">\(b_i=1\)</span> denotes <strong>Blocked</strong>.</p></li>
+</ul>
+<a class="reference internal image-reference" href="../../../_images/PT-state.png"><img alt="ProfileThreshold model diagram" class="align-center" src="../../../_images/PT-state.png" style="width: 70%;" />
+</a>
+<p>The update of the system at step <span class="math notranslate nohighlight">\(k\)</span> is decomposed into three stages:</p>
+<ol class="arabic simple">
+<li><p>Each active neighbor <span class="math notranslate nohighlight">\(j\)</span> of node <span class="math notranslate nohighlight">\(i\)</span> transmits a contribution</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[m_{ji}^{(k)} = h_j^{(k-1)}\]</div>
+<ol class="arabic simple" start="2">
+<li><p>Node <span class="math notranslate nohighlight">\(i\)</span> collects contributions from all neighbors <span class="math notranslate nohighlight">\(N(i)\)</span> to compute its mean neighbor activation:</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[m_i^{(k)} = \frac{1}{|N(i)|}\sum_{j \in N(i)} m_{ji}^{(k)} \cdot (1 - b_i^{(k-1)})\]</div>
+<ol class="arabic simple" start="3">
+<li><p>The indicator variables are updated with independent uniform random variables <span class="math notranslate nohighlight">\(U_i^{\mathrm{a}}, U_i^{\mathrm{p}}, U_i^{\mathrm{b}} \sim \mathrm{Uniform}(0,1)\)</span>:</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[\begin{split} h_i^{(k)} =
+\begin{cases}
+    1, &amp; \text{if } (h_i^{(k-1)}=0 \land b_i^{(k-1)}=0) \land (U_i^{\mathrm{a}} &lt; \alpha), \\[4pt]
+    1, &amp; \text{if } (\theta_i \leq m_i^{(k)}) \land (h_i^{(k-1)}=0 \land b_i^{(k-1)}=0) \\
+    &amp;\land (U_i^{\mathrm{a}} \geq \alpha) \land (p_i &gt; U_i^{\mathrm{p}}), \\[4pt]
+    h_i^{(k-1)}, &amp; \text{otherwise},
+\end{cases} \\[6pt]
+ b_i^{(k)} =
+\begin{cases}
+    1, &amp; \text{if } (m_i^{(k)}&gt;0) \land (\theta_i \leq m_i^{(k)}) \land (h_i^{(k-1)}=0 \land b_i^{(k-1)}=0)\\
+    &amp; \land (U_i^{\mathrm{a}} \geq \alpha) \land (p_i \leq U_i^{\mathrm{p}}) \land (\beta &gt; U_i^{\mathrm{b}}), \\[4pt]
+    b_i^{(k-1)}, &amp; \text{otherwise},
+\end{cases}\end{split}\]</div>
+</section>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Link to this heading"></a></h2>
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="id1" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></span>
+</aside>
+</aside>
+</section>
 </section>
 
 

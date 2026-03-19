@@ -1,2 +1,101 @@
 Profile Threshold
 =================
+
+The Profile Threshold model combines the **Threshold** model with the **Profile** model to describe a social contagion process governed by two node-level attributes: a **threshold** :math:`\theta_i` and a **profile** :math:`p_i`. An inactive node can become active through two pathways: (1) **spontaneous adoption** with a fixed probability, or (2) **threshold-gated profile adoption** — the node first checks whether the fraction of its active neighbors exceeds its threshold, and if so, adopts with a probability equal to its profile value. If a node passes the threshold gate but fails the profile check, it may become **blocked** and permanently ineligible for future activation.
+
+
+
+Status
+------
+During the simulation, each node can be in one of three states:
+
++--------------+--------------+
+| Status       | Code         |
++==============+==============+
+| Inactive     | 0            |
++--------------+--------------+
+| Active       | 1            |
++--------------+--------------+
+| Blocked      | -1           |
++--------------+--------------+
+
+Parameters
+----------
++------------------+------------------------------+---------------+-----------+--------------------------------------------------------------------+
+| Name             | Value Type                   | Default       | Mandatory | Description                                                        |
++==================+==============================+===============+===========+====================================================================+
+| data             | Data                         |               | Yes       | Graph data.                                                        |
++------------------+------------------------------+---------------+-----------+--------------------------------------------------------------------+
+| seeds            | List[int]/float in (0, 1)    |               | Yes       | Initial seed nodes or a ratio in (0, 1).                           |
++------------------+------------------------------+---------------+-----------+--------------------------------------------------------------------+
+| threshold        | float in [0, 1)              |               | Yes       | Adoption threshold per node (randomly generated if 0).             |
++------------------+------------------------------+---------------+-----------+--------------------------------------------------------------------+
+| profile          | float in [0, 1]              |               | Yes       | Node profile value (randomly generated per node if 0).             |
++------------------+------------------------------+---------------+-----------+--------------------------------------------------------------------+
+| adopter_rate     | float in [0, 1]              |               | Yes       | Probability of spontaneous adoption per iteration.                 |
++------------------+------------------------------+---------------+-----------+--------------------------------------------------------------------+
+| blocked_rate     | float in [0, 1]              |               | Yes       | Probability of becoming blocked upon failed profile check.         |
++------------------+------------------------------+---------------+-----------+--------------------------------------------------------------------+
+| device           | 'cpu' / int (CUDA index)     | 'cpu'         | No        | Device to run the model on.                                        |
++------------------+------------------------------+---------------+-----------+--------------------------------------------------------------------+
+| rand_seed        | Int                          | None          | No        | Random seed for generating initial seeds (if ratio given).         |
++------------------+------------------------------+---------------+-----------+--------------------------------------------------------------------+
+
+Model Description
+-----------------
+
+Node transitions follow three mechanisms at each iteration :math:`k`:
+
+1. **Spontaneous adoption.** Each non-blocked inactive node :math:`i` independently adopts with probability :math:`\alpha` (``adopter_rate``).
+
+2. **Threshold-gated profile adoption.** If node :math:`i` was not spontaneously adopted, the model first checks whether the mean activation of its neighbors exceeds its threshold :math:`\theta_i`. If so, the node adopts with probability equal to its profile value :math:`p_i`.
+
+3. **Blocking.** If node :math:`i` passes the threshold gate but fails the profile check, it becomes blocked with probability :math:`\beta` (``blocked_rate``).
+
+We use two Boolean indicator vectors :math:`h, b \in \{0,1\}^N` to represent node states:
+
+- :math:`h_i=1` and :math:`b_i=0` denotes **Active**,
+- :math:`h_i=0` and :math:`b_i=0` denotes **Inactive**,
+- :math:`h_i=0` and :math:`b_i=1` denotes **Blocked**.
+
+.. image:: ../../../images/PT-state.png
+   :alt: ProfileThreshold model diagram
+   :align: center
+   :width: 70%
+
+The update of the system at step :math:`k` is decomposed into three stages:
+
+
+1) Each active neighbor :math:`j` of node :math:`i` transmits a contribution
+
+.. math::
+    m_{ji}^{(k)} = h_j^{(k-1)}
+
+2) Node :math:`i` collects contributions from all neighbors :math:`N(i)` to compute its mean neighbor activation:
+
+.. math::
+    m_i^{(k)} = \frac{1}{|N(i)|}\sum_{j \in N(i)} m_{ji}^{(k)} \cdot (1 - b_i^{(k-1)})
+
+3) The indicator variables are updated with independent uniform random variables :math:`U_i^{\mathrm{a}}, U_i^{\mathrm{p}}, U_i^{\mathrm{b}} \sim \mathrm{Uniform}(0,1)`:
+
+.. math::
+
+     h_i^{(k)} =
+    \begin{cases}
+        1, & \text{if } (h_i^{(k-1)}=0 \land b_i^{(k-1)}=0) \land (U_i^{\mathrm{a}} < \alpha), \\[4pt]
+        1, & \text{if } (\theta_i \leq m_i^{(k)}) \land (h_i^{(k-1)}=0 \land b_i^{(k-1)}=0) \\
+        &\land (U_i^{\mathrm{a}} \geq \alpha) \land (p_i > U_i^{\mathrm{p}}), \\[4pt]
+        h_i^{(k-1)}, & \text{otherwise},
+    \end{cases} \\[6pt]
+     b_i^{(k)} =
+    \begin{cases}
+        1, & \text{if } (m_i^{(k)}>0) \land (\theta_i \leq m_i^{(k)}) \land (h_i^{(k-1)}=0 \land b_i^{(k-1)}=0)\\
+        & \land (U_i^{\mathrm{a}} \geq \alpha) \land (p_i \leq U_i^{\mathrm{p}}) \land (\beta > U_i^{\mathrm{b}}), \\[4pt]
+        b_i^{(k-1)}, & \text{otherwise},
+    \end{cases}
+
+
+References
+----------
+
+.. [1] 

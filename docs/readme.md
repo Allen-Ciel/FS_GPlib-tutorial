@@ -42,7 +42,7 @@ make intl-update
 # 只机翻这个新页面对应的 po 文件
    uv run python auto_translate_po.py --po source/locale/zh_CN/LC_MESSAGES/new_page.po
 ```
-替换为需要翻译的脚步即可。
+替换为需要翻译的脚本即可。
 
 
 ## 更新日志

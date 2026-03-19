@@ -121,10 +121,10 @@ class Profile_process(Diffusion_process):
             I_p = self.propagate(self.edge_index, x=x)*~B_mask
 
             i_rand_p = torch.rand_like(x, dtype=torch.float32)
-            mask_i = (I_p & ~mask_ai & ~x) & (node_profile > i_rand_p)
+            mask_i = I_p & (~x & ~B_mask) & (ai_rand_p >= self.adopter_rate) & (node_profile > i_rand_p) #(I_p & ~mask_ai & ~x) & (node_profile > i_rand_p)
 
             b_rand_p = torch.rand_like(x, dtype=torch.float32)
-            mask_b = (I_p & ~mask_ai & ~x) & (node_profile <= i_rand_p) & (self.blocked_rate > b_rand_p)
+            mask_b = I_p & (~x & ~B_mask) & (ai_rand_p >= self.adopter_rate) & (node_profile <= i_rand_p) & (self.blocked_rate > b_rand_p) #(I_p & ~mask_ai & ~x) & (node_profile <= i_rand_p) & (self.blocked_rate > b_rand_p)
 
             x[mask_i] = True
             B_mask[mask_b] = True

@@ -10,7 +10,7 @@ In ``FS_GPlib`` are implemented the following **Opinion Dynamics** models:
    models/opinions/Voter.rst
    models/opinions/QVoter.rst
    models/opinions/MajorityRule.rst
-   models/opinions/Snajzd.rst
+   models/opinions/Sznajd.rst
    models/opinions/HK.rst
    models/opinions/WHK.rst
 
