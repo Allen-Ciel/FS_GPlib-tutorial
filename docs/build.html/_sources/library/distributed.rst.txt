@@ -1,7 +1,0 @@
-Distributed Computing
-===============================
-abababadddd
-
-test1
------
-
