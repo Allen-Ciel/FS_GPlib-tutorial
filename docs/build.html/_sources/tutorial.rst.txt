@@ -163,6 +163,88 @@ Example code
     count = (finals>0).sum().item()/MC
     print(f'Final spread range is {count}')
 
+An example for DySIRModel:
+
+.. code-block:: python
+
+    import torch
+    import random
+    from torch_geometric.datasets import BitcoinOTC
+    import matplotlib.pyplot as plt
+    import numpy as np
+
+    from fs_gplib.Dynamic.DySIRModel import DySIRModel
+
+    def plot_dy_sir(finals):
+        # finals.shape: (num_timesteps (T), MC, num_nodes)
+        if isinstance(finals, torch.Tensor):
+            finals_np = finals.cpu().numpy()
+        else:
+            finals_np = np.array(finals)
+
+        T = finals_np.shape[0]
+        MC = finals_np.shape[1]
+        N = finals_np.shape[2]
+
+        all_states = np.unique(finals_np)
+        avg_state_cnt = []
+        for t in range(T):
+            state_cnt = []
+            for s in all_states:
+                # (MC, N) == s -> sum over nodes, then mean over MC runs
+                count = np.sum(finals_np[t] == s, axis=1)
+                state_cnt.append(np.mean(count))
+            avg_state_cnt.append(state_cnt)
+        avg_state_cnt = np.array(avg_state_cnt)  # (T, num_state)
+
+        for idx, s in enumerate(all_states):
+            plt.plot(range(T), avg_state_cnt[:, idx], label=f"State {s}")
+
+        plt.xlabel("Time Step")
+        plt.ylabel("Average #Nodes")
+        plt.title("Average Number of Nodes per State Over Time")
+        plt.legend(["S", "I", "R"])
+        plt.tight_layout()
+        plt.show()
+
+
+
+    dataset = BitcoinOTC(root="./dataset")
+
+    data = dataset[0]
+    seeds = data.edge_index[1].unique().tolist() 
+
+    # use weight or not
+    use_weight = False
+    if use_weight:
+        print("Using weight")
+        random.seed(42)
+        edge_attr = torch.tensor(
+            [random.random() for _ in range(data.edge_index.shape[1])]
+        )
+        data.edge_attr = edge_attr
+
+    infection_beta = 0.1
+    recovery_lambda = 0.05
+    device = 'cpu' #0
+    MC = 1000
+
+    x = torch.arange(data.num_nodes)
+    edge_index_list = [dataset[i].edge_index for i in range(len(dataset))]
+
+    model = DySIRModel(x, edge_index_list, seeds, infection_beta, recovery_lambda, device, use_weight)
+    finals = model.run_epochs(MC, batch_size=100)
+
+    plot_dy_sir(finals)
+
+
+The Output:
+
+.. image:: ./images/result_for_DySIRModel.png
+   :alt: result for DySIRModel
+   :align: center
+   :width: 70%
+    
 About Batch
 -----------
 

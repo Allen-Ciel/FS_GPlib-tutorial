@@ -1,2 +1,136 @@
 DySEIS_ct
 =========
+
+The DySEIS_ct (Dynamic SEIS with continuous-time transition hazards) model extends
+the classical SEIS process to **time-varying networks**.
+Instead of a fixed graph :math:`G=(V,E)`, diffusion evolves on a sequence of graph
+snapshots :math:`\{G^{(k)}=(V,E^{(k)})\}_{k=1}^{T}`, where the edge set :math:`E^{(k)}`
+may change at each discrete step :math:`k`.
+Each node can be in one of three states: :math:`S` (susceptible), :math:`E` (exposed),
+or :math:`I` (infected).
+
+Compared with the discrete DySEIS model, DySEIS_ct keeps the same :math:`S\to E`
+infection mechanism but uses **elapsed-time dependent transition probabilities** for
+:math:`E\to I` and :math:`I\to S`.
+For node :math:`i`, if :math:`\Delta t_i^E` is time since entering :math:`E`,
+and :math:`\Delta t_i^I` is time since entering :math:`I`, then
+
+.. math::
+
+   P(E\to I) = 1-\exp(-\alpha\Delta t_i^E), \qquad
+   P(I\to S) = 1-\exp(-\gamma\Delta t_i^I).
+
+This design models non-memoryless incubation and recovery while preserving
+snapshot-based interaction dynamics.
+
+
+Status
+------
+During the simulation, a node can be in one of the following states:
+
++------------+--------------+
+| Status     | Code         |
++============+==============+
+| Susceptible| 0            |
++------------+--------------+
+| Infected   | 1            |
++------------+--------------+
+| Exposed    | 2            |
++------------+--------------+
+
+Parameters
+----------
++----------------+------------------------------+---------------+-----------+--------------------------------------------------+
+| Name           | Value Type                   | Default       | Mandatory | Description                                      |
++================+==============================+===============+===========+==================================================+
+| x              | Tensor                       |               | Yes       | Node tensor of shape :math:`(N, 1)`.             |
++----------------+------------------------------+---------------+-----------+--------------------------------------------------+
+| edge_index_list| List[Tensor]                 |               | Yes       | List of edge index tensors, one per snapshot.    |
++----------------+------------------------------+---------------+-----------+--------------------------------------------------+
+| seeds          | List[int]/float in (0, 1)    |               | Yes       | List of seed node IDs or a ratio in (0, 1).      |
++----------------+------------------------------+---------------+-----------+--------------------------------------------------+
+| infection_beta | float in [0, 1]              |               | Yes       | Exposure probability (S→E).                      |
++----------------+------------------------------+---------------+-----------+--------------------------------------------------+
+| latent_alpha   | float in [0, 1]              |               | Yes       | Hazard parameter for E→I progression.            |
++----------------+------------------------------+---------------+-----------+--------------------------------------------------+
+| removal_gamma  | float in [0, 1]              |               | Yes       | Hazard parameter for I→S recovery.               |
++----------------+------------------------------+---------------+-----------+--------------------------------------------------+
+| device         | 'cpu'/int (CUDA index)       | 'cpu'         | No        | Device to run the model on.                      |
++----------------+------------------------------+---------------+-----------+--------------------------------------------------+
+| edge_attr_list | List[Tensor]                 | None          | No        | List of edge weight tensors, one per snapshot.   |
++----------------+------------------------------+---------------+-----------+--------------------------------------------------+
+| rand_seed      | Int                          | None          | No        | Random seed for generating the seed set.         |
++----------------+------------------------------+---------------+-----------+--------------------------------------------------+
+
+.. note::
+
+   Unlike the static :doc:`SEIS_ct <../epidemics/SEIS_ct>` model which accepts a
+   single graph object, DySEIS_ct requires a node tensor ``x`` and a **snapshot list**
+   ``edge_index_list``. Optional edge weights are provided by ``edge_attr_list``
+   with one tensor per snapshot.
+
+
+Implementation
+--------------
+
+Node states are represented by two Boolean vectors :math:`h,e \in \{0,1\}^N`
+plus two integer entry-time tensors :math:`t^E,t^I`:
+
+- :math:`h_i=1` indicates node :math:`i` is ``infected`` or ``exposed``; :math:`h_i=0` indicates ``susceptible``.
+- :math:`(h_i,e_i)=(1,1)` denotes ``exposed``; :math:`(h_i,e_i)=(1,0)` denotes ``infected``; :math:`(h_i,e_i)=(0,0)` denotes ``susceptible``.
+- :math:`t_i^{E}` records the iteration :math:`k` when node :math:`i` **entered E**.
+- :math:`t_i^{I}` records the iteration :math:`k` when node :math:`i` **entered I**.
+
+At step :math:`k`, define :math:`\Delta t_i^E = k - t_i^E` and
+:math:`\Delta t_i^I = k - t_i^I`. The update has three stages:
+
+1. Each infected (non-exposed) neighbor :math:`j` of node :math:`i` in snapshot
+:math:`G^{(k)}` transmits a log-probability contribution for exposure:
+
+.. math::
+
+   m_{ji}^{(k)} = \mathbf{1}\!\left(h_j^{(k-1)}=1 \land e_j^{(k-1)}=0\right)\,
+   \log\!\bigl(1-\beta\,w_{ji}^{(k)}\bigr)
+
+2. Node :math:`i` aggregates contributions from neighbors :math:`N^{(k)}(i)` to
+obtain its exposure probability:
+
+.. math::
+
+   m_i^{(k)} = 1-\exp\!\left(\sum_{j\in N^{(k)}(i)}m_{ji}^{(k)}\right)
+
+3. The entry-time tensors and indicator variables are updated with independent
+uniform random variables
+:math:`U_i^{\mathrm{exp}}, U_i^{\mathrm{inf}}, U_i^{\mathrm{rec}} \sim \mathrm{Uniform}(0,1)`:
+
+.. math::
+    \begin{aligned}
+    t_i^E &= k, \text{if } (U_i^{\mathrm{exp}}<m_i^{(k)}) \land h_i^{(k-1)}=0 \\
+    t_i^I &= k, \text{if } (U_i^{\mathrm{inf}}<1-\exp(-\alpha \cdot \Delta t_i^E)) \land e_i^{(k-1)}=1
+    \end{aligned}
+
+.. math::
+    \begin{aligned}
+     h_i^{(k)} &=
+    \begin{cases}
+        1, & \text{if } (U_i^{\mathrm{exp}} < m_i^{(k)}) \land h_i^{(k-1)}=0, \\[4pt]
+        0, & \text{if } (U_i^{\mathrm{rec}} < 1-\exp(-\gamma\cdot \Delta t_i^I)) \land (h_i^{(k-1)}=1 \land e_i^{(k-1)}=0), \\[4pt]
+        h_i^{(k-1)}, & \text{otherwise},
+    \end{cases} \\[6pt]
+    e_i^{(k)} &=
+    \begin{cases}
+        1, & \text{if } (U_i^{\mathrm{exp}} < m_i^{(k)}) \land h_i^{(k-1)}=0, \\[4pt]
+        0, & \text{if } (U_i^{\mathrm{inf}} < 1-\exp(-\alpha \cdot \Delta t_i^E)) \land e_i^{(k-1)}=1 , \\[4pt]
+        e_i^{(k-1)}, & \text{otherwise}.
+    \end{cases}
+    \end{aligned}
+
+As in other dynamic models, neighbors :math:`N^{(k)}(i)` and optional edge weights
+:math:`w_{ji}^{(k)}` are read from the :math:`k`-th snapshot.
+The total number of iterations is bounded by :math:`T =` ``len(edge_index_list)``.
+
+
+References
+----------
+
+.. [1]

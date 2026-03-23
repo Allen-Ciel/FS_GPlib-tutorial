@@ -19,6 +19,8 @@
       <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
       <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
       <script src="../_static/copybutton.js?v=f281be69"></script>
+      <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       <script src="../_static/my_custom.js?v=52495bde"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -174,7 +176,13 @@
 <li class="toctree-l4"><a class="reference internal" href="models/epidemics/Threshold.html#references">References</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="models/epidemics/KThreshold.html">Kertesz Threshold</a></li>
+<li class="toctree-l3"><a class="reference internal" href="models/epidemics/KThreshold.html">Kertesz Threshold</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="models/epidemics/KThreshold.html#status">Status</a></li>
+<li class="toctree-l4"><a class="reference internal" href="models/epidemics/KThreshold.html#parameters">Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="models/epidemics/KThreshold.html#model-description">Model Description</a></li>
+<li class="toctree-l4"><a class="reference internal" href="models/epidemics/KThreshold.html#references">References</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="models/epidemics/IndependentCascades.html">Independent Cascades</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="models/epidemics/IndependentCascades.html#status">Status</a></li>
 <li class="toctree-l4"><a class="reference internal" href="models/epidemics/IndependentCascades.html#parameters">Parameters</a></li>
@@ -182,15 +190,51 @@
 <li class="toctree-l4"><a class="reference internal" href="models/epidemics/IndependentCascades.html#references">References</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="models/epidemics/Profile.html">Profile</a></li>
-<li class="toctree-l3"><a class="reference internal" href="models/epidemics/ProfileThreshold.html">Profile Threshold</a></li>
+<li class="toctree-l3"><a class="reference internal" href="models/epidemics/Profile.html">Profile</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="models/epidemics/Profile.html#status">Status</a></li>
+<li class="toctree-l4"><a class="reference internal" href="models/epidemics/Profile.html#parameters">Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="models/epidemics/Profile.html#model-description">Model Description</a></li>
+<li class="toctree-l4"><a class="reference internal" href="models/epidemics/Profile.html#references">References</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="models/epidemics/ProfileThreshold.html">Profile Threshold</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="models/epidemics/ProfileThreshold.html#status">Status</a></li>
+<li class="toctree-l4"><a class="reference internal" href="models/epidemics/ProfileThreshold.html#parameters">Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="models/epidemics/ProfileThreshold.html#model-description">Model Description</a></li>
+<li class="toctree-l4"><a class="reference internal" href="models/epidemics/ProfileThreshold.html#references">References</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="opinion.html">Opinion Dynamic Models</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="models/opinions/Voter.html">Voter</a></li>
-<li class="toctree-l3"><a class="reference internal" href="models/opinions/QVoter.html">Q-Voter</a></li>
-<li class="toctree-l3"><a class="reference internal" href="models/opinions/MajorityRule.html">Majority Rule</a></li>
-<li class="toctree-l3"><a class="reference internal" href="models/opinions/Snajzd.html">Snajzd</a></li>
+<li class="toctree-l3"><a class="reference internal" href="models/opinions/Voter.html">Voter</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="models/opinions/Voter.html#status">Status</a></li>
+<li class="toctree-l4"><a class="reference internal" href="models/opinions/Voter.html#parameters">Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="models/opinions/Voter.html#implementation">Implementation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="models/opinions/Voter.html#references">References</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="models/opinions/QVoter.html">Q-Voter</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="models/opinions/QVoter.html#status">Status</a></li>
+<li class="toctree-l4"><a class="reference internal" href="models/opinions/QVoter.html#parameters">Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="models/opinions/QVoter.html#implementation">Implementation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="models/opinions/QVoter.html#references">References</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="models/opinions/MajorityRule.html">Majority Rule</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="models/opinions/MajorityRule.html#status">Status</a></li>
+<li class="toctree-l4"><a class="reference internal" href="models/opinions/MajorityRule.html#parameters">Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="models/opinions/MajorityRule.html#implementation">Implementation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="models/opinions/MajorityRule.html#references">References</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="models/opinions/Sznajd.html">Sznajd</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="models/opinions/Sznajd.html#status">Status</a></li>
+<li class="toctree-l4"><a class="reference internal" href="models/opinions/Sznajd.html#parameters">Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="models/opinions/Sznajd.html#implementation">Implementation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="models/opinions/Sznajd.html#references">References</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="models/opinions/HK.html">Hegselmann-Krause</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="models/opinions/HK.html#status">Status</a></li>
 <li class="toctree-l4"><a class="reference internal" href="models/opinions/HK.html#parameters">Parameters</a></li>
@@ -198,20 +242,80 @@
 <li class="toctree-l4"><a class="reference internal" href="models/opinions/HK.html#references">References</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="models/opinions/WHK.html">Weighted Hegselmann-Krause</a></li>
+<li class="toctree-l3"><a class="reference internal" href="models/opinions/WHK.html">Weighted Hegselmann-Krause</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="models/opinions/WHK.html#status">Status</a></li>
+<li class="toctree-l4"><a class="reference internal" href="models/opinions/WHK.html#parameters">Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="models/opinions/WHK.html#implementation">Implementation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="models/opinions/WHK.html#references">References</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Dynamic Network Models</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="models/dynamics/DySI.html">DySI</a></li>
-<li class="toctree-l3"><a class="reference internal" href="models/dynamics/DySIS.html">DySIS</a></li>
-<li class="toctree-l3"><a class="reference internal" href="models/dynamics/DySIR.html">DySIR</a></li>
-<li class="toctree-l3"><a class="reference internal" href="models/dynamics/DySEIR.html">DySEIR</a></li>
-<li class="toctree-l3"><a class="reference internal" href="models/dynamics/DySEIR_ct.html">DySEIR_ct</a></li>
-<li class="toctree-l3"><a class="reference internal" href="models/dynamics/DySEIS.html">DySEIS</a></li>
-<li class="toctree-l3"><a class="reference internal" href="models/dynamics/DySEIS_ct.html">DySEIS_ct</a></li>
+<li class="toctree-l3"><a class="reference internal" href="models/dynamics/DySI.html">DySI</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="models/dynamics/DySI.html#status">Status</a></li>
+<li class="toctree-l4"><a class="reference internal" href="models/dynamics/DySI.html#parameters">Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="models/dynamics/DySI.html#implementation">Implementation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="models/dynamics/DySI.html#references">References</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="models/dynamics/DySIS.html">DySIS</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="models/dynamics/DySIS.html#status">Status</a></li>
+<li class="toctree-l4"><a class="reference internal" href="models/dynamics/DySIS.html#parameters">Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="models/dynamics/DySIS.html#implementation">Implementation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="models/dynamics/DySIS.html#references">References</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="models/dynamics/DySIR.html">DySIR</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="models/dynamics/DySIR.html#status">Status</a></li>
+<li class="toctree-l4"><a class="reference internal" href="models/dynamics/DySIR.html#parameters">Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="models/dynamics/DySIR.html#implementation">Implementation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="models/dynamics/DySIR.html#references">References</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="models/dynamics/DySEIR.html">DySEIR</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="models/dynamics/DySEIR.html#status">Status</a></li>
+<li class="toctree-l4"><a class="reference internal" href="models/dynamics/DySEIR.html#parameters">Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="models/dynamics/DySEIR.html#implementation">Implementation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="models/dynamics/DySEIR.html#references">References</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="models/dynamics/DySEIR_ct.html">DySEIR_ct</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="models/dynamics/DySEIR_ct.html#status">Status</a></li>
+<li class="toctree-l4"><a class="reference internal" href="models/dynamics/DySEIR_ct.html#parameters">Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="models/dynamics/DySEIR_ct.html#implementation">Implementation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="models/dynamics/DySEIR_ct.html#references">References</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="models/dynamics/DySEIS.html">DySEIS</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="models/dynamics/DySEIS.html#status">Status</a></li>
+<li class="toctree-l4"><a class="reference internal" href="models/dynamics/DySEIS.html#parameters">Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="models/dynamics/DySEIS.html#implementation">Implementation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="models/dynamics/DySEIS.html#references">References</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="models/dynamics/DySEIS_ct.html">DySEIS_ct</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="models/dynamics/DySEIS_ct.html#status">Status</a></li>
+<li class="toctree-l4"><a class="reference internal" href="models/dynamics/DySEIS_ct.html#parameters">Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="models/dynamics/DySEIS_ct.html#implementation">Implementation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="models/dynamics/DySEIS_ct.html#references">References</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="models/dynamics/DySWIR.html">DySWIR</a></li>
-<li class="toctree-l3"><a class="reference internal" href="models/dynamics/DyThreshold.html">DyThreshold</a></li>
-<li class="toctree-l3"><a class="reference internal" href="models/dynamics/DyKThreshold.html">dySI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="models/dynamics/DyThreshold.html">DyThreshold</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="models/dynamics/DyThreshold.html#status">Status</a></li>
+<li class="toctree-l4"><a class="reference internal" href="models/dynamics/DyThreshold.html#parameters">Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="models/dynamics/DyThreshold.html#implementation">Implementation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="models/dynamics/DyThreshold.html#references">References</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="models/dynamics/DyKThreshold.html">DyKThreshold</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="models/dynamics/DyKThreshold.html#status">Status</a></li>
+<li class="toctree-l4"><a class="reference internal" href="models/dynamics/DyKThreshold.html#parameters">Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="models/dynamics/DyKThreshold.html#implementation">Implementation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="models/dynamics/DyKThreshold.html#references">References</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -345,7 +449,7 @@
 <li class="toctree-l1"><a class="reference internal" href="models/dynamics/DySEIS_ct.html">DySEIS_ct</a></li>
 <li class="toctree-l1"><a class="reference internal" href="models/dynamics/DySWIR.html">DySWIR</a></li>
 <li class="toctree-l1"><a class="reference internal" href="models/dynamics/DyThreshold.html">DyThreshold</a></li>
-<li class="toctree-l1"><a class="reference internal" href="models/dynamics/DyKThreshold.html">dySI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="models/dynamics/DyKThreshold.html">DyKThreshold</a></li>
 </ul>
 </div>
 </section>

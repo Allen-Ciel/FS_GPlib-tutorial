@@ -2,6 +2,7 @@ dist/
 *.egg-info/
 .venv/
 test.py
+test_DY.py
 __pycache__/
 *.pyc
 .DS_Store

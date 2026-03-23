@@ -64,7 +64,7 @@ The update of the system at step :math:`k` is decomposed into three stages:
    :align: center
    :width: 70%
 
-1) Each infected neighbor :math:`j` of node :math:`i` transmits a log-probability contribution for exposure (S→E)
+1) Each infected neighbor :math:`j` of node :math:`i` transmits a log-probability contribution for exposure
 
 .. math::
 
