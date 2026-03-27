@@ -19,9 +19,19 @@ It supports classical epidemic models, opinion dynamics, and simulations on dyna
 
 If you use ``FS_GPlib`` as support to your research consider citing:
 
-.. note::
+C. Guo, J. Zhang, C. Su, T. Fan, L. Lü.
+"FS_GPlib: Breaking the Web-Scale Barrier — A Unified Acceleration Framework for Graph Propagation Models"
+*arXiv preprint* arXiv:2603.14895, 2026.
+(`arXiv <https://arxiv.org/abs/2603.14895>`_)
 
-   Citation information will be available once the associated paper is published.
+.. code-block:: bibtex
+
+   @article{guo2026fs_gplib,
+     title={FS\_GPlib: Breaking the Web-Scale Barrier-A Unified Acceleration Framework for Graph Propagation Models},
+     author={Guo, Chang and Zhang, Juyuan and Su, Chang and Fan, Tianlong and L{\"u}, Linyuan},
+     journal={arXiv preprint arXiv:2603.14895},
+     year={2026}
+   }
 
 
 .. toctree::
@@ -34,6 +44,5 @@ If you use ``FS_GPlib`` as support to your research consider citing:
    library/index
    advanced
    custom_model
-   bibliography
    rst_template
    api_example
