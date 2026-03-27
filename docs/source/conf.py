@@ -79,7 +79,7 @@ html_context = {
     "current_language": language,
     "languages": LANGUAGES,
 }
-html_logo = "./_static/logo.png"
+html_logo = "./_static/logo_v2.png"
 html_static_path = ['_static']
 html_js_files = [
     'my_custom.js',
