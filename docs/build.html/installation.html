@@ -38,7 +38,7 @@
           
           <a href="index.html">
             
-              <img src="_static/logo_v2.png" class="logo" alt="Logo"/>
+              <img src="_static/logo.png" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -77,13 +77,11 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Installation</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#environment">Environment</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#python-version">Python Version</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#required-packages">Required Packages</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#gpu-support-optional">GPU Support (Optional)</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#install">Install</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#clone-the-repository">Clone the Repository</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#install-in-editable-mode-optional">Install in Editable Mode (Optional)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#install-from-testpypi">Install from TestPyPI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#required-packages">Required Packages</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#test-installation">Test Installation</a></li>
 </ul>
 </li>
@@ -374,13 +372,11 @@
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Installation</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#environment">Environment</a><ul>
 <li class="toctree-l5"><a class="reference internal" href="#python-version">Python Version</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#required-packages">Required Packages</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#gpu-support-optional">GPU Support (Optional)</a></li>
 </ul>
 </li>
 <li class="toctree-l4"><a class="reference internal" href="#install">Install</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="#clone-the-repository">Clone the Repository</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#install-in-editable-mode-optional">Install in Editable Mode (Optional)</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#install-from-testpypi">Install from TestPyPI</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#required-packages">Required Packages</a></li>
 <li class="toctree-l5"><a class="reference internal" href="#test-installation">Test Installation</a></li>
 </ul>
 </li>
@@ -440,71 +436,50 @@
 <h3>Python Version<a class="headerlink" href="#python-version" title="Link to this heading"></a></h3>
 <p>FS_GPlib is developed and tested with:</p>
 <ul class="simple">
-<li><p>Python 3.8 or above</p></li>
+<li><p>Python 3.10</p></li>
 </ul>
 <p>We recommend using a virtual environment to avoid conflicts with existing packages.</p>
-<p>Create and activate a virtual environment:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>fs_gplib_env
-<span class="nb">source</span><span class="w"> </span>fs_gplib_env/bin/activate<span class="w">   </span><span class="c1"># On Windows use: fs_gplib_env\Scripts\activate</span>
+<p>Create and activate a virtual environment (choose one):</p>
+<p>If you prefer <code class="docutils literal notranslate"><span class="pre">conda</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>create<span class="w"> </span>-n<span class="w"> </span>fs_gplib_env<span class="w"> </span><span class="nv">python</span><span class="o">=</span><span class="m">3</span>.10
+conda<span class="w"> </span>activate<span class="w"> </span>fs_gplib_env
 </pre></div>
 </div>
-</section>
-<section id="required-packages">
-<h3>Required Packages<a class="headerlink" href="#required-packages" title="Link to this heading"></a></h3>
-<p>The core dependencies include:</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">numpy</span></code> and <code class="docutils literal notranslate"><span class="pre">scipy</span></code> for numerical operations</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">networkx</span></code> for graph construction</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">torch</span></code> for tensor-based batch simulation</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">mpi4py</span></code> (optional) for distributed simulations</p></li>
-</ul>
-<p>You can install the dependencies manually, or use the provided <cite>requirements.txt</cite>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
-</pre></div>
-</div>
-</section>
-<section id="gpu-support-optional">
-<h3>GPU Support (Optional)<a class="headerlink" href="#gpu-support-optional" title="Link to this heading"></a></h3>
-<p>If you plan to run FS_GPlib on a GPU-enabled system, ensure that:</p>
-<ul class="simple">
-<li><p>CUDA and cuDNN are properly installed</p></li>
-<li><p>You install the appropriate version of PyTorch with GPU support:</p></li>
-</ul>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>torch<span class="w"> </span>torchvision<span class="w"> </span>torchaudio<span class="w"> </span>--index-url<span class="w"> </span>https://download.pytorch.org/whl/cu118
-</pre></div>
-</div>
-<p>You can verify PyTorch sees the GPU:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">())</span>  <span class="c1"># Should print: True</span>
+<p>If you prefer <code class="docutils literal notranslate"><span class="pre">uv</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>uv<span class="w"> </span>venv<span class="w"> </span>--python<span class="w"> </span><span class="m">3</span>.10
+<span class="nb">source</span><span class="w"> </span>.venv/bin/activate
 </pre></div>
 </div>
 </section>
 </section>
 <section id="install">
 <h2>Install<a class="headerlink" href="#install" title="Link to this heading"></a></h2>
-<p>This guide explains how to install FS_GPlib from source or via cloning the repository.</p>
-<section id="clone-the-repository">
-<h3>Clone the Repository<a class="headerlink" href="#clone-the-repository" title="Link to this heading"></a></h3>
-<p>First, clone the FS_GPlib project from GitHub:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>None
-<span class="nb">cd</span><span class="w"> </span>FS_GPlib
-</pre></div>
-</div>
-<p>Then install the required dependencies:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+<section id="install-from-testpypi">
+<h3>Install from TestPyPI<a class="headerlink" href="#install-from-testpypi" title="Link to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>-i<span class="w"> </span>https://test.pypi.org/simple/<span class="w"> </span>fs-gplib<span class="o">==</span><span class="m">0</span>.6.0
 </pre></div>
 </div>
 </section>
-<section id="install-in-editable-mode-optional">
-<h3>Install in Editable Mode (Optional)<a class="headerlink" href="#install-in-editable-mode-optional" title="Link to this heading"></a></h3>
-<p>If you want to make modifications to the source code and have them reflected without reinstalling, use editable mode:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span>.
-</pre></div>
-</div>
+<section id="required-packages">
+<h3>Required Packages<a class="headerlink" href="#required-packages" title="Link to this heading"></a></h3>
+<p>FS_GPlib requires PyTorch and PyTorch Geometric (PyG). Please install them following the official instructions:</p>
+<ul class="simple">
+<li><p>PyTorch: <a class="reference external" href="https://pytorch.org/get-started/locally/">https://pytorch.org/get-started/locally/</a></p></li>
+<li><p>PyG: <a class="reference external" href="https://pytorch-geometric.readthedocs.io/en/2.5.3/install/installation.html">https://pytorch-geometric.readthedocs.io/en/2.5.3/install/installation.html</a></p></li>
+</ul>
+<p>If you encounter environment errors, try installing (or pinning) the following dependencies first, and then install <code class="docutils literal notranslate"><span class="pre">fs-gplib</span></code>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">python==3.10</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">torch==2.1.2</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">torch_geometric==2.5.3</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">numpy==1.24.1</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tqdm==4.64.1</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">scipy==1.10.0</span></code></p></li>
+</ul>
 </section>
 <section id="test-installation">
 <h3>Test Installation<a class="headerlink" href="#test-installation" title="Link to this heading"></a></h3>
-<p>To verify the installation was successful, you can try importing the library in Python:</p>
+<p>To verify the installation was successful, try importing the library in Python:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">fs_gplib</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">fs_gplib</span><span class="o">.</span><span class="n">__version__</span><span class="p">)</span>
 </pre></div>

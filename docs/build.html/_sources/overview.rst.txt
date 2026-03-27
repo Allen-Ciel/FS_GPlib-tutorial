@@ -18,7 +18,7 @@ Core Capabilities
 -----------------
 
 - **Model Support**: Built-in support for classical epidemic models (SI, SIS, SIR), opinion dynamics, and network evolution processes.
-- **Batch Simulation**: Perform multiple simulations in parallel using high-dimensional tensor operations.
+- **Dual-acceleration**: Support for Message Passing based dual-acceleration framework.
 - **Distributed Execution**: Supports graph partitioning to enable distribution across multiple processors or nodes.
 - **Extensibility**: Easily implement your own propagation rules through the custom model interface.
 

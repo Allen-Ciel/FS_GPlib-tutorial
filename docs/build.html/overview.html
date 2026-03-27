@@ -38,7 +38,7 @@
           
           <a href="index.html">
             
-              <img src="_static/logo_v2.png" class="logo" alt="Logo"/>
+              <img src="_static/logo.png" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -77,13 +77,11 @@
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="installation.html#environment">Environment</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="installation.html#python-version">Python Version</a></li>
-<li class="toctree-l3"><a class="reference internal" href="installation.html#required-packages">Required Packages</a></li>
-<li class="toctree-l3"><a class="reference internal" href="installation.html#gpu-support-optional">GPU Support (Optional)</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="installation.html#install">Install</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="installation.html#clone-the-repository">Clone the Repository</a></li>
-<li class="toctree-l3"><a class="reference internal" href="installation.html#install-in-editable-mode-optional">Install in Editable Mode (Optional)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#install-from-testpypi">Install from TestPyPI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#required-packages">Required Packages</a></li>
 <li class="toctree-l3"><a class="reference internal" href="installation.html#test-installation">Test Installation</a></li>
 </ul>
 </li>
@@ -374,13 +372,11 @@
 <li class="toctree-l3"><a class="reference internal" href="installation.html">Installation</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="installation.html#environment">Environment</a><ul>
 <li class="toctree-l5"><a class="reference internal" href="installation.html#python-version">Python Version</a></li>
-<li class="toctree-l5"><a class="reference internal" href="installation.html#required-packages">Required Packages</a></li>
-<li class="toctree-l5"><a class="reference internal" href="installation.html#gpu-support-optional">GPU Support (Optional)</a></li>
 </ul>
 </li>
 <li class="toctree-l4"><a class="reference internal" href="installation.html#install">Install</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="installation.html#clone-the-repository">Clone the Repository</a></li>
-<li class="toctree-l5"><a class="reference internal" href="installation.html#install-in-editable-mode-optional">Install in Editable Mode (Optional)</a></li>
+<li class="toctree-l5"><a class="reference internal" href="installation.html#install-from-testpypi">Install from TestPyPI</a></li>
+<li class="toctree-l5"><a class="reference internal" href="installation.html#required-packages">Required Packages</a></li>
 <li class="toctree-l5"><a class="reference internal" href="installation.html#test-installation">Test Installation</a></li>
 </ul>
 </li>
@@ -448,7 +444,7 @@
 <h2>Core Capabilities<a class="headerlink" href="#core-capabilities" title="Link to this heading"></a></h2>
 <ul class="simple">
 <li><p><strong>Model Support</strong>: Built-in support for classical epidemic models (SI, SIS, SIR), opinion dynamics, and network evolution processes.</p></li>
-<li><p><strong>Batch Simulation</strong>: Perform multiple simulations in parallel using high-dimensional tensor operations.</p></li>
+<li><p><strong>Dual-acceleration</strong>: Support for Message Passing based dual-acceleration framework.</p></li>
 <li><p><strong>Distributed Execution</strong>: Supports graph partitioning to enable distribution across multiple processors or nodes.</p></li>
 <li><p><strong>Extensibility</strong>: Easily implement your own propagation rules through the custom model interface.</p></li>
 </ul>

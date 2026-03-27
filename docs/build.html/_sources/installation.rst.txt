@@ -9,91 +9,61 @@ This section describes how to prepare the environment necessary for running FS_G
 Python Version
 ~~~~~~~~~~~~~~
 
-
 FS_GPlib is developed and tested with:
 
-- Python 3.8 or above
+- Python 3.10
 
 We recommend using a virtual environment to avoid conflicts with existing packages.
 
-Create and activate a virtual environment:
+Create and activate a virtual environment (choose one):
+
+If you prefer ``conda``:
 
 .. code-block:: bash
 
-   python3 -m venv fs_gplib_env
-   source fs_gplib_env/bin/activate   # On Windows use: fs_gplib_env\Scripts\activate
+   conda create -n fs_gplib_env python=3.10
+   conda activate fs_gplib_env
 
-Required Packages
-~~~~~~~~~~~~~~~~~
-
-The core dependencies include:
-
-- ``numpy`` and ``scipy`` for numerical operations
-- ``networkx`` for graph construction
-- ``torch`` for tensor-based batch simulation
-- ``mpi4py`` (optional) for distributed simulations
-
-You can install the dependencies manually, or use the provided `requirements.txt`:
+If you prefer ``uv``:
 
 .. code-block:: bash
 
-   pip install -r requirements.txt
-
-GPU Support (Optional)
-~~~~~~~~~~~~~~~~~~~~~~
-
-If you plan to run FS_GPlib on a GPU-enabled system, ensure that:
-
-- CUDA and cuDNN are properly installed
-- You install the appropriate version of PyTorch with GPU support:
-
-.. code-block:: bash
-
-   pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
-
-You can verify PyTorch sees the GPU:
-
-.. code-block:: python
-
-   import torch
-   print(torch.cuda.is_available())  # Should print: True
+   uv venv --python 3.10
+   source .venv/bin/activate
 
 
 
 Install
 -------
 
-This guide explains how to install FS_GPlib from source or via cloning the repository.
-
-Clone the Repository
-~~~~~~~~~~~~~~~~~~~~
-
-First, clone the FS_GPlib project from GitHub:
+Install from TestPyPI
+~~~~~~~~~~~~~~~~~~~~~
 
 .. code-block:: bash
 
-   git clone None
-   cd FS_GPlib
+   pip install -i https://test.pypi.org/simple/ fs-gplib==0.6.0
 
-Then install the required dependencies:
+Required Packages
+~~~~~~~~~~~~~~~~~
 
-.. code-block:: bash
+FS_GPlib requires PyTorch and PyTorch Geometric (PyG). Please install them following the official instructions:
 
-   pip install -r requirements.txt
+- PyTorch: https://pytorch.org/get-started/locally/
+- PyG: https://pytorch-geometric.readthedocs.io/en/2.5.3/install/installation.html
 
-Install in Editable Mode (Optional)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+If you encounter environment errors, try installing (or pinning) the following dependencies first, and then install ``fs-gplib``:
 
-If you want to make modifications to the source code and have them reflected without reinstalling, use editable mode:
-
-.. code-block:: bash
-
-   pip install -e .
+- ``python==3.10``
+- ``torch==2.1.2``
+- ``torch_geometric==2.5.3``
+- ``numpy==1.24.1``
+- ``tqdm==4.64.1``
+- ``scipy==1.10.0``
 
 Test Installation
 ~~~~~~~~~~~~~~~~~
 
-To verify the installation was successful, you can try importing the library in Python:
+To verify the installation was successful, try importing the library in Python:
 
 .. code-block:: python
 
