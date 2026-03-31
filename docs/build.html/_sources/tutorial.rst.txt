@@ -12,8 +12,8 @@ Import the required packages and select the propagation model:
 .. code-block:: python
 
    import torch
-   from torch_geometric.datasets import Planetoid
-   from torch_geometric.utils import degree
+   from torch_geometric.datasets import Planetoid # or other datasets
+   from torch_geometric.utils import degree 
    from fs_gplib.Epidemics.SIRModel import SIRModel
 
 Data
@@ -251,8 +251,8 @@ The core of the batch parallel algorithm for macroscopic acceleration, used in `
 How to use batch
 ~~~~~~~~~~~~~~~~
 
-Batch parallel allows multiple simulations to run simultaneously, but the batch size cannot be infinitely increased, but is limited by hardware performance. When the batch size is too large, it will prompt out of memory, and through experiments, it is verified that the larger the batch size, the higher the running efficiency.
-
+Batch parallel allows multiple simulations to run simultaneously, but the batch size cannot be increased indefinitely because it is constrained by hardware resources. If the batch size is too large, out-of-memory errors may occur.
+If you are interested in the impact of batch size on running efficiency, you can refer to the experimental results in Section 5.3.2 [1]_.
 Users can find the appropriate batch size through an exponential decrease.
 
 About Distributed
@@ -267,7 +267,143 @@ How to use distributed computing
 
 The algorithm library does not include distributed code, but provides a data division method.
 
-An implementation example is given, `test_DC.py <coming soon.>`_
+An implementation example is given:
+
+.. code-block:: python
+    
+    import argparse
+    import os
+    import numpy as np
+
+    import torch
+    from torch_geometric.datasets import Planetoid
+    from torch_geometric.utils import degree
+    import torch.distributed as dist
+    from tqdm import tqdm
+
+    from fs_gplib.Epidemics.SIRModel import SIRModel
+    from fs_gplib.DistributedComputing.DistributedComputing import GraphPartitioner, load_partition
+
+    def parse_args():
+        parser = argparse.ArgumentParser(description="Distributed SIR Simulation (fs-gplib)")
+        parser.add_argument("-d", "--dataset", default="Yelp", choices=["Cora", "PubMed"], help="Dataset name")
+
+        parser.add_argument("-p", "--parts", type=int, default=4, help="Number of partitions / processes")
+        parser.add_argument("-s", "--steps", type=int, default=100, help="Number of iterations per MC run")
+        parser.add_argument("-mc", "--MC", type=int, default=1000, help="Number of Monte Carlo simulations")
+        parser.add_argument("-rp", "--read_pt", action="store_true", help="Read existing .pt partition files instead of re-partitioning")
+        return parser.parse_args()
+
+
+    def get_degree_seeds(data, num_seeds: int):
+        deg = degree(data.edge_index[1], data.num_nodes, dtype=torch.float)
+        deg, idx = torch.sort(deg, descending=True)
+        return idx[:num_seeds].tolist()
+
+    def load_data(dataset_name: str):
+        if dataset_name == "Cora":
+            dataset = Planetoid(root="./dataset", name="Cora")
+        elif dataset_name == "PubMed":
+            dataset = Planetoid(root="./dataset", name="PubMed")
+        else:
+            raise ValueError(f"Unsupported dataset: {dataset_name}")
+        return dataset[0]
+
+
+    def main():
+        args = parse_args()
+
+        infection_beta = 0.01
+        recovery_lambda = 0.005
+
+        local_rank = int(os.environ["LOCAL_RANK"])
+        torch.cuda.set_device(local_rank)
+        dist.init_process_group(backend="nccl", init_method="env://", device_id=torch.device(f"cuda:{local_rank}"))
+
+        rank = dist.get_rank()
+        world_size = dist.get_world_size()
+        device_id = rank % torch.cuda.device_count()
+
+        if rank == 0:
+            final_count = []
+            data = load_data(args.dataset)
+            print(f"Loaded dataset {args.dataset}, edge_index device = {data.edge_index.device}")
+            seeds = get_degree_seeds(data, int(data.num_nodes * 0.1))
+
+            if not args.read_pt:
+                print("Start graph partitioning...")
+                t_s = time.time()
+                partitioner = GraphPartitioner(
+                    data,
+                    n_parts=world_size,
+                    root=f"./dataset/{args.dataset}",
+                )
+                partitioner.generate_partition()
+                print(f"Partitioning done in {time.time() - t_s:.2f} s")
+        else:
+            seeds = None
+
+        dist.barrier()
+
+        seed_list = [seeds] if rank == 0 else [None]
+        dist.broadcast_object_list(seed_list, src=0)
+        seeds = seed_list[0]
+
+        sub_data, sub_targets = load_partition(f"./dataset/{args.dataset}", rank)
+
+        model = SIRModel(
+            sub_data,
+            seeds=seeds,
+            infection_beta=infection_beta,
+            recovery_lambda=recovery_lambda,
+            device=device_id,
+        )
+
+        mask = torch.ones_like(model.node_status["SI"], dtype=torch.bool)
+        mask[sub_targets] = False
+
+        bar = tqdm(range(args.MC)) if rank == 0 else range(args.MC)
+
+        torch.cuda.reset_peak_memory_stats(device_id)
+
+        for i, _ in enumerate(bar):
+            model._init_node_status()
+            if rank == 0:
+                bar.set_description(f"MC {i}")
+
+            for step in range(args.steps):
+                model.run_iteration()
+
+                synced_status = {}
+                for key, value in model.node_status.items():
+                    value[mask] = False
+                    int_status = value.to(dtype=torch.uint8)
+
+                    dist.all_reduce(int_status, op=dist.ReduceOp.SUM)
+                    torch.cuda.synchronize(device_id)
+
+                    synced_status[key] = int_status.bool()
+
+                model.node_status = synced_status
+
+            if rank == 0:
+                final_state = model._return_final(model.node_status.values())
+                infected_count = (final_state == 1).sum().item()
+                final_count.append(infected_count)
+
+        if rank == 0:
+            print(f"[Rank {rank}] Final infected count: {np.mean(final_count)}")
+            print(f'max: {np.max(final_count)}')
+            print(f'min: {np.min(final_count)}')
+
+        if dist.is_initialized():
+            dist.destroy_process_group()
+
+    if __name__ == "__main__":
+        main()
+
+
+
 
 The running method of this code is:
 
@@ -320,3 +456,8 @@ Command line interpretation:
 - ``-mc 1000``
 
     Specifies that 1000 Monte Carlo simulations will be run.
+
+References
+----------
+
+.. [1] Guo C, Zhang J, Su C, et al. FS_GPlib: Breaking the Web-Scale Barrier-A Unified Acceleration Framework for Graph Propagation Models[J]. arXiv preprint arXiv:2603.14895, 2026.

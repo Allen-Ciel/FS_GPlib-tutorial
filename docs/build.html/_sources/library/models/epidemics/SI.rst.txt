@@ -12,8 +12,6 @@ A susceptible node :math:`i` becomes infected by its infected neighbors :math:`j
    \end{aligned}
 
 
-
-
 Status
 ------
 During the simulation, a node can be in one of the following states:

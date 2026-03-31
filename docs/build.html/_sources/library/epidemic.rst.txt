@@ -1,8 +1,23 @@
 Epidemic Models
 ===============
-abababa
 
-In ``FS_GPlib`` are implemented the following **Epidemic** models:
+``FS_GPlib`` implements a broad range of epidemic and diffusion models on static networks.
+These models are organized into three sub-categories:
+
+**Compartmental Models.**
+Classic compartmental spreading models where nodes transition between discrete states
+(e.g., Susceptible, Infected, Recovered) via stochastic contact-based transmission.
+This includes SI, SIS, SIR, SEIR, SEIS, SWIR, and their continuous-time variants (SEIR_ct, SEIS_ct).
+
+**Threshold Models.**
+Adoption-driven models in which a node becomes active once the fraction of its active neighbors
+exceeds a given threshold. This includes the Threshold and KThreshold models.
+
+**Cascade and Profile Models.**
+Models capturing one-shot activation cascades or profile-based social contagion,
+including Independent Cascades, Profile, and ProfileThreshold.
+
+Each model is described in detail on its own page:
 
 .. toctree::
    :maxdepth: 1

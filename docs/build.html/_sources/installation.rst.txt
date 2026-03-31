@@ -15,21 +15,12 @@ FS_GPlib is developed and tested with:
 
 We recommend using a virtual environment to avoid conflicts with existing packages.
 
-Create and activate a virtual environment (choose one):
-
-If you prefer ``conda``:
+Create and activate a virtual environment:
 
 .. code-block:: bash
 
    conda create -n fs_gplib_env python=3.10
    conda activate fs_gplib_env
-
-If you prefer ``uv``:
-
-.. code-block:: bash
-
-   uv venv --python 3.10
-   source .venv/bin/activate
 
 
 

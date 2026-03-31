@@ -1,6 +1,6 @@
+from .SIModel import SIModel
 # from .SIRModel import SIRModel
 # from .IndependentCascadesModel import IndependentCascadesModel
-# from .SIModel import SIModel
 # from .SISModel import SISModel
 # from .SWIRModel import SWIRModel
 # from .ProfileModel import ProfileModel

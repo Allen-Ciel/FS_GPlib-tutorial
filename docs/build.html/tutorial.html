@@ -105,6 +105,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#how-to-use-distributed-computing">How to use distributed computing</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#references">References</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="library/index.html">Library</a><ul>
@@ -338,23 +339,6 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="bibliography.html">Bibliography</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="bibliography.html#example">Example</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="bibliography.html#import">Import</a></li>
-<li class="toctree-l3"><a class="reference internal" href="bibliography.html#data">Data</a></li>
-<li class="toctree-l3"><a class="reference internal" href="bibliography.html#model">Model</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="bibliography.html#about-batch">About Batch</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="bibliography.html#how-to-use-batch">How to use batch</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="bibliography.html#about-distributed">About Distributed</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="bibliography.html#how-to-use-distributed-computing">How to use distributed computing</a></li>
-</ul>
-</li>
-</ul>
-</li>
 <li class="toctree-l1"><a class="reference internal" href="rst_template.html">RST Template Example</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="rst_template.html#section-heading">Section Heading</a></li>
 <li class="toctree-l2"><a class="reference internal" href="rst_template.html#lists">Lists</a></li>
@@ -435,7 +419,7 @@
 <h3>Import<a class="headerlink" href="#import" title="Link to this heading"></a></h3>
 <p>Import the required packages and select the propagation model:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
-<span class="kn">from</span> <span class="nn">torch_geometric.datasets</span> <span class="kn">import</span> <span class="n">Planetoid</span>
+<span class="kn">from</span> <span class="nn">torch_geometric.datasets</span> <span class="kn">import</span> <span class="n">Planetoid</span> <span class="c1"># or other datasets</span>
 <span class="kn">from</span> <span class="nn">torch_geometric.utils</span> <span class="kn">import</span> <span class="n">degree</span>
 <span class="kn">from</span> <span class="nn">fs_gplib.Epidemics.SIRModel</span> <span class="kn">import</span> <span class="n">SIRModel</span>
 </pre></div>
@@ -647,8 +631,9 @@
 <p>The core of the batch parallel algorithm for macroscopic acceleration, used in <code class="docutils literal notranslate"><span class="pre">Model.run_epochs(epochs,</span> <span class="pre">times,</span> <span class="pre">batch_size)</span></code>.</p>
 <section id="how-to-use-batch">
 <h3>How to use batch<a class="headerlink" href="#how-to-use-batch" title="Link to this heading"></a></h3>
-<p>Batch parallel allows multiple simulations to run simultaneously, but the batch size cannot be infinitely increased, but is limited by hardware performance. When the batch size is too large, it will prompt out of memory, and through experiments, it is verified that the larger the batch size, the higher the running efficiency.</p>
-<p>Users can find the appropriate batch size through an exponential decrease.</p>
+<p>Batch parallel allows multiple simulations to run simultaneously, but the batch size cannot be increased indefinitely because it is constrained by hardware resources. If the batch size is too large, out-of-memory errors may occur.
+If you are interested in the impact of batch size on running efficiency, you can refer to the experimental results in Section 5.3.2 <a class="footnote-reference brackets" href="#id3" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>.
+Users can find the appropriate batch size through an exponential decrease.</p>
 </section>
 </section>
 <section id="about-distributed">
@@ -658,7 +643,139 @@
 <section id="how-to-use-distributed-computing">
 <h3>How to use distributed computing<a class="headerlink" href="#how-to-use-distributed-computing" title="Link to this heading"></a></h3>
 <p>The algorithm library does not include distributed code, but provides a data division method.</p>
-<p>An implementation example is given, <a class="reference external" href="comingsoon.">test_DC.py</a></p>
+<p>An implementation example is given:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">argparse</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">from</span> <span class="nn">torch_geometric.datasets</span> <span class="kn">import</span> <span class="n">Planetoid</span>
+<span class="kn">from</span> <span class="nn">torch_geometric.utils</span> <span class="kn">import</span> <span class="n">degree</span>
+<span class="kn">import</span> <span class="nn">torch.distributed</span> <span class="k">as</span> <span class="nn">dist</span>
+<span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span>
+
+<span class="kn">from</span> <span class="nn">fs_gplib.Epidemics.SIRModel</span> <span class="kn">import</span> <span class="n">SIRModel</span>
+<span class="kn">from</span> <span class="nn">fs_gplib.DistributedComputing.DistributedComputing</span> <span class="kn">import</span> <span class="n">GraphPartitioner</span><span class="p">,</span> <span class="n">load_partition</span>
+
+<span class="k">def</span> <span class="nf">parse_args</span><span class="p">():</span>
+    <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;Distributed SIR Simulation (fs-gplib)&quot;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;-d&quot;</span><span class="p">,</span> <span class="s2">&quot;--dataset&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s2">&quot;Yelp&quot;</span><span class="p">,</span> <span class="n">choices</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Cora&quot;</span><span class="p">,</span> <span class="s2">&quot;PubMed&quot;</span><span class="p">],</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Dataset name&quot;</span><span class="p">)</span>
+
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;-p&quot;</span><span class="p">,</span> <span class="s2">&quot;--parts&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Number of partitions / processes&quot;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;-s&quot;</span><span class="p">,</span> <span class="s2">&quot;--steps&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Number of iterations per MC run&quot;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;-mc&quot;</span><span class="p">,</span> <span class="s2">&quot;--MC&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Number of Monte Carlo simulations&quot;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;-rp&quot;</span><span class="p">,</span> <span class="s2">&quot;--read_pt&quot;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s2">&quot;store_true&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Read existing .pt partition files instead of re-partitioning&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
+
+
+<span class="k">def</span> <span class="nf">get_degree_seeds</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">num_seeds</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+    <span class="n">deg</span> <span class="o">=</span> <span class="n">degree</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">edge_index</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">data</span><span class="o">.</span><span class="n">num_nodes</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float</span><span class="p">)</span>
+    <span class="n">deg</span><span class="p">,</span> <span class="n">idx</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">deg</span><span class="p">,</span> <span class="n">descending</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">idx</span><span class="p">[:</span><span class="n">num_seeds</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">load_data</span><span class="p">(</span><span class="n">dataset_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">dataset_name</span> <span class="o">==</span> <span class="s2">&quot;Cora&quot;</span><span class="p">:</span>
+        <span class="n">dataset</span> <span class="o">=</span> <span class="n">Planetoid</span><span class="p">(</span><span class="n">root</span><span class="o">=</span><span class="s2">&quot;./dataset&quot;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Cora&quot;</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">dataset_name</span> <span class="o">==</span> <span class="s2">&quot;PubMed&quot;</span><span class="p">:</span>
+        <span class="n">dataset</span> <span class="o">=</span> <span class="n">Planetoid</span><span class="p">(</span><span class="n">root</span><span class="o">=</span><span class="s2">&quot;./dataset&quot;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;PubMed&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unsupported dataset: </span><span class="si">{</span><span class="n">dataset_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">dataset</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">args</span> <span class="o">=</span> <span class="n">parse_args</span><span class="p">()</span>
+
+    <span class="n">infection_beta</span> <span class="o">=</span> <span class="mf">0.01</span>
+    <span class="n">recovery_lambda</span> <span class="o">=</span> <span class="mf">0.005</span>
+
+    <span class="n">local_rank</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;LOCAL_RANK&quot;</span><span class="p">])</span>
+    <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">set_device</span><span class="p">(</span><span class="n">local_rank</span><span class="p">)</span>
+    <span class="n">dist</span><span class="o">.</span><span class="n">init_process_group</span><span class="p">(</span><span class="n">backend</span><span class="o">=</span><span class="s2">&quot;nccl&quot;</span><span class="p">,</span> <span class="n">init_method</span><span class="o">=</span><span class="s2">&quot;env://&quot;</span><span class="p">,</span> <span class="n">device_id</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">device</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;cuda:</span><span class="si">{</span><span class="n">local_rank</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">))</span>
+
+    <span class="n">rank</span> <span class="o">=</span> <span class="n">dist</span><span class="o">.</span><span class="n">get_rank</span><span class="p">()</span>
+    <span class="n">world_size</span> <span class="o">=</span> <span class="n">dist</span><span class="o">.</span><span class="n">get_world_size</span><span class="p">()</span>
+    <span class="n">device_id</span> <span class="o">=</span> <span class="n">rank</span> <span class="o">%</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">device_count</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="n">rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">final_count</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">load_data</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">dataset</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Loaded dataset </span><span class="si">{</span><span class="n">args</span><span class="o">.</span><span class="n">dataset</span><span class="si">}</span><span class="s2">, edge_index device = </span><span class="si">{</span><span class="n">data</span><span class="o">.</span><span class="n">edge_index</span><span class="o">.</span><span class="n">device</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">seeds</span> <span class="o">=</span> <span class="n">get_degree_seeds</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">num_nodes</span> <span class="o">*</span> <span class="mf">0.1</span><span class="p">))</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">args</span><span class="o">.</span><span class="n">read_pt</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Start graph partitioning...&quot;</span><span class="p">)</span>
+            <span class="n">t_s</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+            <span class="n">partitioner</span> <span class="o">=</span> <span class="n">GraphPartitioner</span><span class="p">(</span>
+                <span class="n">data</span><span class="p">,</span>
+                <span class="n">n_parts</span><span class="o">=</span><span class="n">world_size</span><span class="p">,</span>
+                <span class="n">root</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;./dataset/</span><span class="si">{</span><span class="n">args</span><span class="o">.</span><span class="n">dataset</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="p">)</span>
+            <span class="n">partitioner</span><span class="o">.</span><span class="n">generate_partition</span><span class="p">()</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Partitioning done in </span><span class="si">{</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">t_s</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> s&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">seeds</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="n">dist</span><span class="o">.</span><span class="n">barrier</span><span class="p">()</span>
+
+    <span class="n">seed_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">seeds</span><span class="p">]</span> <span class="k">if</span> <span class="n">rank</span> <span class="o">==</span> <span class="mi">0</span> <span class="k">else</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span>
+    <span class="n">dist</span><span class="o">.</span><span class="n">broadcast_object_list</span><span class="p">(</span><span class="n">seed_list</span><span class="p">,</span> <span class="n">src</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">seeds</span> <span class="o">=</span> <span class="n">seed_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="n">sub_data</span><span class="p">,</span> <span class="n">sub_targets</span> <span class="o">=</span> <span class="n">load_partition</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;./dataset/</span><span class="si">{</span><span class="n">args</span><span class="o">.</span><span class="n">dataset</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">rank</span><span class="p">)</span>
+
+    <span class="n">model</span> <span class="o">=</span> <span class="n">SIRModel</span><span class="p">(</span>
+        <span class="n">sub_data</span><span class="p">,</span>
+        <span class="n">seeds</span><span class="o">=</span><span class="n">seeds</span><span class="p">,</span>
+        <span class="n">infection_beta</span><span class="o">=</span><span class="n">infection_beta</span><span class="p">,</span>
+        <span class="n">recovery_lambda</span><span class="o">=</span><span class="n">recovery_lambda</span><span class="p">,</span>
+        <span class="n">device</span><span class="o">=</span><span class="n">device_id</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="n">mask</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">node_status</span><span class="p">[</span><span class="s2">&quot;SI&quot;</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">bool</span><span class="p">)</span>
+    <span class="n">mask</span><span class="p">[</span><span class="n">sub_targets</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
+
+    <span class="n">bar</span> <span class="o">=</span> <span class="n">tqdm</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">MC</span><span class="p">))</span> <span class="k">if</span> <span class="n">rank</span> <span class="o">==</span> <span class="mi">0</span> <span class="k">else</span> <span class="nb">range</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">MC</span><span class="p">)</span>
+
+    <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">reset_peak_memory_stats</span><span class="p">(</span><span class="n">device_id</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">bar</span><span class="p">):</span>
+        <span class="n">model</span><span class="o">.</span><span class="n">_init_node_status</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">bar</span><span class="o">.</span><span class="n">set_description</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;MC </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">step</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">steps</span><span class="p">):</span>
+            <span class="n">model</span><span class="o">.</span><span class="n">run_iteration</span><span class="p">()</span>
+
+            <span class="n">synced_status</span> <span class="o">=</span> <span class="p">{}</span>
+            <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">model</span><span class="o">.</span><span class="n">node_status</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="n">value</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
+                <span class="n">int_status</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span>
+
+                <span class="n">dist</span><span class="o">.</span><span class="n">all_reduce</span><span class="p">(</span><span class="n">int_status</span><span class="p">,</span> <span class="n">op</span><span class="o">=</span><span class="n">dist</span><span class="o">.</span><span class="n">ReduceOp</span><span class="o">.</span><span class="n">SUM</span><span class="p">)</span>
+                <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">synchronize</span><span class="p">(</span><span class="n">device_id</span><span class="p">)</span>
+
+                <span class="n">synced_status</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">int_status</span><span class="o">.</span><span class="n">bool</span><span class="p">()</span>
+
+            <span class="n">model</span><span class="o">.</span><span class="n">node_status</span> <span class="o">=</span> <span class="n">synced_status</span>
+
+        <span class="k">if</span> <span class="n">rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">final_state</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">_return_final</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">node_status</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+            <span class="n">infected_count</span> <span class="o">=</span> <span class="p">(</span><span class="n">final_state</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+            <span class="n">final_count</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">infected_count</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;[Rank </span><span class="si">{</span><span class="n">rank</span><span class="si">}</span><span class="s2">] Final infected count: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">final_count</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;max: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">final_count</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;min: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">final_count</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">dist</span><span class="o">.</span><span class="n">is_initialized</span><span class="p">():</span>
+        <span class="n">dist</span><span class="o">.</span><span class="n">destroy_process_group</span><span class="p">()</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+</div>
 <p>The running method of this code is:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">CUDA_VISIBLE_DEVICES</span><span class="o">=</span><span class="m">1</span>,2,3,4,5,6<span class="w"> </span>torchrun<span class="w"> </span>--nnodes<span class="o">=</span><span class="m">1</span><span class="w"> </span>--nproc_per_node<span class="o">=</span><span class="m">6</span><span class="w"> </span>--node_rank<span class="o">=</span><span class="m">0</span><span class="w"> </span>--master_addr<span class="o">=</span><span class="m">127</span>.0.0.1<span class="w"> </span>--master_port<span class="o">=</span><span class="m">12345</span><span class="w"> </span>test_DC.py<span class="w"> </span>-d<span class="w"> </span>Webbase<span class="w"> </span>-s<span class="w"> </span><span class="m">100</span><span class="w"> </span>-mc<span class="w"> </span><span class="m">1000</span>
 </pre></div>
@@ -722,6 +839,15 @@
 </li>
 </ul>
 </section>
+</section>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Link to this heading"></a></h2>
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="id3" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">1</a><span class="fn-bracket">]</span></span>
+<p>Guo C, Zhang J, Su C, et al. FS_GPlib: Breaking the Web-Scale Barrier-A Unified Acceleration Framework for Graph Propagation Models[J]. arXiv preprint arXiv:2603.14895, 2026.</p>
+</aside>
+</aside>
 </section>
 </section>
 

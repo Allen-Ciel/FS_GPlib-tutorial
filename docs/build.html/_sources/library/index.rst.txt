@@ -1,10 +1,15 @@
 Library
 ===============================
-abababa
 
+**FS_GPlib** provides a comprehensive collection of graph propagation models, organized into three major categories:
+
+- :doc:`epidemic` — classical compartmental spreading models (e.g., SI, SIR, SEIR) and threshold-based models on static networks.
+- :doc:`opinion` — models capturing opinion formation and evolution processes (e.g., Voter, Majority Rule, Hegselmann–Krause).
+- :doc:`dynamic_network` — epidemic and threshold models extended to time-varying network topologies.
 
 .. toctree::
    :maxdepth: 2
+   :hidden:
 
    epidemic
    opinion

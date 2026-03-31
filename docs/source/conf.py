@@ -3,7 +3,12 @@
 # For the full list of built-in configuration values, see the documentation:
 # https://www.sphinx-doc.org/en/master/usage/configuration.html
 import datetime
+import importlib
+import inspect
 import os
+import sys
+
+sys.path.insert(0, os.path.abspath('../../src'))
 
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
@@ -34,7 +39,34 @@ extensions = [
     "sphinxcontrib.mermaid",
     "sphinx_copybutton",
     "sphinxcontrib.bibtex",
+    'sphinx.ext.autodoc',
+    'sphinx.ext.linkcode',
 ]
+
+autodoc_mock_imports = ['torch', 'torch_geometric', 'numpy', 'tqdm']
+
+
+def linkcode_resolve(domain, info):
+    """Map documented Python objects to GitHub source URLs."""
+    if domain != 'py' or not info['module']:
+        return None
+    try:
+        mod = importlib.import_module(info['module'])
+        obj = mod
+        for part in info['fullname'].split('.'):
+            obj = getattr(obj, part)
+        fn = inspect.getfile(obj)
+        src, lineno = inspect.getsourcelines(obj)
+        end_lineno = lineno + len(src) - 1
+    except Exception:
+        return None
+    rel = os.path.relpath(fn, start=os.path.abspath('../../'))
+    return (
+        f"https://github.com/{html_context['github_user']}"
+        f"/{html_context['github_repo']}"
+        f"/blob/{html_context['github_version']}/{rel}"
+        f"#L{lineno}-L{end_lineno}"
+    )
 
 bibtex_bibfiles = ["refs.bib"]
 bibtex_default_style = "unsrt"

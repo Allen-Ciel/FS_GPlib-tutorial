@@ -5,6 +5,27 @@ from .base import DiffusionModel, Diffusion_process
 from ..utils import *
 
 class SIModel(DiffusionModel):
+    """SI (Susceptible-Infected) diffusion model on static graphs.
+
+    Each node starts as susceptible or infected (seed).  At every step each
+    infected neighbor independently transmits the disease with probability
+    ``infection_beta``.  Once infected a node stays infected permanently.
+
+    :param data: PyTorch Geometric ``Data`` object describing the graph.
+    :type data: torch_geometric.data.Data
+    :param seeds: Initial infected node IDs, or a float in (0, 1) interpreted
+        as the fraction of nodes chosen uniformly at random.
+    :type seeds: list[int] | float
+    :param infection_beta: Per-contact infection probability in [0, 1].
+    :type infection_beta: float
+    :param device: ``'cpu'`` or a CUDA device index.
+    :type device: str | int
+    :param use_weight: If ``True``, scale transmission by ``edge_attr``.
+    :type use_weight: bool
+    :param rand_seed: Random seed used when *seeds* is a float.
+    :type rand_seed: int | None
+    """
+
     def __init__(self,
                  data,
                  seeds,
@@ -38,11 +59,29 @@ class SIModel(DiffusionModel):
 
 
     def run_iteration(self):
+        """Execute a single simulation step.
+
+        Equivalent to ``run_iterations(1)``.  The internal ``node_status`` is
+        updated so that subsequent calls continue from the latest state.
+
+        :return: Node states after one step.  ``1.0`` = infected,
+            ``0.0`` = susceptible.
+        :rtype: torch.Tensor of shape ``(N,)``
+        """
         return self.run_iterations(1)
 
 
     def run_iterations(self, times: int):
+        """Execute *times* simulation steps sequentially.
 
+        The internal ``node_status`` is updated in-place so that subsequent
+        calls continue from the latest state.
+
+        :param times: Number of steps to run.
+        :type times: int
+        :return: Node states at each step.
+        :rtype: torch.Tensor of shape ``(times, N)``
+        """
         try:
             check_int(times=times)
         except ValueError as e:
@@ -56,9 +95,34 @@ class SIModel(DiffusionModel):
         return final
 
     def run_epoch(self, iterations_times):
+        """Run a single Monte-Carlo epoch (one independent realisation).
+
+        Equivalent to ``run_epochs(1, iterations_times, 1)``.  Node states are
+        **re-initialised** before the epoch starts.
+
+        :param iterations_times: Number of simulation steps per epoch.
+        :type iterations_times: int
+        :return: Node states at each step of the epoch.
+        :rtype: torch.Tensor of shape ``(iterations_times, N)``
+        """
         return self.run_epochs(1, iterations_times, 1)
 
     def run_epochs(self, epochs: int, iterations_times: int, batch_size: int=200):
+        """Run multiple independent Monte-Carlo epochs in batches.
+
+        Node states are **re-initialised** before the run.  Results are
+        collected on CPU.
+
+        :param epochs: Total number of independent realisations.
+        :type epochs: int
+        :param iterations_times: Number of simulation steps per epoch.
+        :type iterations_times: int
+        :param batch_size: Maximum number of epochs processed in parallel per
+            batch (controls GPU memory usage).
+        :type batch_size: int
+        :return: Node states across all epochs and steps.
+        :rtype: torch.Tensor of shape ``(epochs, iterations_times, N)``
+        """
         try:
             check_int(iterations_times=iterations_times, epochs=epochs, batch_size=batch_size)
         except ValueError as e:
