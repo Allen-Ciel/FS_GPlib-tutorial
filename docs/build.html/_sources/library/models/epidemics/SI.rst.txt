@@ -11,37 +11,6 @@ A susceptible node :math:`i` becomes infected by its infected neighbors :math:`j
    \frac{dI_i}{dt} &= \beta \sum_{j\in N(i)} S_i I_j .
    \end{aligned}
 
-
-Status
-------
-During the simulation, a node can be in one of the following states:
-
-+------------+--------------+
-| Status     | Code         |
-+============+==============+
-| Susceptible| 0            |
-+------------+--------------+
-| Infected   | 1            |
-+------------+--------------+
-
-Parameters
-----------
-+------------+------------------------------+---------------+-----------+--------------------------------------------+
-| Name       | Value Type                   | Default       | Mandatory | Description                                |
-+============+==============================+===============+===========+============================================+
-| data       | Data                         |               | Yes       | Data of graph.                             |
-+------------+------------------------------+---------------+-----------+--------------------------------------------+
-| seeds      | List[int]/float in (0, 1)    |               | Yes       | List of seed node IDs or a ratio in (0, 1).|
-+------------+------------------------------+---------------+-----------+--------------------------------------------+
-| beta       | float in [0, 1]              |               | Yes       | Infection probability.                     |
-+------------+------------------------------+---------------+-----------+--------------------------------------------+
-| device     | 'cpu'/int (CUDA index)       | 'cpu'         | No        | Device to run the model on.                |
-+------------+------------------------------+---------------+-----------+--------------------------------------------+
-| use_weight | Bool                         | False         | No        | Whether to use edge weights.               |
-+------------+------------------------------+---------------+-----------+--------------------------------------------+
-| rand_seed  | Int                          | None          | No        | Random seed for generating the seed set.   |
-+------------+------------------------------+---------------+-----------+--------------------------------------------+
-
 Implementation
 --------------
 
@@ -80,7 +49,28 @@ The update of the system at step :math:`k` is decomposed into three stages:
       h_i^{(k-1)}, & \text{otherwise}.
    \end{cases}
 
+Status
+------
+During the simulation, a node can be in one of the following states:
+
++------------+--------------+
+| Status     | Code         |
++============+==============+
+| Susceptible| 0            |
++------------+--------------+
+| Infected   | 1            |
++------------+--------------+
+
+SIModel
+-------
+
+.. autoclass:: fs_gplib.Epidemics.SIModel
+   :members: run_iteration, run_iterations, run_epoch, run_epochs
+   :member-order: bysource
+   :show-inheritance:
+
+
 References
 ----------
 
-.. [1] 
+.. [1] Kermack W O, McKendrick A G. A contribution to the mathematical theory of epidemics[J]. Proceedings of the royal society of london. Series A, Containing papers of a mathematical and physical character, 1927, 115(772): 700-721.

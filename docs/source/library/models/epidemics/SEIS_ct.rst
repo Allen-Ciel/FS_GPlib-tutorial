@@ -5,43 +5,6 @@ The SEIS_ct Model [1]_ assumes that infection spreads only through links between
 :math:`G=(V,E)`. Each node is in one of three states: :math:`S` (susceptible), :math:`E` (exposed/incubating), or :math:`I` (infected). Compared with the discrete-step SEIS, **SEIS_ct uses elapsed-time–dependent transition probabilities** for :math:`E\to I` and :math:`I\to S` based on the time since the last state entry.
 
 
-Status
-------
-During the simulation, a node can be in one of the following states:
-
-+------------+--------------+
-| Status     | Code         |
-+============+==============+
-| Susceptible| 0            |
-+------------+--------------+
-| Infected   | 1            |
-+------------+--------------+
-| Exposed    | 2            |
-+------------+--------------+
-
-Parameters
-----------
-+------------------+------------------------------+---------------+-----------+------------------------------------------------------------+
-| Name             | Value Type                   | Default       | Mandatory | Description                                                |
-+==================+==============================+===============+===========+============================================================+
-| data             | Data                         |               | Yes       | Graph data.                                                |
-+------------------+------------------------------+---------------+-----------+------------------------------------------------------------+
-| seeds            | List[int]/float in (0, 1)    |               | Yes       | Seed node IDs or a ratio in (0, 1).                        |
-+------------------+------------------------------+---------------+-----------+------------------------------------------------------------+
-| beta             | float in [0, 1]              |               | Yes       | Infection probability per contact (S→E).                   |
-+------------------+------------------------------+---------------+-----------+------------------------------------------------------------+
-| alpha            | float in [0, 1]              |               | Yes       | Incubation rate parameter (controls E→I hazard).           |
-+------------------+------------------------------+---------------+-----------+------------------------------------------------------------+
-| gamma            | float in [0, 1]              |               | Yes       | Recovery rate parameter (controls I→S hazard).             |
-+------------------+------------------------------+---------------+-----------+------------------------------------------------------------+
-| iterations_times | Int                          | 1             | No        | Maximum number of simulation steps to run.                 |
-+------------------+------------------------------+---------------+-----------+------------------------------------------------------------+
-| device           | 'cpu' / int (CUDA index)     | 'cpu'         | No        | Device to run the model on.                                |
-+------------------+------------------------------+---------------+-----------+------------------------------------------------------------+
-| use_weight       | Bool                         | False         | No        | Whether to use edge weights.                               |
-+------------------+------------------------------+---------------+-----------+------------------------------------------------------------+
-| rand_seed        | Int                          | None          | No        | Random seed for generating the initial seed set.           |
-+------------------+------------------------------+---------------+-----------+------------------------------------------------------------+
 
 Implementation
 --------------
@@ -105,6 +68,30 @@ The update of the system at step :math:`k` is decomposed into three stages:
         e_i^{(k-1)}, & \text{otherwise},
     \end{cases}
     \end{aligned}
+
+
+Status
+------
+During the simulation, a node can be in one of the following states:
+
++------------+--------------+
+| Status     | Code         |
++============+==============+
+| Susceptible| 0            |
++------------+--------------+
+| Infected   | 1            |
++------------+--------------+
+| Exposed    | 2            |
++------------+--------------+
+
+
+SEISctModel
+-----------
+
+.. autoclass:: fs_gplib.Epidemics.SEISctModel
+   :members: run_iteration, run_iterations, run_epoch, run_epochs
+   :member-order: bysource
+   :show-inheritance:
 
 
 References

@@ -27,52 +27,6 @@ and recovery dynamics. The number of simulation steps is bounded by the length o
 the snapshot sequence :math:`T`.
 
 
-Status
-------
-During the simulation, a node can be in one of the following states:
-
-+------------+--------------+
-| Status     | Code         |
-+============+==============+
-| Susceptible| 0            |
-+------------+--------------+
-| Infected   | 1            |
-+------------+--------------+
-| Exposed    | 2            |
-+------------+--------------+
-
-Parameters
-----------
-+----------------+------------------------------+---------------+-----------+--------------------------------------------------+
-| Name           | Value Type                   | Default       | Mandatory | Description                                      |
-+================+==============================+===============+===========+==================================================+
-| x              | Tensor                       |               | Yes       | Node tensor of shape :math:`(N, 1)`.             |
-+----------------+------------------------------+---------------+-----------+--------------------------------------------------+
-| edge_index_list| List[Tensor]                 |               | Yes       | List of edge index tensors, one per snapshot.    |
-+----------------+------------------------------+---------------+-----------+--------------------------------------------------+
-| seeds          | List[int]/float in (0, 1)    |               | Yes       | List of seed node IDs or a ratio in (0, 1).      |
-+----------------+------------------------------+---------------+-----------+--------------------------------------------------+
-| infection_beta | float in [0, 1]              |               | Yes       | Exposure probability (S→E).                      |
-+----------------+------------------------------+---------------+-----------+--------------------------------------------------+
-| latent_alpha   | float in [0, 1]              |               | Yes       | Progression probability (E→I).                   |
-+----------------+------------------------------+---------------+-----------+--------------------------------------------------+
-| removal_gamma  | float in [0, 1]              |               | Yes       | Recovery probability (I→S).                      |
-+----------------+------------------------------+---------------+-----------+--------------------------------------------------+
-| device         | 'cpu'/int (CUDA index)       | 'cpu'         | No        | Device to run the model on.                      |
-+----------------+------------------------------+---------------+-----------+--------------------------------------------------+
-| edge_attr_list | List[Tensor]                 | None          | No        | List of edge weight tensors, one per snapshot.   |
-+----------------+------------------------------+---------------+-----------+--------------------------------------------------+
-| rand_seed      | Int                          | None          | No        | Random seed for generating the seed set.         |
-+----------------+------------------------------+---------------+-----------+--------------------------------------------------+
-
-.. note::
-
-   Unlike the static SEIS model which accepts a single ``data`` object containing
-   ``edge_index`` and ``edge_attr``, the DySEIS model requires an explicit node
-   tensor ``x`` and a **list** of edge index tensors ``edge_index_list`` representing
-   dynamic network snapshots. Edge weights are similarly provided as a list
-   ``edge_attr_list``.
-
 
 Implementation
 --------------
@@ -129,4 +83,36 @@ As in other dynamic models, :math:`N^{(k)}(i)` and optional edge weights
 :math:`w_{ji}^{(k)}` are time-dependent and taken from the :math:`k`-th snapshot.
 The total number of iterations is bounded by :math:`T =` ``len(edge_index_list)``.
 
+
+Status
+------
+During the simulation, a node can be in one of the following states:
+
++------------+--------------+
+| Status     | Code         |
++============+==============+
+| Susceptible| 0            |
++------------+--------------+
+| Infected   | 1            |
++------------+--------------+
+| Exposed    | 2            |
++------------+--------------+
+
+DySEISModel
+-----------
+
+
+.. autoclass:: fs_gplib.Dynamic.DySEISModel
+   :members: run_iteration, run_iterations, run_epoch, run_epochs
+   :member-order: bysource
+   :show-inheritance:
+
+
+.. note::
+
+   Unlike the static SEIS model which accepts a single ``data`` object containing
+   ``edge_index`` and ``edge_attr``, the DySEIS model requires an explicit node
+   tensor ``x`` and a **list** of edge index tensors ``edge_index_list`` representing
+   dynamic network snapshots. Edge weights are similarly provided as a list
+   ``edge_attr_list``.
 

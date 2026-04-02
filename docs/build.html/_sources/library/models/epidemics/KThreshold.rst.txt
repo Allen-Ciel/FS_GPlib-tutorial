@@ -1,45 +1,10 @@
 Kertesz Threshold
 =================
 
-The Kertesz Threshold model extends the classical Threshold model by introducing two additional mechanisms: **spontaneous adoption** and **node blocking**. A fraction of susceptible nodes are randomly designated as *Blocked* at initialization, permanently preventing their activation. Non-blocked inactive nodes can become active either by spontaneously adopting with a given probability, or through the standard threshold mechanism when sufficient neighbor influence is accumulated.
+The Kertesz Threshold [1]_ model extends the classical Threshold model by introducing two additional mechanisms: **spontaneous adoption** and **node blocking**. A fraction of susceptible nodes are randomly designated as *Blocked* at initialization, permanently preventing their activation. Non-blocked inactive nodes can become active either by spontaneously adopting with a given probability, or through the standard threshold mechanism when sufficient neighbor influence is accumulated.
 
 
 
-Status
-------
-During the simulation, each node can be in one of three states:
-
-+--------------+--------------+
-| Status       | Code         |
-+==============+==============+
-| Inactive     | 0            |
-+--------------+--------------+
-| Active       | 1            |
-+--------------+--------------+
-| Blocked      | -1           |
-+--------------+--------------+
-
-Parameters
-----------
-+----------------------+------------------------------+---------------+-----------+--------------------------------------------------------------------+
-| Name                 | Value Type                   | Default       | Mandatory | Description                                                        |
-+======================+==============================+===============+===========+====================================================================+
-| data                 | Data                         |               | Yes       | Graph data.                                                        |
-+----------------------+------------------------------+---------------+-----------+--------------------------------------------------------------------+
-| seeds                | List[int]/float in (0, 1)    |               | Yes       | Initial seed nodes or a ratio in (0, 1).                           |
-+----------------------+------------------------------+---------------+-----------+--------------------------------------------------------------------+
-| threshold            | float in [0, 1)              |               | Yes       | Adoption threshold per node (randomly generated if 0).             |
-+----------------------+------------------------------+---------------+-----------+--------------------------------------------------------------------+
-| adopter_rate         | float in [0, 1]              |               | Yes       | Probability of spontaneous adoption per iteration.                 |
-+----------------------+------------------------------+---------------+-----------+--------------------------------------------------------------------+
-| percentage_blocked   | float in [0, 1]              |               | Yes       | Fraction of susceptible nodes to designate as blocked.             |
-+----------------------+------------------------------+---------------+-----------+--------------------------------------------------------------------+
-| use_weight           | Bool                         | False         | No        | Whether to use edge weights for influence aggregation.             |
-+----------------------+------------------------------+---------------+-----------+--------------------------------------------------------------------+
-| device               | 'cpu' / int (CUDA index)     | 'cpu'         | No        | Device to run the model on.                                        |
-+----------------------+------------------------------+---------------+-----------+--------------------------------------------------------------------+
-| rand_seed            | Int                          | None          | No        | Random seed for generating initial seeds (if ratio given).         |
-+----------------------+------------------------------+---------------+-----------+--------------------------------------------------------------------+
 
 Model Description
 -----------------
@@ -93,8 +58,32 @@ The update of the system at step :math:`k` is decomposed into three stages:
         h_i^{(k-1)},  \text{otherwise},
     \end{cases} \\[6pt]
 
+Status
+------
+During the simulation, each node can be in one of three states:
+
++--------------+--------------+
+| Status       | Code         |
++==============+==============+
+| Inactive     | 0            |
++--------------+--------------+
+| Active       | 1            |
++--------------+--------------+
+| Blocked      | -1           |
++--------------+--------------+
+
+
+KerteszThresholdModel
+---------------------
+
+.. autoclass:: fs_gplib.Epidemics.KerteszThresholdModel
+   :members: run_iteration, run_iterations, run_epoch, run_epochs
+   :member-order: bysource
+   :show-inheritance:
+
+
 
 References
 ----------
 
-.. [1] 
+.. [1] Ruan Z, Iniguez G, Karsai M, et al. Kinetics of social contagion[J]. Physical review letters, 2015, 115(21): 218702.

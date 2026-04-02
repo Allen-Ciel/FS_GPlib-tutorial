@@ -1,8 +1,23 @@
 Dynamic Network Models
 ======================
-abababa
 
-In particular ``FS_GPlib`` implements dynamic network versions of the following models:
+In many real-world systems — such as face-to-face contact networks, mobile communication networks,
+and transportation systems — the connections between individuals are not fixed but evolve over time.
+Dynamic network models capture this by operating on a sequence of graph snapshots
+:math:`\{G^{(k)}=(V,E^{(k)})\}_{k=1}^{T}`, where the node set :math:`V` remains constant while the
+edge set :math:`E^{(k)}` may change at each discrete time step :math:`k`.
+
+Each dynamic model in ``FS_GPlib`` extends a corresponding static model from the
+:doc:`epidemic` category to time-varying topologies. The propagation rules at each step are
+identical to their static counterparts, but the neighbor set and (optionally) edge weights
+are drawn from the current snapshot rather than a fixed graph.
+This enables the study of how **temporal connectivity patterns** affect spreading outcomes.
+
+All dynamic network models support directed and undirected graphs with optional time-varying edge weights.
+They can be executed on both CPU and GPU, and are compatible with the batch-parallel acceleration
+described in the :doc:`/tutorial`.
+
+The following models are available:
 
 .. toctree::
    :maxdepth: 1

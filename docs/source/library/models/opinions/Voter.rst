@@ -15,29 +15,6 @@ This process is equivalent to computing the fraction of neighbors holding opinio
 where :math:`\#N(i)` denotes the number of neighbors of node :math:`i`.
 
 
-Status
-------
-During the simulation, a node holds a binary opinion value:
-
-+------------+----------------+
-| Status     | Value          |
-+============+================+
-| Opinion    | 0 or 1         |
-+------------+----------------+
-
-Parameters
-----------
-+------------+------------------------------+---------------+----------+---------------------------------------------------------------------------+
-| Name       | Type                         | Default       | Required | Description                                                               |
-+============+==============================+===============+==========+===========================================================================+
-| data       | Data                         |               | Yes      | Data of graph.                                                            |
-+------------+------------------------------+---------------+----------+---------------------------------------------------------------------------+
-| seeds      | List[int] / None             |               | Yes      | List of initially activated node indices (opinion = 1) or None.           |
-+------------+------------------------------+---------------+----------+---------------------------------------------------------------------------+
-| device     | 'cpu'/int (CUDA index)       | 'cpu'         | No       | Device to run the model on.                                               |
-+------------+------------------------------+---------------+----------+---------------------------------------------------------------------------+
-| rand_seed  | Int                          | None          | No       | Random seed for reproducibility.                                          |
-+------------+------------------------------+---------------+----------+---------------------------------------------------------------------------+
 
 Implementation
 --------------
@@ -71,6 +48,24 @@ The Voter model uses binary opinions, so each node's state is simply 0 or 1. At 
 	\end{cases}
 
 where :math:`U_i \sim \mathrm{Uniform}(0,1)` is a random number. All other nodes retain their current opinions.
+
+Status
+------
+During the simulation, a node holds a binary opinion value:
+
++------------+----------------+
+| Status     | Value          |
++============+================+
+| Opinion    | 0 or 1         |
++------------+----------------+
+
+VoterModel
+----------
+
+.. autoclass:: fs_gplib.Opinions.VoterModel
+   :members: run_iteration, run_iterations, run_epoch, run_epochs
+   :member-order: bysource
+   :show-inheritance:
 
 
 References

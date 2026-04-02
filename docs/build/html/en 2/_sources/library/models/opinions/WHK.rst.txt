@@ -1,0 +1,2 @@
+Weighted Hegselmann-Krause
+==========================

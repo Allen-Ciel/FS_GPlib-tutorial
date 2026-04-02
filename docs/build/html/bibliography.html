@@ -22,9 +22,7 @@
       <script src="_static/my_custom.js?v=52495bde"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="RST Template Example" href="rst_template.html" />
-    <link rel="prev" title="Custom Model" href="custom_model.html" /> 
+    <link rel="search" title="Search" href="search.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -38,7 +36,7 @@
           
           <a href="index.html">
             
-              <img src="_static/logo.png" class="logo" alt="Logo"/>
+              <img src="_static/logo_v2.png" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -66,7 +64,7 @@
   
 
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <ul class="current">
+              <ul>
 <li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="overview.html#motivation">Motivation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="overview.html#core-capabilities">Core Capabilities</a></li>
@@ -105,14 +103,19 @@
 <li class="toctree-l3"><a class="reference internal" href="tutorial.html#how-to-use-distributed-computing">How to use distributed computing</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html#references">References</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="library/index.html">Library</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="library/epidemic.html">Epidemic Models</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="library/models/epidemics/SI.html">SI</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="library/models/epidemics/SI.html#status">Status</a></li>
-<li class="toctree-l4"><a class="reference internal" href="library/models/epidemics/SI.html#parameters">Parameters</a></li>
 <li class="toctree-l4"><a class="reference internal" href="library/models/epidemics/SI.html#implementation">Implementation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/models/epidemics/SI.html#api">API</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="library/models/epidemics/SI.html#fs_gplib.Epidemics.SIModel"><code class="docutils literal notranslate"><span class="pre">SIModel</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="library/models/epidemics/SI.html#example">Example</a></li>
 <li class="toctree-l4"><a class="reference internal" href="library/models/epidemics/SI.html#references">References</a></li>
 </ul>
 </li>
@@ -252,64 +255,55 @@
 <li class="toctree-l4"><a class="reference internal" href="library/models/dynamics/DySI.html#status">Status</a></li>
 <li class="toctree-l4"><a class="reference internal" href="library/models/dynamics/DySI.html#parameters">Parameters</a></li>
 <li class="toctree-l4"><a class="reference internal" href="library/models/dynamics/DySI.html#implementation">Implementation</a></li>
-<li class="toctree-l4"><a class="reference internal" href="library/models/dynamics/DySI.html#references">References</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="library/models/dynamics/DySIS.html">DySIS</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="library/models/dynamics/DySIS.html#status">Status</a></li>
 <li class="toctree-l4"><a class="reference internal" href="library/models/dynamics/DySIS.html#parameters">Parameters</a></li>
 <li class="toctree-l4"><a class="reference internal" href="library/models/dynamics/DySIS.html#implementation">Implementation</a></li>
-<li class="toctree-l4"><a class="reference internal" href="library/models/dynamics/DySIS.html#references">References</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="library/models/dynamics/DySIR.html">DySIR</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="library/models/dynamics/DySIR.html#status">Status</a></li>
 <li class="toctree-l4"><a class="reference internal" href="library/models/dynamics/DySIR.html#parameters">Parameters</a></li>
 <li class="toctree-l4"><a class="reference internal" href="library/models/dynamics/DySIR.html#implementation">Implementation</a></li>
-<li class="toctree-l4"><a class="reference internal" href="library/models/dynamics/DySIR.html#references">References</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="library/models/dynamics/DySEIR.html">DySEIR</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="library/models/dynamics/DySEIR.html#status">Status</a></li>
 <li class="toctree-l4"><a class="reference internal" href="library/models/dynamics/DySEIR.html#parameters">Parameters</a></li>
 <li class="toctree-l4"><a class="reference internal" href="library/models/dynamics/DySEIR.html#implementation">Implementation</a></li>
-<li class="toctree-l4"><a class="reference internal" href="library/models/dynamics/DySEIR.html#references">References</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="library/models/dynamics/DySEIR_ct.html">DySEIR_ct</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="library/models/dynamics/DySEIR_ct.html#status">Status</a></li>
 <li class="toctree-l4"><a class="reference internal" href="library/models/dynamics/DySEIR_ct.html#parameters">Parameters</a></li>
 <li class="toctree-l4"><a class="reference internal" href="library/models/dynamics/DySEIR_ct.html#implementation">Implementation</a></li>
-<li class="toctree-l4"><a class="reference internal" href="library/models/dynamics/DySEIR_ct.html#references">References</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="library/models/dynamics/DySEIS.html">DySEIS</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="library/models/dynamics/DySEIS.html#status">Status</a></li>
 <li class="toctree-l4"><a class="reference internal" href="library/models/dynamics/DySEIS.html#parameters">Parameters</a></li>
 <li class="toctree-l4"><a class="reference internal" href="library/models/dynamics/DySEIS.html#implementation">Implementation</a></li>
-<li class="toctree-l4"><a class="reference internal" href="library/models/dynamics/DySEIS.html#references">References</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="library/models/dynamics/DySEIS_ct.html">DySEIS_ct</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="library/models/dynamics/DySEIS_ct.html#status">Status</a></li>
 <li class="toctree-l4"><a class="reference internal" href="library/models/dynamics/DySEIS_ct.html#parameters">Parameters</a></li>
 <li class="toctree-l4"><a class="reference internal" href="library/models/dynamics/DySEIS_ct.html#implementation">Implementation</a></li>
-<li class="toctree-l4"><a class="reference internal" href="library/models/dynamics/DySEIS_ct.html#references">References</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="library/models/dynamics/DySWIR.html">DySWIR</a></li>
+<li class="toctree-l3"><a class="reference internal" href="library/models/dynamics/DySWIR.html">DySWIR(TBD)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="library/models/dynamics/DyThreshold.html">DyThreshold</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="library/models/dynamics/DyThreshold.html#status">Status</a></li>
 <li class="toctree-l4"><a class="reference internal" href="library/models/dynamics/DyThreshold.html#parameters">Parameters</a></li>
 <li class="toctree-l4"><a class="reference internal" href="library/models/dynamics/DyThreshold.html#implementation">Implementation</a></li>
-<li class="toctree-l4"><a class="reference internal" href="library/models/dynamics/DyThreshold.html#references">References</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="library/models/dynamics/DyKThreshold.html">DyKThreshold</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="library/models/dynamics/DyKThreshold.html#status">Status</a></li>
 <li class="toctree-l4"><a class="reference internal" href="library/models/dynamics/DyKThreshold.html#parameters">Parameters</a></li>
 <li class="toctree-l4"><a class="reference internal" href="library/models/dynamics/DyKThreshold.html#implementation">Implementation</a></li>
-<li class="toctree-l4"><a class="reference internal" href="library/models/dynamics/DyKThreshold.html#references">References</a></li>
 </ul>
 </li>
 </ul>
@@ -334,23 +328,6 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="custom_model.html#about-distributed">About Distributed</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="custom_model.html#how-to-use-distributed-computing">How to use distributed computing</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Bibliography</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#example">Example</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#import">Import</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#data">Data</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#model">Model</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#about-batch">About Batch</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#how-to-use-batch">How to use batch</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#about-distributed">About Distributed</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#how-to-use-distributed-computing">How to use distributed computing</a></li>
 </ul>
 </li>
 </ul>
@@ -459,10 +436,7 @@
 
            </div>
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="custom_model.html" class="btn btn-neutral float-left" title="Custom Model" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="rst_template.html" class="btn btn-neutral float-right" title="RST Template Example" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-    </div>
+          <footer>
 
   <hr/>
 

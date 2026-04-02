@@ -11,19 +11,6 @@ A susceptible node :math:`i` becomes infected by its infected neighbors :math:`j
    \frac{dI_i}{dt} &= \beta \sum_{j\in N(i)} S_i I_j .
    \end{aligned}
 
-
-Status
-------
-During the simulation, a node can be in one of the following states:
-
-+------------+--------------+
-| Status     | Code         |
-+============+==============+
-| Susceptible| 0            |
-+------------+--------------+
-| Infected   | 1            |
-+------------+--------------+
-
 Implementation
 --------------
 
@@ -62,39 +49,25 @@ The update of the system at step :math:`k` is decomposed into three stages:
       h_i^{(k-1)}, & \text{otherwise}.
    \end{cases}
 
-API
----
+Status
+------
+During the simulation, a node can be in one of the following states:
+
++------------+--------------+
+| Status     | Code         |
++============+==============+
+| Susceptible| 0            |
++------------+--------------+
+| Infected   | 1            |
++------------+--------------+
+
+SIModel
+-------
 
 .. autoclass:: fs_gplib.Epidemics.SIModel
    :members: run_iteration, run_iterations, run_epoch, run_epochs
+   :member-order: bysource
    :show-inheritance:
-
-
-Example
--------
-
-.. code-block:: python
-
-   import torch
-   from torch_geometric.data import Data
-   from fs_gplib.Epidemics import SIModel
-
-   # Build a simple graph
-   edge_index = torch.tensor([[0, 1, 1, 2, 2, 3],
-                               [1, 0, 2, 1, 3, 2]])
-   data = Data(edge_index=edge_index, num_nodes=4)
-
-   # Create model: 10 % of nodes as seeds, infection probability 0.3
-   model = SIModel(data=data, seeds=0.1, infection_beta=0.3)
-
-   # Single step
-   state = model.run_iteration()        # shape (N,)
-
-   # Multiple steps (continues from current state)
-   states = model.run_iterations(10)    # shape (10, N)
-
-   # Monte-Carlo: 50 independent epochs, each 20 steps
-   mc = model.run_epochs(epochs=50, iterations_times=20)  # shape (50, 20, N)
 
 
 References

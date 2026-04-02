@@ -17,52 +17,6 @@ weights. The number of simulation steps is bounded by the snapshot sequence leng
 :math:`T`.
 
 
-Status
-------
-During the simulation, a node can be in one of the following states:
-
-+-----------+--------------+
-| Status    | Code         |
-+===========+==============+
-| Inactive  | 0            |
-+-----------+--------------+
-| Active    | 1            |
-+-----------+--------------+
-
-
-Parameters
-----------
-+----------------+------------------------------+---------------+-----------+--------------------------------------------------+
-| Name           | Value Type                   | Default       | Mandatory | Description                                      |
-+================+==============================+===============+===========+==================================================+
-| x              | Tensor                       |               | Yes       | Node tensor of shape :math:`(N, 1)`.             |
-+----------------+------------------------------+---------------+-----------+--------------------------------------------------+
-| edge_index_list| List[Tensor]                 |               | Yes       | List of edge index tensors, one per snapshot.    |
-+----------------+------------------------------+---------------+-----------+--------------------------------------------------+
-| seeds          | List[int]/float in (0, 1)    |               | Yes       | List of initial active node IDs or a ratio.      |
-+----------------+------------------------------+---------------+-----------+--------------------------------------------------+
-| threshold      | float in [0, 1]              |               | Yes       | Node threshold (if 0, random node thresholds).   |
-+----------------+------------------------------+---------------+-----------+--------------------------------------------------+
-| device         | 'cpu'/int (CUDA index)       | 'cpu'         | No        | Device to run the model on.                      |
-+----------------+------------------------------+---------------+-----------+--------------------------------------------------+
-| edge_attr_list | List[Tensor]                 | None          | No        | List of edge weight tensors, one per snapshot.   |
-+----------------+------------------------------+---------------+-----------+--------------------------------------------------+
-| rand_seed      | Int                          | None          | No        | Random seed for generating the seed set.         |
-+----------------+------------------------------+---------------+-----------+--------------------------------------------------+
-
-.. note::
-
-   Unlike the static Threshold model which accepts a single ``data`` object,
-   the DyThreshold model requires an explicit node tensor ``x`` and a **list**
-   of edge index tensors ``edge_index_list`` for dynamic snapshots. Optional
-   edge weights are also provided as a list ``edge_attr_list``.
-
-.. note::
-
-   If ``threshold == 0``, node thresholds are sampled uniformly in :math:`[0,1)`.
-   For multi-epoch execution, new random thresholds are sampled per epoch batch.
-
-
 Implementation
 --------------
 
@@ -105,3 +59,31 @@ As in other dynamic models, :math:`N^{(k)}(i)` and optional edge weights
 :math:`w_{ji}^{(k)}` are time-dependent and taken from the :math:`k`-th snapshot.
 The total number of iterations is bounded by :math:`T =` ``len(edge_index_list)``.
 
+
+Status
+------
+During the simulation, a node can be in one of the following states:
+
++-----------+--------------+
+| Status    | Code         |
++===========+==============+
+| Inactive  | 0            |
++-----------+--------------+
+| Active    | 1            |
++-----------+--------------+
+
+DyThresholdModel
+----------------
+
+.. autoclass:: fs_gplib.Dynamic.DyThresholdModel
+   :members: run_iteration, run_iterations, run_epoch, run_epochs
+   :member-order: bysource
+   :show-inheritance:
+
+
+.. note::
+
+   Unlike the static Threshold model which accepts a single ``data`` object,
+   the DyThreshold model requires an explicit node tensor ``x`` and a **list**
+   of edge index tensors ``edge_index_list`` for dynamic snapshots. Optional
+   edge weights are also provided as a list ``edge_attr_list``.

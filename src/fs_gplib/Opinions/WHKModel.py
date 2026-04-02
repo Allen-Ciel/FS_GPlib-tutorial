@@ -10,6 +10,42 @@ from ..utils import *
 
 
 class WHKModel(DiffusionModel):
+    r"""Weighted Hegselmann-Krause (WHK) bounded-confidence opinion dynamics on static graphs.
+
+    Like the classical HK model, each node has a continuous opinion in
+    :math:`(-1, 1)` (initialised from *seeds* or sampled uniformly when
+    *seeds* is ``None``).  Neighbors :math:`j` with
+    :math:`|h_i^{(k-1)} - h_j^{(k-1)}| < \varepsilon` contribute to a
+    weighted average :math:`m_i^{(k)}` where edge weights :math:`w_{ij}` scale
+    each neighbor term.  If no such neighbor exists, the opinion is unchanged;
+    otherwise
+    :math:`h_i^{(k)} = h_i^{(k-1)} + m_i^{(k)} (1 - |h_i^{(k-1)}|)`, so
+    opinions stay bounded and moves near :math:`\pm 1` are damped.
+    Self-loops are removed from the edge index.
+
+    :param data: PyTorch Geometric ``Data`` representing :math:`G=(V,E)`.
+        Must provide ``edge_index`` and ``num_nodes``.
+    :type data: torch_geometric.data.Data
+    :param seeds: Initial opinion per node, length ``num_nodes``, each strictly
+        between ``-1`` and ``1``; or ``None`` to sample each component
+        independently from :math:`\mathrm{Uniform}(-1, 1)` (using *rand_seed*
+        for the RNG).
+    :type seeds: list[float] | None
+    :param epsilon: Confidence bound :math:`\varepsilon` in ``[0, 1]``; only
+        neighbors with opinion separation below this threshold contribute.
+    :type epsilon: float
+    :param weight: Global scalar in ``(0, 1)`` applied to every edge message,
+        or a list of floats strictly in ``(0, 1)`` for per-node weights
+        (broadcast in message passing), as in the reference documentation.
+    :type weight: float | list[float]
+    :param device: *(optional)* ``'cpu'`` or a CUDA device index.
+        Defaults to ``'cpu'``.
+    :type device: str | int
+    :param rand_seed: *(optional)* Seed for the random number generator when
+        *seeds* is ``None``.  Defaults to ``None``.
+    :type rand_seed: int | None
+    """
+
     def __init__(self,
                  data,
                  seeds,
@@ -78,10 +114,28 @@ class WHKModel(DiffusionModel):
 
 
     def run_iteration(self):
+        """Execute a single opinion-update step.
+
+        The internal ``node_status`` is updated so that subsequent calls
+        continue from the latest opinion configuration.
+
+        :return: Node opinions after one step, shape ``(1, N)``.
+        :rtype: torch.Tensor
+        """
         return self.run_iterations(1)
 
 
     def run_iterations(self, times):
+        """Execute *times* opinion-update steps sequentially.
+
+        The internal ``node_status`` is updated in-place so that subsequent
+        calls continue from the latest opinion configuration.
+
+        :param times: Number of steps to run.
+        :type times: int
+        :return: Node opinions at final step, shape ``(1, N)``.
+        :rtype: torch.Tensor
+        """
         try:
             check_int(times=times)
         except ValueError as e:
@@ -95,9 +149,33 @@ class WHKModel(DiffusionModel):
         return final.squeeze(-1)
 
     def run_epoch(self, iterations_times):
+        """Run a single Monte-Carlo epoch (one independent realisation).
+
+        Node opinions are **re-initialised** before the epoch starts.
+
+        :param iterations_times: Number of opinion-update steps per epoch.
+        :type iterations_times: int
+        :return: Node opinions at final step of the epoch, shape ``(1, N)``.
+        :rtype: torch.Tensor
+        """
         return self.run_epochs(1, iterations_times, 1)
 
     def run_epochs(self, epochs, iterations_times, batch_size=200):
+        """Run multiple independent Monte-Carlo epochs in batches.
+
+        Node opinions are **re-initialised** before the run.
+
+        :param epochs: Total number of independent realisations.
+        :type epochs: int
+        :param iterations_times: Number of opinion-update steps per epoch.
+        :type iterations_times: int
+        :param batch_size: *(optional)* Number of epochs processed
+            in parallel per batch.
+            Defaults to ``200``.
+        :type batch_size: int
+        :return: Node opinions at final step of all epochs, shape ``(epochs, N)``.
+        :rtype: torch.Tensor
+        """
         try:
             check_int(iterations_times=iterations_times, epochs=epochs, batch_size=batch_size)
         except ValueError as e:

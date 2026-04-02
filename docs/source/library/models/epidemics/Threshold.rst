@@ -5,35 +5,6 @@ The Threshold model [1]_ describes a diffusion process in which each node in a n
 
 
 
-Status
-------
-During the simulation, each node can be in one of two states:
-
-+--------------+--------------+
-| Status       | Code         |
-+==============+==============+
-| Inactive     | 0            |
-+--------------+--------------+
-| Active       | 1            |
-+--------------+--------------+
-
-Parameters
-----------
-+------------------+------------------------------+---------------+-----------+----------------------------------------------------------------+
-| Name             | Value Type                   | Default       | Mandatory | Description                                                    |
-+==================+==============================+===============+===========+================================================================+
-| data             | Data                         |               | Yes       | Graph data.                                                    |
-+------------------+------------------------------+---------------+-----------+----------------------------------------------------------------+
-| seeds            | List[int]/float in (0, 1)    |               | Yes       | Initial seed nodes or a ratio in (0, 1).                       |
-+------------------+------------------------------+---------------+-----------+----------------------------------------------------------------+
-| threshold        | float in [0, 1)              |               | Yes       | Adoption threshold per node (randomly generated if 0).         |
-+------------------+------------------------------+---------------+-----------+----------------------------------------------------------------+
-| use_weight       | Bool                         | False         | No        | Whether to use edge weights for influence aggregation.         |
-+------------------+------------------------------+---------------+-----------+----------------------------------------------------------------+
-| device           | 'cpu' / int (CUDA index)     | 'cpu'         | No        | Device to run the model on.                                    |
-+------------------+------------------------------+---------------+-----------+----------------------------------------------------------------+
-| rand_seed        | Int                          | None          | No        | Random seed for generating initial seeds (if ratio given).     |
-+------------------+------------------------------+---------------+-----------+----------------------------------------------------------------+
 
 Model Description
 -----------------
@@ -66,6 +37,27 @@ We use one Boolean indicator vector :math:`h \in \{0,1\}^N`, where :math:`h_i=1`
         1,  \text{if} (\theta_i \leq m_i^{(k)}) \land h_i^{(k-1)}=0 , \\[4pt]
         h_i^{(k-1)},  \text{otherwise},
     \end{cases} \\[6pt]
+
+
+Status
+------
+During the simulation, each node can be in one of two states:
+
++--------------+--------------+
+| Status       | Code         |
++==============+==============+
+| Inactive     | 0            |
++--------------+--------------+
+| Active       | 1            |
++--------------+--------------+
+
+ThresholdModel
+--------------
+
+.. autoclass:: fs_gplib.Epidemics.ThresholdModel
+   :members: run_iteration, run_iterations, run_epoch, run_epochs
+   :member-order: bysource
+   :show-inheritance:
 
 
 References

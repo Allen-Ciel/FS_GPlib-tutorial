@@ -1,16 +1,16 @@
 from .SIModel import SIModel
-# from .SIRModel import SIRModel
-# from .IndependentCascadesModel import IndependentCascadesModel
-# from .SISModel import SISModel
-# from .SWIRModel import SWIRModel
-# from .ProfileModel import ProfileModel
-# from .SEIRctModel import SEIRctModel
-# from .SEIRModel import SEIRModel
-# from .SEISctModel import SEISctModel
-# from .SEISModel import SEISModel
-# from .ProfileThresholdModel import ProfileThresholdModel
-# from .KerteszThresholdModel import KerteszThresholdModel
-# from .ThresholdModel import ThresholdModel
+from .SIRModel import SIRModel
+from .IndependentCascadesModel import IndependentCascadesModel
+from .SISModel import SISModel
+from .SWIRModel import SWIRModel
+from .ProfileModel import ProfileModel
+from .SEIRctModel import SEIRctModel
+from .SEIRModel import SEIRModel
+from .SEISctModel import SEISctModel
+from .SEISModel import SEISModel
+from .ProfileThresholdModel import ProfileThresholdModel
+from .KerteszThresholdModel import KerteszThresholdModel
+from .ThresholdModel import ThresholdModel
 # from .base import *
 #
 #

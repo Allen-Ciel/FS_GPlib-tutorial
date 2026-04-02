@@ -16,43 +16,6 @@ The SEIR Model [1]_ assumes that infection spreads only through links between ne
    \end{aligned}
 
 
-Status
-------
-During the simulation, a node can be in one of the following states:
-
-+------------+--------------+
-| Status     | Code         |
-+============+==============+
-| Susceptible| 0            |
-+------------+--------------+
-| Infected   | 1            |
-+------------+--------------+
-| Exposed    | 2            |
-+------------+--------------+
-| Recovered  | 3            |
-+------------+--------------+
-
-Parameters
-----------
-+------------+------------------------------+---------------+-----------+--------------------------------------------+
-| Name       | Value Type                   | Default       | Mandatory | Description                                |
-+============+==============================+===============+===========+============================================+
-| data       | Data                         |               | Yes       | Data of graph.                             |
-+------------+------------------------------+---------------+-----------+--------------------------------------------+
-| seeds      | List[int]/float in (0, 1)    |               | Yes       | List of seed node IDs or a ratio in (0, 1).|
-+------------+------------------------------+---------------+-----------+--------------------------------------------+
-| beta       | float in [0, 1]              |               | Yes       | Infection probability (S→E).               |
-+------------+------------------------------+---------------+-----------+--------------------------------------------+
-| alpha      | float in [0, 1]              |               | Yes       | Incubation/progression probability (E→I).  |
-+------------+------------------------------+---------------+-----------+--------------------------------------------+
-| gamma      | float in [0, 1]              |               | Yes       | Recovery probability (I→R).                |
-+------------+------------------------------+---------------+-----------+--------------------------------------------+
-| device     | 'cpu'/int (CUDA index)       | 'cpu'         | No        | Device to run the model on.                |
-+------------+------------------------------+---------------+-----------+--------------------------------------------+
-| use_weight | Bool                         | False         | No        | Whether to use edge weights.               |
-+------------+------------------------------+---------------+-----------+--------------------------------------------+
-| rand_seed  | Int                          | None          | No        | Random seed for generating the seed set.   |
-+------------+------------------------------+---------------+-----------+--------------------------------------------+
 
 Implementation
 --------------
@@ -111,6 +74,30 @@ The update of the system at step :math:`k` is decomposed into three stages:
         r_i^{(k-1)}, & \text{otherwise}.
     \end{cases}
     \end{aligned}
+
+Status
+------
+During the simulation, a node can be in one of the following states:
+
++------------+--------------+
+| Status     | Code         |
++============+==============+
+| Susceptible| 0            |
++------------+--------------+
+| Infected   | 1            |
++------------+--------------+
+| Exposed    | 2            |
++------------+--------------+
+| Recovered  | 3            |
++------------+--------------+
+
+SEIRModel        
+---------
+
+.. autoclass:: fs_gplib.Epidemics.SEIRModel
+   :members: run_iteration, run_iterations, run_epoch, run_epochs
+   :member-order: bysource
+   :show-inheritance:
 
 
 

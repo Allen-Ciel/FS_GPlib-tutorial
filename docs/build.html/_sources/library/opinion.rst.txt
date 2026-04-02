@@ -1,8 +1,19 @@
 Opinion Dynamic Models
 ======================
-abababa
 
-In ``FS_GPlib`` are implemented the following **Opinion Dynamics** models:
+Opinion dynamics models study how individual opinions evolve through local interactions in a networked population.
+Depending on the model, each node holds either a discrete opinion (e.g., binary 0/1) or a continuous opinion
+value, and updates it based on the states of its neighbors according to mechanisms such as imitation,
+social reinforcement, majority voting, or bounded-confidence averaging.
+
+These models find applications in computational social science, political polarization analysis,
+consensus formation, marketing strategy, and the study of echo chambers in online social networks.
+
+All opinion dynamics models in ``FS_GPlib`` operate on **static networks** — directed or undirected graphs
+with a fixed topology. The models support execution on both CPU and GPU, and can leverage
+the batch-parallel acceleration described in the :doc:`/tutorial`.
+
+The following models are available:
 
 .. toctree::
    :maxdepth: 1

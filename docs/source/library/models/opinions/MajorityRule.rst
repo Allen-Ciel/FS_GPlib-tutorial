@@ -9,33 +9,6 @@ The Majority Rule model [1]_ is a classical binary opinion dynamics model that c
 3) all :math:`q` selected nodes adopt the majority opinion. When the majority is tied, ties are broken in favour of opinion 1.
 
 
-
-Status
-------
-During the simulation, a node holds a binary opinion value:
-
-+------------+----------------+
-| Status     | Value          |
-+============+================+
-| Opinion    | 0 or 1         |
-+------------+----------------+
-
-Parameters
-----------
-+------------+------------------------------+---------------+----------+---------------------------------------------------------------------------+
-| Name       | Type                         | Default       | Required | Description                                                               |
-+============+==============================+===============+==========+===========================================================================+
-| data       | Data                         |               | Yes      | Data of graph.                                                            |
-+------------+------------------------------+---------------+----------+---------------------------------------------------------------------------+
-| seeds      | List[int] / None             |               | Yes      | List of initially activated node indices (opinion = 1) or None.           |
-+------------+------------------------------+---------------+----------+---------------------------------------------------------------------------+
-| q          | Int (> 0)                    |               | Yes      | Size of the randomly selected discussion group.                           |
-+------------+------------------------------+---------------+----------+---------------------------------------------------------------------------+
-| device     | 'cpu'/int (CUDA index)       | 'cpu'         | No       | Device to run the model on.                                               |
-+------------+------------------------------+---------------+----------+---------------------------------------------------------------------------+
-| rand_seed  | Int                          | None          | No       | Random seed for reproducibility.                                          |
-+------------+------------------------------+---------------+----------+---------------------------------------------------------------------------+
-
 Implementation
 --------------
 The Majority Rule model simulates conformity-driven opinion formation by selecting a random panel of :math:`q` nodes and forcing them to adopt the panel's majority opinion. Unlike neighbor-based models (e.g., Voter), the group is drawn from the entire population. 
@@ -71,6 +44,42 @@ The threshold :math:`\lceil q/2 \rceil` ensures that for odd :math:`q` the stand
 
 All other nodes retain their current opinions.
 
+
+
+Status
+------
+During the simulation, a node holds a binary opinion value:
+
++------------+----------------+
+| Status     | Value          |
++============+================+
+| Opinion    | 0 or 1         |
++------------+----------------+
+
+MajorityRuleModel
+-----------------
+
+.. autoclass:: fs_gplib.Opinions.MajorityRuleModel
+   :members: run_iteration, run_iterations, run_epoch, run_epochs
+   :member-order: bysource
+   :show-inheritance:
+
+
+Parameters
+----------
++------------+------------------------------+---------------+----------+---------------------------------------------------------------------------+
+| Name       | Type                         | Default       | Required | Description                                                               |
++============+==============================+===============+==========+===========================================================================+
+| data       | Data                         |               | Yes      | Data of graph.                                                            |
++------------+------------------------------+---------------+----------+---------------------------------------------------------------------------+
+| seeds      | List[int] / None             |               | Yes      | List of initially activated node indices (opinion = 1) or None.           |
++------------+------------------------------+---------------+----------+---------------------------------------------------------------------------+
+| q          | Int (> 0)                    |               | Yes      | Size of the randomly selected discussion group.                           |
++------------+------------------------------+---------------+----------+---------------------------------------------------------------------------+
+| device     | 'cpu'/int (CUDA index)       | 'cpu'         | No       | Device to run the model on.                                               |
++------------+------------------------------+---------------+----------+---------------------------------------------------------------------------+
+| rand_seed  | Int                          | None          | No       | Random seed for reproducibility.                                          |
++------------+------------------------------+---------------+----------+---------------------------------------------------------------------------+
 
 References
 ----------

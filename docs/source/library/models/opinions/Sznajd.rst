@@ -11,29 +11,6 @@ The Sznajd model [1]_ is a binary opinion dynamics model inspired by the princip
 
 
 
-Status
-------
-During the simulation, a node holds a binary opinion value:
-
-+------------+----------------+
-| Status     | Value          |
-+============+================+
-| Opinion    | 0 or 1         |
-+------------+----------------+
-
-Parameters
-----------
-+------------+------------------------------+---------------+----------+---------------------------------------------------------------------------+
-| Name       | Type                         | Default       | Required | Description                                                               |
-+============+==============================+===============+==========+===========================================================================+
-| data       | Data                         |               | Yes      | Data of graph.                                                            |
-+------------+------------------------------+---------------+----------+---------------------------------------------------------------------------+
-| seeds      | List[int] / None             |               | Yes      | List of initially activated node indices (opinion = 1) or None.           |
-+------------+------------------------------+---------------+----------+---------------------------------------------------------------------------+
-| device     | 'cpu'/int (CUDA index)       | 'cpu'         | No       | Device to run the model on.                                               |
-+------------+------------------------------+---------------+----------+---------------------------------------------------------------------------+
-| rand_seed  | Int                          | None          | No       | Random seed for reproducibility.                                          |
-+------------+------------------------------+---------------+----------+---------------------------------------------------------------------------+
 
 Implementation
 --------------
@@ -76,6 +53,25 @@ Nodes adjacent to :math:`u` or :math:`v` will receive :math:`h_u^{(k-1)} \in \{0
     \end{cases}
 
 If :math:`u` and :math:`v` disagree (:math:`h_u^{(k-1)} \neq h_v^{(k-1)}`), all opinions remain unchanged: :math:`h_j^{(k)} = h_j^{(k-1)}` for every node :math:`j`.
+
+Status
+------
+During the simulation, a node holds a binary opinion value:
+
++------------+----------------+
+| Status     | Value          |
++============+================+
+| Opinion    | 0 or 1         |
++------------+----------------+
+
+
+SznajdModel
+-----------
+
+.. autoclass:: fs_gplib.Opinions.SznajdModel
+   :members: run_iteration, run_iterations, run_epoch, run_epochs
+   :member-order: bysource
+   :show-inheritance:
 
 
 References

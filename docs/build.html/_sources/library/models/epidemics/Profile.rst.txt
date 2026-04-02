@@ -1,43 +1,10 @@
 Profile
 =======
 
-The Profile model describes a social contagion process in which each node possesses a personal **profile** value that governs its susceptibility to adoption. When an inactive node is exposed to at least one active neighbor, it adopts with a probability equal to its profile value; if it fails to adopt, the node may become **blocked** and permanently ineligible for future activation. Additionally, non-blocked inactive nodes can spontaneously adopt in each iteration with a fixed probability.
+The Profile model [1]_ describes a social contagion process in which each node possesses a personal **profile** value that governs its susceptibility to adoption. When an inactive node is exposed to at least one active neighbor, it adopts with a probability equal to its profile value; if it fails to adopt, the node may become **blocked** and permanently ineligible for future activation. Additionally, non-blocked inactive nodes can spontaneously adopt in each iteration with a fixed probability.
 
 
 
-Status
-------
-During the simulation, each node can be in one of three states:
-
-+--------------+--------------+
-| Status       | Code         |
-+==============+==============+
-| Inactive     | 0            |
-+--------------+--------------+
-| Active       | 1            |
-+--------------+--------------+
-| Blocked      | -1           |
-+--------------+--------------+
-
-Parameters
-----------
-+------------------+------------------------------+---------------+-----------+--------------------------------------------------------------------+
-| Name             | Value Type                   | Default       | Mandatory | Description                                                        |
-+==================+==============================+===============+===========+====================================================================+
-| data             | Data                         |               | Yes       | Graph data.                                                        |
-+------------------+------------------------------+---------------+-----------+--------------------------------------------------------------------+
-| seeds            | List[int]/float in (0, 1)    |               | Yes       | Initial seed nodes or a ratio in (0, 1).                           |
-+------------------+------------------------------+---------------+-----------+--------------------------------------------------------------------+
-| profile          | float in [0, 1]              |               | Yes       | Node profile value (randomly generated per node if 0).             |
-+------------------+------------------------------+---------------+-----------+--------------------------------------------------------------------+
-| adopter_rate     | float in [0, 1]              |               | Yes       | Probability of spontaneous adoption per iteration.                 |
-+------------------+------------------------------+---------------+-----------+--------------------------------------------------------------------+
-| blocked_rate     | float in [0, 1]              |               | Yes       | Probability of becoming blocked upon failed adoption.              |
-+------------------+------------------------------+---------------+-----------+--------------------------------------------------------------------+
-| device           | 'cpu' / int (CUDA index)     | 'cpu'         | No        | Device to run the model on.                                        |
-+------------------+------------------------------+---------------+-----------+--------------------------------------------------------------------+
-| rand_seed        | Int                          | None          | No        | Random seed for generating initial seeds (if ratio given).         |
-+------------------+------------------------------+---------------+-----------+--------------------------------------------------------------------+
 
 Model Description
 -----------------
@@ -91,8 +58,30 @@ The update of the system at step :math:`k` is decomposed into three stages:
         b_i^{(k-1)}, & \text{otherwise},
     \end{cases}
 
+Status
+------
+During the simulation, each node can be in one of three states:
+
++--------------+--------------+
+| Status       | Code         |
++==============+==============+
+| Inactive     | 0            |
++--------------+--------------+
+| Active       | 1            |
++--------------+--------------+
+| Blocked      | -1           |
++--------------+--------------+
+
+ProfileModel
+------------
+
+.. autoclass:: fs_gplib.Epidemics.ProfileModel
+   :members: run_iteration, run_iterations, run_epoch, run_epochs
+   :member-order: bysource
+   :show-inheritance:
+
 
 References
 ----------
 
-.. [1] 
+.. [1] Milli L, Rossetti G, Pedreschi D, et al. Information diffusion in complex networks: The active/passive conundrum[C]//International Conference on Complex Networks and their Applications. Cham: Springer International Publishing, 2017: 305-313.

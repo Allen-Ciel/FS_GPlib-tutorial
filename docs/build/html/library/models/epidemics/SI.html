@@ -478,23 +478,30 @@ The update of the system at step <span class="math notranslate nohighlight">\(k\
 <p>SI (Susceptible-Infected) diffusion model on static graphs.</p>
 <p>Each node starts as susceptible or infected (seed).  At every step each
 infected neighbor independently transmits the disease with probability
-<code class="docutils literal notranslate"><span class="pre">infection_beta</span></code>.  Once infected a node stays infected permanently.</p>
+<span class="math notranslate nohighlight">\(\beta\)</span>.  Once infected a node stays infected permanently.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>data</strong> (<em>torch_geometric.data.Data</em>) -- PyTorch Geometric <code class="docutils literal notranslate"><span class="pre">Data</span></code> object describing the graph.</p></li>
-<li><p><strong>seeds</strong> (<em>list</em><em>[</em><em>int</em><em>] </em><em>| </em><em>float</em>) -- Initial infected node IDs, or a float in (0, 1) interpreted
-as the fraction of nodes chosen uniformly at random.</p></li>
-<li><p><strong>infection_beta</strong> (<em>float</em>) -- Per-contact infection probability in [0, 1].</p></li>
+<li><p><strong>data</strong> (<em>torch_geometric.data.Data</em>) -- PyTorch Geometric <code class="docutils literal notranslate"><span class="pre">Data</span></code> object representing graph
+<span class="math notranslate nohighlight">\(G=(V,E)\)</span>.  Must contain <code class="docutils literal notranslate"><span class="pre">edge_index</span></code> (the edge set <span class="math notranslate nohighlight">\(E\)</span>)
+and <code class="docutils literal notranslate"><span class="pre">num_nodes</span></code> (<span class="math notranslate nohighlight">\(|V|\)</span>).  When <em>use_weight</em> is <code class="docutils literal notranslate"><span class="pre">True</span></code>,
+<code class="docutils literal notranslate"><span class="pre">edge_attr</span></code> supplies per-edge weights <span class="math notranslate nohighlight">\(w_{ji}\)</span>.</p></li>
+<li><p><strong>seeds</strong> (<em>list</em><em>[</em><em>int</em><em>] </em><em>| </em><em>float</em>) -- Nodes whose initial state is <em>Infected</em>
+(<span class="math notranslate nohighlight">\(h_i^{(0)}=1\)</span>).  Pass a list of node IDs, or a float in
+(0, 1) to infect that fraction of nodes chosen uniformly at random.</p></li>
+<li><p><strong>infection_beta</strong> (<em>float</em>) -- Per-contact infection probability
+<span class="math notranslate nohighlight">\(\beta \in [0,1]\)</span>.</p></li>
 <li><p><strong>device</strong> (<em>str</em><em> | </em><em>int</em>) -- <code class="docutils literal notranslate"><span class="pre">'cpu'</span></code> or a CUDA device index.</p></li>
-<li><p><strong>use_weight</strong> (<em>bool</em>) -- If <code class="docutils literal notranslate"><span class="pre">True</span></code>, scale transmission by <code class="docutils literal notranslate"><span class="pre">edge_attr</span></code>.</p></li>
-<li><p><strong>rand_seed</strong> (<em>int</em><em> | </em><em>None</em>) -- Random seed used when <em>seeds</em> is a float.</p></li>
+<li><p><strong>use_weight</strong> (<em>bool</em>) -- If <code class="docutils literal notranslate"><span class="pre">True</span></code>, each edge <span class="math notranslate nohighlight">\((j,i)\)</span> carries a weight
+<span class="math notranslate nohighlight">\(w_{ji}\)</span> from <code class="docutils literal notranslate"><span class="pre">data.edge_attr</span></code> and the infection probability becomes
+<span class="math notranslate nohighlight">\(\beta w_{ji}\)</span>.  If <code class="docutils literal notranslate"><span class="pre">False</span></code> all weights
+default to 1 (i.e. <span class="math notranslate nohighlight">\(w_{ji}=1\)</span>).</p></li>
 </ul>
 </dd>
 </dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="fs_gplib.Epidemics.SIModel.run_epoch">
-<span class="sig-name descname"><span class="pre">run_epoch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">iterations_times</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Allen-Ciel/FS_GPlib-tutorial/blob/docs/fs_gplib(release)/src/fs_gplib/Epidemics/SIModel.py#L97-L108"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#fs_gplib.Epidemics.SIModel.run_epoch" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">run_epoch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">iterations_times</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Allen-Ciel/FS_GPlib-tutorial/blob/docs/fs_gplib(release)/src/fs_gplib/Epidemics/SIModel.py#L100-L110"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#fs_gplib.Epidemics.SIModel.run_epoch" title="Link to this definition"></a></dt>
 <dd><p>Run a single Monte-Carlo epoch (one independent realisation).</p>
 <p>Equivalent to <code class="docutils literal notranslate"><span class="pre">run_epochs(1,</span> <span class="pre">iterations_times,</span> <span class="pre">1)</span></code>.  Node states are
 <strong>re-initialised</strong> before the epoch starts.</p>
@@ -503,58 +510,47 @@ as the fraction of nodes chosen uniformly at random.</p></li>
 <dd class="field-odd"><p><strong>iterations_times</strong> (<em>int</em>) -- Number of simulation steps per epoch.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>Node states at each step of the epoch.</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>torch.Tensor of shape <code class="docutils literal notranslate"><span class="pre">(iterations_times,</span> <span class="pre">N)</span></code></p>
+<dd class="field-even"><p>Node states at final step of the epoch.</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="fs_gplib.Epidemics.SIModel.run_epochs">
-<span class="sig-name descname"><span class="pre">run_epochs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">epochs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">iterations_times</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">batch_size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">200</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Allen-Ciel/FS_GPlib-tutorial/blob/docs/fs_gplib(release)/src/fs_gplib/Epidemics/SIModel.py#L110-L147"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#fs_gplib.Epidemics.SIModel.run_epochs" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">run_epochs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">epochs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">iterations_times</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">batch_size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">200</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Allen-Ciel/FS_GPlib-tutorial/blob/docs/fs_gplib(release)/src/fs_gplib/Epidemics/SIModel.py#L112-L147"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#fs_gplib.Epidemics.SIModel.run_epochs" title="Link to this definition"></a></dt>
 <dd><p>Run multiple independent Monte-Carlo epochs in batches.</p>
-<p>Node states are <strong>re-initialised</strong> before the run.  Results are
-collected on CPU.</p>
+<p>Node states are <strong>re-initialised</strong> before the run.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>epochs</strong> (<em>int</em>) -- Total number of independent realisations.</p></li>
 <li><p><strong>iterations_times</strong> (<em>int</em>) -- Number of simulation steps per epoch.</p></li>
-<li><p><strong>batch_size</strong> (<em>int</em>) -- Maximum number of epochs processed in parallel per
-batch (controls GPU memory usage).</p></li>
+<li><p><strong>batch_size</strong> (<em>int</em>) -- Number of epochs processed in parallel per
+batch.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>Node states across all epochs and steps.</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>torch.Tensor of shape <code class="docutils literal notranslate"><span class="pre">(epochs,</span> <span class="pre">iterations_times,</span> <span class="pre">N)</span></code></p>
+<dd class="field-even"><p>Node states at final step of all epochs.</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="fs_gplib.Epidemics.SIModel.run_iteration">
-<span class="sig-name descname"><span class="pre">run_iteration</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Allen-Ciel/FS_GPlib-tutorial/blob/docs/fs_gplib(release)/src/fs_gplib/Epidemics/SIModel.py#L61-L71"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#fs_gplib.Epidemics.SIModel.run_iteration" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">run_iteration</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Allen-Ciel/FS_GPlib-tutorial/blob/docs/fs_gplib(release)/src/fs_gplib/Epidemics/SIModel.py#L67-L75"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#fs_gplib.Epidemics.SIModel.run_iteration" title="Link to this definition"></a></dt>
 <dd><p>Execute a single simulation step.</p>
 <p>Equivalent to <code class="docutils literal notranslate"><span class="pre">run_iterations(1)</span></code>.  The internal <code class="docutils literal notranslate"><span class="pre">node_status</span></code> is
 updated so that subsequent calls continue from the latest state.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Node states after one step.  <code class="docutils literal notranslate"><span class="pre">1.0</span></code> = infected,
-<code class="docutils literal notranslate"><span class="pre">0.0</span></code> = susceptible.</p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>torch.Tensor of shape <code class="docutils literal notranslate"><span class="pre">(N,)</span></code></p>
+<dd class="field-odd"><p>Node states after one step.</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="fs_gplib.Epidemics.SIModel.run_iterations">
-<span class="sig-name descname"><span class="pre">run_iterations</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">times</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Allen-Ciel/FS_GPlib-tutorial/blob/docs/fs_gplib(release)/src/fs_gplib/Epidemics/SIModel.py#L74-L95"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#fs_gplib.Epidemics.SIModel.run_iterations" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">run_iterations</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">times</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Allen-Ciel/FS_GPlib-tutorial/blob/docs/fs_gplib(release)/src/fs_gplib/Epidemics/SIModel.py#L78-L98"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#fs_gplib.Epidemics.SIModel.run_iterations" title="Link to this definition"></a></dt>
 <dd><p>Execute <em>times</em> simulation steps sequentially.</p>
 <p>The internal <code class="docutils literal notranslate"><span class="pre">node_status</span></code> is updated in-place so that subsequent
 calls continue from the latest state.</p>
@@ -563,10 +559,7 @@ calls continue from the latest state.</p>
 <dd class="field-odd"><p><strong>times</strong> (<em>int</em>) -- Number of steps to run.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>Node states at each step.</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>torch.Tensor of shape <code class="docutils literal notranslate"><span class="pre">(times,</span> <span class="pre">N)</span></code></p>
+<dd class="field-even"><p>Node states at final step.</p>
 </dd>
 </dl>
 </dd></dl>

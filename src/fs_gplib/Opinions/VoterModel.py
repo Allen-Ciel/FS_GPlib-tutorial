@@ -5,6 +5,35 @@ from .base import DiffusionModel, Diffusion_process
 from ..utils import *
 
 class VoterModel(DiffusionModel):
+    r"""Binary Voter opinion dynamics model on static graphs.
+
+    Each node holds a binary opinion in ``{0, 1}``.  At every step, one node
+    is selected uniformly at random and updates its opinion by copying a
+    randomly chosen neighbor's opinion.  In this implementation, that update
+    is realised by computing the fraction of neighbors with opinion ``1`` and
+    then sampling a Bernoulli random variable with that probability.
+
+    Returned node states are encoded as: 0 = opinion 0, 1 = opinion 1.
+
+    Self-loops are removed internally so that a node does not influence its
+    own opinion during the update.
+
+    :param data: PyTorch Geometric ``Data`` object representing graph
+        :math:`G=(V,E)`.  Must contain ``edge_index`` (the edge set :math:`E`)
+        and ``num_nodes`` (:math:`|V|`).
+    :type data: torch_geometric.data.Data
+    :param seeds: Initial nodes with opinion ``1``.  Pass a list of node IDs,
+        a float in ``[0,1)`` to initialise that fraction of nodes chosen
+        uniformly at random with opinion ``1``, or ``None``.
+    :type seeds: list[int] | float | None
+    :param device: *(optional)* ``'cpu'`` or a CUDA device index.
+        Defaults to ``'cpu'``.
+    :type device: str | int
+    :param rand_seed: *(optional)* Random seed used when *seeds* is a
+        float.  Defaults to ``None``.
+    :type rand_seed: int | None
+    """
+
     def __init__(self,
                  data,
                  seeds,
@@ -32,10 +61,28 @@ class VoterModel(DiffusionModel):
 
 
     def run_iteration(self):
+        """Execute a single opinion-update step.
+
+        The internal ``node_status`` is updated so that subsequent calls
+        continue from the latest opinion configuration.
+
+        :return: Node opinions after one step, shape ``(1, N)``.
+        :rtype: torch.Tensor
+        """
         return self.run_iterations(1)
 
 
     def run_iterations(self, times):
+        """Execute *times* opinion-update steps sequentially.
+
+        The internal ``node_status`` is updated in-place so that subsequent
+        calls continue from the latest opinion configuration.
+
+        :param times: Number of steps to run.
+        :type times: int
+        :return: Node opinions at final step, shape ``(1, N)``.
+        :rtype: torch.Tensor
+        """
         try:
             check_int(times=times)
         except ValueError as e:
@@ -49,9 +96,33 @@ class VoterModel(DiffusionModel):
         return final
 
     def run_epoch(self, iterations_times):
+        """Run a single Monte-Carlo epoch (one independent realisation).
+
+        Node opinions are **re-initialised** before the epoch starts.
+
+        :param iterations_times: Number of opinion-update steps per epoch.
+        :type iterations_times: int
+        :return: Node opinions at final step of the epoch, shape ``(1, N)``.
+        :rtype: torch.Tensor
+        """
         return self.run_epochs(1, iterations_times, 1)
 
     def run_epochs(self, epochs, iterations_times, batch_size=200):
+        """Run multiple independent Monte-Carlo epochs in batches.
+
+        Node opinions are **re-initialised** before the run.
+
+        :param epochs: Total number of independent realisations.
+        :type epochs: int
+        :param iterations_times: Number of opinion-update steps per epoch.
+        :type iterations_times: int
+        :param batch_size: *(optional)* Number of epochs processed
+            in parallel per batch.
+            Defaults to ``200``.
+        :type batch_size: int
+        :return: Node opinions at final step of all epochs, shape ``(epochs, N)``.
+        :rtype: torch.Tensor
+        """
 
         try:
             check_int(iterations_times=iterations_times, epochs=epochs, batch_size=batch_size)

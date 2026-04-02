@@ -1,39 +1,10 @@
 Threshold
 =========
 
-The Threshold model describes a diffusion process in which each node in a network adopts a behavior (becomes active) when a sufficient fraction or weighted sum of its neighbors are already active. Unlike the Independent Cascades model, which uses independent stochastic activations, the Threshold model relies on **deterministic or probabilistic thresholds** that control adoption.
+The Threshold model [1]_ describes a diffusion process in which each node in a network adopts a behavior (becomes active) when a sufficient fraction or weighted sum of its neighbors are already active. Unlike the Independent Cascades model, which uses independent stochastic activations, the Threshold model relies on **deterministic or probabilistic thresholds** that control adoption.
 
 
 
-Status
-------
-During the simulation, each node can be in one of two states:
-
-+--------------+--------------+
-| Status       | Code         |
-+==============+==============+
-| Inactive     | 0            |
-+--------------+--------------+
-| Active       | 1            |
-+--------------+--------------+
-
-Parameters
-----------
-+------------------+------------------------------+---------------+-----------+----------------------------------------------------------------+
-| Name             | Value Type                   | Default       | Mandatory | Description                                                    |
-+==================+==============================+===============+===========+================================================================+
-| data             | Data                         |               | Yes       | Graph data.                                                    |
-+------------------+------------------------------+---------------+-----------+----------------------------------------------------------------+
-| seeds            | List[int]/float in (0, 1)    |               | Yes       | Initial seed nodes or a ratio in (0, 1).                       |
-+------------------+------------------------------+---------------+-----------+----------------------------------------------------------------+
-| threshold        | float in [0, 1)              |               | Yes       | Adoption threshold per node (randomly generated if 0).         |
-+------------------+------------------------------+---------------+-----------+----------------------------------------------------------------+
-| use_weight       | Bool                         | False         | No        | Whether to use edge weights for influence aggregation.         |
-+------------------+------------------------------+---------------+-----------+----------------------------------------------------------------+
-| device           | 'cpu' / int (CUDA index)     | 'cpu'         | No        | Device to run the model on.                                    |
-+------------------+------------------------------+---------------+-----------+----------------------------------------------------------------+
-| rand_seed        | Int                          | None          | No        | Random seed for generating initial seeds (if ratio given).     |
-+------------------+------------------------------+---------------+-----------+----------------------------------------------------------------+
 
 Model Description
 -----------------
@@ -68,7 +39,28 @@ We use one Boolean indicator vector :math:`h \in \{0,1\}^N`, where :math:`h_i=1`
     \end{cases} \\[6pt]
 
 
+Status
+------
+During the simulation, each node can be in one of two states:
+
++--------------+--------------+
+| Status       | Code         |
++==============+==============+
+| Inactive     | 0            |
++--------------+--------------+
+| Active       | 1            |
++--------------+--------------+
+
+ThresholdModel
+--------------
+
+.. autoclass:: fs_gplib.Epidemics.ThresholdModel
+   :members: run_iteration, run_iterations, run_epoch, run_epochs
+   :member-order: bysource
+   :show-inheritance:
+
+
 References
 ----------
 
-.. [1]
+.. [1] Granovetter M. Threshold models of collective behavior[J]. American journal of sociology, 1978, 83(6): 1420-1443.

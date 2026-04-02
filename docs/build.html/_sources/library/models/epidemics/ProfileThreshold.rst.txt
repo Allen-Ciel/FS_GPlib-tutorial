@@ -1,45 +1,9 @@
 Profile Threshold
 =================
 
-The Profile Threshold model combines the **Threshold** model with the **Profile** model to describe a social contagion process governed by two node-level attributes: a **threshold** :math:`\theta_i` and a **profile** :math:`p_i`. An inactive node can become active through two pathways: (1) **spontaneous adoption** with a fixed probability, or (2) **threshold-gated profile adoption** — the node first checks whether the fraction of its active neighbors exceeds its threshold, and if so, adopts with a probability equal to its profile value. If a node passes the threshold gate but fails the profile check, it may become **blocked** and permanently ineligible for future activation.
+The Profile Threshold model [1]_ combines the **Threshold** model with the **Profile** model to describe a social contagion process governed by two node-level attributes: a **threshold** :math:`\theta_i` and a **profile** :math:`p_i`. An inactive node can become active through two pathways: (1) **spontaneous adoption** with a fixed probability, or (2) **threshold-gated profile adoption** — the node first checks whether the fraction of its active neighbors exceeds its threshold, and if so, adopts with a probability equal to its profile value. If a node passes the threshold gate but fails the profile check, it may become **blocked** and permanently ineligible for future activation.
 
 
-
-Status
-------
-During the simulation, each node can be in one of three states:
-
-+--------------+--------------+
-| Status       | Code         |
-+==============+==============+
-| Inactive     | 0            |
-+--------------+--------------+
-| Active       | 1            |
-+--------------+--------------+
-| Blocked      | -1           |
-+--------------+--------------+
-
-Parameters
-----------
-+------------------+------------------------------+---------------+-----------+--------------------------------------------------------------------+
-| Name             | Value Type                   | Default       | Mandatory | Description                                                        |
-+==================+==============================+===============+===========+====================================================================+
-| data             | Data                         |               | Yes       | Graph data.                                                        |
-+------------------+------------------------------+---------------+-----------+--------------------------------------------------------------------+
-| seeds            | List[int]/float in (0, 1)    |               | Yes       | Initial seed nodes or a ratio in (0, 1).                           |
-+------------------+------------------------------+---------------+-----------+--------------------------------------------------------------------+
-| threshold        | float in [0, 1)              |               | Yes       | Adoption threshold per node (randomly generated if 0).             |
-+------------------+------------------------------+---------------+-----------+--------------------------------------------------------------------+
-| profile          | float in [0, 1]              |               | Yes       | Node profile value (randomly generated per node if 0).             |
-+------------------+------------------------------+---------------+-----------+--------------------------------------------------------------------+
-| adopter_rate     | float in [0, 1]              |               | Yes       | Probability of spontaneous adoption per iteration.                 |
-+------------------+------------------------------+---------------+-----------+--------------------------------------------------------------------+
-| blocked_rate     | float in [0, 1]              |               | Yes       | Probability of becoming blocked upon failed profile check.         |
-+------------------+------------------------------+---------------+-----------+--------------------------------------------------------------------+
-| device           | 'cpu' / int (CUDA index)     | 'cpu'         | No        | Device to run the model on.                                        |
-+------------------+------------------------------+---------------+-----------+--------------------------------------------------------------------+
-| rand_seed        | Int                          | None          | No        | Random seed for generating initial seeds (if ratio given).         |
-+------------------+------------------------------+---------------+-----------+--------------------------------------------------------------------+
 
 Model Description
 -----------------
@@ -94,8 +58,32 @@ The update of the system at step :math:`k` is decomposed into three stages:
         b_i^{(k-1)}, & \text{otherwise},
     \end{cases}
 
+Status
+------
+During the simulation, each node can be in one of three states:
+
++--------------+--------------+
+| Status       | Code         |
++==============+==============+
+| Inactive     | 0            |
++--------------+--------------+
+| Active       | 1            |
++--------------+--------------+
+| Blocked      | -1           |
++--------------+--------------+
+
+
+ProfileThresholdModel   
+---------------------
+
+.. autoclass:: fs_gplib.Epidemics.ProfileThresholdModel
+   :members: run_iteration, run_iterations, run_epoch, run_epochs
+   :member-order: bysource
+   :show-inheritance:
+
 
 References
 ----------
 
-.. [1] 
+.. [1] Milli L, Rossetti G, Pedreschi D, et al. Information diffusion in complex networks: The active/passive conundrum[C]//International Conference on Complex Networks and their Applications. Cham: Springer International Publishing, 2017: 305-313.
+

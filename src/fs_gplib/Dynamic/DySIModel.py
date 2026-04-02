@@ -5,6 +5,40 @@ from .base import DiffusionModel, Diffusion_process
 from ..utils import *
 
 class DySIModel(DiffusionModel):
+    r"""Dynamic SI (DySI) epidemic model on **time-varying networks** (dynamic network models).
+
+    This model extends the classical static SI dynamics (see the epidemic ``SIModel``) to a
+    sequence of graph snapshots :math:`\{G^{(k)}=(V,E^{(k)})\}_{k=1}^{T}`: at step :math:`k`
+    infections propagate only along edges present in :math:`E^{(k)}`.  Each infected neighbor
+    transmits with probability :math:`\beta` (optionally scaled by per-edge weights in
+    *edge_attr_list*); once infected, a node stays infected.
+
+    The number of simulation steps cannot exceed the number of snapshots ``len(edge_index_list)``.
+    Supply an explicit node tensor *x* (shape ``(N, 1)``) and lists *edge_index_list* /
+    *edge_attr_list* instead of a single PyG ``Data`` object.
+
+    :param x: Node feature tensor of shape ``(N, 1)`` (node count :math:`N` is inferred from the
+        leading dimension).
+    :type x: torch.Tensor
+    :param edge_index_list: One ``edge_index`` tensor per snapshot, length :math:`T`, defining
+        :math:`E^{(k)}` at each step.
+    :type edge_index_list: list[torch.Tensor]
+    :param seeds: Initially infected nodes: a list of integer node IDs, or a float in ``[0, 1)``
+        to infect that fraction of nodes chosen uniformly at random.
+    :type seeds: list[int] | float
+    :param infection_beta: Per-contact infection probability :math:`\beta \in [0, 1]`.
+    :type infection_beta: float
+    :param device: *(optional)* ``'cpu'`` or a CUDA device index.
+        Defaults to ``'cpu'``.
+    :type device: str | int
+    :param rand_seed: *(optional)* Random seed used when *seeds* is a float.
+        Defaults to ``None``.
+    :type rand_seed: int | None
+    :param edge_attr_list: *(optional)* One edge-weight tensor per snapshot, aligned with
+        *edge_index_list*.  If ``None``, all edge weights are treated as ``1``.
+    :type edge_attr_list: list[torch.Tensor] | None
+    """
+
     def __init__(self,
                  x,
                  edge_index_list,
@@ -35,10 +69,29 @@ class DySIModel(DiffusionModel):
 
 
     def run_iteration(self):
+        """Advance the epidemic by one snapshot step.
+
+        The internal ``node_status`` is updated so that subsequent calls continue from the latest
+        state.  Requires at least one remaining snapshot.
+
+        :return: State tensor after that step, shape ``(1, 1, N)``.
+        :rtype: torch.Tensor
+        """
         return self.run_iterations(1)
 
 
     def run_iterations(self, times):
+        """Run *times* consecutive snapshot steps on the evolving graph sequence.
+
+        The internal ``node_status`` is updated to the state after the last step.  Requires
+        ``len(edge_index_list) - t >= times`` where :math:`t` is the number of steps already
+        consumed on this process.
+
+        :param times: Number of snapshots to advance (must not exceed remaining snapshots).
+        :type times: int
+        :return: States after each of the *times* steps, stacked with shape ``(times, 1, N)``.
+        :rtype: torch.Tensor
+        """
         try:
             check_int(times=times)
         except ValueError as e:
@@ -53,9 +106,31 @@ class DySIModel(DiffusionModel):
         return final
 
     def run_epoch(self):
+        """Run one Monte-Carlo realisation over the **full** snapshot sequence.
+
+        The process internal step counter is reset; node states are **re-initialised** before the epoch starts.
+
+        :return: State trajectory over all snapshots, shape ``(T, 1, N)`` with
+            :math:`T =` ``len(edge_index_list)``.
+        :rtype: torch.Tensor
+        """
         return self.run_epochs(1, 1)
 
     def run_epochs(self, epochs, batch_size=200):
+        """Run multiple independent Monte-Carlo realisations in batches.
+
+        For each realisation the snapshot index is reset to the beginning and the epidemic is
+        evolved through **all** snapshots.  Node states are **re-initialised** before the run.
+
+        :param epochs: Total number of independent realisations.
+        :type epochs: int
+        :param batch_size: *(optional)* Parallel epochs per batch.
+            Defaults to ``200``.
+        :type batch_size: int
+        :return: Trajectories for all realisations, shape ``(T, E, N)`` where
+            :math:`T =` ``len(edge_index_list)`` and :math:`E` is *epochs*.
+        :rtype: torch.Tensor
+        """
 
         try:
             check_int(epochs=epochs, batch_size=batch_size)

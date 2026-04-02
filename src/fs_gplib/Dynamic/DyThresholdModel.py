@@ -5,6 +5,42 @@ from .base import DiffusionModel, Diffusion_process
 from ..utils import *
 
 class DyThresholdModel(DiffusionModel):
+    r"""Dynamic Threshold (DyThreshold) diffusion model on time-varying networks.
+
+    This model extends the classical Threshold process to a sequence of graph
+    snapshots :math:`\{G^{(k)}=(V,E^{(k)})\}_{k=1}^{T}`. Each node is either
+    inactive or active. At snapshot :math:`k`, an inactive node becomes active
+    once the influence aggregated from its active neighbors in the **current**
+    snapshot reaches its node threshold; active nodes remain active thereafter.
+
+    The number of simulation steps cannot exceed ``len(edge_index_list)``.
+
+    :param x: Node tensor of shape ``(N, 1)``.
+    :type x: torch.Tensor
+    :param edge_index_list: List of snapshot ``edge_index`` tensors, length
+        :math:`T`.
+    :type edge_index_list: list[torch.Tensor]
+    :param seeds: Initially active nodes: list of node IDs or a float in
+        ``[0,1)``.
+    :type seeds: list[int] | float
+    :param threshold: Node adoption threshold in ``[0,1]``. If ``threshold > 0``, 
+        every node uses that same threshold value; if ``threshold == 0``, 
+        node thresholds are sampled uniformly in :math:`[0,1)`;
+        during batched multi-epoch execution, random thresholds are re-sampled
+        independently for each epoch batch when ``threshold == 0``.
+
+    :type threshold: float
+    :param device: *(optional)* ``'cpu'`` or a CUDA device index. Defaults to
+        ``'cpu'``.
+    :type device: str | int
+    :param rand_seed: *(optional)* Random seed used when *seeds* is a float.
+        Defaults to ``None``.
+    :type rand_seed: int | None
+    :param edge_attr_list: *(optional)* Snapshot edge weights aligned with
+        *edge_index_list*.
+    :type edge_attr_list: list[torch.Tensor] | None
+    """
+
     def __init__(self,
                  x,
                  edge_index_list,
@@ -44,9 +80,32 @@ class DyThresholdModel(DiffusionModel):
 
 
     def run_iteration(self):
+        """Advance the diffusion by one snapshot step.
+
+        The internal ``node_status`` is updated so that subsequent calls
+        continue from the latest state. Requires at least one remaining
+        snapshot.
+
+        :return: Node states after that step, shape ``(1, 1, N)``
+            (values ``0`` or ``1``).
+        :rtype: torch.Tensor
+        """
         return self.run_iterations(1)
 
     def run_iterations(self, times):
+        """Run *times* consecutive snapshot steps on the evolving graph sequence.
+
+        The internal ``node_status`` is updated to the state after the last
+        step. Requires ``len(edge_index_list) - t >= times`` where :math:`t` is
+        the number of steps already consumed on this process.
+
+        :param times: Number of snapshots to advance (must not exceed remaining
+            snapshots).
+        :type times: int
+        :return: Node states after each step, stacked with shape
+            ``(times, 1, N)`` (values ``0`` or ``1``).
+        :rtype: torch.Tensor
+        """
         try:
             check_int(times=times)
         except ValueError as e:
@@ -62,9 +121,37 @@ class DyThresholdModel(DiffusionModel):
         return final
 
     def run_epoch(self):
+        """Run one Monte-Carlo realisation over the **full** snapshot sequence.
+
+        The process internal step counter is reset; node states are
+        **re-initialised** before the epoch starts.
+
+        :return: Node states trajectory over all snapshots, shape ``(T, 1, N)``
+            with :math:`T =` ``len(edge_index_list)`` (values ``0`` or ``1``).
+        :rtype: torch.Tensor
+        """
         return self.run_epochs(1, 1)
 
     def run_epochs(self, epochs, batch_size=200):
+        """Run multiple independent Monte-Carlo realisations in batches.
+
+        For each realisation the snapshot index is reset to the beginning and
+        the diffusion is evolved through **all** snapshots. Node states are
+        **re-initialised** before the run.
+
+        When ``threshold == 0``, random node thresholds are re-sampled
+        independently for each epoch batch.
+
+        :param epochs: Total number of independent realisations.
+        :type epochs: int
+        :param batch_size: *(optional)* Parallel epochs per batch. Defaults to
+            ``200``.
+        :type batch_size: int
+        :return: Node states trajectories for all realisations, shape
+            ``(T, E, N)`` where :math:`T =` ``len(edge_index_list)`` and
+            :math:`E` is *epochs* (values ``0`` or ``1``).
+        :rtype: torch.Tensor
+        """
 
         try:
             check_int(epochs=epochs, batch_size=batch_size)
@@ -137,4 +224,3 @@ class DyThresholdModel_process(Diffusion_process):
 
     def message(self, x_j):
         return self.edge_attr * x_j
-

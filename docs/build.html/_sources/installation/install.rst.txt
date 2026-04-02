@@ -1,0 +1,41 @@
+Install
+=======
+
+This guide explains how to install FS_GPlib from source or via cloning the repository.
+
+Clone the Repository
+--------------------
+
+First, clone the FS_GPlib project from GitHub:
+
+.. code-block:: bash
+
+   git clone None
+   cd FS_GPlib
+
+Then install the required dependencies:
+
+.. code-block:: bash
+
+   pip install -r requirements.txt
+
+Install in Editable Mode (Optional)
+-----------------------------------
+
+If you want to make modifications to the source code and have them reflected without reinstalling, use editable mode:
+
+.. code-block:: bash
+
+   pip install -e .
+
+Test Installation
+-----------------
+
+To verify the installation was successful, you can try importing the library in Python:
+
+.. code-block:: python
+
+   import fs_gplib
+   print(fs_gplib.__version__)
+
+If no errors are raised, the installation is complete.

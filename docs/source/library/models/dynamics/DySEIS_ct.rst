@@ -24,51 +24,6 @@ This design models non-memoryless incubation and recovery while preserving
 snapshot-based interaction dynamics.
 
 
-Status
-------
-During the simulation, a node can be in one of the following states:
-
-+------------+--------------+
-| Status     | Code         |
-+============+==============+
-| Susceptible| 0            |
-+------------+--------------+
-| Infected   | 1            |
-+------------+--------------+
-| Exposed    | 2            |
-+------------+--------------+
-
-Parameters
-----------
-+----------------+------------------------------+---------------+-----------+--------------------------------------------------+
-| Name           | Value Type                   | Default       | Mandatory | Description                                      |
-+================+==============================+===============+===========+==================================================+
-| x              | Tensor                       |               | Yes       | Node tensor of shape :math:`(N, 1)`.             |
-+----------------+------------------------------+---------------+-----------+--------------------------------------------------+
-| edge_index_list| List[Tensor]                 |               | Yes       | List of edge index tensors, one per snapshot.    |
-+----------------+------------------------------+---------------+-----------+--------------------------------------------------+
-| seeds          | List[int]/float in (0, 1)    |               | Yes       | List of seed node IDs or a ratio in (0, 1).      |
-+----------------+------------------------------+---------------+-----------+--------------------------------------------------+
-| infection_beta | float in [0, 1]              |               | Yes       | Exposure probability (S→E).                      |
-+----------------+------------------------------+---------------+-----------+--------------------------------------------------+
-| latent_alpha   | float in [0, 1]              |               | Yes       | Hazard parameter for E→I progression.            |
-+----------------+------------------------------+---------------+-----------+--------------------------------------------------+
-| removal_gamma  | float in [0, 1]              |               | Yes       | Hazard parameter for I→S recovery.               |
-+----------------+------------------------------+---------------+-----------+--------------------------------------------------+
-| device         | 'cpu'/int (CUDA index)       | 'cpu'         | No        | Device to run the model on.                      |
-+----------------+------------------------------+---------------+-----------+--------------------------------------------------+
-| edge_attr_list | List[Tensor]                 | None          | No        | List of edge weight tensors, one per snapshot.   |
-+----------------+------------------------------+---------------+-----------+--------------------------------------------------+
-| rand_seed      | Int                          | None          | No        | Random seed for generating the seed set.         |
-+----------------+------------------------------+---------------+-----------+--------------------------------------------------+
-
-.. note::
-
-   Unlike the static :doc:`SEIS_ct <../epidemics/SEIS_ct>` model which accepts a
-   single graph object, DySEIS_ct requires a node tensor ``x`` and a **snapshot list**
-   ``edge_index_list``. Optional edge weights are provided by ``edge_attr_list``
-   with one tensor per snapshot.
-
 
 Implementation
 --------------
@@ -130,3 +85,32 @@ As in other dynamic models, neighbors :math:`N^{(k)}(i)` and optional edge weigh
 The total number of iterations is bounded by :math:`T =` ``len(edge_index_list)``.
 
 
+
+Status
+------
+During the simulation, a node can be in one of the following states:
+
++------------+--------------+
+| Status     | Code         |
++============+==============+
+| Susceptible| 0            |
++------------+--------------+
+| Infected   | 1            |
++------------+--------------+
+| Exposed    | 2            |
++------------+--------------+
+
+DySEISctModel
+-------------
+
+.. autoclass:: fs_gplib.Dynamic.DySEISctModel
+   :members: run_iteration, run_iterations, run_epoch, run_epochs
+   :member-order: bysource
+   :show-inheritance:
+
+.. note::
+
+   Unlike the static :doc:`SEIS_ct <../epidemics/SEIS_ct>` model which accepts a
+   single graph object, DySEIS_ct requires a node tensor ``x`` and a **snapshot list**
+   ``edge_index_list``. Optional edge weights are provided by ``edge_attr_list``
+   with one tensor per snapshot.

@@ -10,34 +10,6 @@ The Q-Voter model [1]_ is a nonlinear extension of the classical Voter model tha
 4) otherwise, with probability :math:`\epsilon` (independence), node :math:`i` flips its current opinion; with probability :math:`1-\epsilon`, it retains its current opinion.
 
 
-Status
-------
-During the simulation, a node holds a binary opinion value:
-
-+------------+----------------+
-| Status     | Value          |
-+============+================+
-| Opinion    | 0 or 1         |
-+------------+----------------+
-
-Parameters
-----------
-+------------+------------------------------+---------------+----------+---------------------------------------------------------------------------+
-| Name       | Type                         | Default       | Required | Description                                                               |
-+============+==============================+===============+==========+===========================================================================+
-| data       | Data                         |               | Yes      | Data of graph.                                                            |
-+------------+------------------------------+---------------+----------+---------------------------------------------------------------------------+
-| seeds      | List[int] / None             |               | Yes      | List of initially activated node indices (opinion = 1) or None.           |
-+------------+------------------------------+---------------+----------+---------------------------------------------------------------------------+
-| q          | Int (> 0)                    |               | Yes      | Number of influence samples (social reinforcement group size).            |
-+------------+------------------------------+---------------+----------+---------------------------------------------------------------------------+
-| epsilon    | float in [0, 1]              |               | Yes      | Independence (noise) probability for non-unanimous interactions.          |
-+------------+------------------------------+---------------+----------+---------------------------------------------------------------------------+
-| device     | 'cpu'/int (CUDA index)       | 'cpu'         | No       | Device to run the model on.                                               |
-+------------+------------------------------+---------------+----------+---------------------------------------------------------------------------+
-| rand_seed  | Int                          | None          | No       | Random seed for reproducibility.                                          |
-+------------+------------------------------+---------------+----------+---------------------------------------------------------------------------+
-
 Implementation
 --------------
 The Q-Voter model extends the Voter model by introducing a nonlinear social reinforcement mechanism: a group of :math:`q` sampled opinions must reach unanimous agreement before the focal node conforms. When unanimity is not achieved, the independence parameter :math:`\epsilon` governs the probability of a random opinion flip, preventing the system from freezing. Self-loops are removed to prevent a node from influencing itself.
@@ -72,7 +44,27 @@ The Q-Voter model extends the Voter model by introducing a nonlinear social rein
 
 where :math:`U_i \sim \mathrm{Uniform}(0,1)` is an independent random number and :math:`1 - h_i^{(k-1)}` denotes the flip of the current opinion. Drawing :math:`q` samples from :math:`\mathrm{Bernoulli}(m_i^{(k)})` is statistically equivalent to sampling :math:`q` neighbors with replacement and reading their opinions. When :math:`q = 1`, the single sample is always trivially unanimous and the model reduces to the standard Voter model. As :math:`q` increases, unanimous agreement becomes harder to achieve, increasing the role of the independence parameter :math:`\epsilon`. All other nodes retain their current opinions.
 
+
+Status
+------
+During the simulation, a node holds a binary opinion value:
+
++------------+----------------+
+| Status     | Value          |
++============+================+
+| Opinion    | 0 or 1         |
++------------+----------------+
+
+QVoterModel
+-----------
+
+.. autoclass:: fs_gplib.Opinions.QVoterModel
+   :members: run_iteration, run_iterations, run_epoch, run_epochs
+   :member-order: bysource
+   :show-inheritance:
+
 References
 ----------
 
-.. [1]
+.. [1] Castellano C, Muñoz M A, Pastor-Satorras R. Nonlinear q-voter model[J]. Physical Review E—Statistical, Nonlinear, and Soft Matter Physics, 2009, 80(4): 041129.
+

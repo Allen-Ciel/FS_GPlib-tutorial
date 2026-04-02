@@ -1,0 +1,545 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SWIR( TBD) 系统 &mdash; FS_GPlib-tutorial v0.1.0 文档</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=f17d22cc"></script>
+      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../_static/copybutton.js?v=f281be69"></script>
+      <script src="../../../_static/translations.js?v=beaddf03"></script>
+      <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      <script src="../../../_static/my_custom.js?v=52495bde"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../../../genindex.html" />
+    <link rel="search" title="搜索" href="../../../search.html" />
+    <link rel="next" title="阈值" href="Threshold.html" />
+    <link rel="prev" title="SEIS ct (简体中文)." href="SEIS_ct.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+  
+
+          
+          
+          <a href="../../../index.html">
+            
+              <img src="../../../_static/logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+  
+  <div class="language-switcher" style="margin: 8px 0; padding: 4px 0;">
+    <select id="language-select" onchange="switchLanguage(this.value)"
+            style="width: 100%; padding: 4px 8px; border: 1px solid #ccc; border-radius: 3px;
+                   background: #fcfcfc; font-size: 0.9em; cursor: pointer;">
+      
+      <option value="en" >
+        English
+      </option>
+      
+      <option value="zh_CN" selected>
+        中文
+      </option>
+      
+    </select>
+  </div>
+  
+
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../overview.html">概述</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../overview.html#motivation">研究动机</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../overview.html#core-capabilities">核心能力</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../overview.html#project-structure">项目结构</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../overview.html#get-started">快速开始</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">安装</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../installation.html#environment">环境配置</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../installation.html#python-version">Python 版本</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../installation.html#required-packages">必需的依赖包</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../installation.html#gpu-support-optional">GPU 支持（可选）</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../installation.html#install">安装步骤</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../installation.html#clone-the-repository">克隆仓库</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../installation.html#install-in-editable-mode-optional">以可编辑模式安装（可选）</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../installation.html#test-installation">测试安装</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorial.html">教学</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorial.html#example">示例</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../tutorial.html#import">导入</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../tutorial.html#data">数据</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../tutorial.html#seeds">种子</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../tutorial.html#instantiate-model">证明模式</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../tutorial.html#execute-simulation">执行模拟</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorial.html#example-code">示例代码</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorial.html#about-batch">关于批次</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../tutorial.html#how-to-use-batch">如何使用批量</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorial.html#about-distributed">关于分配</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../tutorial.html#how-to-use-distributed-computing">如何使用分布式计算</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">图书馆</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../../epidemic.html">流行病模式</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="SI.html">高级</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="SI.html#status">状态</a></li>
+<li class="toctree-l4"><a class="reference internal" href="SI.html#parameters">参数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="SI.html#implementation">执行情况</a></li>
+<li class="toctree-l4"><a class="reference internal" href="SI.html#references">参考资料</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="SIS.html">信息系统</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="SIS.html#status">状态</a></li>
+<li class="toctree-l4"><a class="reference internal" href="SIS.html#parameters">参数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="SIS.html#implementation">执行情况</a></li>
+<li class="toctree-l4"><a class="reference internal" href="SIS.html#references">参考资料</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="SIR.html">处长</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="SIR.html#status">状态</a></li>
+<li class="toctree-l4"><a class="reference internal" href="SIR.html#parameters">参数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="SIR.html#implementation">执行情况</a></li>
+<li class="toctree-l4"><a class="reference internal" href="SIR.html#references">参考资料</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="SEIR.html">叙利亚</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="SEIR.html#status">状态</a></li>
+<li class="toctree-l4"><a class="reference internal" href="SEIR.html#parameters">参数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="SEIR.html#implementation">执行情况</a></li>
+<li class="toctree-l4"><a class="reference internal" href="SEIR.html#references">参考资料</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="SEIR_ct.html">缩写( C)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="SEIR_ct.html#status">状态</a></li>
+<li class="toctree-l4"><a class="reference internal" href="SEIR_ct.html#parameters">参数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="SEIR_ct.html#implementation">执行情况</a></li>
+<li class="toctree-l4"><a class="reference internal" href="SEIR_ct.html#references">参考资料</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="SEIS.html">环境信息系统</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="SEIS.html#status">状态</a></li>
+<li class="toctree-l4"><a class="reference internal" href="SEIS.html#parameters">参数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="SEIS.html#implementation">执行情况</a></li>
+<li class="toctree-l4"><a class="reference internal" href="SEIS.html#references">参考资料</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="SEIS_ct.html">SEIS  ct (简体中文).</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="SEIS_ct.html#status">状态</a></li>
+<li class="toctree-l4"><a class="reference internal" href="SEIS_ct.html#parameters">参数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="SEIS_ct.html#implementation">执行情况</a></li>
+<li class="toctree-l4"><a class="reference internal" href="SEIS_ct.html#references">参考资料</a></li>
+</ul>
+</li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">SWIR( TBD) 系统</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#status">状态</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#parameters">参数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#implementation">执行情况</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#references">参考资料</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Threshold.html">阈值</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Threshold.html#status">状态</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Threshold.html#parameters">参数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Threshold.html#model-description">模型描述</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Threshold.html#references">参考资料</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="KThreshold.html">Kertez 阈值</a></li>
+<li class="toctree-l3"><a class="reference internal" href="IndependentCascades.html">独立阶梯</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="IndependentCascades.html#status">状态</a></li>
+<li class="toctree-l4"><a class="reference internal" href="IndependentCascades.html#parameters">参数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="IndependentCascades.html#implementation">执行情况</a></li>
+<li class="toctree-l4"><a class="reference internal" href="IndependentCascades.html#references">参考资料</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Profile.html">简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ProfileThreshold.html">配置阈值</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../opinion.html">动态模型</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../opinions/Voter.html">选民</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../opinions/QVoter.html">Q 变量</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../opinions/MajorityRule.html">多数规则</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../opinions/Snajzd.html">斯纳日德</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../opinions/HK.html">黑塞尔曼-克劳斯</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../opinions/HK.html#status">状态</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../opinions/HK.html#parameters">参数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../opinions/HK.html#implementation">执行情况</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../opinions/HK.html#references">参考资料</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../opinions/WHK.html">赫格塞尔曼-克劳斯</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../dynamic_network.html">动态网络模型</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../dynamics/DySI.html">DySI 系统</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dynamics/DySIS.html">信息系统</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dynamics/DySIR.html">DySIR 编辑器</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dynamics/DySEIR.html">戴赛尔</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dynamics/DySEIR_ct.html">缩写</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dynamics/DySEIS.html">DYSEIS 数据交换系统</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dynamics/DySEIS_ct.html">DySEIS ct (日语).</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dynamics/DySWIR.html">DySWIR 编辑器</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dynamics/DyThreshold.html">危险</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dynamics/DyKThreshold.html">发展统计</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advanced.html">高级</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../advanced.html#distributed-computing">分布式计算</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../advanced.html#other-functions-and-parameters">其他职能和参数</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../custom_model.html">自定义模式</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../custom_model.html#example">示例</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../custom_model.html#import">导入</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../custom_model.html#data">数据</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../custom_model.html#model">型号</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../custom_model.html#about-batch">关于批次</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../custom_model.html#how-to-use-batch">如何使用批量</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../custom_model.html#about-distributed">关于分配</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../custom_model.html#how-to-use-distributed-computing">如何使用分布式计算</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../bibliography.html">文献目录</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../bibliography.html#example">示例</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../bibliography.html#import">导入</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../bibliography.html#data">数据</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../bibliography.html#model">型号</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../bibliography.html#about-batch">关于批次</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../bibliography.html#how-to-use-batch">如何使用批量</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../bibliography.html#about-distributed">关于分配</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../bibliography.html#how-to-use-distributed-computing">如何使用分布式计算</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../rst_template.html">RST 模板示例</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../rst_template.html#section-heading">科长</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../rst_template.html#lists">列表</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../rst_template.html#code-block">代码块</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../rst_template.html#table-example">表格示例</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../rst_template.html#hyperlink">超链接</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../rst_template.html#toctree">托克特里语Name</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../overview.html">概述</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../overview.html#motivation">研究动机</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../overview.html#core-capabilities">核心能力</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../overview.html#project-structure">项目结构</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../overview.html#get-started">快速开始</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../installation.html">安装</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../installation.html#environment">环境配置</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../../../installation.html#python-version">Python 版本</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../installation.html#required-packages">必需的依赖包</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../installation.html#gpu-support-optional">GPU 支持（可选）</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../../installation.html#install">安装步骤</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../../../installation.html#clone-the-repository">克隆仓库</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../installation.html#install-in-editable-mode-optional">以可编辑模式安装（可选）</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../installation.html#test-installation">测试安装</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../rst_template.html#admonitions">示意</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../rst_template.html#footnotes">脚注</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api_example.html">API 文档模板</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../api_example.html#mathematical-formulae">数学公式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api_example.html#function-documentation-manual">函数文档( 手册)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../api_example.html#calculate_energy"><code class="docutils literal notranslate"><span class="pre">calculate_energy()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api_example.html#class-documentation-manual">类文档( 手册)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../api_example.html#GravNetConv"><code class="docutils literal notranslate"><span class="pre">GravNetConv</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api_example.html#autodoc-example">自动doc 示例</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">FS_GPlib-tutorial</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">图书馆</a></li>
+          <li class="breadcrumb-item"><a href="../../epidemic.html">流行病模式</a></li>
+      <li class="breadcrumb-item active">SWIR( TBD) 系统</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/Allen-Ciel/FS_GPlib-tutorial/blob/docs/source/library/models/epidemics/SWIR.rst" class="fa fa-github"> 在 GitHub 上编辑</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="swir-tbd">
+<h1>SWIR( TBD) 系统<a class="headerlink" href="#swir-tbd" title="Link to this heading"></a></h1>
+<p>SWIR模型[1] 扩展经典的SIR框架,在可感知(S)和受感染(I)之间引入**微弱(W)**状态. 感染只通过相邻节点之间的联系在图:<cite>G=(V,E)'中传播。 每个节点在四个状态中之一: 发音:`S'(疑似),发音:`W'(微弱),发音:`I'(感染),或发音:`R'(恢复). 在高水平上,易感节点可以被其感染的邻居削弱或直接感染;弱节点随后会感染;感染的节点恢复并免疫(R). 该模型以3个每接触率参数::math:</cite>kappa'(直接感染),math:<cite>mu'(微弱),math:</cite>nu'(微弱感染).</p>
+<section id="status">
+<h2>状态<a class="headerlink" href="#status" title="Link to this heading"></a></h2>
+<p>在模拟期间,一个节点可以处于以下状态之一: 1.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>状态</p></th>
+<th class="head"><p>代码</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>可疑</p></td>
+<td><p>0 个</p></td>
+</tr>
+<tr class="row-odd"><td><p>感染</p></td>
+<td><p>页:1</p></td>
+</tr>
+<tr class="row-even"><td><p>变弱</p></td>
+<td><p>2个</p></td>
+</tr>
+<tr class="row-odd"><td><p>已恢复</p></td>
+<td><p>3个</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="parameters">
+<h2>参数<a class="headerlink" href="#parameters" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>名称</p></th>
+<th class="head"><p>数值类型</p></th>
+<th class="head"><p>默认</p></th>
+<th class="head"><p>强制性</p></th>
+<th class="head"><p>说明</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>数据</p></td>
+<td><p>数据</p></td>
+<td></td>
+<td><p>对</p></td>
+<td><p>图表数据。</p></td>
+</tr>
+<tr class="row-odd"><td><p>种子</p></td>
+<td><p>列表[int]/浮动在(0, 1)中</p></td>
+<td></td>
+<td><p>对</p></td>
+<td><p>种子节点ID或比例(0,1).</p></td>
+</tr>
+<tr class="row-even"><td><p>app</p></td>
+<td><p>在 [0, 1] 中浮动</p></td>
+<td></td>
+<td><p>对</p></td>
+<td><p>每一次接触的直接感染概率(S-I)。</p></td>
+</tr>
+<tr class="row-odd"><td><p>吴</p></td>
+<td><p>在 [0, 1] 中浮动</p></td>
+<td></td>
+<td><p>对</p></td>
+<td><p>降低每次接触的概率(S W)。 mu+kappa &lt; 1 (英语).</p></td>
+</tr>
+<tr class="row-even"><td><p>无效</p></td>
+<td><p>在 [0, 1] 中浮动</p></td>
+<td></td>
+<td><p>对</p></td>
+<td><p>每一次接触的弱到感染概率(W I).</p></td>
+</tr>
+<tr class="row-odd"><td><p>重复时间( T)</p></td>
+<td><p>输入</p></td>
+<td><p>页:1</p></td>
+<td><p>没有</p></td>
+<td><p>要运行的最大模拟步骤数 。</p></td>
+</tr>
+<tr class="row-even"><td><p>设备</p></td>
+<td><p>“ cpu” / int( CUDA 指数)</p></td>
+<td><p>&quot;cpu&quot; (英语).</p></td>
+<td><p>没有</p></td>
+<td><p>运行模型的设备 。</p></td>
+</tr>
+<tr class="row-odd"><td><p>使用量  重量</p></td>
+<td><p>布尔</p></td>
+<td><p>虚假</p></td>
+<td><p>没有</p></td>
+<td><p>是否使用边重 。</p></td>
+</tr>
+<tr class="row-even"><td><p>兰德种子</p></td>
+<td><p>输入</p></td>
+<td><p>无</p></td>
+<td><p>没有</p></td>
+<td><p>生成初始种子集的随机种子 。</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="implementation">
+<h2>执行情况<a class="headerlink" href="#implementation" title="Link to this heading"></a></h2>
+<p>节点过渡遵循规则 :</p>
+<ol class="arabic simple">
+<li><p>如果:math:<cite>S ' 州节点有:math:`I ' 州邻居,i) 每一个:math:`I ' 州邻居暴露:`S ' 州节点为`W ' ,概率为:math:`</cite>(S W)**(或ii) 每一个:math:<cite>I ' 州邻居暴露:`S ' 州节点为`I',概率为:`</cite>(S I)**;</p></li>
+<li><p><span class="math notranslate nohighlight">\(W ' 州节点有:math:`我'州邻居,每个:math:`我'州邻居揭露:math:`W'州节点有概率:math:`\)</span>nu ' <strong>(W I)</strong>;</p></li>
+<li><p>:math:<a href="#id1"><span class="problematic" id="id2">`</span></a>I ' 状态节点恢复到:math:<a href="#id3"><span class="problematic" id="id4">`</span></a>R ' 状态,概率1**(I R)**。</p></li>
+</ol>
+<a class="reference internal image-reference" href="../../../_images/SWIR-state.png"><img alt="SWIR 模型图" class="align-center" src="../../../_images/SWIR-state.png" style="width: 50%;" />
+</a>
+<p>我们代表三个布尔指标矢量的节点状态:<a href="#id1"><span class="problematic" id="id2">`</span></a>h, w, rin {0, 1}^n'。 让:math:<a href="#id3"><span class="problematic" id="id4">`</span></a>N(i)'成为邻接的一组节点:<a href="#id5"><span class="problematic" id="id6">`</span></a>i'。 <a href="#id7"><span class="problematic" id="id8">`</span></a>k'分以下几个阶段进行(匹配参考执行):</p>
+<ul class="simple">
+<li><p>:math:<a href="#id1"><span class="problematic" id="id2">`</span></a>h i=1'表示节点:<a href="#id3"><span class="problematic" id="id4">`</span></a>i'表示&quot;感染&quot;或&quot;微弱&quot;;`h i=0'表示&quot;疑似&quot;或&quot;恢复&quot;.</p></li>
+<li><p>:math:<a href="#id1"><span class="problematic" id="id2">`</span></a>(h i,w i,r i)=(1,0)'表示“感染者”,math:<a href="#id3"><span class="problematic" id="id4">`</span></a>(h i,w i,r i)=(1,1,0)'表示“弱化”。</p></li>
+<li><p>:math:<a href="#id1"><span class="problematic" id="id2">`</span></a>(h i,w i,r i)=(0,0,1)'表示&quot;恢复&quot;,&quot;(h i,w i,r i)=(0,0)&quot;表示&quot;可接受&quot;.</p></li>
+</ul>
+<ol class="arabic simple">
+<li><ol class="arabic simple">
+<li><p>每个受感染的邻居:math:节点的`j':math:<a href="#id1"><span class="problematic" id="id2">`</span></a>i ' 传递日志概率贡献</p></li>
+</ol>
+</li>
+</ol>
+<p>每个边缘:<a href="#id1"><span class="problematic" id="id2">`</span></a>jto i',感染的邻居对日志存活作出贡献;节点的每步感染概率:<a href="#id3"><span class="problematic" id="id4">`</span></a>i'是:</p>
+<div class="math notranslate nohighlight">
+\[m {ji}^{(k)}=\ mathbf{1}\!\左(h j^{(k-1)}\land w j^{(k-1)\0\右)\cdot\log(1-\kappa),\qquad
+I i^{(k)}=1 -\exp\!\左(\sum {j\in N(i)}m {ji}^{(k)}\右),\]</div>
+<p>仅适用于目前易发而不回收的节点。</p>
+<ol class="arabic simple" start="2">
+<li><p>** 擦伤(S-W)**</p></li>
+</ol>
+<p>类似地,被削弱的概率是</p>
+<div class="math notranslate nohighlight">
+\[\ glassintilde{ m} {ji}^{(k)} =\ mathbf{1}\!\ 左 (h j^{(k-1)}\land w j^{(k-1)}\cdot\log(1-\mu),\qquad
+W i^{(k)}=1 -\exp\!\左(\sum {j\in N(i)}\glasstilde{m} {ji}^{(k)}\右),\]</div>
+<p>也只针对易发而不恢复的节点。</p>
+<ol class="arabic simple" start="3">
+<li><p>** 被感染(W I)**</p></li>
+</ol>
+<p>一个弱小的节点可能会被感染,</p>
+<div class="math notranslate nohighlight">
+\[\ gladhat{ m} {ji}^{(k)} =\ mathbf{ 1}\!\ 左 (h j^{(k-1)}\ land w j^{(k-1)}\ cdot\log(1-\nu),\qquad
+======================================================\]</div>
+<p>仅适用于目前被削弱的节点(:math:<a href="#id1"><span class="problematic" id="id2">`</span></a>w i^{(k-1)}=1')。</p>
+<ol class="arabic simple" start="4">
+<li><p>** 复原(I R)**</p></li>
+</ol>
+<p>在这一实施中,每个步骤(没有参数:math:QQgamma`)都会被感染且未微弱的节点确定恢复。 我们模拟这个</p>
+<div class="math notranslate nohighlight">
+\[r i^{(k)}= r i^{(k-1)}\;\lor\;\big(h i^{(k-1))}= 1\land w(k-1)}=0\big),\]</div>
+<p>并且恢复的节点仍然保持免疫力:它们既不被削弱,也不被再次感染。</p>
+<ol class="arabic simple" start="5">
+<li><p>** 抽样和状态更新**</p></li>
+</ol>
+<p>让 : math: 'U i^{mathrm{inf}}, U i^{mathrm{wk}}, U i^{mathrm{wi}}simmathrm{Uniform}(0,1)' 独立. 这些指标更新为:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}开始{对齐}
+w i^{(k)}\ begin{ cases} (中文(简体) ).
+1, &amp;\ text{if} w i^{(k-1)}\\\\\}\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+0, &amp;\ text{if} w i^{(k-1)}\land U i^{\mathrm{wi}} &lt; WI i^{(k)},\\\
+w i^{(k-1)}, &amp;\ text{另类},
+结束{大小写}\\\\
+h i (k)}\\ begin{ cases} (韩语)
+1, &amp;\ text{if} h i^{(k-1)}\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+1, &amp;\ text{if} w i^{(k-1)}=1\land U i^{\-mathrm{wi} &lt; WI i^{(k)},\\\
+0, &amp;\ text{if} h i^{(k-1)}\land w i^{(k-1)\0\ text{(恢复)},\\\
+h i^{(k-1)}, &amp;\ text{另类},
+结束{ cases}
+结束{对齐}\end{split}\]</div>
+<p>它反映了代码路径: S W, S I, W I, I R.</p>
+</section>
+<section id="references">
+<h2>参考资料<a class="headerlink" href="#references" title="Link to this heading"></a></h2>
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="id2" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
+</aside>
+</aside>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="页脚">
+        <a href="SEIS_ct.html" class="btn btn-neutral float-left" title="SEIS ct (简体中文)." accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="Threshold.html" class="btn btn-neutral float-right" title="阈值" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2026, Allen Guo。</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

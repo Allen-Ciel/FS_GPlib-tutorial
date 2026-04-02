@@ -5,6 +5,56 @@ from .base import DiffusionModel, Diffusion_process
 from ..utils import *
 
 class DyKerteszThresholdModel(DiffusionModel):
+    r"""Dynamic Kertesz Threshold diffusion model on time-varying networks.
+
+    This model extends the dynamic Threshold process with two additional
+    mechanisms: spontaneous adoption and blocked nodes. Diffusion evolves on a
+    snapshot sequence :math:`\{G^{(k)}=(V,E^{(k)})\}_{k=1}^{T}`. A non-blocked
+    inactive node may become active either because the influence aggregated
+    from active neighbors in the **current** snapshot reaches its threshold, or
+    because it spontaneously adopts with probability ``adopter_rate`` at that
+    step. Once activated, a node remains active.
+
+    A fraction ``percentage_blocked`` of initially inactive nodes is sampled as
+    blocked when a realisation starts. Blocked nodes never activate and are
+    reported as state ``-1`` in outputs.
+
+    Returned tensors encode states as **float**
+    values: blocked ``-1``, inactive ``0``, active ``1``.
+
+    The number of simulation steps cannot exceed ``len(edge_index_list)``.
+
+    :param x: Node tensor of shape ``(N, 1)``.
+    :type x: torch.Tensor
+    :param edge_index_list: List of snapshot ``edge_index`` tensors, length
+        :math:`T`.
+    :type edge_index_list: list[torch.Tensor]
+    :param seeds: Initially active nodes: list of node IDs or a float in
+        ``[0,1)``.
+    :type seeds: list[int] | float
+    :param threshold: Node adoption threshold in ``[0,1]``. If ``threshold > 0``, 
+        every node uses that same threshold value; if ``threshold == 0``, 
+        node thresholds are sampled uniformly in :math:`[0,1)`;
+        during batched multi-epoch execution, random thresholds are re-sampled
+        independently for each epoch batch when ``threshold == 0``.
+    :type threshold: float
+    :param adopter_rate: Spontaneous adoption probability per step for each
+        non-blocked inactive node.
+    :type adopter_rate: float
+    :param percentage_blocked: Fraction of initially inactive nodes randomly
+        designated as blocked.
+    :type percentage_blocked: float
+    :param device: *(optional)* ``'cpu'`` or a CUDA device index. Defaults to
+        ``'cpu'``.
+    :type device: str | int
+    :param rand_seed: *(optional)* Random seed used when *seeds* is a float.
+        Defaults to ``None``.
+    :type rand_seed: int | None
+    :param edge_attr_list: *(optional)* Snapshot edge weights aligned with
+        *edge_index_list*.
+    :type edge_attr_list: list[torch.Tensor] | None
+    """
+
     def __init__(self,
                  x,
                  edge_index_list,
@@ -48,10 +98,36 @@ class DyKerteszThresholdModel(DiffusionModel):
 
 
     def run_iteration(self):
+        """Advance the diffusion by one snapshot step.
+
+        The internal ``node_status`` is updated so that subsequent calls
+        continue from the latest state. Requires at least one remaining
+        snapshot. If blocked nodes have not yet been sampled for this
+        realisation, they are initialised during this call.
+
+        :return: Node states after that step, shape ``(1, 1, N)``
+            (values ``-1``, ``0``, or ``1``).
+        :rtype: torch.Tensor
+        """
         return self.run_iterations(1)
 
 
     def run_iterations(self, times):
+        """Run *times* consecutive snapshot steps on the evolving graph sequence.
+
+        The internal ``node_status`` is updated to the state after the last
+        step. Requires ``len(edge_index_list) - t >= times`` where :math:`t` is
+        the number of steps already consumed on this process. If blocked nodes
+        have not yet been sampled for this realisation, they are initialised
+        once before the first step.
+
+        :param times: Number of snapshots to advance (must not exceed remaining
+            snapshots).
+        :type times: int
+        :return: Node states after each step, stacked with shape
+            ``(times, 1, N)`` (values ``-1``, ``0``, or ``1``).
+        :rtype: torch.Tensor
+        """
         try:
             check_int(times=times)
         except ValueError as e:
@@ -68,9 +144,40 @@ class DyKerteszThresholdModel(DiffusionModel):
         return final
 
     def run_epoch(self):
+        """Run one Monte-Carlo realisation over the **full** snapshot sequence.
+
+        The process internal step counter is reset; node states are
+        **re-initialised** before the epoch starts. A new blocked-node set is
+        sampled for that realisation from initially inactive nodes.
+
+        :return: Node states trajectory over all snapshots, shape ``(T, 1, N)``
+            with :math:`T =` ``len(edge_index_list)`` (values ``-1``, ``0``,
+            or ``1``).
+        :rtype: torch.Tensor
+        """
         return self.run_epochs(1, 1)
 
     def run_epochs(self, epochs, batch_size=200):
+        """Run multiple independent Monte-Carlo realisations in batches.
+
+        For each realisation the snapshot index is reset to the beginning and
+        the diffusion is evolved through **all** snapshots. Node states are
+        **re-initialised** before the run. A blocked-node set is sampled once
+        per realisation from initially inactive nodes.
+
+        When ``threshold == 0``, random node thresholds are re-sampled
+        independently for each epoch batch.
+
+        :param epochs: Total number of independent realisations.
+        :type epochs: int
+        :param batch_size: *(optional)* Parallel epochs per batch. Defaults to
+            ``200``.
+        :type batch_size: int
+        :return: Node states trajectories for all realisations, shape
+            ``(T, E, N)`` where :math:`T =` ``len(edge_index_list)`` and
+            :math:`E` is *epochs* (values ``-1``, ``0``, or ``1``).
+        :rtype: torch.Tensor
+        """
 
         try:
             check_int(epochs=epochs, batch_size=batch_size)
@@ -174,4 +281,3 @@ class DyKerteszThresholdModel_process(Diffusion_process):
 
     def message(self, x_j):
         return self.edge_attr * x_j
-

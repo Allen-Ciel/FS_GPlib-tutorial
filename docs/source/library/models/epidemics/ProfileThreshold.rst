@@ -5,42 +5,6 @@ The Profile Threshold model [1]_ combines the **Threshold** model with the **Pro
 
 
 
-Status
-------
-During the simulation, each node can be in one of three states:
-
-+--------------+--------------+
-| Status       | Code         |
-+==============+==============+
-| Inactive     | 0            |
-+--------------+--------------+
-| Active       | 1            |
-+--------------+--------------+
-| Blocked      | -1           |
-+--------------+--------------+
-
-Parameters
-----------
-+------------------+------------------------------+---------------+-----------+--------------------------------------------------------------------+
-| Name             | Value Type                   | Default       | Mandatory | Description                                                        |
-+==================+==============================+===============+===========+====================================================================+
-| data             | Data                         |               | Yes       | Graph data.                                                        |
-+------------------+------------------------------+---------------+-----------+--------------------------------------------------------------------+
-| seeds            | List[int]/float in (0, 1)    |               | Yes       | Initial seed nodes or a ratio in (0, 1).                           |
-+------------------+------------------------------+---------------+-----------+--------------------------------------------------------------------+
-| threshold        | float in [0, 1)              |               | Yes       | Adoption threshold per node (randomly generated if 0).             |
-+------------------+------------------------------+---------------+-----------+--------------------------------------------------------------------+
-| profile          | float in [0, 1]              |               | Yes       | Node profile value (randomly generated per node if 0).             |
-+------------------+------------------------------+---------------+-----------+--------------------------------------------------------------------+
-| adopter_rate     | float in [0, 1]              |               | Yes       | Probability of spontaneous adoption per iteration.                 |
-+------------------+------------------------------+---------------+-----------+--------------------------------------------------------------------+
-| blocked_rate     | float in [0, 1]              |               | Yes       | Probability of becoming blocked upon failed profile check.         |
-+------------------+------------------------------+---------------+-----------+--------------------------------------------------------------------+
-| device           | 'cpu' / int (CUDA index)     | 'cpu'         | No        | Device to run the model on.                                        |
-+------------------+------------------------------+---------------+-----------+--------------------------------------------------------------------+
-| rand_seed        | Int                          | None          | No        | Random seed for generating initial seeds (if ratio given).         |
-+------------------+------------------------------+---------------+-----------+--------------------------------------------------------------------+
-
 Model Description
 -----------------
 
@@ -93,6 +57,29 @@ The update of the system at step :math:`k` is decomposed into three stages:
         & \land (U_i^{\mathrm{a}} \geq \alpha) \land (p_i \leq U_i^{\mathrm{p}}) \land (\beta > U_i^{\mathrm{b}}), \\[4pt]
         b_i^{(k-1)}, & \text{otherwise},
     \end{cases}
+
+Status
+------
+During the simulation, each node can be in one of three states:
+
++--------------+--------------+
+| Status       | Code         |
++==============+==============+
+| Inactive     | 0            |
++--------------+--------------+
+| Active       | 1            |
++--------------+--------------+
+| Blocked      | -1           |
++--------------+--------------+
+
+
+ProfileThresholdModel   
+---------------------
+
+.. autoclass:: fs_gplib.Epidemics.ProfileThresholdModel
+   :members: run_iteration, run_iterations, run_epoch, run_epochs
+   :member-order: bysource
+   :show-inheritance:
 
 
 References

@@ -13,35 +13,6 @@ The WHK (Weighted Hegselmann-Krause) model [1]_ extends the classical HK model b
 where :math:`\#\Gamma_\varepsilon` denotes the number of :math:`\varepsilon`-neighbors, and :math:`w_{ij}` is the influence weight of edge :math:`(i,j)\in E`. The factor :math:`(1-|h_i^{(k-1)}|)` ensures that opinions remain bounded in :math:`[-1,1]` and that opinions closer to the extremes are harder to shift.
 
 
-Status
-------
-During the simulation, a node holds a continuous opinion value:
-
-+------------+----------------+
-| Status     | Range          |
-+============+================+
-| Opinion    | Float in [-1,1]|
-+------------+----------------+
-
-Parameters
-----------
-+------------+------------------------------+---------------+----------+---------------------------------------------------------------------------+
-| Name       | Type                         | Default       | Required | Description                                                               |
-+============+==============================+===============+==========+===========================================================================+
-| data       | Data                         |               | Yes      | Data of graph.                                                            |
-+------------+------------------------------+---------------+----------+---------------------------------------------------------------------------+
-| seeds      | List[float] / None           |               | Yes      | List of initial opinion values or None to generate randomly.              |
-+------------+------------------------------+---------------+----------+---------------------------------------------------------------------------+
-| epsilon    | float in [0, 1]              |               | Yes      | Confidence bound determining which neighbors influence the opinion update.|
-+------------+------------------------------+---------------+----------+---------------------------------------------------------------------------+
-| weight     | float in [0, 1] / List[float]|               | Yes      | Influence weight applied to the neighbor average. Scalar for global       |
-|            |                              |               |          | weight, or list of per-node weights.                                      |
-+------------+------------------------------+---------------+----------+---------------------------------------------------------------------------+
-| device     | 'cpu'/int (CUDA index)       | 'cpu'         | No       | Device to run the model on.                                               |
-+------------+------------------------------+---------------+----------+---------------------------------------------------------------------------+
-| rand_seed  | Int                          | None          | No       | Random seed for generating the initial opinion values.                    |
-+------------+------------------------------+---------------+----------+---------------------------------------------------------------------------+
-
 Implementation
 --------------
 The WHK model extends the HK model by (i) weighting the neighbor average with a parameter :math:`w_{ij}` and (ii) applying a bounded update rule that keeps opinions within :math:`[-1,1]`. Similar to HK, if :math:`\#\Gamma_\varepsilon=0`, the opinion remains unchanged; otherwise it is updated via the weighted aggregation.
@@ -89,6 +60,45 @@ where :math:`\mathbf{1}(\cdot)` is the indicator function and :math:`w_{ij}` is 
     \end{aligned}
 
 The factor :math:`(1 - |h_i^{(k-1)}|)` acts as a damping term: nodes with opinions close to the boundary values :math:`\pm 1` receive smaller updates, naturally preventing the opinion from exceeding the valid range.
+
+
+Status
+------
+During the simulation, a node holds a continuous opinion value:
+
++------------+----------------+
+| Status     | Range          |
++============+================+
+| Opinion    | Float in [-1,1]|
++------------+----------------+
+
+
+WHKModel
+--------
+
+.. autoclass:: fs_gplib.Opinions.WHKModel
+   :members: run_iteration, run_iterations, run_epoch, run_epochs
+   :member-order: bysource
+   :show-inheritance:
+
+Parameters
+----------
++------------+------------------------------+---------------+----------+---------------------------------------------------------------------------+
+| Name       | Type                         | Default       | Required | Description                                                               |
++============+==============================+===============+==========+===========================================================================+
+| data       | Data                         |               | Yes      | Data of graph.                                                            |
++------------+------------------------------+---------------+----------+---------------------------------------------------------------------------+
+| seeds      | List[float] / None           |               | Yes      | List of initial opinion values or None to generate randomly.              |
++------------+------------------------------+---------------+----------+---------------------------------------------------------------------------+
+| epsilon    | float in [0, 1]              |               | Yes      | Confidence bound determining which neighbors influence the opinion update.|
++------------+------------------------------+---------------+----------+---------------------------------------------------------------------------+
+| weight     | float in [0, 1] / List[float]|               | Yes      | Influence weight applied to the neighbor average. Scalar for global       |
+|            |                              |               |          | weight, or list of per-node weights.                                      |
++------------+------------------------------+---------------+----------+---------------------------------------------------------------------------+
+| device     | 'cpu'/int (CUDA index)       | 'cpu'         | No       | Device to run the model on.                                               |
++------------+------------------------------+---------------+----------+---------------------------------------------------------------------------+
+| rand_seed  | Int                          | None          | No       | Random seed for generating the initial opinion values.                    |
++------------+------------------------------+---------------+----------+---------------------------------------------------------------------------+
 
 
 References

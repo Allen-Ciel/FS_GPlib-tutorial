@@ -8,36 +8,6 @@ Once a node becomes active, it gets **one chance** to activate each of its inact
 whether or not it succeeds, it has no more chance to activate others (**recovered**).
 
 
-Status
-------
-During the simulation, a node can be in one of the following states:
-
-+--------------+--------------+
-| Status       | Code         |
-+==============+==============+
-| Susceptible  | 0            |
-+--------------+--------------+
-| Infected     | 1            |
-+--------------+--------------+
-
-Parameters
-----------
-+------------------+------------------------------+---------------+-----------+------------------------------------------------------------+
-| Name             | Value Type                   | Default       | Mandatory | Description                                                |
-+==================+==============================+===============+===========+============================================================+
-| data             | Data                         |               | Yes       | Graph data.                                                |
-+------------------+------------------------------+---------------+-----------+------------------------------------------------------------+
-| seeds            | List[int]/float in (0, 1)    |               | Yes       | Seed node IDs or a ratio in (0, 1).                        |
-+------------------+------------------------------+---------------+-----------+------------------------------------------------------------+
-| beta             | float in [0, 1]              |               | Yes       | Infection probability per contact (activation probability).|
-+------------------+------------------------------+---------------+-----------+------------------------------------------------------------+
-| device           | 'cpu' / int (CUDA index)     | 'cpu'         | No        | Device to run the model on.                                |
-+------------------+------------------------------+---------------+-----------+------------------------------------------------------------+
-| use_weight       | Bool                         | False         | No        | Whether to use edge weights.                               |
-+------------------+------------------------------+---------------+-----------+------------------------------------------------------------+
-| rand_seed        | Int                          | None          | No        | Random seed for generating the initial seed set.           |
-+------------------+------------------------------+---------------+-----------+------------------------------------------------------------+
-
 Implementation
 --------------
 Independent Cascades is the special case of the SIR Model, where :math: `\gamma=1`.
@@ -92,6 +62,27 @@ The update of the system at step :math:`k` is decomposed into three stages:
 		r_i^{(k-1)}, & \text{otherwise}.
 	\end{cases}
     \end{aligned}
+
+Status
+------
+During the simulation, a node can be in one of the following states:
+
++--------------+--------------+
+| Status       | Code         |
++==============+==============+
+| Susceptible  | 0            |
++--------------+--------------+
+| Infected     | 1            |
++--------------+--------------+
+
+IndependentCascadesModel
+------------------------
+
+.. autoclass:: fs_gplib.Epidemics.IndependentCascadesModel
+   :members: run_iteration, run_iterations, run_epoch, run_epochs
+   :member-order: bysource
+   :show-inheritance:
+
 
 References
 ----------

@@ -6,6 +6,38 @@ from .base import DiffusionModel, Diffusion_process
 from ..utils import *
 
 class IndependentCascadesModel(DiffusionModel):
+    r"""Independent Cascades (IC) diffusion model on static graphs.
+
+    Each node starts as inactive (susceptible) or active (seed).  At every
+    step each newly active node gets exactly one chance to activate each of
+    its inactive out-neighbors independently.  After that attempt the node
+    can not activate any other nodes, but it remains *active* in the
+    final cascade outcome.
+
+    Returned node states are encoded as: 0 = susceptible/inactive,
+    1 = active/infected.
+
+    :param data: PyTorch Geometric ``Data`` object representing graph
+        :math:`G=(V,E)`.  Must contain ``edge_index`` (the edge set :math:`E`)
+        and ``num_nodes`` (:math:`|V|`).
+    :type data: torch_geometric.data.Data
+    :param seeds: Nodes whose initial state is *active*.  Pass a list of
+        node IDs, or a float in (0, 1) to activate that fraction of nodes
+        chosen uniformly at random.
+    :type seeds: list[int] | float
+    :param threshold: Per-edge activation probability.  When
+        ``threshold > 0``, every edge uses the same probability
+        :math:`p=\text{threshold}`.  When ``threshold == 0``, the model
+        assigns edge-specific probabilities :math:`p_{ji}=1/\deg_{in}(i)`.
+    :type threshold: float
+    :param device: *(optional)* ``'cpu'`` or a CUDA device index.
+        Defaults to ``'cpu'``.
+    :type device: str | int
+    :param rand_seed: *(optional)* Random seed used when *seeds* is a
+        float.  Defaults to ``None``.
+    :type rand_seed: int | None
+    """
+
     def __init__(self,
                  data,
                  seeds,
@@ -42,10 +74,27 @@ class IndependentCascadesModel(DiffusionModel):
 
 
     def run_iteration(self):
+        """Execute a single simulation step.
+
+        The internal ``node_status`` is updated so that subsequent calls continue from the latest state.
+
+        :return: Node states after one step, shape ``(1, N)``.
+        :rtype: torch.Tensor
+        """
         return self.run_iterations(1)
 
 
     def run_iterations(self, times):
+        """Execute *times* simulation steps sequentially.
+
+        The internal ``node_status`` is updated in-place so that subsequent
+        calls continue from the latest state.
+
+        :param times: Number of steps to run.
+        :type times: int
+        :return: Node states at final step, shape ``(1, N)``.
+        :rtype: torch.Tensor
+        """
         try:
             check_int(times=times)
         except ValueError as e:
@@ -59,9 +108,35 @@ class IndependentCascadesModel(DiffusionModel):
         return final
 
     def run_epoch(self, iterations_times=0):
+        """Run a single Monte-Carlo epoch (one independent realisation).
+
+        Node states are **re-initialised** before the epoch starts.
+
+        :param iterations_times: Number of simulation steps per epoch.
+            If ``0``, run until no node remains newly active.
+        :type iterations_times: int
+        :return: Node states at final step of the epoch, shape ``(1, N)``.
+        :rtype: torch.Tensor
+        """
         return self.run_epochs(1, iterations_times, 1)
 
     def run_epochs(self, epochs, iterations_times=0, batch_size=1):
+        """Run multiple independent Monte-Carlo epochs in batches.
+
+        Node states are **re-initialised** before the run.
+
+        :param epochs: Total number of independent realisations.
+        :type epochs: int
+        :param iterations_times: Number of simulation steps per epoch.
+            If ``0``, each epoch runs until no node remains newly active.
+        :type iterations_times: int
+        :param batch_size: *(optional)* Number of epochs processed
+            in parallel per batch.
+            Defaults to ``1``.
+        :type batch_size: int
+        :return: Node states at final step of all epochs, shape ``(epochs, N)``.
+        :rtype: torch.Tensor
+        """
         try:
             check_int(epochs=epochs, iterations_times=iterations_times, batch_size=batch_size)
         except ValueError as e:
@@ -117,4 +192,3 @@ class IC_process(Diffusion_process):
         return x, R_mask
     def message(self, x_j):
         return torch.log(1 - self.threshold * x_j)
-

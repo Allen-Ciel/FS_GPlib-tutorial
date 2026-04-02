@@ -135,4 +135,4 @@ which mirrors the code path: S→W, S→I, W→I, I→R.
 References
 ----------
 
-.. [1]
+.. [1] Lee D, Choi W, Kértesz J, et al. Universal mechanism for hybrid percolation transitions[J]. Scientific reports, 2017, 7(1): 5723.

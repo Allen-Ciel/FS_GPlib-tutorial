@@ -7,6 +7,38 @@ from .base import DiffusionModel, Diffusion_process
 from ..utils import *
 
 class HKModel(DiffusionModel):
+    r"""Hegselmann-Krause (HK) bounded-confidence opinion dynamics on static graphs.
+
+    Each node carries a continuous opinion :math:`h \in (-1, 1)` (initialised
+    from *seeds* or drawn uniformly at random when *seeds* is ``None``).  At
+    each step, for every node :math:`i` the set of *confidence neighbors*
+    consists of graph neighbors :math:`j` with
+    :math:`|h_i^{(k-1)} - h_j^{(k-1)}| < \varepsilon`.  If that set is
+    non-empty, :math:`h_i^{(k)}` becomes the average of their opinions; if it
+    is empty, :math:`h_i` stays unchanged.
+
+    Self-loops are removed from the edge index.
+
+    :param data: PyTorch Geometric ``Data`` representing :math:`G=(V,E)`.
+        Must provide ``edge_index`` and ``num_nodes``.
+    :type data: torch_geometric.data.Data
+    :param seeds: Initial opinion per node, length ``num_nodes``, each strictly
+        between ``-1`` and ``1``; or ``None`` to sample each component
+        independently from :math:`\mathrm{Uniform}(-1, 1)` (using *rand_seed*
+        for the RNG).
+    :type seeds: list[float] | None
+    :param epsilon: Confidence bound :math:`\varepsilon` in ``[0, 1]``; only
+        neighbors with opinion separation below this threshold contribute to
+        the update.
+    :type epsilon: float
+    :param device: *(optional)* ``'cpu'`` or a CUDA device index.
+        Defaults to ``'cpu'``.
+    :type device: str | int
+    :param rand_seed: *(optional)* Seed for the random number generator when
+        *seeds* is ``None``.  Defaults to ``None``.
+    :type rand_seed: int | None
+    """
+
     def __init__(self,
                  data,
                  seeds,
@@ -51,10 +83,28 @@ class HKModel(DiffusionModel):
 
 
     def run_iteration(self):
+        """Execute a single opinion-update step.
+
+        The internal ``node_status`` is updated so that subsequent calls
+        continue from the latest opinion configuration.
+
+        :return: Node opinions after one step, shape ``(1, N)``.
+        :rtype: torch.Tensor
+        """
         return self.run_iterations(1)
 
 
     def run_iterations(self, times):
+        """Execute *times* opinion-update steps sequentially.
+
+        The internal ``node_status`` is updated in-place so that subsequent
+        calls continue from the latest opinion configuration.
+
+        :param times: Number of steps to run.
+        :type times: int
+        :return: Node opinions at final step, shape ``(1, N)``.
+        :rtype: torch.Tensor
+        """
         try:
             check_int(times=times)
         except ValueError as e:
@@ -68,9 +118,33 @@ class HKModel(DiffusionModel):
         return final
 
     def run_epoch(self, iterations_times):
+        """Run a single Monte-Carlo epoch (one independent realisation).
+
+        Node opinions are **re-initialised** before the epoch starts.
+
+        :param iterations_times: Number of opinion-update steps per epoch.
+        :type iterations_times: int
+        :return: Node opinions at final step of the epoch, shape ``(1, N)``.
+        :rtype: torch.Tensor
+        """
         return self.run_epochs(1, iterations_times, 1)
 
     def run_epochs(self, epochs, iterations_times, batch_size=200):
+        """Run multiple independent Monte-Carlo epochs in batches.
+
+        Node opinions are **re-initialised** before the run.
+
+        :param epochs: Total number of independent realisations.
+        :type epochs: int
+        :param iterations_times: Number of opinion-update steps per epoch.
+        :type iterations_times: int
+        :param batch_size: *(optional)* Number of epochs processed
+            in parallel per batch.
+            Defaults to ``200``.
+        :type batch_size: int
+        :return: Node opinions at final step of all epochs, shape ``(epochs, N)``.
+        :rtype: torch.Tensor
+        """
 
         try:
             check_int(iterations_times=iterations_times, epochs=epochs, batch_size=batch_size)

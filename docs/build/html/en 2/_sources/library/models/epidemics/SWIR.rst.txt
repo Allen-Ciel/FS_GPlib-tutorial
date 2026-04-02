@@ -1,0 +1,138 @@
+SWIR(TBD)
+=========
+
+The SWIR Model [1]_ extends the classic SIR framework by introducing a **Weakened (W)** state between Susceptible (S) and Infected (I). Infection spreads only through links between neighboring nodes in a graph :math:`G=(V,E)`. Each node is in one of four states: :math:`S` (susceptible), :math:`W` (weakened), :math:`I` (infected), or :math:`R` (recovered).
+At a high level, a susceptible node can either be weakened or directly infected by its infected neighbors; weakened nodes can subsequently become infected; infected nodes recover and become immune (R). The model is parameterized by three per-contact rates: :math:`\kappa` (direct infection), :math:`\mu` (weakening), and :math:`\nu` (weak-to-infected).
+
+
+Status
+------
+During the simulation, a node can be in one of the following states:
+
++--------------+--------------+
+| Status       | Code         |
++==============+==============+
+| Susceptible  | 0            |
++--------------+--------------+
+| Infected     | 1            |
++--------------+--------------+
+| Weakened     | 2            |
++--------------+--------------+
+| Recovered    | 3            |
++--------------+--------------+
+
+Parameters
+----------
++------------------+------------------------------+---------------+-----------+------------------------------------------------------------+
+| Name             | Value Type                   | Default       | Mandatory | Description                                                |
++==================+==============================+===============+===========+============================================================+
+| data             | Data                         |               | Yes       | Graph data.                                                |
++------------------+------------------------------+---------------+-----------+------------------------------------------------------------+
+| seeds            | List[int]/float in (0, 1)    |               | Yes       | Seed node IDs or a ratio in (0, 1).                        |
++------------------+------------------------------+---------------+-----------+------------------------------------------------------------+
+| kappa            | float in [0, 1]              |               | Yes       | Direct infection probability per contact (S→I).            |
++------------------+------------------------------+---------------+-----------+------------------------------------------------------------+
+| mu               | float in [0, 1]              |               | Yes       | Weakening probability per contact (S→W).  mu+kappa<1       |
++------------------+------------------------------+---------------+-----------+------------------------------------------------------------+
+| nu               | float in [0, 1]              |               | Yes       | Weak-to-infected probability per contact (W→I).            |
++------------------+------------------------------+---------------+-----------+------------------------------------------------------------+
+| iterations_times | Int                          | 1             | No        | Maximum number of simulation steps to run.                 |
++------------------+------------------------------+---------------+-----------+------------------------------------------------------------+
+| device           | 'cpu'/int (CUDA index)       | 'cpu'         | No        | Device to run the model on.                                |
++------------------+------------------------------+---------------+-----------+------------------------------------------------------------+
+| use_weight       | Bool                         | False         | No        | Whether to use edge weights.                               |
++------------------+------------------------------+---------------+-----------+------------------------------------------------------------+
+| rand_seed        | Int                          | None          | No        | Random seed for generating the initial seed set.           |
++------------------+------------------------------+---------------+-----------+------------------------------------------------------------+
+
+Implementation
+--------------
+
+Node transitions follow rules:
+
+1) if a :math:`S` state node has :math:`I` state neighbors, i) each :math:`I` state neighbor exposes the :math:`S` state node to `W` with probability :math:`\mu` **(S→W)** or ii) each :math:`I` state neighbor exposes the :math:`S` state node to `I` with probability :math:`\kappa` **(S→I)**;
+2) the :math:`W` state node has :math:`I` state neighbors, each :math:`I` state neighbor exposes the :math:`W` state node with probability :math:`\nu` **(W→I)**;
+3) the :math:`I` state node is recovered to the :math:`R` state with probability 1 **(I→R)**.
+
+
+
+.. image:: ../../../images/SWIR-state.png
+   :alt: SWIR model diagram
+   :align: center
+   :width: 50%
+
+We represent node states with three Boolean indicator vectors :math:`h, w, r \in \{0,1\}^N`. Let :math:`N(i)` be the neighbor set of node :math:`i`. The update at discrete step :math:`k` is performed in the following stages (matching the reference implementation):
+
+- :math:`h_i=1` indicates node :math:`i` is ``infected`` or ``weakened``; :math:`h_i=0` indicates ``susceptible`` or ``recovered``.
+- :math:`(h_i,w_i,r_i)=(1,0,0)` denotes ``infected``, :math:`(h_i,w_i,r_i)=(1,1,0)` denotes ``weakened``.
+- :math:`(h_i,w_i,r_i)=(0,0,1)` denotes ``recovered``, :math:`(h_i,w_i,r_i)=(0,0,0)` denotes ``susceptible``.
+
+1) 1) Each infected neighbor :math:`j` of node :math:`i` transmits a log-probability contribution
+
+For each edge :math:`j\to i`, an infected neighbor contributes to the log-survival; the per-step infection probability for node :math:`i` is
+
+.. math::
+
+   m_{ji}^{(k)} = \mathbf{1}\!\left(h_j^{(k-1)}=1 \land w_j^{(k-1)}=0\right) \cdot \log(1-\kappa), \qquad
+   I_i^{(k)} = 1 - \exp\!\left( \sum_{j\in N(i)} m_{ji}^{(k)} \right),
+
+applied only to currently susceptible and not recovered nodes.
+
+2) **Weakening (S→W)**
+
+Analogously, the probability to become weakened is
+
+.. math::
+
+   \widetilde{m}_{ji}^{(k)} = \mathbf{1}\!\left(h_j^{(k-1)}=1 \land w_j^{(k-1)}=0\right) \cdot \log(1-\mu), \qquad
+   W_i^{(k)} = 1 - \exp\!\left( \sum_{j\in N(i)} \widetilde{m}_{ji}^{(k)} \right),
+
+again only for nodes that are susceptible and not recovered.
+
+3) **Weakened to infected (W→I)**
+
+A weakened node may become infected via infected neighbors with rate :math:`\nu`:
+
+.. math::
+
+   \widehat{m}_{ji}^{(k)} = \mathbf{1}\!\left(h_j^{(k-1)}=1 \land w_j^{(k-1)}=0\right) \cdot \log(1-\nu), \qquad
+   WI_i^{(k)} = 1 - \exp\!\left( \sum_{j\in N(i)} \widehat{m}_{ji}^{(k)} \right),
+
+applied only to currently weakened nodes (:math:`w_i^{(k-1)}=1`).
+
+4) **Recovery (I→R)**
+
+In this implementation, infected and not-weakened nodes deterministically recover at each step (no parameter :math:`\gamma`). We model this as
+
+.. math::
+
+   r_i^{(k)} = r_i^{(k-1)} \;\lor\; \big( h_i^{(k-1)} = 1 \land w_i^{(k-1)} = 0 \big),
+
+and recovered nodes remain immune: they neither get weakened nor re-infected.
+
+5) **Sampling and state update**
+
+Let :math:`U_i^{\mathrm{inf}}, U_i^{\mathrm{wk}}, U_i^{\mathrm{wi}} \sim \mathrm{Uniform}(0,1)` be independent. The indicators are updated as
+
+.. math::
+
+   \begin{aligned}
+   w_i^{(k)} &= \begin{cases}
+      1, & \text{if } w_i^{(k-1)}=0 \land r_i^{(k-1)}=0 \land U_i^{\mathrm{wk}} < W_i^{(k)}, \\
+      0, & \text{if } w_i^{(k-1)}=1 \land U_i^{\mathrm{wi}} < WI_i^{(k)}, \\
+      w_i^{(k-1)}, & \text{otherwise},
+   \end{cases} \\
+   h_i^{(k)} &= \begin{cases}
+      1, & \text{if } h_i^{(k-1)}=0 \land r_i^{(k-1)}=0 \land U_i^{\mathrm{inf}} < I_i^{(k)}, \\
+      1, & \text{if } w_i^{(k-1)}=1 \land U_i^{\mathrm{wi}} < WI_i^{(k)}, \\
+      0, & \text{if } h_i^{(k-1)}=1 \land w_i^{(k-1)}=0 \text{ (recovery)}, \\
+      h_i^{(k-1)}, & \text{otherwise},
+   \end{cases}
+   \end{aligned}
+
+which mirrors the code path: S→W, S→I, W→I, I→R.
+
+References
+----------
+
+.. [1]

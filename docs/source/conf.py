@@ -43,7 +43,7 @@ extensions = [
     'sphinx.ext.linkcode',
 ]
 
-autodoc_mock_imports = ['torch', 'torch_geometric', 'numpy', 'tqdm']
+autodoc_mock_imports = ['torch', 'torch_geometric', 'numpy', 'tqdm', 'torch_scatter']
 
 
 def linkcode_resolve(domain, info):

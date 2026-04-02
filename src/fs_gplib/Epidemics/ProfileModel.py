@@ -5,6 +5,48 @@ from .base import DiffusionModel, Diffusion_process
 from ..utils import *
 
 class ProfileModel(DiffusionModel):
+    r"""Profile diffusion model on static graphs.
+
+    This model describes social contagion with node-specific susceptibility.
+    Each node starts as inactive or active (seed).  At every step a
+    non-blocked inactive node may first become active spontaneously with
+    probability :math:`\alpha`.  If it is exposed to at least one active
+    neighbor and does not adopt spontaneously, it adopts with probability
+    equal to its profile value.  If exposed but still not adopted, it may
+    become blocked with probability :math:`\beta` and then remain permanently
+    ineligible for activation.  Once activated, a node stays active.
+
+    Returned node states are encoded as: -1 = blocked, 0 = inactive,
+    1 = active.
+
+
+    :param data: PyTorch Geometric ``Data`` object representing graph
+        :math:`G=(V,E)`.  Must contain ``edge_index`` (the edge set :math:`E`)
+        and ``num_nodes`` (:math:`|V|`).
+    :type data: torch_geometric.data.Data
+    :param seeds: Nodes whose initial state is *Active*.  Pass a list of
+        node IDs, or a float in (0, 1) to activate that fraction of nodes
+        chosen uniformly at random.
+    :type seeds: list[int] | float
+    :param profile: Per-node adoption propensity after exposure.  When
+        ``profile \in (0,1]``, all nodes share the same profile value.  When
+        ``profile == 0``, a profile is sampled independently for each node
+        from ``Uniform(0,1)``.
+    :type profile: float
+    :param adopter_rate: Per-step spontaneous adoption probability
+        :math:`\alpha \in [0,1]` for each non-blocked inactive node.
+    :type adopter_rate: float
+    :param blocked_rate: Probability :math:`\beta \in [0,1]` that an exposed
+        node becomes blocked after failing to adopt via its profile.
+    :type blocked_rate: float
+    :param device: *(optional)* ``'cpu'`` or a CUDA device index.
+        Defaults to ``'cpu'``.
+    :type device: str | int
+    :param rand_seed: *(optional)* Random seed used when *seeds* is a
+        float.  Defaults to ``None``.
+    :type rand_seed: int | None
+    """
+
     def __init__(self,
                  data,
                  seeds,
@@ -44,10 +86,27 @@ class ProfileModel(DiffusionModel):
 
 
     def run_iteration(self):
+        """Execute a single simulation step.
+
+        The internal ``node_status`` is updated so that subsequent calls continue from the latest state.
+
+        :return: Node states after one step, shape ``(1, N)``.
+        :rtype: torch.Tensor
+        """
         return self.run_iterations(1)
 
 
     def run_iterations(self, times):
+        """Execute *times* simulation steps sequentially.
+
+        The internal ``node_status`` is updated in-place so that subsequent
+        calls continue from the latest state.
+
+        :param times: Number of steps to run.
+        :type times: int
+        :return: Node states at final step, shape ``(1, N)``.
+        :rtype: torch.Tensor
+        """
         try:
             check_int(times=times)
         except ValueError as e:
@@ -60,9 +119,33 @@ class ProfileModel(DiffusionModel):
         return final # [1, N]
 
     def run_epoch(self, iterations_times):
+        """Run a single Monte-Carlo epoch (one independent realisation).
+
+        Node states are **re-initialised** before the epoch starts.
+
+        :param iterations_times: Number of simulation steps per epoch.
+        :type iterations_times: int
+        :return: Node states at final step of the epoch, shape ``(1, N)``.
+        :rtype: torch.Tensor
+        """
         return self.run_epochs(1, iterations_times, 1)
 
     def run_epochs(self, epochs, iterations_times=0, batch_size=1):
+        """Run multiple independent Monte-Carlo epochs in batches.
+
+        Node states are **re-initialised** before the run.
+
+        :param epochs: Total number of independent realisations.
+        :type epochs: int
+        :param iterations_times: Number of simulation steps per epoch.
+        :type iterations_times: int
+        :param batch_size: *(optional)* Number of epochs processed
+            in parallel per batch.
+            Defaults to ``1``.
+        :type batch_size: int
+        :return: Node states at final step of all epochs, shape ``(epochs, N)``.
+        :rtype: torch.Tensor
+        """
         try:
             check_int(epochs=epochs)
         except ValueError as e:
@@ -133,7 +216,6 @@ class Profile_process(Diffusion_process):
             self.times += 1
 
         return x, B_mask
-
 
 
 
