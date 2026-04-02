@@ -7,7 +7,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>SEIR &mdash; FS_GPlib-tutorial v0.1.0 documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
 
@@ -112,238 +112,244 @@
 </li>
 <li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Library</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="../../epidemic.html">Epidemic Models</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="SI.html">SI</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="SI.html#implementation">Implementation</a></li>
-<li class="toctree-l4"><a class="reference internal" href="SI.html#status">Status</a></li>
-<li class="toctree-l4"><a class="reference internal" href="SI.html#simodel">SIModel</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="SI.html#fs_gplib.Epidemics.SIModel"><code class="docutils literal notranslate"><span class="pre">SIModel</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../epidemic.html#base-class-common-api">Base Class &amp; Common API</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../epidemic.html#utility-methods">Utility Methods</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../epidemic.html#simulation-interface">Simulation Interface</a></li>
 </ul>
 </li>
-<li class="toctree-l4"><a class="reference internal" href="SI.html#references">References</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../../epidemic.html#available-models">Available Models</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="SI.html">SI</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="SI.html#implementation">Implementation</a></li>
+<li class="toctree-l5"><a class="reference internal" href="SI.html#status">Status</a></li>
+<li class="toctree-l5"><a class="reference internal" href="SI.html#simodel">SIModel</a></li>
+<li class="toctree-l5"><a class="reference internal" href="SI.html#references">References</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="SIS.html">SIS</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="SIS.html#implementation">Implementation</a></li>
-<li class="toctree-l4"><a class="reference internal" href="SIS.html#status">Status</a></li>
-<li class="toctree-l4"><a class="reference internal" href="SIS.html#sismodel">SISModel</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="SIS.html#fs_gplib.Epidemics.SISModel"><code class="docutils literal notranslate"><span class="pre">SISModel</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SIS.html">SIS</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="SIS.html#implementation">Implementation</a></li>
+<li class="toctree-l5"><a class="reference internal" href="SIS.html#status">Status</a></li>
+<li class="toctree-l5"><a class="reference internal" href="SIS.html#sismodel">SISModel</a></li>
+<li class="toctree-l5"><a class="reference internal" href="SIS.html#references">References</a></li>
 </ul>
 </li>
-<li class="toctree-l4"><a class="reference internal" href="SIS.html#references">References</a></li>
+<li class="toctree-l4"><a class="reference internal" href="SIR.html">SIR</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="SIR.html#implementation">Implementation</a></li>
+<li class="toctree-l5"><a class="reference internal" href="SIR.html#status">Status</a></li>
+<li class="toctree-l5"><a class="reference internal" href="SIR.html#sirmodel">SIRModel</a></li>
+<li class="toctree-l5"><a class="reference internal" href="SIR.html#references">References</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="SIR.html">SIR</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="SIR.html#implementation">Implementation</a></li>
-<li class="toctree-l4"><a class="reference internal" href="SIR.html#status">Status</a></li>
-<li class="toctree-l4"><a class="reference internal" href="SIR.html#sirmodel">SIRModel</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="SIR.html#fs_gplib.Epidemics.SIRModel"><code class="docutils literal notranslate"><span class="pre">SIRModel</span></code></a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">SEIR</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#implementation">Implementation</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#status">Status</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#seirmodel">SEIRModel</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#references">References</a></li>
 </ul>
 </li>
-<li class="toctree-l4"><a class="reference internal" href="SIR.html#references">References</a></li>
+<li class="toctree-l4"><a class="reference internal" href="SEIR_ct.html">SEIR_ct</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="SEIR_ct.html#implementation">Implementation</a></li>
+<li class="toctree-l5"><a class="reference internal" href="SEIR_ct.html#status">Status</a></li>
+<li class="toctree-l5"><a class="reference internal" href="SEIR_ct.html#seirctmodel">SEIRctModel</a></li>
+<li class="toctree-l5"><a class="reference internal" href="SEIR_ct.html#references">References</a></li>
 </ul>
 </li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">SEIR</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#implementation">Implementation</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#status">Status</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#seirmodel">SEIRModel</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="#fs_gplib.Epidemics.SEIRModel"><code class="docutils literal notranslate"><span class="pre">SEIRModel</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SEIS.html">SEIS</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="SEIS.html#implementation">Implementation</a></li>
+<li class="toctree-l5"><a class="reference internal" href="SEIS.html#status">Status</a></li>
+<li class="toctree-l5"><a class="reference internal" href="SEIS.html#seismodel">SEISModel</a></li>
+<li class="toctree-l5"><a class="reference internal" href="SEIS.html#references">References</a></li>
 </ul>
 </li>
-<li class="toctree-l4"><a class="reference internal" href="#references">References</a></li>
+<li class="toctree-l4"><a class="reference internal" href="SEIS_ct.html">SEIS_ct</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="SEIS_ct.html#implementation">Implementation</a></li>
+<li class="toctree-l5"><a class="reference internal" href="SEIS_ct.html#status">Status</a></li>
+<li class="toctree-l5"><a class="reference internal" href="SEIS_ct.html#seisctmodel">SEISctModel</a></li>
+<li class="toctree-l5"><a class="reference internal" href="SEIS_ct.html#references">References</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="SEIR_ct.html">SEIR_ct</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="SEIR_ct.html#implementation">Implementation</a></li>
-<li class="toctree-l4"><a class="reference internal" href="SEIR_ct.html#status">Status</a></li>
-<li class="toctree-l4"><a class="reference internal" href="SEIR_ct.html#seirctmodel">SEIRctModel</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="SEIR_ct.html#fs_gplib.Epidemics.SEIRctModel"><code class="docutils literal notranslate"><span class="pre">SEIRctModel</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SWIR.html">SWIR(TBD)</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="SWIR.html#status">Status</a></li>
+<li class="toctree-l5"><a class="reference internal" href="SWIR.html#parameters">Parameters</a></li>
+<li class="toctree-l5"><a class="reference internal" href="SWIR.html#implementation">Implementation</a></li>
+<li class="toctree-l5"><a class="reference internal" href="SWIR.html#references">References</a></li>
 </ul>
 </li>
-<li class="toctree-l4"><a class="reference internal" href="SEIR_ct.html#references">References</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Threshold.html">Threshold</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="Threshold.html#model-description">Model Description</a></li>
+<li class="toctree-l5"><a class="reference internal" href="Threshold.html#status">Status</a></li>
+<li class="toctree-l5"><a class="reference internal" href="Threshold.html#thresholdmodel">ThresholdModel</a></li>
+<li class="toctree-l5"><a class="reference internal" href="Threshold.html#references">References</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="SEIS.html">SEIS</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="SEIS.html#implementation">Implementation</a></li>
-<li class="toctree-l4"><a class="reference internal" href="SEIS.html#status">Status</a></li>
-<li class="toctree-l4"><a class="reference internal" href="SEIS.html#seismodel">SEISModel</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="SEIS.html#fs_gplib.Epidemics.SEISModel"><code class="docutils literal notranslate"><span class="pre">SEISModel</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="KThreshold.html">Kertesz Threshold</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="KThreshold.html#model-description">Model Description</a></li>
+<li class="toctree-l5"><a class="reference internal" href="KThreshold.html#status">Status</a></li>
+<li class="toctree-l5"><a class="reference internal" href="KThreshold.html#kerteszthresholdmodel">KerteszThresholdModel</a></li>
+<li class="toctree-l5"><a class="reference internal" href="KThreshold.html#references">References</a></li>
 </ul>
 </li>
-<li class="toctree-l4"><a class="reference internal" href="SEIS.html#references">References</a></li>
+<li class="toctree-l4"><a class="reference internal" href="IndependentCascades.html">Independent Cascades</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="IndependentCascades.html#implementation">Implementation</a></li>
+<li class="toctree-l5"><a class="reference internal" href="IndependentCascades.html#status">Status</a></li>
+<li class="toctree-l5"><a class="reference internal" href="IndependentCascades.html#independentcascadesmodel">IndependentCascadesModel</a></li>
+<li class="toctree-l5"><a class="reference internal" href="IndependentCascades.html#references">References</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="SEIS_ct.html">SEIS_ct</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="SEIS_ct.html#implementation">Implementation</a></li>
-<li class="toctree-l4"><a class="reference internal" href="SEIS_ct.html#status">Status</a></li>
-<li class="toctree-l4"><a class="reference internal" href="SEIS_ct.html#seisctmodel">SEISctModel</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="SEIS_ct.html#fs_gplib.Epidemics.SEISctModel"><code class="docutils literal notranslate"><span class="pre">SEISctModel</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="Profile.html">Profile</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="Profile.html#model-description">Model Description</a></li>
+<li class="toctree-l5"><a class="reference internal" href="Profile.html#status">Status</a></li>
+<li class="toctree-l5"><a class="reference internal" href="Profile.html#profilemodel">ProfileModel</a></li>
+<li class="toctree-l5"><a class="reference internal" href="Profile.html#references">References</a></li>
 </ul>
 </li>
-<li class="toctree-l4"><a class="reference internal" href="SEIS_ct.html#references">References</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ProfileThreshold.html">Profile Threshold</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="ProfileThreshold.html#model-description">Model Description</a></li>
+<li class="toctree-l5"><a class="reference internal" href="ProfileThreshold.html#status">Status</a></li>
+<li class="toctree-l5"><a class="reference internal" href="ProfileThreshold.html#profilethresholdmodel">ProfileThresholdModel</a></li>
+<li class="toctree-l5"><a class="reference internal" href="ProfileThreshold.html#references">References</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="SWIR.html">SWIR(TBD)</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="SWIR.html#status">Status</a></li>
-<li class="toctree-l4"><a class="reference internal" href="SWIR.html#parameters">Parameters</a></li>
-<li class="toctree-l4"><a class="reference internal" href="SWIR.html#implementation">Implementation</a></li>
-<li class="toctree-l4"><a class="reference internal" href="SWIR.html#references">References</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="Threshold.html">Threshold</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="Threshold.html#model-description">Model Description</a></li>
-<li class="toctree-l4"><a class="reference internal" href="Threshold.html#status">Status</a></li>
-<li class="toctree-l4"><a class="reference internal" href="Threshold.html#thresholdmodel">ThresholdModel</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="Threshold.html#fs_gplib.Epidemics.ThresholdModel"><code class="docutils literal notranslate"><span class="pre">ThresholdModel</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l4"><a class="reference internal" href="Threshold.html#references">References</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="KThreshold.html">Kertesz Threshold</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="KThreshold.html#model-description">Model Description</a></li>
-<li class="toctree-l4"><a class="reference internal" href="KThreshold.html#status">Status</a></li>
-<li class="toctree-l4"><a class="reference internal" href="KThreshold.html#kerteszthresholdmodel">KerteszThresholdModel</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="KThreshold.html#fs_gplib.Epidemics.KerteszThresholdModel"><code class="docutils literal notranslate"><span class="pre">KerteszThresholdModel</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l4"><a class="reference internal" href="KThreshold.html#references">References</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="IndependentCascades.html">Independent Cascades</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="IndependentCascades.html#implementation">Implementation</a></li>
-<li class="toctree-l4"><a class="reference internal" href="IndependentCascades.html#status">Status</a></li>
-<li class="toctree-l4"><a class="reference internal" href="IndependentCascades.html#independentcascadesmodel">IndependentCascadesModel</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="IndependentCascades.html#fs_gplib.Epidemics.IndependentCascadesModel"><code class="docutils literal notranslate"><span class="pre">IndependentCascadesModel</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l4"><a class="reference internal" href="IndependentCascades.html#references">References</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="Profile.html">Profile</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="Profile.html#model-description">Model Description</a></li>
-<li class="toctree-l4"><a class="reference internal" href="Profile.html#status">Status</a></li>
-<li class="toctree-l4"><a class="reference internal" href="Profile.html#profilemodel">ProfileModel</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="Profile.html#fs_gplib.Epidemics.ProfileModel"><code class="docutils literal notranslate"><span class="pre">ProfileModel</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l4"><a class="reference internal" href="Profile.html#references">References</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="ProfileThreshold.html">Profile Threshold</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="ProfileThreshold.html#model-description">Model Description</a></li>
-<li class="toctree-l4"><a class="reference internal" href="ProfileThreshold.html#status">Status</a></li>
-<li class="toctree-l4"><a class="reference internal" href="ProfileThreshold.html#profilethresholdmodel">ProfileThresholdModel</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="ProfileThreshold.html#fs_gplib.Epidemics.ProfileThresholdModel"><code class="docutils literal notranslate"><span class="pre">ProfileThresholdModel</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l4"><a class="reference internal" href="ProfileThreshold.html#references">References</a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../opinion.html">Opinion Dynamic Models</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../opinions/Voter.html">Voter</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../opinions/Voter.html#implementation">Implementation</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../opinions/Voter.html#status">Status</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../opinions/Voter.html#votermodel">VoterModel</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="../opinions/Voter.html#fs_gplib.Opinions.VoterModel"><code class="docutils literal notranslate"><span class="pre">VoterModel</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../opinion.html#base-class-common-api">Base Class &amp; Common API</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../opinion.html#utility-methods">Utility Methods</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../opinion.html#simulation-interface">Simulation Interface</a></li>
 </ul>
 </li>
-<li class="toctree-l4"><a class="reference internal" href="../opinions/Voter.html#parameters">Parameters</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../opinions/Voter.html#references">References</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../opinion.html#available-models">Available Models</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../opinions/Voter.html">Voter</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../opinions/Voter.html#implementation">Implementation</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../opinions/Voter.html#status">Status</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../opinions/Voter.html#votermodel">VoterModel</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../opinions/Voter.html#references">References</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../opinions/QVoter.html">Q-Voter</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../opinions/QVoter.html#status">Status</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../opinions/QVoter.html#parameters">Parameters</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../opinions/QVoter.html#implementation">Implementation</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../opinions/QVoter.html#references">References</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../opinions/QVoter.html">Q-Voter</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../opinions/QVoter.html#implementation">Implementation</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../opinions/QVoter.html#status">Status</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../opinions/QVoter.html#qvotermodel">QVoterModel</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../opinions/QVoter.html#references">References</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../opinions/MajorityRule.html">Majority Rule</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../opinions/MajorityRule.html#status">Status</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../opinions/MajorityRule.html#parameters">Parameters</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../opinions/MajorityRule.html#implementation">Implementation</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../opinions/MajorityRule.html#references">References</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../opinions/MajorityRule.html">Majority Rule</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../opinions/MajorityRule.html#implementation">Implementation</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../opinions/MajorityRule.html#status">Status</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../opinions/MajorityRule.html#majorityrulemodel">MajorityRuleModel</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../opinions/MajorityRule.html#parameters">Parameters</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../opinions/MajorityRule.html#references">References</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../opinions/Sznajd.html">Sznajd</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../opinions/Sznajd.html#status">Status</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../opinions/Sznajd.html#parameters">Parameters</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../opinions/Sznajd.html#implementation">Implementation</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../opinions/Sznajd.html#references">References</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../opinions/Sznajd.html">Sznajd</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../opinions/Sznajd.html#implementation">Implementation</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../opinions/Sznajd.html#status">Status</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../opinions/Sznajd.html#sznajdmodel">SznajdModel</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../opinions/Sznajd.html#references">References</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../opinions/HK.html">Hegselmann-Krause</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../opinions/HK.html#status">Status</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../opinions/HK.html#parameters">Parameters</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../opinions/HK.html#implementation">Implementation</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../opinions/HK.html#references">References</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../opinions/HK.html">Hegselmann-Krause</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../opinions/HK.html#implementation">Implementation</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../opinions/HK.html#status">Status</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../opinions/HK.html#hkmodel">HKModel</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../opinions/HK.html#references">References</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../opinions/WHK.html">Weighted Hegselmann-Krause</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../opinions/WHK.html#status">Status</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../opinions/WHK.html#parameters">Parameters</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../opinions/WHK.html#implementation">Implementation</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../opinions/WHK.html#references">References</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../opinions/WHK.html">Weighted Hegselmann-Krause</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../opinions/WHK.html#implementation">Implementation</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../opinions/WHK.html#status">Status</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../opinions/WHK.html#whkmodel">WHKModel</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../opinions/WHK.html#parameters">Parameters</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../opinions/WHK.html#references">References</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../dynamic_network.html">Dynamic Network Models</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../dynamics/DySI.html">DySI</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../dynamics/DySI.html#status">Status</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../dynamics/DySI.html#parameters">Parameters</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../dynamics/DySI.html#implementation">Implementation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../dynamics/DySI.html#status">Status</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../dynamics/DySI.html#dysimodel">DySIModel</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../dynamics/DySI.html#fs_gplib.Dynamic.DySIModel"><code class="docutils literal notranslate"><span class="pre">DySIModel</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../dynamics/DySIS.html">DySIS</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../dynamics/DySIS.html#status">Status</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../dynamics/DySIS.html#parameters">Parameters</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../dynamics/DySIS.html#implementation">Implementation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../dynamics/DySIS.html#status">Status</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../dynamics/DySIS.html#dysismodel">DySISModel</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../dynamics/DySIS.html#fs_gplib.Dynamic.DySISModel"><code class="docutils literal notranslate"><span class="pre">DySISModel</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../dynamics/DySIR.html">DySIR</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../dynamics/DySIR.html#status">Status</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../dynamics/DySIR.html#parameters">Parameters</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../dynamics/DySIR.html#implementation">Implementation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../dynamics/DySIR.html#status">Status</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../dynamics/DySIR.html#dysirmodel">DySIRModel</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../dynamics/DySIR.html#fs_gplib.Dynamic.DySIRModel"><code class="docutils literal notranslate"><span class="pre">DySIRModel</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../dynamics/DySEIR.html">DySEIR</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../dynamics/DySEIR.html#status">Status</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../dynamics/DySEIR.html#parameters">Parameters</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../dynamics/DySEIR.html#implementation">Implementation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../dynamics/DySEIR.html#status">Status</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../dynamics/DySEIR.html#dyseirmodel">DySEIRModel</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../dynamics/DySEIR.html#fs_gplib.Dynamic.DySEIRModel"><code class="docutils literal notranslate"><span class="pre">DySEIRModel</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../dynamics/DySEIR_ct.html">DySEIR_ct</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../dynamics/DySEIR_ct.html#status">Status</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../dynamics/DySEIR_ct.html#parameters">Parameters</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../dynamics/DySEIR_ct.html#implementation">Implementation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../dynamics/DySEIR_ct.html#status">Status</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../dynamics/DySEIR_ct.html#dyseirctmodel">DySEIRctModel</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../dynamics/DySEIR_ct.html#fs_gplib.Dynamic.DySEIRctModel"><code class="docutils literal notranslate"><span class="pre">DySEIRctModel</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../dynamics/DySEIS.html">DySEIS</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../dynamics/DySEIS.html#status">Status</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../dynamics/DySEIS.html#parameters">Parameters</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../dynamics/DySEIS.html#implementation">Implementation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../dynamics/DySEIS.html#status">Status</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../dynamics/DySEIS.html#dyseismodel">DySEISModel</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../dynamics/DySEIS.html#fs_gplib.Dynamic.DySEISModel"><code class="docutils literal notranslate"><span class="pre">DySEISModel</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../dynamics/DySEIS_ct.html">DySEIS_ct</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../dynamics/DySEIS_ct.html#status">Status</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../dynamics/DySEIS_ct.html#parameters">Parameters</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../dynamics/DySEIS_ct.html#implementation">Implementation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../dynamics/DySEIS_ct.html#status">Status</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../dynamics/DySEIS_ct.html#dyseisctmodel">DySEISctModel</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../dynamics/DySEIS_ct.html#fs_gplib.Dynamic.DySEISctModel"><code class="docutils literal notranslate"><span class="pre">DySEISctModel</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../dynamics/DySWIR.html">DySWIR(TBD)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../dynamics/DyThreshold.html">DyThreshold</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../dynamics/DyThreshold.html#status">Status</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../dynamics/DyThreshold.html#parameters">Parameters</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../dynamics/DyThreshold.html#implementation">Implementation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../dynamics/DyThreshold.html#status">Status</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../dynamics/DyThreshold.html#dythresholdmodel">DyThresholdModel</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../dynamics/DyThreshold.html#fs_gplib.Dynamic.DyThresholdModel"><code class="docutils literal notranslate"><span class="pre">DyThresholdModel</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../dynamics/DyKThreshold.html">DyKThreshold</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../dynamics/DyKThreshold.html#status">Status</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../dynamics/DyKThreshold.html#parameters">Parameters</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../dynamics/DyKThreshold.html#implementation">Implementation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../dynamics/DyKThreshold.html#status">Status</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../dynamics/DyKThreshold.html#dykerteszthresholdmodel">DyKerteszThresholdModel</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../dynamics/DyKThreshold.html#fs_gplib.Dynamic.DyKerteszThresholdModel"><code class="docutils literal notranslate"><span class="pre">DyKerteszThresholdModel</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../dynamics/DyKThreshold.html#parameters">Parameters</a></li>
 </ul>
 </li>
 </ul>
@@ -534,7 +540,7 @@ r_i^{(k)} &amp;=
 <h2>SEIRModel<a class="headerlink" href="#seirmodel" title="Link to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="fs_gplib.Epidemics.SEIRModel">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">fs_gplib.Epidemics.</span></span><span class="sig-name descname"><span class="pre">SEIRModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seeds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">infection_beta</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">removal_gamma</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">latent_alpha</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'cpu'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_weight</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rand_seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Allen-Ciel/FS_GPlib-tutorial/blob/docs/fs_gplib(release)/src/fs_gplib/Epidemics/SEIRModel.py#L7-L178"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#fs_gplib.Epidemics.SEIRModel" title="Link to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">fs_gplib.Epidemics.</span></span><span class="sig-name descname"><span class="pre">SEIRModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seeds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">infection_beta</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">removal_gamma</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">latent_alpha</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'cpu'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_weight</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rand_seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Allen-Ciel/FS_GPlib-tutorial/blob/docs/fs_gplib(release)/src/fs_gplib/Epidemics/SEIRModel.py#L7-L175"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#fs_gplib.Epidemics.SEIRModel" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">DiffusionModel</span></code></p>
 <p>SEIR (Susceptible-Exposed-Infected-Recovered) diffusion model on static graphs.</p>
 <p>Each node starts as susceptible or infected (seed).  At every step each
@@ -574,7 +580,7 @@ float.  Defaults to <code class="docutils literal notranslate"><span class="pre"
 </dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="fs_gplib.Epidemics.SEIRModel.run_iteration">
-<span class="sig-name descname"><span class="pre">run_iteration</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Allen-Ciel/FS_GPlib-tutorial/blob/docs/fs_gplib(release)/src/fs_gplib/Epidemics/SEIRModel.py#L90-L98"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#fs_gplib.Epidemics.SEIRModel.run_iteration" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">run_iteration</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Allen-Ciel/FS_GPlib-tutorial/blob/docs/fs_gplib(release)/src/fs_gplib/Epidemics/SEIRModel.py#L87-L95"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#fs_gplib.Epidemics.SEIRModel.run_iteration" title="Link to this definition"></a></dt>
 <dd><p>Execute a single simulation step.</p>
 <p>The internal <code class="docutils literal notranslate"><span class="pre">node_status</span></code> is updated so that subsequent calls continue from the latest state.</p>
 <dl class="field-list simple">
@@ -589,7 +595,7 @@ float.  Defaults to <code class="docutils literal notranslate"><span class="pre"
 
 <dl class="py method">
 <dt class="sig sig-object py" id="fs_gplib.Epidemics.SEIRModel.run_iterations">
-<span class="sig-name descname"><span class="pre">run_iterations</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">times</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Allen-Ciel/FS_GPlib-tutorial/blob/docs/fs_gplib(release)/src/fs_gplib/Epidemics/SEIRModel.py#L100-L121"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#fs_gplib.Epidemics.SEIRModel.run_iterations" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">run_iterations</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">times</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Allen-Ciel/FS_GPlib-tutorial/blob/docs/fs_gplib(release)/src/fs_gplib/Epidemics/SEIRModel.py#L97-L118"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#fs_gplib.Epidemics.SEIRModel.run_iterations" title="Link to this definition"></a></dt>
 <dd><p>Execute <em>times</em> simulation steps sequentially.</p>
 <p>The internal <code class="docutils literal notranslate"><span class="pre">node_status</span></code> is updated in-place so that subsequent
 calls continue from the latest state.</p>
@@ -608,7 +614,7 @@ calls continue from the latest state.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="fs_gplib.Epidemics.SEIRModel.run_epoch">
-<span class="sig-name descname"><span class="pre">run_epoch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">iterations_times</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Allen-Ciel/FS_GPlib-tutorial/blob/docs/fs_gplib(release)/src/fs_gplib/Epidemics/SEIRModel.py#L123-L133"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#fs_gplib.Epidemics.SEIRModel.run_epoch" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">run_epoch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">iterations_times</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Allen-Ciel/FS_GPlib-tutorial/blob/docs/fs_gplib(release)/src/fs_gplib/Epidemics/SEIRModel.py#L120-L130"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#fs_gplib.Epidemics.SEIRModel.run_epoch" title="Link to this definition"></a></dt>
 <dd><p>Run a single Monte-Carlo epoch (one independent realisation).</p>
 <p>Node states are <strong>re-initialised</strong> before the epoch starts.</p>
 <dl class="field-list simple">
@@ -626,7 +632,7 @@ calls continue from the latest state.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="fs_gplib.Epidemics.SEIRModel.run_epochs">
-<span class="sig-name descname"><span class="pre">run_epochs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">epochs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">iterations_times</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">batch_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">200</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Allen-Ciel/FS_GPlib-tutorial/blob/docs/fs_gplib(release)/src/fs_gplib/Epidemics/SEIRModel.py#L135-L169"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#fs_gplib.Epidemics.SEIRModel.run_epochs" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">run_epochs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">epochs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">iterations_times</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">batch_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">200</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Allen-Ciel/FS_GPlib-tutorial/blob/docs/fs_gplib(release)/src/fs_gplib/Epidemics/SEIRModel.py#L132-L166"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#fs_gplib.Epidemics.SEIRModel.run_epochs" title="Link to this definition"></a></dt>
 <dd><p>Run multiple independent Monte-Carlo epochs in batches.</p>
 <p>Node states are <strong>re-initialised</strong> before the run.</p>
 <dl class="field-list simple">

@@ -44,5 +44,3 @@ C. Guo, J. Zhang, C. Su, T. Fan, L. Lü.
    library/index
    advanced
    custom_model
-   rst_template
-   api_example

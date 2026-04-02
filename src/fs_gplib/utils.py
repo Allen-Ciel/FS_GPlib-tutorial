@@ -2,7 +2,7 @@ import pickle
 import torch
 import gzip
 from torch_geometric.data import Data
-from torch_geometric.utils import remove_self_loops
+from torch_geometric.utils import remove_self_loops, add_self_loops
 
 def check_parameter(**kwargs):
     # 判断参数是否在 [0, 1) 区间内

@@ -32,15 +32,10 @@ Install from TestPyPI
 
 .. code-block:: bash
 
-   pip install -i https://test.pypi.org/simple/ fs-gplib==0.6.0
+   pip install -i https://test.pypi.org/simple/ fs-gplib==0.10.0
 
 Required Packages
 ~~~~~~~~~~~~~~~~~
-
-FS_GPlib requires PyTorch and PyTorch Geometric (PyG). Please install them following the official instructions:
-
-- PyTorch: https://pytorch.org/get-started/locally/
-- PyG: https://pytorch-geometric.readthedocs.io/en/2.5.3/install/installation.html
 
 If you encounter environment errors, try installing (or pinning) the following dependencies first, and then install ``fs-gplib``:
 
@@ -50,6 +45,11 @@ If you encounter environment errors, try installing (or pinning) the following d
 - ``numpy==1.24.1``
 - ``tqdm==4.64.1``
 - ``scipy==1.10.0``
+
+FS_GPlib requires PyTorch and PyTorch Geometric (PyG). You can install them following the official instructions:
+
+- PyTorch: https://pytorch.org/get-started/locally/
+- PyG: https://pytorch-geometric.readthedocs.io/en/2.5.3/install/installation.html
 
 Test Installation
 ~~~~~~~~~~~~~~~~~

@@ -92,9 +92,9 @@ class DyKerteszThresholdModel(DiffusionModel):
         else:
             self.model = DyKerteszThresholdModel_process('sum', self.edge_index_list, self.edge_attr_list, self.threshold, self.adopter_rate, self.percentage_blocked).to(self.device)
 
-    def _set_seed(self, seeds):
-        super()._initialize_seeds(seeds)
-        self._init_node_status()
+    # def _set_seed(self, seeds):
+    #     super()._initialize_seeds(seeds)
+    #     self._init_node_status()
 
 
     def run_iteration(self):

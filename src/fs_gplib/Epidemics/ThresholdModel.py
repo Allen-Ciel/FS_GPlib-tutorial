@@ -73,9 +73,6 @@ class ThresholdModel(DiffusionModel):
         else:
             self.model = Threshold_process("mean",  self.data.edge_index, self.threshold, None)
 
-    def _set_seed(self, seeds):
-        super()._initialize_seeds(seeds)
-        self._init_node_status()
 
     def run_iteration(self):
         """Execute a single simulation step.

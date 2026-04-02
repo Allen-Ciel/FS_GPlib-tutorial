@@ -85,10 +85,6 @@ class SEISctModel(DiffusionModel):
             self.model = SEISct_process(self.data.edge_index, self.infection_beta, self.removal_gamma,
                                         self.latent_alpha, 0, None)
 
-    def _set_seed(self, seeds):
-        super()._initialize_seeds(seeds)
-        self._init_node_status()
-
     def run_iteration(self):
         """Execute a single simulation step.
 

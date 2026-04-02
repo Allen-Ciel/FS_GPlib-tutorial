@@ -116,9 +116,6 @@ class ProfileThresholdModel(DiffusionModel):
         self._init_node_status()
         self.model = ProfileThreshold_process(self.data.edge_index, self.threshold, self.profile, self.adopter_rate, self.blocked_rate)
 
-    def _set_seed(self, seeds):
-        super()._initialize_seeds(seeds)
-        self._init_node_status()
 
 
     def run_iteration(self):

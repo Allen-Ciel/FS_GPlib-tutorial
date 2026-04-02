@@ -68,9 +68,6 @@ class IndependentCascadesModel(DiffusionModel):
         self._init_node_status()
         self.model = IC_process(self.data.edge_index, self.threshold)
 
-    def _set_seed(self, seeds):
-        super()._initialize_seeds(seeds)
-        self._init_node_status()
 
 
     def run_iteration(self):

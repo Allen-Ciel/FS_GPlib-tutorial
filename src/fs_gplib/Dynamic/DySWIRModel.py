@@ -37,9 +37,9 @@ class DySWIRModel(DiffusionModel):
         self._init_node_status()
         self.model = DySWIRModel_process(self.edge_index_list, self.edge_attr_list, self.infection_kappa, self.weakened_mu, self.infection_nu).to(self.device)
 
-    def _set_seed(self, seeds):
-        super()._initialize_seeds(seeds)
-        self._init_node_status()
+    # def _set_seed(self, seeds):
+    #     super()._initialize_seeds(seeds)
+    #     self._init_node_status()
 
 
     def run_iteration(self):

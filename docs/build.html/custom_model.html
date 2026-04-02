@@ -7,7 +7,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Custom Model &mdash; FS_GPlib-tutorial v0.1.0 documentation</title>
-      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
 
@@ -19,11 +19,12 @@
       <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
       <script src="_static/clipboard.min.js?v=a7894cd8"></script>
       <script src="_static/copybutton.js?v=f281be69"></script>
+      <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       <script src="_static/my_custom.js?v=52495bde"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="RST Template Example" href="rst_template.html" />
     <link rel="prev" title="Advanced" href="advanced.html" /> 
 </head>
 
@@ -96,7 +97,8 @@
 <li class="toctree-l3"><a class="reference internal" href="tutorial.html#execute-simulation">Execute simulation</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="tutorial.html#example-code">Example code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html#example-code-1-sirmodel">Example code 1: SIRModel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html#example-code-2-dysirmodel">Example code 2: DySIRModel</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tutorial.html#about-batch">About Batch</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="tutorial.html#how-to-use-batch">How to use batch</a></li>
 </ul>
@@ -110,238 +112,225 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="library/index.html">Library</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="library/epidemic.html">Epidemic Models</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="library/models/epidemics/SI.html">SI</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="library/models/epidemics/SI.html#implementation">Implementation</a></li>
-<li class="toctree-l4"><a class="reference internal" href="library/models/epidemics/SI.html#status">Status</a></li>
-<li class="toctree-l4"><a class="reference internal" href="library/models/epidemics/SI.html#simodel">SIModel</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="library/models/epidemics/SI.html#fs_gplib.Epidemics.SIModel"><code class="docutils literal notranslate"><span class="pre">SIModel</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="library/epidemic.html#base-class-common-api">Base Class &amp; Common API</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="library/epidemic.html#utility-methods">Utility Methods</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/epidemic.html#simulation-interface">Simulation Interface</a></li>
 </ul>
 </li>
-<li class="toctree-l4"><a class="reference internal" href="library/models/epidemics/SI.html#references">References</a></li>
+<li class="toctree-l3"><a class="reference internal" href="library/epidemic.html#available-models">Available Models</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="library/models/epidemics/SI.html">SI</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="library/models/epidemics/SI.html#implementation">Implementation</a></li>
+<li class="toctree-l5"><a class="reference internal" href="library/models/epidemics/SI.html#status">Status</a></li>
+<li class="toctree-l5"><a class="reference internal" href="library/models/epidemics/SI.html#simodel">SIModel</a></li>
+<li class="toctree-l5"><a class="reference internal" href="library/models/epidemics/SI.html#references">References</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="library/models/epidemics/SIS.html">SIS</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="library/models/epidemics/SIS.html#implementation">Implementation</a></li>
-<li class="toctree-l4"><a class="reference internal" href="library/models/epidemics/SIS.html#status">Status</a></li>
-<li class="toctree-l4"><a class="reference internal" href="library/models/epidemics/SIS.html#sismodel">SISModel</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="library/models/epidemics/SIS.html#fs_gplib.Epidemics.SISModel"><code class="docutils literal notranslate"><span class="pre">SISModel</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/models/epidemics/SIS.html">SIS</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="library/models/epidemics/SIS.html#implementation">Implementation</a></li>
+<li class="toctree-l5"><a class="reference internal" href="library/models/epidemics/SIS.html#status">Status</a></li>
+<li class="toctree-l5"><a class="reference internal" href="library/models/epidemics/SIS.html#sismodel">SISModel</a></li>
+<li class="toctree-l5"><a class="reference internal" href="library/models/epidemics/SIS.html#references">References</a></li>
 </ul>
 </li>
-<li class="toctree-l4"><a class="reference internal" href="library/models/epidemics/SIS.html#references">References</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/models/epidemics/SIR.html">SIR</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="library/models/epidemics/SIR.html#implementation">Implementation</a></li>
+<li class="toctree-l5"><a class="reference internal" href="library/models/epidemics/SIR.html#status">Status</a></li>
+<li class="toctree-l5"><a class="reference internal" href="library/models/epidemics/SIR.html#sirmodel">SIRModel</a></li>
+<li class="toctree-l5"><a class="reference internal" href="library/models/epidemics/SIR.html#references">References</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="library/models/epidemics/SIR.html">SIR</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="library/models/epidemics/SIR.html#implementation">Implementation</a></li>
-<li class="toctree-l4"><a class="reference internal" href="library/models/epidemics/SIR.html#status">Status</a></li>
-<li class="toctree-l4"><a class="reference internal" href="library/models/epidemics/SIR.html#sirmodel">SIRModel</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="library/models/epidemics/SIR.html#fs_gplib.Epidemics.SIRModel"><code class="docutils literal notranslate"><span class="pre">SIRModel</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/models/epidemics/SEIR.html">SEIR</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="library/models/epidemics/SEIR.html#implementation">Implementation</a></li>
+<li class="toctree-l5"><a class="reference internal" href="library/models/epidemics/SEIR.html#status">Status</a></li>
+<li class="toctree-l5"><a class="reference internal" href="library/models/epidemics/SEIR.html#seirmodel">SEIRModel</a></li>
+<li class="toctree-l5"><a class="reference internal" href="library/models/epidemics/SEIR.html#references">References</a></li>
 </ul>
 </li>
-<li class="toctree-l4"><a class="reference internal" href="library/models/epidemics/SIR.html#references">References</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/models/epidemics/SEIR_ct.html">SEIR_ct</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="library/models/epidemics/SEIR_ct.html#implementation">Implementation</a></li>
+<li class="toctree-l5"><a class="reference internal" href="library/models/epidemics/SEIR_ct.html#status">Status</a></li>
+<li class="toctree-l5"><a class="reference internal" href="library/models/epidemics/SEIR_ct.html#seirctmodel">SEIRctModel</a></li>
+<li class="toctree-l5"><a class="reference internal" href="library/models/epidemics/SEIR_ct.html#references">References</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="library/models/epidemics/SEIR.html">SEIR</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="library/models/epidemics/SEIR.html#implementation">Implementation</a></li>
-<li class="toctree-l4"><a class="reference internal" href="library/models/epidemics/SEIR.html#status">Status</a></li>
-<li class="toctree-l4"><a class="reference internal" href="library/models/epidemics/SEIR.html#seirmodel">SEIRModel</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="library/models/epidemics/SEIR.html#fs_gplib.Epidemics.SEIRModel"><code class="docutils literal notranslate"><span class="pre">SEIRModel</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/models/epidemics/SEIS.html">SEIS</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="library/models/epidemics/SEIS.html#implementation">Implementation</a></li>
+<li class="toctree-l5"><a class="reference internal" href="library/models/epidemics/SEIS.html#status">Status</a></li>
+<li class="toctree-l5"><a class="reference internal" href="library/models/epidemics/SEIS.html#seismodel">SEISModel</a></li>
+<li class="toctree-l5"><a class="reference internal" href="library/models/epidemics/SEIS.html#references">References</a></li>
 </ul>
 </li>
-<li class="toctree-l4"><a class="reference internal" href="library/models/epidemics/SEIR.html#references">References</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/models/epidemics/SEIS_ct.html">SEIS_ct</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="library/models/epidemics/SEIS_ct.html#implementation">Implementation</a></li>
+<li class="toctree-l5"><a class="reference internal" href="library/models/epidemics/SEIS_ct.html#status">Status</a></li>
+<li class="toctree-l5"><a class="reference internal" href="library/models/epidemics/SEIS_ct.html#seisctmodel">SEISctModel</a></li>
+<li class="toctree-l5"><a class="reference internal" href="library/models/epidemics/SEIS_ct.html#references">References</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="library/models/epidemics/SEIR_ct.html">SEIR_ct</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="library/models/epidemics/SEIR_ct.html#implementation">Implementation</a></li>
-<li class="toctree-l4"><a class="reference internal" href="library/models/epidemics/SEIR_ct.html#status">Status</a></li>
-<li class="toctree-l4"><a class="reference internal" href="library/models/epidemics/SEIR_ct.html#seirctmodel">SEIRctModel</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="library/models/epidemics/SEIR_ct.html#fs_gplib.Epidemics.SEIRctModel"><code class="docutils literal notranslate"><span class="pre">SEIRctModel</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/models/epidemics/SWIR.html">SWIR(TBD)</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="library/models/epidemics/SWIR.html#status">Status</a></li>
+<li class="toctree-l5"><a class="reference internal" href="library/models/epidemics/SWIR.html#parameters">Parameters</a></li>
+<li class="toctree-l5"><a class="reference internal" href="library/models/epidemics/SWIR.html#implementation">Implementation</a></li>
+<li class="toctree-l5"><a class="reference internal" href="library/models/epidemics/SWIR.html#references">References</a></li>
 </ul>
 </li>
-<li class="toctree-l4"><a class="reference internal" href="library/models/epidemics/SEIR_ct.html#references">References</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/models/epidemics/Threshold.html">Threshold</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="library/models/epidemics/Threshold.html#model-description">Model Description</a></li>
+<li class="toctree-l5"><a class="reference internal" href="library/models/epidemics/Threshold.html#status">Status</a></li>
+<li class="toctree-l5"><a class="reference internal" href="library/models/epidemics/Threshold.html#thresholdmodel">ThresholdModel</a></li>
+<li class="toctree-l5"><a class="reference internal" href="library/models/epidemics/Threshold.html#references">References</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="library/models/epidemics/SEIS.html">SEIS</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="library/models/epidemics/SEIS.html#implementation">Implementation</a></li>
-<li class="toctree-l4"><a class="reference internal" href="library/models/epidemics/SEIS.html#status">Status</a></li>
-<li class="toctree-l4"><a class="reference internal" href="library/models/epidemics/SEIS.html#seismodel">SEISModel</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="library/models/epidemics/SEIS.html#fs_gplib.Epidemics.SEISModel"><code class="docutils literal notranslate"><span class="pre">SEISModel</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/models/epidemics/KThreshold.html">Kertesz Threshold</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="library/models/epidemics/KThreshold.html#model-description">Model Description</a></li>
+<li class="toctree-l5"><a class="reference internal" href="library/models/epidemics/KThreshold.html#status">Status</a></li>
+<li class="toctree-l5"><a class="reference internal" href="library/models/epidemics/KThreshold.html#kerteszthresholdmodel">KerteszThresholdModel</a></li>
+<li class="toctree-l5"><a class="reference internal" href="library/models/epidemics/KThreshold.html#references">References</a></li>
 </ul>
 </li>
-<li class="toctree-l4"><a class="reference internal" href="library/models/epidemics/SEIS.html#references">References</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/models/epidemics/IndependentCascades.html">Independent Cascades</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="library/models/epidemics/IndependentCascades.html#implementation">Implementation</a></li>
+<li class="toctree-l5"><a class="reference internal" href="library/models/epidemics/IndependentCascades.html#status">Status</a></li>
+<li class="toctree-l5"><a class="reference internal" href="library/models/epidemics/IndependentCascades.html#independentcascadesmodel">IndependentCascadesModel</a></li>
+<li class="toctree-l5"><a class="reference internal" href="library/models/epidemics/IndependentCascades.html#references">References</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="library/models/epidemics/SEIS_ct.html">SEIS_ct</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="library/models/epidemics/SEIS_ct.html#implementation">Implementation</a></li>
-<li class="toctree-l4"><a class="reference internal" href="library/models/epidemics/SEIS_ct.html#status">Status</a></li>
-<li class="toctree-l4"><a class="reference internal" href="library/models/epidemics/SEIS_ct.html#seisctmodel">SEISctModel</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="library/models/epidemics/SEIS_ct.html#fs_gplib.Epidemics.SEISctModel"><code class="docutils literal notranslate"><span class="pre">SEISctModel</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/models/epidemics/Profile.html">Profile</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="library/models/epidemics/Profile.html#model-description">Model Description</a></li>
+<li class="toctree-l5"><a class="reference internal" href="library/models/epidemics/Profile.html#status">Status</a></li>
+<li class="toctree-l5"><a class="reference internal" href="library/models/epidemics/Profile.html#profilemodel">ProfileModel</a></li>
+<li class="toctree-l5"><a class="reference internal" href="library/models/epidemics/Profile.html#references">References</a></li>
 </ul>
 </li>
-<li class="toctree-l4"><a class="reference internal" href="library/models/epidemics/SEIS_ct.html#references">References</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/models/epidemics/ProfileThreshold.html">Profile Threshold</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="library/models/epidemics/ProfileThreshold.html#model-description">Model Description</a></li>
+<li class="toctree-l5"><a class="reference internal" href="library/models/epidemics/ProfileThreshold.html#status">Status</a></li>
+<li class="toctree-l5"><a class="reference internal" href="library/models/epidemics/ProfileThreshold.html#profilethresholdmodel">ProfileThresholdModel</a></li>
+<li class="toctree-l5"><a class="reference internal" href="library/models/epidemics/ProfileThreshold.html#references">References</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="library/models/epidemics/SWIR.html">SWIR(TBD)</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="library/models/epidemics/SWIR.html#status">Status</a></li>
-<li class="toctree-l4"><a class="reference internal" href="library/models/epidemics/SWIR.html#parameters">Parameters</a></li>
-<li class="toctree-l4"><a class="reference internal" href="library/models/epidemics/SWIR.html#implementation">Implementation</a></li>
-<li class="toctree-l4"><a class="reference internal" href="library/models/epidemics/SWIR.html#references">References</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="library/models/epidemics/Threshold.html">Threshold</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="library/models/epidemics/Threshold.html#model-description">Model Description</a></li>
-<li class="toctree-l4"><a class="reference internal" href="library/models/epidemics/Threshold.html#status">Status</a></li>
-<li class="toctree-l4"><a class="reference internal" href="library/models/epidemics/Threshold.html#thresholdmodel">ThresholdModel</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="library/models/epidemics/Threshold.html#fs_gplib.Epidemics.ThresholdModel"><code class="docutils literal notranslate"><span class="pre">ThresholdModel</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l4"><a class="reference internal" href="library/models/epidemics/Threshold.html#references">References</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="library/models/epidemics/KThreshold.html">Kertesz Threshold</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="library/models/epidemics/KThreshold.html#model-description">Model Description</a></li>
-<li class="toctree-l4"><a class="reference internal" href="library/models/epidemics/KThreshold.html#status">Status</a></li>
-<li class="toctree-l4"><a class="reference internal" href="library/models/epidemics/KThreshold.html#kerteszthresholdmodel">KerteszThresholdModel</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="library/models/epidemics/KThreshold.html#fs_gplib.Epidemics.KerteszThresholdModel"><code class="docutils literal notranslate"><span class="pre">KerteszThresholdModel</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l4"><a class="reference internal" href="library/models/epidemics/KThreshold.html#references">References</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="library/models/epidemics/IndependentCascades.html">Independent Cascades</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="library/models/epidemics/IndependentCascades.html#implementation">Implementation</a></li>
-<li class="toctree-l4"><a class="reference internal" href="library/models/epidemics/IndependentCascades.html#status">Status</a></li>
-<li class="toctree-l4"><a class="reference internal" href="library/models/epidemics/IndependentCascades.html#independentcascadesmodel">IndependentCascadesModel</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="library/models/epidemics/IndependentCascades.html#fs_gplib.Epidemics.IndependentCascadesModel"><code class="docutils literal notranslate"><span class="pre">IndependentCascadesModel</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l4"><a class="reference internal" href="library/models/epidemics/IndependentCascades.html#references">References</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="library/models/epidemics/Profile.html">Profile</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="library/models/epidemics/Profile.html#model-description">Model Description</a></li>
-<li class="toctree-l4"><a class="reference internal" href="library/models/epidemics/Profile.html#status">Status</a></li>
-<li class="toctree-l4"><a class="reference internal" href="library/models/epidemics/Profile.html#profilemodel">ProfileModel</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="library/models/epidemics/Profile.html#fs_gplib.Epidemics.ProfileModel"><code class="docutils literal notranslate"><span class="pre">ProfileModel</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l4"><a class="reference internal" href="library/models/epidemics/Profile.html#references">References</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="library/models/epidemics/ProfileThreshold.html">Profile Threshold</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="library/models/epidemics/ProfileThreshold.html#model-description">Model Description</a></li>
-<li class="toctree-l4"><a class="reference internal" href="library/models/epidemics/ProfileThreshold.html#status">Status</a></li>
-<li class="toctree-l4"><a class="reference internal" href="library/models/epidemics/ProfileThreshold.html#profilethresholdmodel">ProfileThresholdModel</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="library/models/epidemics/ProfileThreshold.html#fs_gplib.Epidemics.ProfileThresholdModel"><code class="docutils literal notranslate"><span class="pre">ProfileThresholdModel</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l4"><a class="reference internal" href="library/models/epidemics/ProfileThreshold.html#references">References</a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="library/opinion.html">Opinion Dynamic Models</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="library/models/opinions/Voter.html">Voter</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="library/models/opinions/Voter.html#implementation">Implementation</a></li>
-<li class="toctree-l4"><a class="reference internal" href="library/models/opinions/Voter.html#status">Status</a></li>
-<li class="toctree-l4"><a class="reference internal" href="library/models/opinions/Voter.html#votermodel">VoterModel</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="library/models/opinions/Voter.html#fs_gplib.Opinions.VoterModel"><code class="docutils literal notranslate"><span class="pre">VoterModel</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="library/opinion.html#base-class-common-api">Base Class &amp; Common API</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="library/opinion.html#utility-methods">Utility Methods</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/opinion.html#simulation-interface">Simulation Interface</a></li>
 </ul>
 </li>
-<li class="toctree-l4"><a class="reference internal" href="library/models/opinions/Voter.html#parameters">Parameters</a></li>
-<li class="toctree-l4"><a class="reference internal" href="library/models/opinions/Voter.html#references">References</a></li>
+<li class="toctree-l3"><a class="reference internal" href="library/opinion.html#available-models">Available Models</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="library/models/opinions/Voter.html">Voter</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="library/models/opinions/Voter.html#implementation">Implementation</a></li>
+<li class="toctree-l5"><a class="reference internal" href="library/models/opinions/Voter.html#status">Status</a></li>
+<li class="toctree-l5"><a class="reference internal" href="library/models/opinions/Voter.html#votermodel">VoterModel</a></li>
+<li class="toctree-l5"><a class="reference internal" href="library/models/opinions/Voter.html#references">References</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="library/models/opinions/QVoter.html">Q-Voter</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="library/models/opinions/QVoter.html#status">Status</a></li>
-<li class="toctree-l4"><a class="reference internal" href="library/models/opinions/QVoter.html#parameters">Parameters</a></li>
-<li class="toctree-l4"><a class="reference internal" href="library/models/opinions/QVoter.html#implementation">Implementation</a></li>
-<li class="toctree-l4"><a class="reference internal" href="library/models/opinions/QVoter.html#references">References</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/models/opinions/QVoter.html">Q-Voter</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="library/models/opinions/QVoter.html#implementation">Implementation</a></li>
+<li class="toctree-l5"><a class="reference internal" href="library/models/opinions/QVoter.html#status">Status</a></li>
+<li class="toctree-l5"><a class="reference internal" href="library/models/opinions/QVoter.html#qvotermodel">QVoterModel</a></li>
+<li class="toctree-l5"><a class="reference internal" href="library/models/opinions/QVoter.html#references">References</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="library/models/opinions/MajorityRule.html">Majority Rule</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="library/models/opinions/MajorityRule.html#status">Status</a></li>
-<li class="toctree-l4"><a class="reference internal" href="library/models/opinions/MajorityRule.html#parameters">Parameters</a></li>
-<li class="toctree-l4"><a class="reference internal" href="library/models/opinions/MajorityRule.html#implementation">Implementation</a></li>
-<li class="toctree-l4"><a class="reference internal" href="library/models/opinions/MajorityRule.html#references">References</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/models/opinions/MajorityRule.html">Majority Rule</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="library/models/opinions/MajorityRule.html#implementation">Implementation</a></li>
+<li class="toctree-l5"><a class="reference internal" href="library/models/opinions/MajorityRule.html#status">Status</a></li>
+<li class="toctree-l5"><a class="reference internal" href="library/models/opinions/MajorityRule.html#majorityrulemodel">MajorityRuleModel</a></li>
+<li class="toctree-l5"><a class="reference internal" href="library/models/opinions/MajorityRule.html#parameters">Parameters</a></li>
+<li class="toctree-l5"><a class="reference internal" href="library/models/opinions/MajorityRule.html#references">References</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="library/models/opinions/Sznajd.html">Sznajd</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="library/models/opinions/Sznajd.html#status">Status</a></li>
-<li class="toctree-l4"><a class="reference internal" href="library/models/opinions/Sznajd.html#parameters">Parameters</a></li>
-<li class="toctree-l4"><a class="reference internal" href="library/models/opinions/Sznajd.html#implementation">Implementation</a></li>
-<li class="toctree-l4"><a class="reference internal" href="library/models/opinions/Sznajd.html#references">References</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/models/opinions/Sznajd.html">Sznajd</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="library/models/opinions/Sznajd.html#implementation">Implementation</a></li>
+<li class="toctree-l5"><a class="reference internal" href="library/models/opinions/Sznajd.html#status">Status</a></li>
+<li class="toctree-l5"><a class="reference internal" href="library/models/opinions/Sznajd.html#sznajdmodel">SznajdModel</a></li>
+<li class="toctree-l5"><a class="reference internal" href="library/models/opinions/Sznajd.html#references">References</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="library/models/opinions/HK.html">Hegselmann-Krause</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="library/models/opinions/HK.html#status">Status</a></li>
-<li class="toctree-l4"><a class="reference internal" href="library/models/opinions/HK.html#parameters">Parameters</a></li>
-<li class="toctree-l4"><a class="reference internal" href="library/models/opinions/HK.html#implementation">Implementation</a></li>
-<li class="toctree-l4"><a class="reference internal" href="library/models/opinions/HK.html#references">References</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/models/opinions/HK.html">Hegselmann-Krause</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="library/models/opinions/HK.html#implementation">Implementation</a></li>
+<li class="toctree-l5"><a class="reference internal" href="library/models/opinions/HK.html#status">Status</a></li>
+<li class="toctree-l5"><a class="reference internal" href="library/models/opinions/HK.html#hkmodel">HKModel</a></li>
+<li class="toctree-l5"><a class="reference internal" href="library/models/opinions/HK.html#references">References</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="library/models/opinions/WHK.html">Weighted Hegselmann-Krause</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="library/models/opinions/WHK.html#status">Status</a></li>
-<li class="toctree-l4"><a class="reference internal" href="library/models/opinions/WHK.html#parameters">Parameters</a></li>
-<li class="toctree-l4"><a class="reference internal" href="library/models/opinions/WHK.html#implementation">Implementation</a></li>
-<li class="toctree-l4"><a class="reference internal" href="library/models/opinions/WHK.html#references">References</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/models/opinions/WHK.html">Weighted Hegselmann-Krause</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="library/models/opinions/WHK.html#implementation">Implementation</a></li>
+<li class="toctree-l5"><a class="reference internal" href="library/models/opinions/WHK.html#status">Status</a></li>
+<li class="toctree-l5"><a class="reference internal" href="library/models/opinions/WHK.html#whkmodel">WHKModel</a></li>
+<li class="toctree-l5"><a class="reference internal" href="library/models/opinions/WHK.html#parameters">Parameters</a></li>
+<li class="toctree-l5"><a class="reference internal" href="library/models/opinions/WHK.html#references">References</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="library/dynamic_network.html">Dynamic Network Models</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="library/models/dynamics/DySI.html">DySI</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="library/models/dynamics/DySI.html#status">Status</a></li>
-<li class="toctree-l4"><a class="reference internal" href="library/models/dynamics/DySI.html#parameters">Parameters</a></li>
-<li class="toctree-l4"><a class="reference internal" href="library/models/dynamics/DySI.html#implementation">Implementation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="library/dynamic_network.html#base-class-common-api">Base Class &amp; Common API</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="library/dynamic_network.html#utility-methods">Utility Methods</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/dynamic_network.html#simulation-interface">Simulation Interface</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="library/models/dynamics/DySIS.html">DySIS</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="library/models/dynamics/DySIS.html#status">Status</a></li>
-<li class="toctree-l4"><a class="reference internal" href="library/models/dynamics/DySIS.html#parameters">Parameters</a></li>
-<li class="toctree-l4"><a class="reference internal" href="library/models/dynamics/DySIS.html#implementation">Implementation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="library/dynamic_network.html#available-models">Available Models</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="library/models/dynamics/DySI.html">DySI</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="library/models/dynamics/DySI.html#implementation">Implementation</a></li>
+<li class="toctree-l5"><a class="reference internal" href="library/models/dynamics/DySI.html#status">Status</a></li>
+<li class="toctree-l5"><a class="reference internal" href="library/models/dynamics/DySI.html#dysimodel">DySIModel</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="library/models/dynamics/DySIR.html">DySIR</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="library/models/dynamics/DySIR.html#status">Status</a></li>
-<li class="toctree-l4"><a class="reference internal" href="library/models/dynamics/DySIR.html#parameters">Parameters</a></li>
-<li class="toctree-l4"><a class="reference internal" href="library/models/dynamics/DySIR.html#implementation">Implementation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/models/dynamics/DySIS.html">DySIS</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="library/models/dynamics/DySIS.html#implementation">Implementation</a></li>
+<li class="toctree-l5"><a class="reference internal" href="library/models/dynamics/DySIS.html#status">Status</a></li>
+<li class="toctree-l5"><a class="reference internal" href="library/models/dynamics/DySIS.html#dysismodel">DySISModel</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="library/models/dynamics/DySEIR.html">DySEIR</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="library/models/dynamics/DySEIR.html#status">Status</a></li>
-<li class="toctree-l4"><a class="reference internal" href="library/models/dynamics/DySEIR.html#parameters">Parameters</a></li>
-<li class="toctree-l4"><a class="reference internal" href="library/models/dynamics/DySEIR.html#implementation">Implementation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/models/dynamics/DySIR.html">DySIR</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="library/models/dynamics/DySIR.html#implementation">Implementation</a></li>
+<li class="toctree-l5"><a class="reference internal" href="library/models/dynamics/DySIR.html#status">Status</a></li>
+<li class="toctree-l5"><a class="reference internal" href="library/models/dynamics/DySIR.html#dysirmodel">DySIRModel</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="library/models/dynamics/DySEIR_ct.html">DySEIR_ct</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="library/models/dynamics/DySEIR_ct.html#status">Status</a></li>
-<li class="toctree-l4"><a class="reference internal" href="library/models/dynamics/DySEIR_ct.html#parameters">Parameters</a></li>
-<li class="toctree-l4"><a class="reference internal" href="library/models/dynamics/DySEIR_ct.html#implementation">Implementation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/models/dynamics/DySEIR.html">DySEIR</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="library/models/dynamics/DySEIR.html#implementation">Implementation</a></li>
+<li class="toctree-l5"><a class="reference internal" href="library/models/dynamics/DySEIR.html#status">Status</a></li>
+<li class="toctree-l5"><a class="reference internal" href="library/models/dynamics/DySEIR.html#dyseirmodel">DySEIRModel</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="library/models/dynamics/DySEIS.html">DySEIS</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="library/models/dynamics/DySEIS.html#status">Status</a></li>
-<li class="toctree-l4"><a class="reference internal" href="library/models/dynamics/DySEIS.html#parameters">Parameters</a></li>
-<li class="toctree-l4"><a class="reference internal" href="library/models/dynamics/DySEIS.html#implementation">Implementation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/models/dynamics/DySEIR_ct.html">DySEIR_ct</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="library/models/dynamics/DySEIR_ct.html#implementation">Implementation</a></li>
+<li class="toctree-l5"><a class="reference internal" href="library/models/dynamics/DySEIR_ct.html#status">Status</a></li>
+<li class="toctree-l5"><a class="reference internal" href="library/models/dynamics/DySEIR_ct.html#dyseirctmodel">DySEIRctModel</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="library/models/dynamics/DySEIS_ct.html">DySEIS_ct</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="library/models/dynamics/DySEIS_ct.html#status">Status</a></li>
-<li class="toctree-l4"><a class="reference internal" href="library/models/dynamics/DySEIS_ct.html#parameters">Parameters</a></li>
-<li class="toctree-l4"><a class="reference internal" href="library/models/dynamics/DySEIS_ct.html#implementation">Implementation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/models/dynamics/DySEIS.html">DySEIS</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="library/models/dynamics/DySEIS.html#implementation">Implementation</a></li>
+<li class="toctree-l5"><a class="reference internal" href="library/models/dynamics/DySEIS.html#status">Status</a></li>
+<li class="toctree-l5"><a class="reference internal" href="library/models/dynamics/DySEIS.html#dyseismodel">DySEISModel</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="library/models/dynamics/DySWIR.html">DySWIR(TBD)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="library/models/dynamics/DyThreshold.html">DyThreshold</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="library/models/dynamics/DyThreshold.html#status">Status</a></li>
-<li class="toctree-l4"><a class="reference internal" href="library/models/dynamics/DyThreshold.html#parameters">Parameters</a></li>
-<li class="toctree-l4"><a class="reference internal" href="library/models/dynamics/DyThreshold.html#implementation">Implementation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/models/dynamics/DySEIS_ct.html">DySEIS_ct</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="library/models/dynamics/DySEIS_ct.html#implementation">Implementation</a></li>
+<li class="toctree-l5"><a class="reference internal" href="library/models/dynamics/DySEIS_ct.html#status">Status</a></li>
+<li class="toctree-l5"><a class="reference internal" href="library/models/dynamics/DySEIS_ct.html#dyseisctmodel">DySEISctModel</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="library/models/dynamics/DyKThreshold.html">DyKThreshold</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="library/models/dynamics/DyKThreshold.html#status">Status</a></li>
-<li class="toctree-l4"><a class="reference internal" href="library/models/dynamics/DyKThreshold.html#parameters">Parameters</a></li>
-<li class="toctree-l4"><a class="reference internal" href="library/models/dynamics/DyKThreshold.html#implementation">Implementation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/models/dynamics/DySWIR.html">DySWIR(TBD)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/models/dynamics/DyThreshold.html">DyThreshold</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="library/models/dynamics/DyThreshold.html#implementation">Implementation</a></li>
+<li class="toctree-l5"><a class="reference internal" href="library/models/dynamics/DyThreshold.html#status">Status</a></li>
+<li class="toctree-l5"><a class="reference internal" href="library/models/dynamics/DyThreshold.html#dythresholdmodel">DyThresholdModel</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="library/models/dynamics/DyKThreshold.html">DyKThreshold</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="library/models/dynamics/DyKThreshold.html#implementation">Implementation</a></li>
+<li class="toctree-l5"><a class="reference internal" href="library/models/dynamics/DyKThreshold.html#status">Status</a></li>
+<li class="toctree-l5"><a class="reference internal" href="library/models/dynamics/DyKThreshold.html#dykerteszthresholdmodel">DyKerteszThresholdModel</a></li>
+<li class="toctree-l5"><a class="reference internal" href="library/models/dynamics/DyKThreshold.html#parameters">Parameters</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -349,71 +338,54 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="advanced.html">Advanced</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="advanced.html#distributed-computing">Distributed Computing</a></li>
-<li class="toctree-l2"><a class="reference internal" href="advanced.html#other-functions-and-parameters">Other Functions and Parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="advanced.html#ultra-large-graph-propagation">Ultra-Large Graph Propagation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="advanced.html#what-the-library-provides">What the Library Provides</a></li>
+<li class="toctree-l3"><a class="reference internal" href="advanced.html#why-partition-by-target-nodes">Why Partition by Target Nodes?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="advanced.html#partitioning-strategy">Partitioning Strategy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="advanced.html#data-layout-after-partitioning">Data Layout After Partitioning</a></li>
+<li class="toctree-l3"><a class="reference internal" href="advanced.html#recommended-workflow">Recommended Workflow</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="advanced.html#distributed-partitioning-api">Distributed Partitioning API</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="advanced.html#graphpartitioner">GraphPartitioner</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="advanced.html#fs_gplib.DistributedComputing.DistributedComputing.GraphPartitioner"><code class="docutils literal notranslate"><span class="pre">GraphPartitioner</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="advanced.html#fs_gplib.DistributedComputing.DistributedComputing.GraphPartitioner.generate_partition"><code class="docutils literal notranslate"><span class="pre">GraphPartitioner.generate_partition()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="advanced.html#usage-notes">Usage Notes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="advanced.html#loading-saved-partitions">Loading Saved Partitions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="advanced.html#fs_gplib.DistributedComputing.DistributedComputing.load_partition"><code class="docutils literal notranslate"><span class="pre">load_partition()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="advanced.html#how-to-connect-a-partition-to-a-model">How to Connect a Partition to a Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="advanced.html#practical-limitations">Practical Limitations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="advanced.html#when-to-use-this-interface">When to Use This Interface</a></li>
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Custom Model</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#example">Example</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#import">Import</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#data">Data</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#model">Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#which-base-file-should-you-start-from">Which Base File Should You Start From?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#two-layers-of-a-custom-model">Two Layers of a Custom Model</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#diffusionmodel-simulation-lifecycle-and-public-api"><code class="docutils literal notranslate"><span class="pre">DiffusionModel</span></code>: simulation lifecycle and public API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#diffusion-process-propagation-rule-and-tensor-update"><code class="docutils literal notranslate"><span class="pre">Diffusion_process</span></code>: propagation rule and tensor update</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#about-batch">About Batch</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#how-to-use-batch">How to use batch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#minimal-development-checklist">Minimal Development Checklist</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#example-1-si-with-randomly-blocked-susceptible-nodes">Example 1: SI with Randomly Blocked Susceptible Nodes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#implementation">Implementation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#usage">Usage</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#about-distributed">About Distributed</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#how-to-use-distributed-computing">How to use distributed computing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#example-2-friedkin-johnsen-opinion-model">Example 2: Friedkin-Johnsen Opinion Model</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">Implementation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">Usage</a></li>
 </ul>
 </li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="rst_template.html">RST Template Example</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="rst_template.html#section-heading">Section Heading</a></li>
-<li class="toctree-l2"><a class="reference internal" href="rst_template.html#lists">Lists</a></li>
-<li class="toctree-l2"><a class="reference internal" href="rst_template.html#code-block">Code Block</a></li>
-<li class="toctree-l2"><a class="reference internal" href="rst_template.html#table-example">Table Example</a></li>
-<li class="toctree-l2"><a class="reference internal" href="rst_template.html#hyperlink">Hyperlink</a></li>
-<li class="toctree-l2"><a class="reference internal" href="rst_template.html#toctree">Toctree</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="overview.html">Overview</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="overview.html#motivation">Motivation</a></li>
-<li class="toctree-l4"><a class="reference internal" href="overview.html#core-capabilities">Core Capabilities</a></li>
-<li class="toctree-l4"><a class="reference internal" href="overview.html#project-structure">Project Structure</a></li>
-<li class="toctree-l4"><a class="reference internal" href="overview.html#get-started">Get Started</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="installation.html">Installation</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="installation.html#environment">Environment</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="installation.html#python-version">Python Version</a></li>
-</ul>
-</li>
-<li class="toctree-l4"><a class="reference internal" href="installation.html#install">Install</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="installation.html#install-from-testpypi">Install from TestPyPI</a></li>
-<li class="toctree-l5"><a class="reference internal" href="installation.html#required-packages">Required Packages</a></li>
-<li class="toctree-l5"><a class="reference internal" href="installation.html#test-installation">Test Installation</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="rst_template.html#admonitions">Admonitions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="rst_template.html#footnotes">Footnotes</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="api_example.html">API Documentation Template</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="api_example.html#mathematical-formulae">Mathematical Formulae</a></li>
-<li class="toctree-l2"><a class="reference internal" href="api_example.html#function-documentation-manual">Function Documentation (Manual)</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="api_example.html#calculate_energy"><code class="docutils literal notranslate"><span class="pre">calculate_energy()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="api_example.html#class-documentation-manual">Class Documentation (Manual)</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="api_example.html#GravNetConv"><code class="docutils literal notranslate"><span class="pre">GravNetConv</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="api_example.html#autodoc-example">Autodoc Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#batch-parallel-and-distributed-use">Batch-Parallel and Distributed Use</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#practical-suggestions">Practical Suggestions</a></li>
 </ul>
 </li>
 </ul>
@@ -444,30 +416,505 @@
              
   <section id="custom-model">
 <h1>Custom Model<a class="headerlink" href="#custom-model" title="Link to this heading"></a></h1>
-<section id="example">
-<h2>Example<a class="headerlink" href="#example" title="Link to this heading"></a></h2>
-<section id="import">
-<h3>Import<a class="headerlink" href="#import" title="Link to this heading"></a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">FS_GPlib</span></code> is designed so that new propagation models can be added with the
+same interface as the built-in models.  For all three model families,
+customisation follows the same pattern: each <code class="docutils literal notranslate"><span class="pre">base.py</span></code> defines two base
+classes, one for the high-level simulation API and one for the low-level
+message-passing kernel.</p>
+<p>Before implementing a new model, it is recommended to first read the
+corresponding family overview:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="library/epidemic.html"><span class="doc">Epidemic Models</span></a></p></li>
+<li><p><a class="reference internal" href="library/opinion.html"><span class="doc">Opinion Dynamic Models</span></a></p></li>
+<li><p><a class="reference internal" href="library/dynamic_network.html"><span class="doc">Dynamic Network Models</span></a></p></li>
+</ul>
+<section id="which-base-file-should-you-start-from">
+<h2>Which Base File Should You Start From?<a class="headerlink" href="#which-base-file-should-you-start-from" title="Link to this heading"></a></h2>
+<p>Choose the <code class="docutils literal notranslate"><span class="pre">base.py</span></code> file that matches your model family.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 18.0%" />
+<col style="width: 32.0%" />
+<col style="width: 25.0%" />
+<col style="width: 25.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Family</p></th>
+<th class="head"><p>Base file</p></th>
+<th class="head"><p>High-level base class</p></th>
+<th class="head"><p>Low-level base class</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Epidemic</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">fs_gplib/Epidemics/base.py</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">DiffusionModel</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Diffusion_process</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Opinion</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">fs_gplib/Opinions/base.py</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">DiffusionModel</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Diffusion_process</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>Dynamic network</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">fs_gplib/Dynamic/base.py</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">DiffusionModel</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Diffusion_process</span></code></p></td>
+</tr>
+</tbody>
+</table>
+<p>Although the class names are the same, the three families are not identical:</p>
+<ul class="simple">
+<li><p>Epidemic models are defined on static graphs and usually use discrete node
+states such as susceptible, infected, or recovered.</p></li>
+<li><p>Opinion models are also defined on static graphs, but may use either
+discrete or continuous node values.</p></li>
+<li><p>Dynamic models operate on a sequence of graph snapshots, so the process class
+must read <code class="docutils literal notranslate"><span class="pre">edge_index_list</span></code> and possibly <code class="docutils literal notranslate"><span class="pre">edge_attr_list</span></code> step by step.</p></li>
+</ul>
 </section>
-<section id="data">
-<h3>Data<a class="headerlink" href="#data" title="Link to this heading"></a></h3>
+<section id="two-layers-of-a-custom-model">
+<h2>Two Layers of a Custom Model<a class="headerlink" href="#two-layers-of-a-custom-model" title="Link to this heading"></a></h2>
+<p>In a custom implementation, the two base classes play different roles.</p>
+<section id="diffusionmodel-simulation-lifecycle-and-public-api">
+<h3><code class="docutils literal notranslate"><span class="pre">DiffusionModel</span></code>: simulation lifecycle and public API<a class="headerlink" href="#diffusionmodel-simulation-lifecycle-and-public-api" title="Link to this heading"></a></h3>
+<p>The high-level model class is responsible for the user-facing interface:</p>
+<ul class="simple">
+<li><p>validating the input graph or snapshot sequence;</p></li>
+<li><p>parsing seeds or initial opinions;</p></li>
+<li><p>validating model parameters;</p></li>
+<li><p>initialising <code class="docutils literal notranslate"><span class="pre">node_status</span></code>;</p></li>
+<li><p>moving data and tensors to CPU or GPU;</p></li>
+<li><p>exposing <code class="docutils literal notranslate"><span class="pre">run_iteration</span></code>, <code class="docutils literal notranslate"><span class="pre">run_iterations</span></code>, <code class="docutils literal notranslate"><span class="pre">run_epoch</span></code>, and
+<code class="docutils literal notranslate"><span class="pre">run_epochs</span></code>.</p></li>
+</ul>
+<p>In practice, most custom model classes follow the same structure as the built-in
+models:</p>
+<ol class="arabic simple">
+<li><p>Define <code class="docutils literal notranslate"><span class="pre">__init__</span></code> and pass model-specific parameters to <code class="docutils literal notranslate"><span class="pre">super().__init__</span></code>.</p></li>
+<li><p>Implement <code class="docutils literal notranslate"><span class="pre">_init_node_status</span></code> to build the node-state tensor(s).</p></li>
+<li><p>Implement <code class="docutils literal notranslate"><span class="pre">_set_device</span></code> to move tensors and create the process object.</p></li>
+<li><p>Implement <code class="docutils literal notranslate"><span class="pre">run_iteration</span></code> and <code class="docutils literal notranslate"><span class="pre">run_iterations</span></code> for step-by-step
+simulation.</p></li>
+<li><p>Implement <code class="docutils literal notranslate"><span class="pre">run_epoch</span></code> and <code class="docutils literal notranslate"><span class="pre">run_epochs</span></code> if you want Monte-Carlo and
+batch-parallel execution.</p></li>
+<li><p>Implement <code class="docutils literal notranslate"><span class="pre">_return_final</span></code> to map the internal state representation to the
+returned tensor.</p></li>
+</ol>
 </section>
-<section id="model">
-<h3>Model<a class="headerlink" href="#model" title="Link to this heading"></a></h3>
+<section id="diffusion-process-propagation-rule-and-tensor-update">
+<h3><code class="docutils literal notranslate"><span class="pre">Diffusion_process</span></code>: propagation rule and tensor update<a class="headerlink" href="#diffusion-process-propagation-rule-and-tensor-update" title="Link to this heading"></a></h3>
+<p>The process class is the message-passing kernel built on top of
+<code class="docutils literal notranslate"><span class="pre">torch_geometric.nn.MessagePassing</span></code>.  It is responsible for the actual update
+rule at each time step:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">forward</span></code> defines how the full state tensor evolves through one or multiple
+iterations;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">message</span></code> defines the edge-level interaction;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">aggregate</span></code> can be overridden when the default <code class="docutils literal notranslate"><span class="pre">sum</span></code> or <code class="docutils literal notranslate"><span class="pre">mean</span></code> is not
+sufficient.</p></li>
+</ul>
+<p>For epidemic and static opinion models, the usual pattern is to repeat the
+current node state to shape <code class="docutils literal notranslate"><span class="pre">(epochs,</span> <span class="pre">N,</span> <span class="pre">1)</span></code> and evolve several Monte-Carlo
+realisations in parallel.  For dynamic models, <code class="docutils literal notranslate"><span class="pre">forward</span></code> additionally needs
+to read the current snapshot according to <code class="docutils literal notranslate"><span class="pre">self.times</span></code>.</p>
 </section>
 </section>
-<section id="about-batch">
-<h2>About Batch<a class="headerlink" href="#about-batch" title="Link to this heading"></a></h2>
-<section id="how-to-use-batch">
-<h3>How to use batch<a class="headerlink" href="#how-to-use-batch" title="Link to this heading"></a></h3>
-<p>First, clone the FS_GPlib project from GitHub:</p>
+<section id="minimal-development-checklist">
+<h2>Minimal Development Checklist<a class="headerlink" href="#minimal-development-checklist" title="Link to this heading"></a></h2>
+<p>When adding a new custom model, it is useful to check the following questions:</p>
+<ul class="simple">
+<li><p>Which base family matches the model: epidemic, opinion, or dynamic?</p></li>
+<li><p>What is the node-state representation inside <code class="docutils literal notranslate"><span class="pre">node_status</span></code>?</p></li>
+<li><p>Which parameters should be validated in <code class="docutils literal notranslate"><span class="pre">__init__</span></code>?</p></li>
+<li><p>Does the model require only <code class="docutils literal notranslate"><span class="pre">message</span></code> and default aggregation, or also a
+custom <code class="docutils literal notranslate"><span class="pre">aggregate</span></code>?</p></li>
+<li><p>Should <code class="docutils literal notranslate"><span class="pre">run_epochs</span></code> support batch parallelism?</p></li>
+<li><p>What tensor format should the final result return?</p></li>
+</ul>
+</section>
+<section id="example-1-si-with-randomly-blocked-susceptible-nodes">
+<h2>Example 1: SI with Randomly Blocked Susceptible Nodes<a class="headerlink" href="#example-1-si-with-randomly-blocked-susceptible-nodes" title="Link to this heading"></a></h2>
+<p>This example extends the SI model by introducing a third state, <code class="docutils literal notranslate"><span class="pre">Blocked</span></code>.
+At each iteration, a proportion <code class="docutils literal notranslate"><span class="pre">blocking_rate</span></code> of currently susceptible
+nodes is randomly moved to <code class="docutils literal notranslate"><span class="pre">Blocked</span></code>.  Blocked nodes are never infected
+again.</p>
+<p>We use the following update order at each step:</p>
+<ol class="arabic simple">
+<li><p>Sample susceptible nodes that become blocked.</p></li>
+<li><p>Compute infections only on the remaining susceptible nodes.</p></li>
+</ol>
+<p>The model therefore has three final states:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">0</span></code>: susceptible</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">1</span></code>: infected</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">2</span></code>: blocked</p></li>
+</ul>
+<section id="implementation">
+<h3>Implementation<a class="headerlink" href="#implementation" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span>
+
+<span class="kn">from</span> <span class="nn">fs_gplib.Epidemics.base</span> <span class="kn">import</span> <span class="n">DiffusionModel</span><span class="p">,</span> <span class="n">Diffusion_process</span>
+<span class="kn">from</span> <span class="nn">fs_gplib.utils</span> <span class="kn">import</span> <span class="o">*</span>
+
+
+<span class="k">class</span> <span class="nc">BlockedSIModel</span><span class="p">(</span><span class="n">DiffusionModel</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+                 <span class="n">data</span><span class="p">,</span>
+                 <span class="n">seeds</span><span class="p">,</span>
+                 <span class="n">infection_beta</span><span class="p">,</span>
+                 <span class="n">blocking_rate</span><span class="p">,</span>
+                 <span class="n">device</span><span class="o">=</span><span class="s1">&#39;cpu&#39;</span><span class="p">,</span>
+                 <span class="n">use_weight</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                 <span class="n">rand_seed</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
+            <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span>
+            <span class="n">seeds</span><span class="o">=</span><span class="n">seeds</span><span class="p">,</span>
+            <span class="n">rand_seed</span><span class="o">=</span><span class="n">rand_seed</span><span class="p">,</span>
+            <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">,</span>
+            <span class="n">use_weight</span><span class="o">=</span><span class="n">use_weight</span><span class="p">,</span>
+            <span class="n">infection_beta</span><span class="o">=</span><span class="n">infection_beta</span><span class="p">,</span>
+            <span class="n">blocking_rate</span><span class="o">=</span><span class="n">blocking_rate</span><span class="p">,</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_init_node_status</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">node_status</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;I&quot;</span><span class="p">:</span> <span class="n">get_binary_mask</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">num_nodes</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">seeds</span><span class="p">)</span><span class="o">.</span><span class="n">bool</span><span class="p">()</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">),</span>
+            <span class="s2">&quot;B&quot;</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">num_nodes</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">bool</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">),</span>
+        <span class="p">}</span>
+
+    <span class="k">def</span> <span class="nf">_set_device</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">device</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_set_device</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_init_node_status</span><span class="p">()</span>
+        <span class="n">edge_attr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">edge_attr</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">use_weight</span> <span class="k">else</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">BlockedSI_process</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">edge_index</span><span class="p">,</span>
+            <span class="n">infection_beta</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">infection_beta</span><span class="p">,</span>
+            <span class="n">blocking_rate</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">blocking_rate</span><span class="p">,</span>
+            <span class="n">edge_attr</span><span class="o">=</span><span class="n">edge_attr</span><span class="p">,</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">run_iteration</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">run_iterations</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">run_iterations</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">times</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">check_int</span><span class="p">(</span><span class="n">times</span><span class="o">=</span><span class="n">times</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Caught error:&quot;</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>
+            <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">_set_iterations</span><span class="p">(</span><span class="n">times</span><span class="p">)</span>
+        <span class="n">out_all</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">node_status</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">node_status</span><span class="p">[</span><span class="s2">&quot;I&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">out_all</span><span class="p">[</span><span class="s2">&quot;I&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">node_status</span><span class="p">[</span><span class="s2">&quot;B&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">out_all</span><span class="p">[</span><span class="s2">&quot;B&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_return_final</span><span class="p">(</span><span class="n">out_all</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">run_epoch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">iterations_times</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">run_epochs</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">iterations_times</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">run_epochs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">epochs</span><span class="p">,</span> <span class="n">iterations_times</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">200</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">check_int</span><span class="p">(</span>
+                <span class="n">epochs</span><span class="o">=</span><span class="n">epochs</span><span class="p">,</span>
+                <span class="n">iterations_times</span><span class="o">=</span><span class="n">iterations_times</span><span class="p">,</span>
+                <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Caught error:&quot;</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>
+            <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_init_node_status</span><span class="p">()</span>
+        <span class="n">epoch_groups</span> <span class="o">=</span> <span class="n">epochs_groups_list</span><span class="p">(</span><span class="n">epochs</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">)</span>
+        <span class="n">bar</span> <span class="o">=</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">epoch_groups</span><span class="p">)</span>
+        <span class="n">finals</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
+            <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">epoch_group</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">bar</span><span class="p">):</span>
+                <span class="n">bar</span><span class="o">.</span><span class="n">set_description</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Batch </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">_set_iterations</span><span class="p">(</span><span class="n">iterations_times</span><span class="p">)</span>
+                <span class="n">out_all</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">node_status</span><span class="p">,</span> <span class="n">epoch_group</span><span class="p">)</span>
+                <span class="n">finals</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_return_final</span><span class="p">(</span><span class="n">out_all</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="s2">&quot;cpu&quot;</span><span class="p">))</span>
+
+        <span class="k">return</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">(</span><span class="n">finals</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_return_final</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">out_all</span><span class="p">):</span>
+        <span class="n">infected</span> <span class="o">=</span> <span class="n">out_all</span><span class="p">[</span><span class="s2">&quot;I&quot;</span><span class="p">]</span>
+        <span class="n">blocked</span> <span class="o">=</span> <span class="n">out_all</span><span class="p">[</span><span class="s2">&quot;B&quot;</span><span class="p">]</span>
+        <span class="n">final</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">infected</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">long</span><span class="p">)</span>
+        <span class="n">final</span><span class="p">[</span><span class="n">infected</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="n">final</span><span class="p">[</span><span class="n">blocked</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span>
+        <span class="k">return</span> <span class="n">final</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">BlockedSI_process</span><span class="p">(</span><span class="n">Diffusion_process</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">edge_index</span><span class="p">,</span> <span class="n">infection_beta</span><span class="p">,</span> <span class="n">blocking_rate</span><span class="p">,</span> <span class="n">edge_attr</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
+            <span class="n">edge_index</span><span class="o">=</span><span class="n">edge_index</span><span class="p">,</span>
+            <span class="n">infection_beta</span><span class="o">=</span><span class="n">infection_beta</span><span class="p">,</span>
+            <span class="n">blocking_rate</span><span class="o">=</span><span class="n">blocking_rate</span><span class="p">,</span>
+            <span class="n">edge_attr</span><span class="o">=</span><span class="n">edge_attr</span><span class="p">,</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node_status</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">infected</span> <span class="o">=</span> <span class="n">node_status</span><span class="p">[</span><span class="s2">&quot;I&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">epochs</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">blocked</span> <span class="o">=</span> <span class="n">node_status</span><span class="p">[</span><span class="s2">&quot;B&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">epochs</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+        <span class="k">while</span> <span class="bp">self</span><span class="o">.</span><span class="n">iterations_times</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">times</span><span class="p">:</span>
+            <span class="n">susceptible</span> <span class="o">=</span> <span class="p">(</span><span class="o">~</span><span class="n">infected</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="o">~</span><span class="n">blocked</span><span class="p">)</span>
+
+            <span class="n">block_rand</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">rand_like</span><span class="p">(</span><span class="n">infected</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+            <span class="n">new_blocked</span> <span class="o">=</span> <span class="n">susceptible</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">block_rand</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">blocking_rate</span><span class="p">)</span>
+            <span class="n">blocked</span><span class="p">[</span><span class="n">new_blocked</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+
+            <span class="n">susceptible</span> <span class="o">=</span> <span class="p">(</span><span class="o">~</span><span class="n">infected</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="o">~</span><span class="n">blocked</span><span class="p">)</span>
+            <span class="n">temp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">propagate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">edge_index</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">infected</span><span class="o">.</span><span class="n">float</span><span class="p">())</span>
+            <span class="n">infection_prob</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">torch</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">temp</span><span class="p">)</span>
+            <span class="n">infect_rand</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">rand_like</span><span class="p">(</span><span class="n">infected</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+            <span class="n">new_infected</span> <span class="o">=</span> <span class="n">susceptible</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">infect_rand</span> <span class="o">&lt;</span> <span class="n">infection_prob</span><span class="p">)</span>
+            <span class="n">infected</span><span class="p">[</span><span class="n">new_infected</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">times</span> <span class="o">+=</span> <span class="mi">1</span>
+
+        <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;I&quot;</span><span class="p">:</span> <span class="n">infected</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">:</span> <span class="n">blocked</span><span class="p">}</span>
+
+    <span class="k">def</span> <span class="nf">message</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x_j</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">torch</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">infection_beta</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">edge_attr</span> <span class="o">*</span> <span class="n">x_j</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="usage">
+<h3>Usage<a class="headerlink" href="#usage" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">from</span> <span class="nn">torch_geometric.data</span> <span class="kn">import</span> <span class="n">Data</span>
+
+<span class="n">edge_index</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">]])</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">Data</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">)),</span> <span class="n">edge_index</span><span class="o">=</span><span class="n">edge_index</span><span class="p">)</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">BlockedSIModel</span><span class="p">(</span>
+    <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span>
+    <span class="n">seeds</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+    <span class="n">infection_beta</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span>
+    <span class="n">blocking_rate</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
+    <span class="n">device</span><span class="o">=</span><span class="s2">&quot;cpu&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">final</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">run_epochs</span><span class="p">(</span><span class="n">epochs</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">iterations_times</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+</pre></div>
+</div>
 </section>
 </section>
-<section id="about-distributed">
-<h2>About Distributed<a class="headerlink" href="#about-distributed" title="Link to this heading"></a></h2>
-<section id="how-to-use-distributed-computing">
-<h3>How to use distributed computing<a class="headerlink" href="#how-to-use-distributed-computing" title="Link to this heading"></a></h3>
+<section id="example-2-friedkin-johnsen-opinion-model">
+<h2>Example 2: Friedkin-Johnsen Opinion Model<a class="headerlink" href="#example-2-friedkin-johnsen-opinion-model" title="Link to this heading"></a></h2>
+<p>The Friedkin-Johnsen (FJ) model is a classical continuous opinion model.  Each
+node <span class="math notranslate nohighlight">\(i\)</span> keeps an initial opinion <span class="math notranslate nohighlight">\(x_i^{(0)}\)</span> and, at every round,
+balances social influence with its own prejudice:</p>
+<div class="math notranslate nohighlight">
+\[x_i^{(k+1)} = \lambda x_i^{(0)} + (1-\lambda)\frac{1}{|N(i)|}\sum_{j \in N(i)} x_j^{(k)},\]</div>
+<p>where <span class="math notranslate nohighlight">\(\lambda \in [0,1]\)</span> is the stubbornness parameter.  A larger
+<span class="math notranslate nohighlight">\(\lambda\)</span> means the node stays closer to its initial opinion.</p>
+<p>Below we implement the simplest version with:</p>
+<ul class="simple">
+<li><p>continuous opinions in <code class="docutils literal notranslate"><span class="pre">[0,</span> <span class="pre">1]</span></code>;</p></li>
+<li><p>a single global stubbornness coefficient <code class="docutils literal notranslate"><span class="pre">lambda</span></code>;</p></li>
+<li><p>the average of neighbors as the interpersonal influence term.</p></li>
+</ul>
+<section id="id1">
+<h3>Implementation<a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">random</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+
+<span class="kn">import</span> <span class="nn">torch_scatter</span>
+<span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span>
+
+<span class="kn">from</span> <span class="nn">fs_gplib.Opinions.base</span> <span class="kn">import</span> <span class="n">DiffusionModel</span><span class="p">,</span> <span class="n">Diffusion_process</span>
+<span class="kn">from</span> <span class="nn">fs_gplib.utils</span> <span class="kn">import</span> <span class="o">*</span>
+
+
+<span class="k">class</span> <span class="nc">FriedkinJohnsenModel</span><span class="p">(</span><span class="n">DiffusionModel</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">seeds</span><span class="p">,</span> <span class="n">stubbornness</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="s2">&quot;cpu&quot;</span><span class="p">,</span> <span class="n">rand_seed</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
+            <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span>
+            <span class="n">seeds</span><span class="o">=</span><span class="n">seeds</span><span class="p">,</span>
+            <span class="n">rand_seed</span><span class="o">=</span><span class="n">rand_seed</span><span class="p">,</span>
+            <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">,</span>
+            <span class="n">stubbornness</span><span class="o">=</span><span class="n">stubbornness</span><span class="p">,</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_initialize_seeds</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">seeds</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">num_nodes</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_num_nodes</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">seeds</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rand_seed</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">seeds</span> <span class="o">=</span> <span class="p">[</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">num_nodes</span><span class="p">)]</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">seeds</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">seeds</span><span class="p">)</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_nodes</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Number of seeds must equal the number of nodes.&quot;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nb">min</span><span class="p">(</span><span class="n">seeds</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">0.0</span> <span class="ow">or</span> <span class="nb">max</span><span class="p">(</span><span class="n">seeds</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mf">1.0</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;All initial opinions must be in [0, 1].&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">seeds</span> <span class="o">=</span> <span class="n">seeds</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;seeds must be a list of floats or None.&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_init_node_status</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">initial</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">seeds</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">node_status</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;SI&quot;</span><span class="p">:</span> <span class="n">initial</span><span class="o">.</span><span class="n">clone</span><span class="p">(),</span>
+            <span class="s2">&quot;X0&quot;</span><span class="p">:</span> <span class="n">initial</span><span class="o">.</span><span class="n">clone</span><span class="p">(),</span>
+        <span class="p">}</span>
+
+    <span class="k">def</span> <span class="nf">_set_device</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">device</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_set_device</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_init_node_status</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">FriedkinJohnsen_process</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">edge_index</span><span class="p">,</span>
+            <span class="n">stubbornness</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">stubbornness</span><span class="p">,</span>
+            <span class="n">iterations_times</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">run_iteration</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">run_iterations</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">run_iterations</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">times</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">check_int</span><span class="p">(</span><span class="n">times</span><span class="o">=</span><span class="n">times</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Caught error:&quot;</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>
+            <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">_set_iterations</span><span class="p">(</span><span class="n">times</span><span class="p">)</span>
+        <span class="n">out_all</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">node_status</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">node_status</span><span class="p">[</span><span class="s2">&quot;SI&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">out_all</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_return_final</span><span class="p">(</span><span class="n">out_all</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">run_epoch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">iterations_times</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">run_epochs</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">iterations_times</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">run_epochs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">epochs</span><span class="p">,</span> <span class="n">iterations_times</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">200</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">check_int</span><span class="p">(</span>
+                <span class="n">epochs</span><span class="o">=</span><span class="n">epochs</span><span class="p">,</span>
+                <span class="n">iterations_times</span><span class="o">=</span><span class="n">iterations_times</span><span class="p">,</span>
+                <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Caught error:&quot;</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>
+            <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_init_node_status</span><span class="p">()</span>
+        <span class="n">epoch_groups</span> <span class="o">=</span> <span class="n">epochs_groups_list</span><span class="p">(</span><span class="n">epochs</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">)</span>
+        <span class="n">bar</span> <span class="o">=</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">epoch_groups</span><span class="p">)</span>
+        <span class="n">finals</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
+            <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">epoch_group</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">bar</span><span class="p">):</span>
+                <span class="n">bar</span><span class="o">.</span><span class="n">set_description</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Batch </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">_set_iterations</span><span class="p">(</span><span class="n">iterations_times</span><span class="p">)</span>
+                <span class="n">out_all</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">node_status</span><span class="p">,</span> <span class="n">epoch_group</span><span class="p">)</span>
+                <span class="n">finals</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_return_final</span><span class="p">(</span><span class="n">out_all</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="s2">&quot;cpu&quot;</span><span class="p">))</span>
+
+        <span class="k">return</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">(</span><span class="n">finals</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_return_final</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">out_all</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">out_all</span><span class="o">.</span><span class="n">float</span><span class="p">()</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">FriedkinJohnsen_process</span><span class="p">(</span><span class="n">Diffusion_process</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">edge_index</span><span class="p">,</span> <span class="n">stubbornness</span><span class="p">,</span> <span class="n">iterations_times</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
+            <span class="n">edge_index</span><span class="o">=</span><span class="n">edge_index</span><span class="p">,</span>
+            <span class="n">aggr</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+            <span class="n">stubbornness</span><span class="o">=</span><span class="n">stubbornness</span><span class="p">,</span>
+            <span class="n">iterations_times</span><span class="o">=</span><span class="n">iterations_times</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">edge_index</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">add_self_loops</span><span class="p">(</span><span class="n">edge_index</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node_status</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">node_status</span><span class="p">[</span><span class="s2">&quot;SI&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">epochs</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">x0</span> <span class="o">=</span> <span class="n">node_status</span><span class="p">[</span><span class="s2">&quot;X0&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">epochs</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+        <span class="k">while</span> <span class="bp">self</span><span class="o">.</span><span class="n">iterations_times</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">times</span><span class="p">:</span>
+            <span class="n">neighbor_mean</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">propagate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">edge_index</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">)</span>
+            <span class="n">updated</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">stubbornness</span> <span class="o">*</span> <span class="n">x0</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">stubbornness</span><span class="p">)</span> <span class="o">*</span> <span class="n">neighbor_mean</span>
+
+            <span class="n">mask</span> <span class="o">=</span> <span class="o">~</span><span class="n">torch</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">updated</span><span class="p">)</span>
+            <span class="n">x</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span> <span class="o">=</span> <span class="n">updated</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">times</span> <span class="o">+=</span> <span class="mi">1</span>
+
+        <span class="k">return</span> <span class="n">x</span>
+
+    <span class="k">def</span> <span class="nf">message</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x_j</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">x_j</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="n">x_j</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">aggregate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inputs</span><span class="p">,</span> <span class="n">ptr</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dim_size</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="n">opinion_sum</span> <span class="o">=</span> <span class="n">torch_scatter</span><span class="o">.</span><span class="n">scatter_add</span><span class="p">(</span>
+            <span class="n">inputs</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">edge_index</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">dim_size</span><span class="o">=</span><span class="n">dim_size</span>
+        <span class="p">)</span>
+        <span class="n">opinion_count</span> <span class="o">=</span> <span class="n">torch_scatter</span><span class="o">.</span><span class="n">scatter_add</span><span class="p">(</span>
+            <span class="n">inputs</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">edge_index</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">dim_size</span><span class="o">=</span><span class="n">dim_size</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">opinion_sum</span> <span class="o">/</span> <span class="n">opinion_count</span>
+</pre></div>
+</div>
 </section>
+<section id="id2">
+<h3>Usage<a class="headerlink" href="#id2" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">from</span> <span class="nn">torch_geometric.data</span> <span class="kn">import</span> <span class="n">Data</span>
+
+<span class="n">edge_index</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">Data</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">)),</span> <span class="n">edge_index</span><span class="o">=</span><span class="n">edge_index</span><span class="p">)</span>
+
+<span class="n">initial_opinion</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">]</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">FriedkinJohnsenModel</span><span class="p">(</span>
+    <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span>
+    <span class="n">seeds</span><span class="o">=</span><span class="n">initial_opinion</span><span class="p">,</span>
+    <span class="n">stubbornness</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span>
+    <span class="n">device</span><span class="o">=</span><span class="s2">&quot;cpu&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">final</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">run_epochs</span><span class="p">(</span><span class="n">epochs</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">iterations_times</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">25</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This example is a good template when you need continuous opinion values and a
+custom aggregation rule.</p>
+</section>
+</section>
+<section id="batch-parallel-and-distributed-use">
+<h2>Batch-Parallel and Distributed Use<a class="headerlink" href="#batch-parallel-and-distributed-use" title="Link to this heading"></a></h2>
+<p>The two examples above are already batch-ready because they follow the same
+pattern as the built-in models:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">run_epochs</span></code> splits <code class="docutils literal notranslate"><span class="pre">epochs</span></code> into groups with <code class="docutils literal notranslate"><span class="pre">epochs_groups_list</span></code>;</p></li>
+<li><p>the process class repeats the current state with <code class="docutils literal notranslate"><span class="pre">repeat(epochs,</span> <span class="pre">1,</span> <span class="pre">1)</span></code>;</p></li>
+<li><p>each batch returns a tensor of shape <code class="docutils literal notranslate"><span class="pre">(epochs,</span> <span class="pre">N)</span></code> after squeezing the last
+dimension.</p></li>
+</ul>
+<p>For distributed execution, <code class="docutils literal notranslate"><span class="pre">FS_GPlib</span></code> currently provides graph partitioning
+utilities but does not hide the full distributed training or simulation loop.
+Therefore, a custom model can be integrated into the workflow described in
+<a class="reference internal" href="tutorial.html"><span class="doc">Tutorial</span></a> as long as it keeps the same public interface and exposes
+<code class="docutils literal notranslate"><span class="pre">node_status</span></code> in a form that can be synchronised across processes.</p>
+</section>
+<section id="practical-suggestions">
+<h2>Practical Suggestions<a class="headerlink" href="#practical-suggestions" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>If your model is a small variation of an existing implementation, start by
+copying the closest built-in model rather than writing from scratch.</p></li>
+<li><p>If your update rule only changes edge interaction, you often only need to
+modify the process class.</p></li>
+<li><p>If your model introduces new compartments or opinion tensors, first decide
+how they should be stored in <code class="docutils literal notranslate"><span class="pre">node_status</span></code>, then implement
+<code class="docutils literal notranslate"><span class="pre">_return_final</span></code>.</p></li>
+<li><p>For dynamic networks, it is usually easiest to start from the closest model
+in <code class="docutils literal notranslate"><span class="pre">fs_gplib/Dynamic</span></code> and adapt its <code class="docutils literal notranslate"><span class="pre">forward</span></code> method to the new rule.</p></li>
+</ul>
 </section>
 </section>
 
@@ -476,7 +923,6 @@
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="advanced.html" class="btn btn-neutral float-left" title="Advanced" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="rst_template.html" class="btn btn-neutral float-right" title="RST Template Example" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

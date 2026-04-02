@@ -108,9 +108,9 @@ class WHKModel(DiffusionModel):
         self.model = WHK_process(self.data.edge_index, self.epsilon, self.weight, 0)
 
 
-    def _set_seed(self, seeds):
-        super()._initialize_seeds(seeds)
-        self._init_node_status()
+    # def _set_seed(self, seeds):
+    #     super()._initialize_seeds(seeds)
+    #     self._init_node_status()
 
 
     def run_iteration(self):

@@ -92,10 +92,6 @@ class KerteszThresholdModel(DiffusionModel):
             self.model = KerteszThreshold_process('mean', self.data.edge_index, self.threshold, self.adopter_rate,
                                                   self.percentage_blocked, None)
 
-    def _set_seed(self, seeds):
-        super()._initialize_seeds(seeds)
-        self._init_node_status()
-
 
     def run_iteration(self):
         """Execute a single simulation step.

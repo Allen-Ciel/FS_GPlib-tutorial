@@ -53,9 +53,9 @@ class SznajdModel(DiffusionModel):
         self._init_node_status()
         self.model = Sznajd_process(self.data.edge_index, 0)
 
-    def _set_seed(self, seeds):
-        super()._initialize_seeds(seeds)
-        self._init_node_status()
+    # def _set_seed(self, seeds):
+    #     super()._initialize_seeds(seeds)
+    #     self._init_node_status()
 
 
     def run_iteration(self):

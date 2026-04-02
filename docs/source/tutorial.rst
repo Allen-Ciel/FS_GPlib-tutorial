@@ -14,7 +14,7 @@ Import the required packages and select the propagation model:
    import torch
    from torch_geometric.datasets import Planetoid # or other datasets
    from torch_geometric.utils import degree 
-   from fs_gplib.Epidemics.SIRModel import SIRModel
+   from fs_gplib.Epidemics import SIRModel
 
 Data
 ~~~~
@@ -125,8 +125,8 @@ An example of running:
     bs = 2000 # batch size
     finals = model.run_epochs(MC, it, bs)
 
-Example code
-------------
+Example code 1: SIRModel
+------------------------
 
 A complete example:
 
@@ -135,7 +135,7 @@ A complete example:
     import torch
     from torch_geometric.datasets import Planetoid
     from torch_geometric.utils import degree
-    from fs_gplib.Epidemics.SIRModel import SIRModel
+    from fs_gplib.Epidemics import SIRModel
 
     def Degree_centrality_seeds(data, num_seeds):
         target = data.edge_index[1]
@@ -163,7 +163,8 @@ A complete example:
     count = (finals>0).sum().item()/MC
     print(f'Final spread range is {count}')
 
-An example for DySIRModel:
+Example code 2: DySIRModel
+--------------------------
 
 .. code-block:: python
 
@@ -173,7 +174,7 @@ An example for DySIRModel:
     import matplotlib.pyplot as plt
     import numpy as np
 
-    from fs_gplib.Dynamic.DySIRModel import DySIRModel
+    from fs_gplib.Dynamic import DySIRModel
 
     def plot_dy_sir(finals):
         # finals.shape: (num_timesteps (T), MC, num_nodes)
@@ -281,7 +282,7 @@ An implementation example is given:
     import torch.distributed as dist
     from tqdm import tqdm
 
-    from fs_gplib.Epidemics.SIRModel import SIRModel
+    from fs_gplib.Epidemics import SIRModel
     from fs_gplib.DistributedComputing.DistributedComputing import GraphPartitioner, load_partition
 
     def parse_args():

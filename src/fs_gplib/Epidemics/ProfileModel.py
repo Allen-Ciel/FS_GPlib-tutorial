@@ -80,9 +80,7 @@ class ProfileModel(DiffusionModel):
         self._init_node_status()
         self.model = Profile_process(self.data.edge_index, self.profile, self.adopter_rate, self.blocked_rate).to(self.device)
 
-    def _set_seed(self, seeds):
-        super()._initialize_seeds(seeds)
-        self._init_node_status()
+
 
 
     def run_iteration(self):

@@ -26,15 +26,15 @@ Project Structure
 -----------------
 .. note::
 
-    To be determined
 
-.. The documentation is organized into the following sections:
+
+The documentation is organized into the following sections:
     - **Installation**: Set up the required environment and dependencies.
     - **Tutorial**: Learn the basics through example-driven instruction.
     - **Library**: Explore built-in models, distributed options, and configurable parameters.
     - **Custom Model**: Create your own propagation logic by extending the framework.
-    - **Bibliography**: References to research papers and foundational models used or inspired by FS_GPlib.
-
+    - **Advanced**: Explore advanced features for Ultra-Large Graph Propagation.
+    
 Get Started
 -----------
 

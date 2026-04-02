@@ -82,9 +82,9 @@ class DySEIRModel(DiffusionModel):
 
         self.model = DySEIRModel_process(self.edge_index_list, self.edge_attr_list, self.infection_beta, self.removal_gamma, self.latent_alpha).to(self.device)
         # else:
-    def _set_seed(self, seeds):
-        super()._initialize_seeds(seeds)
-        self._init_node_status()
+    # def _set_seed(self, seeds):
+    #     super()._initialize_seeds(seeds)
+    #     self._init_node_status()
 
 
     def run_iteration(self):

@@ -63,9 +63,6 @@ class SIModel(DiffusionModel):
         else:
             self.model = SI_process(self.data.edge_index, self.infection_beta, None)
 
-    def _set_seed(self, seeds):
-        super()._initialize_seeds(seeds)
-        self._init_node_status()
 
 
     def run_iteration(self):

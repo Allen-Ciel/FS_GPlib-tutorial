@@ -77,9 +77,9 @@ class HKModel(DiffusionModel):
         self._init_node_status()
         self.model = HK_process(self.data.edge_index, self.epsilon,0)
 
-    def _set_seed(self, seeds):
-        super()._initialize_seeds(seeds)
-        self._init_node_status()
+    # def _set_seed(self, seeds):
+    #     super()._initialize_seeds(seeds)
+    #     self._init_node_status()
 
 
     def run_iteration(self):

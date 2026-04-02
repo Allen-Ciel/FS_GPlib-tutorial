@@ -41,9 +41,6 @@ class SWIRModel(DiffusionModel):
         else:
             self.model = SWIR_process(self.data.edge_index, self.infection_kappa, self.weakened_mu, self.infection_nu,None)
 
-    def _set_seed(self, seeds):
-        super()._initialize_seeds(seeds)
-        self._init_node_status()
 
     def run_iteration(self):
         return self.run_iterations(1)
