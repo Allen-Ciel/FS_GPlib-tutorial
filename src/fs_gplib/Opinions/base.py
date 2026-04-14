@@ -1,7 +1,7 @@
-import sys
 import numpy as np
 from typing import Union, List
 from torch_geometric.nn import MessagePassing
+from torch_geometric.data import Data
 from tqdm import tqdm
 
 from ..utils import *
@@ -125,7 +125,7 @@ class DiffusionModel:
 
         :param seeds: Initial opinion configuration.
 
-            * **float in [0, 1)** – fraction of nodes to set to opinion ``1``
+            * **float in (0, 1)** – fraction of nodes to set to opinion ``1``
               (selected uniformly at random using ``rand_seed``).
             * **list[int]** – explicit node indices holding opinion ``1``.
             * **None** – no initial configuration (model sets its own).
@@ -137,16 +137,28 @@ class DiffusionModel:
         self.num_nodes = self._get_num_nodes(self.data)
 
         if isinstance(seeds, (float, int)):
-            if not (0 <= seeds < 1):
-                raise ValueError("When seeds are decimal numbers, they must be in the range (0,1).")
+            if seeds == True or seeds == False:
+                raise ValueError("The seeds must be a decimal number in the range (0,1) or a list of integers.")
+            if not (0 < seeds < 1):
+                raise ValueError("When 'seeds' is a decimal number, it must be in the range (0,1).")
             np.random.seed(self.rand_seed)
             seed_count = int(self.num_nodes * seeds)
             self.seeds = np.random.choice(range(self.num_nodes), seed_count, replace=False).tolist()
         elif isinstance(seeds, list):
-            if not all(isinstance(i, int) for i in seeds):
-                raise ValueError("When seeds are a list, the elements must be integers.")
-            if max(seeds) >= self._get_num_nodes(self.data):
-                raise ValueError("The maximum value in the seeds list cannot exceed the number of nodes in data.")
+            # check the type of the elements in the seeds list
+            if not all(isinstance(i, int) and i >= 0 for i in seeds):
+                raise ValueError("When seeds are a list, the elements must be positive integers.")
+            # check if the seeds list is empty
+            if len(seeds) == 0:
+                raise ValueError("The seeds list cannot be empty.")
+            # check if the seeds list contains out of range indices
+            out_of_range = [s for s in seeds if s >= self.num_nodes]
+            if out_of_range:
+                raise ValueError(
+                    f"Seed indices {out_of_range} are out of range. "
+                    f"Valid seed indices are 0 to {self.num_nodes - 1}."
+                )
+                #raise ValueError("The maximum value in the seeds list cannot exceed the number of nodes in data.")
             self.seeds = seeds
         elif seeds is None:
             self.seeds = seeds
@@ -184,18 +196,14 @@ class DiffusionModel:
     def _validate_parameters(self, kwargs):
         """Validate and store model-specific parameters.
 
-        Every keyword argument is validated via :func:`check_parameter` and
+        Every keyword argument is validated via :func:`check_float_parameter` and
         then stored as an instance attribute with the same name.
 
         :param kwargs: Model-specific parameters (e.g. ``epsilon=0.3``).
         :type kwargs: dict
         :raises SystemExit: If any value fails validation.
         """
-        try:
-            check_parameter(**kwargs)
-        except ValueError as e:
-            print("Caught error:", e)
-            sys.exit(1)
+        check_float_parameter(0, 1, True, True, **kwargs)
 
         for param_name, value in kwargs.items():
             self.__setattr__(param_name, value)
@@ -275,11 +283,7 @@ class DiffusionModel:
         :return: A list of per-epoch results.
         :rtype: list
         """
-        try:
-            check_int(iterations_times=iterations_times, epochs=epochs)
-        except ValueError as e:
-            print("Caught error:", e)
-            sys.exit(1)
+        check_int(iterations_times=iterations_times, epochs=epochs)
 
         self._init_node_status()
 
@@ -303,6 +307,11 @@ class DiffusionModel:
         .. note::
             This is a placeholder in the base class.  Concrete subclasses
             provide the actual implementation.
+        """
+        pass
+
+    def run_iterations(self, iterations_times):
+        """Execute a multiple simulation steps from the current node state.
         """
         pass
 

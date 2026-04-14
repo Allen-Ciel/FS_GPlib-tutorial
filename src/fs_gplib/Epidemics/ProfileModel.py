@@ -1,4 +1,3 @@
-import sys
 from tqdm import tqdm
 
 from .base import DiffusionModel, Diffusion_process
@@ -105,11 +104,8 @@ class ProfileModel(DiffusionModel):
         :return: Node states at final step, shape ``(1, N)``.
         :rtype: torch.Tensor
         """
-        try:
-            check_int(times=times)
-        except ValueError as e:
-            print("Caught error:", e)
-            sys.exit(1)
+        check_int(times=times)
+
         self.model._set_iterations(times)
         out_all = self.model(self.node_status)
         self.node_status['SI'], self.node_status['B_mask'] = out_all[0].squeeze(0), out_all[1].squeeze(0) #[N, 1]
@@ -128,7 +124,7 @@ class ProfileModel(DiffusionModel):
         """
         return self.run_epochs(1, iterations_times, 1)
 
-    def run_epochs(self, epochs, iterations_times=0, batch_size=1):
+    def run_epochs(self, epochs, iterations_times, batch_size=1):
         """Run multiple independent Monte-Carlo epochs in batches.
 
         Node states are **re-initialised** before the run.
@@ -144,18 +140,11 @@ class ProfileModel(DiffusionModel):
         :return: Node states at final step of all epochs, shape ``(epochs, N)``.
         :rtype: torch.Tensor
         """
-        try:
-            check_int(epochs=epochs)
-        except ValueError as e:
-            print("Caught error:", e)
-            sys.exit(1)
+        check_int(epochs=epochs, iterations_times=iterations_times, batch_size=batch_size)
         self._init_node_status()
 
-        n = int(epochs / batch_size)
-        epoch_groups = [batch_size] * n
-        last_epoch_group = epochs - n * batch_size
-        if last_epoch_group != 0:
-            epoch_groups.append(last_epoch_group)
+        epoch_groups = epochs_groups_list(epochs, batch_size)
+        
         bar = tqdm(epoch_groups)
         finals = []
         with torch.no_grad():

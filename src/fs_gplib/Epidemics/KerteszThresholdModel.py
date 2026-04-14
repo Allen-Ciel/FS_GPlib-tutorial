@@ -1,4 +1,3 @@
-import sys
 from tqdm import tqdm
 
 from .base import DiffusionModel, Diffusion_process
@@ -17,7 +16,6 @@ class KerteszThresholdModel(DiffusionModel):
 
     Returned node states are encoded as: -1 = blocked, 0 = inactive,
     1 = active.
-
 
     :param data: PyTorch Geometric ``Data`` object representing graph
         :math:`G=(V,E)`.  Must contain ``edge_index`` (the edge set :math:`E`)
@@ -115,11 +113,7 @@ class KerteszThresholdModel(DiffusionModel):
         :return: Node states at final step, shape ``(1, N)``.
         :rtype: torch.Tensor
         """
-        try:
-            check_int(times=times)
-        except ValueError as e:
-            print("Caught error:", e)
-            sys.exit(1)
+        check_int(times=times)
         self.model._set_iterations(times)
         out_all = self.model(self.node_status)
         self.node_status['SI'], self.node_status['B_mask'] = out_all[0].squeeze(0), out_all[1].squeeze(0)
@@ -154,11 +148,7 @@ class KerteszThresholdModel(DiffusionModel):
         :return: Node states at final step of all epochs, shape ``(epochs, N)``.
         :rtype: torch.Tensor
         """
-        try:
-            check_int(epochs=epochs)
-        except ValueError as e:
-            print("Caught error:", e)
-            sys.exit(1)
+        check_int(epochs=epochs, iterations_times=iterations_times, batch_size=batch_size)
         self._init_node_status()
 
         epoch_groups = epochs_groups_list(epochs, batch_size)
@@ -225,9 +215,7 @@ class KerteszThreshold_process(Diffusion_process):
             ai_rand_p = torch.rand_like(x, dtype=torch.float32)
             mask_ai = (~x & ~B_mask) & (ai_rand_p < self.adopter_rate)
 
-
             I_p = self.propagate(self.edge_index, x=x.float())*~B_mask
-
             mask_i = (~x) & (node_threshold <= I_p)
 
             x[mask_ai] = True

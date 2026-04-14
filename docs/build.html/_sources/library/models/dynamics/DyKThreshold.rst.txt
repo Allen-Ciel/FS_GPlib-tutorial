@@ -90,34 +90,12 @@ During the simulation, a node can be in one of the following states:
 DyKerteszThresholdModel
 -----------------------
 
+
 .. autoclass:: fs_gplib.Dynamic.DyKerteszThresholdModel
    :members: run_iteration, run_iterations, run_epoch, run_epochs
    :member-order: bysource
    :show-inheritance:
 
-Parameters
-----------
-+--------------------+------------------------------+---------------+-----------+------------------------------------------------------+
-| Name               | Value Type                   | Default       | Mandatory | Description                                          |
-+====================+==============================+===============+===========+======================================================+
-| x                  | Tensor                       |               | Yes       | Node tensor of shape :math:`(N, 1)`.                 |
-+--------------------+------------------------------+---------------+-----------+------------------------------------------------------+
-| edge_index_list    | List[Tensor]                 |               | Yes       | List of edge index tensors, one per snapshot.        |
-+--------------------+------------------------------+---------------+-----------+------------------------------------------------------+
-| seeds              | List[int]/float in (0, 1)    |               | Yes       | Initial active node IDs or a ratio.                  |
-+--------------------+------------------------------+---------------+-----------+------------------------------------------------------+
-| threshold          | float in [0, 1]              |               | Yes       | Node threshold. If 0, random thresholds are sampled. |
-+--------------------+------------------------------+---------------+-----------+------------------------------------------------------+
-| adopter_rate       | float in [0, 1]              |               | Yes       | Spontaneous adoption probability per step.           |
-+--------------------+------------------------------+---------------+-----------+------------------------------------------------------+
-| percentage_blocked | float in [0, 1]              |               | Yes       | Ratio of blocked nodes among initially inactive.     |
-+--------------------+------------------------------+---------------+-----------+------------------------------------------------------+
-| device             | 'cpu'/int (CUDA index)       | 'cpu'         | No        | Device to run the model on.                          |
-+--------------------+------------------------------+---------------+-----------+------------------------------------------------------+
-| edge_attr_list     | List[Tensor]                 | None          | No        | List of edge weight tensors, one per snapshot.       |
-+--------------------+------------------------------+---------------+-----------+------------------------------------------------------+
-| rand_seed          | Int                          | None          | No        | Random seed for generating the seed set.             |
-+--------------------+------------------------------+---------------+-----------+------------------------------------------------------+
 
 .. note::
 

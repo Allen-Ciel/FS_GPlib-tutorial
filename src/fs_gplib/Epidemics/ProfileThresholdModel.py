@@ -1,4 +1,3 @@
-import sys
 from tqdm import tqdm
 from torch_geometric.utils import degree
 
@@ -140,11 +139,8 @@ class ProfileThresholdModel(DiffusionModel):
         :return: Node states at final step, shape ``(1, N)``.
         :rtype: torch.Tensor
         """
-        try:
-            check_int(times=times)
-        except ValueError as e:
-            print("Caught error:", e)
-            sys.exit(1)
+        check_int(times=times)
+
         self.model._set_iterations(times)
         out_all = self.model(self.node_status)
         self.node_status['SI'], self.node_status['B_mask'] = out_all[0].squeeze(0), out_all[1].squeeze(0) #[N, 1]
@@ -163,7 +159,7 @@ class ProfileThresholdModel(DiffusionModel):
         """
         return self.run_epochs(1, iterations_times, 1)
 
-    def run_epochs(self, epochs, iterations_times=0, batch_size=1):
+    def run_epochs(self, epochs, iterations_times, batch_size=1):
         """Run multiple independent Monte-Carlo epochs in batches.
 
         Node states are **re-initialised** before the run.
@@ -179,11 +175,8 @@ class ProfileThresholdModel(DiffusionModel):
         :return: Node states at final step of all epochs, shape ``(epochs, N)``.
         :rtype: torch.Tensor
         """
-        try:
-            check_int(epochs=epochs)
-        except ValueError as e:
-            print("Caught error:", e)
-            sys.exit(1)
+        check_int(epochs=epochs)
+        
         self._init_node_status()
         epoch_groups = epochs_groups_list(epochs, batch_size)
         bar = tqdm(epoch_groups)
@@ -225,7 +218,7 @@ class ProfileThreshold_process(Diffusion_process):
         node_threshold = node_status['node_threshold'].expand(epochs, -1, -1)
         node_profile = node_status["node_profile"].expand(epochs, -1, -1)
 
-        while self.iterations_times > self.times or not self.iterations_times:
+        while self.iterations_times > self.times:# or not self.iterations_times:
 
             ai_rand_p = torch.rand_like(x, dtype=torch.float32)
             mask_ai = (~x & ~B_mask) & (ai_rand_p < self.adopter_rate)

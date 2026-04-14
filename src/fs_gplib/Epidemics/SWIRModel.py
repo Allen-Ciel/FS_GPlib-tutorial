@@ -1,4 +1,3 @@
-import sys
 from tqdm import tqdm
 
 
@@ -46,11 +45,7 @@ class SWIRModel(DiffusionModel):
         return self.run_iterations(1)
 
     def run_iterations(self, times):
-        try:
-            check_int(times=times)
-        except ValueError as e:
-            print("Caught error:", e)
-            sys.exit(1)
+        check_int(times=times)
 
         self.model._set_iterations(times)
         out_all = self.model(self.node_status)
@@ -62,11 +57,8 @@ class SWIRModel(DiffusionModel):
         return self.run_epochs(1, iterations_times, 1)
 
     def run_epochs(self, epochs, iterations_times, batch_size=200):
-        try:
-            check_int(iterations_times=iterations_times, epochs=epochs, batch_size=batch_size)
-        except ValueError as e:
-            print("Caught error:", e)
-            sys.exit(1)
+        
+        check_int(iterations_times=iterations_times, epochs=epochs, batch_size=batch_size)
 
         self._init_node_status()
         epoch_groups = epochs_groups_list(epochs, batch_size)

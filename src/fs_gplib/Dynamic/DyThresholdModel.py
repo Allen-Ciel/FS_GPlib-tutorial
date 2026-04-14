@@ -1,4 +1,3 @@
-import sys
 from tqdm import tqdm
 
 from .base import DiffusionModel, Diffusion_process
@@ -21,7 +20,7 @@ class DyThresholdModel(DiffusionModel):
         :math:`T`.
     :type edge_index_list: list[torch.Tensor]
     :param seeds: Initially active nodes: list of node IDs or a float in
-        ``[0,1)``.
+        ``(0,1)``.
     :type seeds: list[int] | float
     :param threshold: Node adoption threshold in ``[0,1]``. If ``threshold > 0``, 
         every node uses that same threshold value; if ``threshold == 0``, 
@@ -106,11 +105,7 @@ class DyThresholdModel(DiffusionModel):
             ``(times, 1, N)`` (values ``0`` or ``1``).
         :rtype: torch.Tensor
         """
-        try:
-            check_int(times=times)
-        except ValueError as e:
-            print("Caught error:", e)
-            sys.exit(1)
+        check_int(times=times)
         # self.model._set_iterations(times)
         if len(self.edge_index_list) - self.model.times < times:
             raise ValueError('The number of remaining snapshots must be larger than iteration times')
@@ -153,11 +148,7 @@ class DyThresholdModel(DiffusionModel):
         :rtype: torch.Tensor
         """
 
-        try:
-            check_int(epochs=epochs, batch_size=batch_size)
-        except ValueError as e:
-            print("Caught error:", e)
-            sys.exit(1)
+        check_int(epochs=epochs, batch_size=batch_size)
 
         self._init_node_status()
         epoch_groups = epochs_groups_list(epochs, batch_size)

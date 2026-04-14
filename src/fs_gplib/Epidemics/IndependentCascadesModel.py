@@ -1,4 +1,3 @@
-import sys
 from tqdm import tqdm
 from torch_geometric.utils import degree
 
@@ -87,16 +86,13 @@ class IndependentCascadesModel(DiffusionModel):
         The internal ``node_status`` is updated in-place so that subsequent
         calls continue from the latest state.
 
-        :param times: Number of steps to run.
+        :param times: Number of **maximum** simulation steps to run, 
+            each step runs until no node remains newly active.
         :type times: int
         :return: Node states at final step, shape ``(1, N)``.
         :rtype: torch.Tensor
         """
-        try:
-            check_int(times=times)
-        except ValueError as e:
-            print("Caught error:", e)
-            sys.exit(1)
+        check_int(times=times)
 
         self.model._set_iterations(times)
         out_all = self.model(self.node_status)
@@ -109,23 +105,23 @@ class IndependentCascadesModel(DiffusionModel):
 
         Node states are **re-initialised** before the epoch starts.
 
-        :param iterations_times: Number of simulation steps per epoch.
-            If ``0``, run until no node remains newly active.
+        :param iterations_times: Number of **maximum** simulation steps per epoch, 
+            each epoch runs until no node remains newly active.
         :type iterations_times: int
         :return: Node states at final step of the epoch, shape ``(1, N)``.
         :rtype: torch.Tensor
         """
         return self.run_epochs(1, iterations_times, 1)
 
-    def run_epochs(self, epochs, iterations_times=0, batch_size=1):
+    def run_epochs(self, epochs, iterations_times, batch_size=1):
         """Run multiple independent Monte-Carlo epochs in batches.
 
         Node states are **re-initialised** before the run.
 
         :param epochs: Total number of independent realisations.
         :type epochs: int
-        :param iterations_times: Number of simulation steps per epoch.
-            If ``0``, each epoch runs until no node remains newly active.
+        :param iterations_times: Number of **maximum** simulation steps per epoch, 
+            each epoch runs until no node remains newly active.
         :type iterations_times: int
         :param batch_size: *(optional)* Number of epochs processed
             in parallel per batch.
@@ -134,11 +130,8 @@ class IndependentCascadesModel(DiffusionModel):
         :return: Node states at final step of all epochs, shape ``(epochs, N)``.
         :rtype: torch.Tensor
         """
-        try:
-            check_int(epochs=epochs, iterations_times=iterations_times, batch_size=batch_size)
-        except ValueError as e:
-            print("Caught error:", e)
-            sys.exit(1)
+        check_int(epochs=epochs, iterations_times=iterations_times, batch_size=batch_size)
+
         self._init_node_status()
 
         epoch_groups = epochs_groups_list(epochs, batch_size)
@@ -170,7 +163,7 @@ class IC_process(Diffusion_process):
         R_mask = node_status['R_mask'].unsqueeze(0).repeat(epochs, 1, 1)
         if node_status['edge_threshold'] is not None:
             self.threshold = node_status['edge_threshold'].unsqueeze(0).unsqueeze(2)
-        while self.iterations_times > self.times or not self.iterations_times:
+        while self.iterations_times > self.times:# or not self.iterations_times:
 
             temp = self.propagate(self.edge_index, x=x.float())*~R_mask
             I_p = 1-torch.exp(temp)

@@ -1,4 +1,3 @@
-import sys
 from tqdm import tqdm
 
 from .base import DiffusionModel, Diffusion_process
@@ -23,8 +22,8 @@ class ThresholdModel(DiffusionModel):
         node IDs, or a float in (0, 1) to activate that fraction of nodes
         chosen uniformly at random.
     :type seeds: list[int] | float
-    :param threshold: Adoption threshold.  When ``threshold \in (0,1)``, all nodes
-        share the same threshold value.  When ``threshold == 0``, a threshold
+    :param threshold: Adoption threshold.  When :math:`\theta \in (0,1)`, all nodes
+        share the same threshold value.  When :math:`\theta == 0`, a threshold
         is sampled independently for each node from ``Uniform(0,1)``; for
         batched Monte-Carlo epochs, thresholds are sampled independently in
         each epoch.
@@ -91,16 +90,14 @@ class ThresholdModel(DiffusionModel):
         The internal ``node_status`` is updated in-place so that subsequent
         calls continue from the latest state.
 
-        :param times: Number of steps to run.
+        :param times: Number of **maximum** simulation steps to run, 
+            each step runs until no node remains newly active.
         :type times: int
         :return: Node states at final step, shape ``(1, N)``.
         :rtype: torch.Tensor
         """
-        try:
-            check_int(times=times)
-        except ValueError as e:
-            print("Caught error:", e)
-            sys.exit(1)
+        check_int(times=times)
+
         self.model._set_iterations(times)
         out_all = self.model(self.node_status)
         self.node_status['SI'] = out_all.squeeze(0)
@@ -112,7 +109,8 @@ class ThresholdModel(DiffusionModel):
 
         Node states are **re-initialised** before the epoch starts.
 
-        :param iterations_times: Number of simulation steps per epoch.
+        :param iterations_times: Number of **maximum** simulation steps per epoch, 
+            each epoch runs until no node remains newly active.
         :type iterations_times: int
         :return: Node states at final step of the epoch, shape ``(1, N)``.
         :rtype: torch.Tensor
@@ -126,7 +124,8 @@ class ThresholdModel(DiffusionModel):
 
         :param epochs: Total number of independent realisations.
         :type epochs: int
-        :param iterations_times: Number of simulation steps per epoch.
+        :param iterations_times: Number of **maximum** simulation steps per epoch, 
+            each epoch runs until no node remains newly active.
         :type iterations_times: int
         :param batch_size: *(optional)* Number of epochs processed
             in parallel per batch.
@@ -135,11 +134,8 @@ class ThresholdModel(DiffusionModel):
         :return: Node states at final step of all epochs, shape ``(epochs, N)``.
         :rtype: torch.Tensor
         """
-        try:
-            check_int(iterations_times=iterations_times, epochs=epochs, batch_size=batch_size)
-        except ValueError as e:
-            print("Caught error:", e)
-            sys.exit(1)
+        check_int(iterations_times=iterations_times, epochs=epochs, batch_size=batch_size)
+
         self._init_node_status()
 
         epoch_groups = epochs_groups_list(epochs, batch_size)
@@ -180,7 +176,6 @@ class Threshold_process(Diffusion_process):
         else:
             node_threshold = node_status["node_threshold"].expand(epochs, -1, -1)
         while self.iterations_times > self.times:
-
             I_p = self.propagate(self.edge_index, x=x.float())#*D_in
 
             mask_i = (~x) & (node_threshold <= I_p)

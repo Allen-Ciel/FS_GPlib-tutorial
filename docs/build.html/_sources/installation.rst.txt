@@ -32,7 +32,7 @@ Install from TestPyPI
 
 .. code-block:: bash
 
-   pip install -i https://test.pypi.org/simple/ fs-gplib==0.10.0
+   pip install -i https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple fs-gplib
 
 Required Packages
 ~~~~~~~~~~~~~~~~~
@@ -46,10 +46,24 @@ If you encounter environment errors, try installing (or pinning) the following d
 - ``tqdm==4.64.1``
 - ``scipy==1.10.0``
 
-FS_GPlib requires PyTorch and PyTorch Geometric (PyG). You can install them following the official instructions:
+FS_GPlib requires PyTorch and PyTorch Geometric (PyG).
+``torch_scatter`` is additionally required when you use models that depend on scatter operators
+(currently ``HKModel`` and ``WHKModel`` in ``fs_gplib.Opinions``).
+You can install PyTorch/PyG by following the official instructions:
 
 - PyTorch: https://pytorch.org/get-started/locally/
 - PyG: https://pytorch-geometric.readthedocs.io/en/2.5.3/install/installation.html
+
+If you need ``torch_scatter``, install the wheel that matches your PyTorch and CUDA/CPU build.
+For compatibility details and wheel links, see:
+
+- https://data.pyg.org/whl/
+
+Example (CPU; change version tag to match your environment):
+
+.. code-block:: bash
+
+   pip install torch-scatter -f https://data.pyg.org/whl/torch-2.1.2+cpu.html
 
 Test Installation
 ~~~~~~~~~~~~~~~~~

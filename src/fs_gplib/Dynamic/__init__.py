@@ -4,7 +4,6 @@ from .DySEIRModel import DySEIRModel
 from .DySEIRctModel import DySEIRctModel
 from .DySISModel import DySISModel
 from .DySIRModel import DySIRModel
-from .DySEISModel import DySEISModel
 from .DySEISctModel import DySEISctModel
 from .DyThresholdModel import DyThresholdModel
 from .DyKerteszThresholdModel import DyKerteszThresholdModel

@@ -1,7 +1,7 @@
-import sys
 from tqdm import tqdm
 import torch_scatter
 import random
+from torch_geometric.utils import remove_self_loops
 
 from .base import DiffusionModel, Diffusion_process
 from ..utils import *
@@ -64,6 +64,8 @@ class HKModel(DiffusionModel):
             if max(seeds) >= 1 or min(seeds) <= -1:
                 raise ValueError('Seeds must be between -1 and 1')
             self.seeds = seeds
+        else:
+            raise ValueError('Seeds must be a list of floats or None')
 
     def _init_node_status(self):
 
@@ -105,11 +107,7 @@ class HKModel(DiffusionModel):
         :return: Node opinions at final step, shape ``(1, N)``.
         :rtype: torch.Tensor
         """
-        try:
-            check_int(times=times)
-        except ValueError as e:
-            print("Caught error:", e)
-            sys.exit(1)
+        check_int(times=times)
 
         self.model._set_iterations(times)
         out_all = self.model(self.node_status)
@@ -146,11 +144,8 @@ class HKModel(DiffusionModel):
         :rtype: torch.Tensor
         """
 
-        try:
-            check_int(iterations_times=iterations_times, epochs=epochs, batch_size=batch_size)
-        except ValueError as e:
-            print("Caught error:", e)
-            sys.exit(1)
+        check_int(iterations_times=iterations_times, epochs=epochs, batch_size=batch_size)
+        
         self._init_node_status()
         epoch_groups = epochs_groups_list(epochs, batch_size)
         bar = tqdm(epoch_groups)

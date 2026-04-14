@@ -9,4 +9,19 @@ __pycache__/
 dataset/
 pyproject.toml
 MANIFEST.in
+jss-article-tex/
+tests/
+
+# Local IDE settings and tool caches
+.vscode/
+.pytest_cache/
+.ruff_cache/
+
+# Built documentation artifacts
+docs/build.html/
+
+# Local experiment scripts (non-package)
+BlockedSIModel.py
+FJModel.py
+
 

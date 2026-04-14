@@ -1,4 +1,3 @@
-import sys
 from tqdm import tqdm
 
 from .base import DiffusionModel, Diffusion_process
@@ -105,11 +104,9 @@ class SEIRModel(DiffusionModel):
         :return: Node states at final step, shape ``(1, N)``.
         :rtype: torch.Tensor
         """
-        try:
-            check_int(times=times)
-        except ValueError as e:
-            print("Caught error:", e)
-            sys.exit(1)
+        
+        check_int(times=times)
+
 
         self.model._set_iterations(times)
         out_all = self.model(self.node_status)
@@ -145,11 +142,8 @@ class SEIRModel(DiffusionModel):
         :return: Node states at final step of all epochs, shape ``(epochs, N)``.
         :rtype: torch.Tensor
         """
-        try:
-            check_int(iterations_times=iterations_times, epochs=epochs, batch_size=batch_size)
-        except ValueError as e:
-            print("Caught error:", e)
-            sys.exit(1)
+
+        check_int(iterations_times=iterations_times, epochs=epochs, batch_size=batch_size)
 
         self._init_node_status()
         epoch_groups = epochs_groups_list(epochs, batch_size)
@@ -179,13 +173,11 @@ class SEIR_process(Diffusion_process):
                  infection_beta,
                  removal_gamma,
                  latent_alpha,
-                 # iterations_times,
                  edge_attr=None):
         super().__init__(edge_index=edge_index,
                          infection_beta=infection_beta,
                          removal_gamma=removal_gamma,
                          latent_alpha=latent_alpha,
-                         # iterations_times=iterations_times,
                          edge_attr=edge_attr)
 
     def forward(self, node_status, epochs=1):
@@ -217,7 +209,7 @@ class SEIR_process(Diffusion_process):
             R_mask[mask_r] = True
 
             self.times += 1
-        return x, E_mask, R_mask
+        return x, R_mask, E_mask
 
     def message(self, x_j):
         return torch.log(1 - self.infection_beta * self.edge_attr * x_j)

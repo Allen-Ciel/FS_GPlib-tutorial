@@ -1,5 +1,5 @@
-import sys
 from tqdm import tqdm
+from torch_geometric.utils import remove_self_loops
 
 from .base import DiffusionModel, Diffusion_process
 from ..utils import *
@@ -23,7 +23,7 @@ class VoterModel(DiffusionModel):
         and ``num_nodes`` (:math:`|V|`).
     :type data: torch_geometric.data.Data
     :param seeds: Initial nodes with opinion ``1``.  Pass a list of node IDs,
-        a float in ``[0,1)`` to initialise that fraction of nodes chosen
+        a float in ``(0,1)`` to initialise that fraction of nodes chosen
         uniformly at random with opinion ``1``, or ``None``.
     :type seeds: list[int] | float | None
     :param device: *(optional)* ``'cpu'`` or a CUDA device index.
@@ -83,11 +83,7 @@ class VoterModel(DiffusionModel):
         :return: Node opinions at final step, shape ``(1, N)``.
         :rtype: torch.Tensor
         """
-        try:
-            check_int(times=times)
-        except ValueError as e:
-            print("Caught error:", e)
-            sys.exit(1)
+        check_int(times=times)
 
         self.model._set_iterations(times)
         out_all = self.model(self.node_status)
@@ -124,11 +120,8 @@ class VoterModel(DiffusionModel):
         :rtype: torch.Tensor
         """
 
-        try:
-            check_int(iterations_times=iterations_times, epochs=epochs, batch_size=batch_size)
-        except ValueError as e:
-            print("Caught error:", e)
-            sys.exit(1)
+        check_int(iterations_times=iterations_times, epochs=epochs, batch_size=batch_size)
+
         self._init_node_status()
         epoch_groups = epochs_groups_list(epochs, batch_size)
         bar = tqdm(epoch_groups)
@@ -159,7 +152,7 @@ class Voter_process(Diffusion_process):
         self.edge_index, _ = remove_self_loops(edge_index)
     def forward(self, node_status, epochs=1):
         x = node_status['SI'].repeat(epochs, 1, 1)  # [E, N, 1]
-        mask = torch.zeros_like(x, dtype=torch.bool)
+        # mask = torch.zeros_like(x, dtype=torch.bool)
 
         while self.iterations_times > self.times:
             # For each epoch, randomly select an index in the node dimension

@@ -1,4 +1,3 @@
-import sys
 from tqdm import tqdm
 
 from .base import DiffusionModel, Diffusion_process
@@ -20,7 +19,7 @@ class SznajdModel(DiffusionModel):
         Must provide ``edge_index`` and ``num_nodes``.
     :type data: torch_geometric.data.Data
     :param seeds: Nodes with initial opinion ``1``.  Pass a list of node IDs,
-        a float in ``[0,1)`` to initialise that fraction with opinion ``1``, or
+        a float in ``(0,1)`` to initialise that fraction with opinion ``1``, or
         ``None``.
     :type seeds: list[int] | float | None
     :param device: *(optional)* ``'cpu'`` or a CUDA device index.
@@ -80,12 +79,8 @@ class SznajdModel(DiffusionModel):
         :type times: int
         :return: Node opinions at final step, shape ``(1, N)``.
         :rtype: torch.Tensor
-        """
-        try:
-            check_int(times=times)
-        except ValueError as e:
-            print("Caught error:", e)
-            sys.exit(1)
+        """      
+        check_int(times=times)
 
         self.model._set_iterations(times)
         out_all = self.model(self.node_status)
@@ -121,12 +116,8 @@ class SznajdModel(DiffusionModel):
         :return: Node opinions at final step of all epochs, shape ``(epochs, N)``.
         :rtype: torch.Tensor
         """
+        check_int(iterations_times=iterations_times, epochs=epochs, batch_size=batch_size)
 
-        try:
-            check_int(iterations_times=iterations_times, epochs=epochs, batch_size=batch_size)
-        except ValueError as e:
-            print("Caught error:", e)
-            sys.exit(1)
         self._init_node_status()
         epoch_groups = epochs_groups_list(epochs, batch_size)
         bar = tqdm(epoch_groups)

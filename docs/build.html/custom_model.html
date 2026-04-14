@@ -328,7 +328,6 @@
 <li class="toctree-l5"><a class="reference internal" href="library/models/dynamics/DyKThreshold.html#implementation">Implementation</a></li>
 <li class="toctree-l5"><a class="reference internal" href="library/models/dynamics/DyKThreshold.html#status">Status</a></li>
 <li class="toctree-l5"><a class="reference internal" href="library/models/dynamics/DyKThreshold.html#dykerteszthresholdmodel">DyKerteszThresholdModel</a></li>
-<li class="toctree-l5"><a class="reference internal" href="library/models/dynamics/DyKThreshold.html#parameters">Parameters</a></li>
 </ul>
 </li>
 </ul>
@@ -552,8 +551,7 @@ again.</p>
 </ul>
 <section id="implementation">
 <h3>Implementation<a class="headerlink" href="#implementation" title="Link to this heading"></a></h3>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
-<span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span>
 
 <span class="kn">from</span> <span class="nn">fs_gplib.Epidemics.base</span> <span class="kn">import</span> <span class="n">DiffusionModel</span><span class="p">,</span> <span class="n">Diffusion_process</span>
 <span class="kn">from</span> <span class="nn">fs_gplib.utils</span> <span class="kn">import</span> <span class="o">*</span>
@@ -561,13 +559,13 @@ again.</p>
 
 <span class="k">class</span> <span class="nc">BlockedSIModel</span><span class="p">(</span><span class="n">DiffusionModel</span><span class="p">):</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
-                 <span class="n">data</span><span class="p">,</span>
-                 <span class="n">seeds</span><span class="p">,</span>
-                 <span class="n">infection_beta</span><span class="p">,</span>
-                 <span class="n">blocking_rate</span><span class="p">,</span>
-                 <span class="n">device</span><span class="o">=</span><span class="s1">&#39;cpu&#39;</span><span class="p">,</span>
-                 <span class="n">use_weight</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-                 <span class="n">rand_seed</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+                <span class="n">data</span><span class="p">,</span>
+                <span class="n">seeds</span><span class="p">,</span>
+                <span class="n">infection_beta</span><span class="p">,</span>
+                <span class="n">blocking_rate</span><span class="p">,</span>
+                <span class="n">device</span><span class="o">=</span><span class="s1">&#39;cpu&#39;</span><span class="p">,</span>
+                <span class="n">use_weight</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                <span class="n">rand_seed</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
             <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span>
             <span class="n">seeds</span><span class="o">=</span><span class="n">seeds</span><span class="p">,</span>
@@ -600,11 +598,7 @@ again.</p>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">run_iterations</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">run_iterations</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">times</span><span class="p">):</span>
-        <span class="k">try</span><span class="p">:</span>
-            <span class="n">check_int</span><span class="p">(</span><span class="n">times</span><span class="o">=</span><span class="n">times</span><span class="p">)</span>
-        <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Caught error:&quot;</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>
-            <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">check_int</span><span class="p">(</span><span class="n">times</span><span class="o">=</span><span class="n">times</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">_set_iterations</span><span class="p">(</span><span class="n">times</span><span class="p">)</span>
         <span class="n">out_all</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">node_status</span><span class="p">)</span>
@@ -616,15 +610,11 @@ again.</p>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">run_epochs</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">iterations_times</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">run_epochs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">epochs</span><span class="p">,</span> <span class="n">iterations_times</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">200</span><span class="p">):</span>
-        <span class="k">try</span><span class="p">:</span>
-            <span class="n">check_int</span><span class="p">(</span>
+        <span class="n">check_int</span><span class="p">(</span>
                 <span class="n">epochs</span><span class="o">=</span><span class="n">epochs</span><span class="p">,</span>
                 <span class="n">iterations_times</span><span class="o">=</span><span class="n">iterations_times</span><span class="p">,</span>
                 <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span>
             <span class="p">)</span>
-        <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Caught error:&quot;</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>
-            <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_init_node_status</span><span class="p">()</span>
         <span class="n">epoch_groups</span> <span class="o">=</span> <span class="n">epochs_groups_list</span><span class="p">(</span><span class="n">epochs</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">)</span>
@@ -724,7 +714,6 @@ balances social influence with its own prejudice:</p>
 <section id="id1">
 <h3>Implementation<a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">random</span>
-<span class="kn">import</span> <span class="nn">sys</span>
 
 <span class="kn">import</span> <span class="nn">torch_scatter</span>
 <span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span>
@@ -779,11 +768,8 @@ balances social influence with its own prejudice:</p>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">run_iterations</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">run_iterations</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">times</span><span class="p">):</span>
-        <span class="k">try</span><span class="p">:</span>
-            <span class="n">check_int</span><span class="p">(</span><span class="n">times</span><span class="o">=</span><span class="n">times</span><span class="p">)</span>
-        <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Caught error:&quot;</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>
-            <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="n">check_int</span><span class="p">(</span><span class="n">times</span><span class="o">=</span><span class="n">times</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">_set_iterations</span><span class="p">(</span><span class="n">times</span><span class="p">)</span>
         <span class="n">out_all</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">node_status</span><span class="p">)</span>
@@ -794,15 +780,11 @@ balances social influence with its own prejudice:</p>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">run_epochs</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">iterations_times</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">run_epochs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">epochs</span><span class="p">,</span> <span class="n">iterations_times</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">200</span><span class="p">):</span>
-        <span class="k">try</span><span class="p">:</span>
-            <span class="n">check_int</span><span class="p">(</span>
-                <span class="n">epochs</span><span class="o">=</span><span class="n">epochs</span><span class="p">,</span>
-                <span class="n">iterations_times</span><span class="o">=</span><span class="n">iterations_times</span><span class="p">,</span>
-                <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span>
-            <span class="p">)</span>
-        <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Caught error:&quot;</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>
-            <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">check_int</span><span class="p">(</span>
+            <span class="n">epochs</span><span class="o">=</span><span class="n">epochs</span><span class="p">,</span>
+            <span class="n">iterations_times</span><span class="o">=</span><span class="n">iterations_times</span><span class="p">,</span>
+            <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span>
+        <span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_init_node_status</span><span class="p">()</span>
         <span class="n">epoch_groups</span> <span class="o">=</span> <span class="n">epochs_groups_list</span><span class="p">(</span><span class="n">epochs</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">)</span>

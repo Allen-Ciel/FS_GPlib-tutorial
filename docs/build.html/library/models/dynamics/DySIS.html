@@ -98,7 +98,8 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../tutorial.html#execute-simulation">Execute simulation</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../../tutorial.html#example-code">Example code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorial.html#example-code-1-sirmodel">Example code 1: SIRModel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorial.html#example-code-2-dysirmodel">Example code 2: DySIRModel</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../tutorial.html#about-batch">About Batch</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../../tutorial.html#how-to-use-batch">How to use batch</a></li>
 </ul>
@@ -328,7 +329,6 @@
 <li class="toctree-l5"><a class="reference internal" href="DyKThreshold.html#implementation">Implementation</a></li>
 <li class="toctree-l5"><a class="reference internal" href="DyKThreshold.html#status">Status</a></li>
 <li class="toctree-l5"><a class="reference internal" href="DyKThreshold.html#dykerteszthresholdmodel">DyKerteszThresholdModel</a></li>
-<li class="toctree-l5"><a class="reference internal" href="DyKThreshold.html#parameters">Parameters</a></li>
 </ul>
 </li>
 </ul>
@@ -338,54 +338,54 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../advanced.html">Advanced</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../advanced.html#distributed-computing">Distributed Computing</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../advanced.html#other-functions-and-parameters">Other Functions and Parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../advanced.html#ultra-large-graph-propagation">Ultra-Large Graph Propagation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../advanced.html#what-the-library-provides">What the Library Provides</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../advanced.html#why-partition-by-target-nodes">Why Partition by Target Nodes?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../advanced.html#partitioning-strategy">Partitioning Strategy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../advanced.html#data-layout-after-partitioning">Data Layout After Partitioning</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../advanced.html#recommended-workflow">Recommended Workflow</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../../rst_template.html">RST Template Example</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../rst_template.html#section-heading">Section Heading</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../rst_template.html#lists">Lists</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../rst_template.html#code-block">Code Block</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../rst_template.html#table-example">Table Example</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../rst_template.html#hyperlink">Hyperlink</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../rst_template.html#toctree">Toctree</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../../overview.html">Overview</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../../overview.html#motivation">Motivation</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../overview.html#core-capabilities">Core Capabilities</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../overview.html#project-structure">Project Structure</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../overview.html#get-started">Get Started</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="../../../installation.html">Installation</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../../installation.html#environment">Environment</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="../../../installation.html#python-version">Python Version</a></li>
-</ul>
-</li>
-<li class="toctree-l4"><a class="reference internal" href="../../../installation.html#install">Install</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="../../../installation.html#install-from-testpypi">Install from TestPyPI</a></li>
-<li class="toctree-l5"><a class="reference internal" href="../../../installation.html#required-packages">Required Packages</a></li>
-<li class="toctree-l5"><a class="reference internal" href="../../../installation.html#test-installation">Test Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../advanced.html#distributed-partitioning-api">Distributed Partitioning API</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../advanced.html#graphpartitioner">GraphPartitioner</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../advanced.html#fs_gplib.DistributedComputing.DistributedComputing.GraphPartitioner"><code class="docutils literal notranslate"><span class="pre">GraphPartitioner</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../../../advanced.html#fs_gplib.DistributedComputing.DistributedComputing.GraphPartitioner.generate_partition"><code class="docutils literal notranslate"><span class="pre">GraphPartitioner.generate_partition()</span></code></a></li>
 </ul>
 </li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="../../../advanced.html#usage-notes">Usage Notes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../advanced.html#loading-saved-partitions">Loading Saved Partitions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../advanced.html#fs_gplib.DistributedComputing.DistributedComputing.load_partition"><code class="docutils literal notranslate"><span class="pre">load_partition()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../../rst_template.html#admonitions">Admonitions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../rst_template.html#footnotes">Footnotes</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../../api_example.html">API Documentation Template</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../api_example.html#mathematical-formulae">Mathematical Formulae</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../api_example.html#function-documentation-manual">Function Documentation (Manual)</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../../api_example.html#calculate_energy"><code class="docutils literal notranslate"><span class="pre">calculate_energy()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../advanced.html#how-to-connect-a-partition-to-a-model">How to Connect a Partition to a Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../advanced.html#practical-limitations">Practical Limitations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../advanced.html#when-to-use-this-interface">When to Use This Interface</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../../api_example.html#class-documentation-manual">Class Documentation (Manual)</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../../api_example.html#GravNetConv"><code class="docutils literal notranslate"><span class="pre">GravNetConv</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../custom_model.html">Custom Model</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../custom_model.html#which-base-file-should-you-start-from">Which Base File Should You Start From?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../custom_model.html#two-layers-of-a-custom-model">Two Layers of a Custom Model</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../custom_model.html#diffusionmodel-simulation-lifecycle-and-public-api"><code class="docutils literal notranslate"><span class="pre">DiffusionModel</span></code>: simulation lifecycle and public API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../custom_model.html#diffusion-process-propagation-rule-and-tensor-update"><code class="docutils literal notranslate"><span class="pre">Diffusion_process</span></code>: propagation rule and tensor update</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../../api_example.html#autodoc-example">Autodoc Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../custom_model.html#minimal-development-checklist">Minimal Development Checklist</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../custom_model.html#example-1-si-with-randomly-blocked-susceptible-nodes">Example 1: SI with Randomly Blocked Susceptible Nodes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../custom_model.html#implementation">Implementation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../custom_model.html#usage">Usage</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../custom_model.html#example-2-friedkin-johnsen-opinion-model">Example 2: Friedkin-Johnsen Opinion Model</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../custom_model.html#id1">Implementation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../custom_model.html#id2">Usage</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../custom_model.html#batch-parallel-and-distributed-use">Batch-Parallel and Distributed Use</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../custom_model.html#practical-suggestions">Practical Suggestions</a></li>
 </ul>
 </li>
 </ul>
@@ -492,7 +492,7 @@ The total number of iterations is bounded by <span class="math notranslate nohig
 <h2>DySISModel<a class="headerlink" href="#dysismodel" title="Link to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="fs_gplib.Dynamic.DySISModel">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">fs_gplib.Dynamic.</span></span><span class="sig-name descname"><span class="pre">DySISModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">edge_index_list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seeds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">infection_beta</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">recovery_lambda</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'cpu'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rand_seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">edge_attr_list</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Allen-Ciel/FS_GPlib-tutorial/blob/docs/fs_gplib(release)/src/fs_gplib/Dynamic/DySISModel.py#L7-L168"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#fs_gplib.Dynamic.DySISModel" title="Link to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">fs_gplib.Dynamic.</span></span><span class="sig-name descname"><span class="pre">DySISModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">edge_index_list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seeds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">infection_beta</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">recovery_lambda</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'cpu'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rand_seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">edge_attr_list</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Allen-Ciel/FS_GPlib-tutorial/blob/docs/fs_gplib(release)/src/fs_gplib/Dynamic/DySISModel.py#L6-L160"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#fs_gplib.Dynamic.DySISModel" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">DiffusionModel</span></code></p>
 <p>Dynamic SIS (DySIS) epidemic model on <strong>time-varying networks</strong> (dynamic network models).</p>
 <p>This model extends the classical static SIS dynamics (see the epidemic <code class="docutils literal notranslate"><span class="pre">SISModel</span></code>) to a
@@ -510,7 +510,7 @@ models, pass an explicit node tensor <em>x</em> (shape <code class="docutils lit
 dimension).</p></li>
 <li><p><strong>edge_index_list</strong> (<em>list</em><em>[</em><em>torch.Tensor</em><em>]</em>) -- One <code class="docutils literal notranslate"><span class="pre">edge_index</span></code> tensor per snapshot, length <span class="math notranslate nohighlight">\(T\)</span>, defining
 <span class="math notranslate nohighlight">\(E^{(k)}\)</span> at each step.</p></li>
-<li><p><strong>seeds</strong> (<em>list</em><em>[</em><em>int</em><em>] </em><em>| </em><em>float</em>) -- Initially infected nodes: a list of integer node IDs, or a float in <code class="docutils literal notranslate"><span class="pre">[0,</span> <span class="pre">1)</span></code>
+<li><p><strong>seeds</strong> (<em>list</em><em>[</em><em>int</em><em>] </em><em>| </em><em>float</em>) -- Initially infected nodes: a list of integer node IDs, or a float in <code class="docutils literal notranslate"><span class="pre">(0,</span> <span class="pre">1)</span></code>
 to infect that fraction of nodes uniformly at random.</p></li>
 <li><p><strong>infection_beta</strong> (<em>float</em>) -- Per-contact infection probability <span class="math notranslate nohighlight">\(\beta \in [0, 1]\)</span>.</p></li>
 <li><p><strong>recovery_lambda</strong> (<em>float</em>) -- Per-step recovery probability <span class="math notranslate nohighlight">\(\lambda \in [0, 1]\)</span> for infected
@@ -526,7 +526,7 @@ Defaults to <code class="docutils literal notranslate"><span class="pre">None</s
 </dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="fs_gplib.Dynamic.DySISModel.run_iteration">
-<span class="sig-name descname"><span class="pre">run_iteration</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Allen-Ciel/FS_GPlib-tutorial/blob/docs/fs_gplib(release)/src/fs_gplib/Dynamic/DySISModel.py#L77-L86"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#fs_gplib.Dynamic.DySISModel.run_iteration" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">run_iteration</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Allen-Ciel/FS_GPlib-tutorial/blob/docs/fs_gplib(release)/src/fs_gplib/Dynamic/DySISModel.py#L76-L85"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#fs_gplib.Dynamic.DySISModel.run_iteration" title="Link to this definition"></a></dt>
 <dd><p>Advance the epidemic by one snapshot step.</p>
 <p>The internal <code class="docutils literal notranslate"><span class="pre">node_status</span></code> is updated so that subsequent calls continue from the latest
 state.  Requires at least one remaining snapshot.</p>
@@ -542,7 +542,7 @@ state.  Requires at least one remaining snapshot.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="fs_gplib.Dynamic.DySISModel.run_iterations">
-<span class="sig-name descname"><span class="pre">run_iterations</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">times</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Allen-Ciel/FS_GPlib-tutorial/blob/docs/fs_gplib(release)/src/fs_gplib/Dynamic/DySISModel.py#L89-L112"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#fs_gplib.Dynamic.DySISModel.run_iterations" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">run_iterations</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">times</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Allen-Ciel/FS_GPlib-tutorial/blob/docs/fs_gplib(release)/src/fs_gplib/Dynamic/DySISModel.py#L88-L108"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#fs_gplib.Dynamic.DySISModel.run_iterations" title="Link to this definition"></a></dt>
 <dd><p>Run <em>times</em> consecutive snapshot steps on the evolving graph sequence.</p>
 <p>The internal <code class="docutils literal notranslate"><span class="pre">node_status</span></code> is updated to the state after the last step.  Requires
 <code class="docutils literal notranslate"><span class="pre">len(edge_index_list)</span> <span class="pre">-</span> <span class="pre">t</span> <span class="pre">&gt;=</span> <span class="pre">times</span></code> where <span class="math notranslate nohighlight">\(t\)</span> is the number of steps already
@@ -562,7 +562,7 @@ consumed on this process.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="fs_gplib.Dynamic.DySISModel.run_epoch">
-<span class="sig-name descname"><span class="pre">run_epoch</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Allen-Ciel/FS_GPlib-tutorial/blob/docs/fs_gplib(release)/src/fs_gplib/Dynamic/DySISModel.py#L114-L123"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#fs_gplib.Dynamic.DySISModel.run_epoch" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">run_epoch</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Allen-Ciel/FS_GPlib-tutorial/blob/docs/fs_gplib(release)/src/fs_gplib/Dynamic/DySISModel.py#L110-L119"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#fs_gplib.Dynamic.DySISModel.run_epoch" title="Link to this definition"></a></dt>
 <dd><p>Run one Monte-Carlo realisation over the <strong>full</strong> snapshot sequence.</p>
 <p>The process internal step counter is reset; node states are <strong>re-initialised</strong> before the epoch starts.</p>
 <dl class="field-list simple">
@@ -578,7 +578,7 @@ consumed on this process.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="fs_gplib.Dynamic.DySISModel.run_epochs">
-<span class="sig-name descname"><span class="pre">run_epochs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">epochs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">batch_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">200</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Allen-Ciel/FS_GPlib-tutorial/blob/docs/fs_gplib(release)/src/fs_gplib/Dynamic/DySISModel.py#L125-L164"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#fs_gplib.Dynamic.DySISModel.run_epochs" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">run_epochs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">epochs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">batch_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">200</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Allen-Ciel/FS_GPlib-tutorial/blob/docs/fs_gplib(release)/src/fs_gplib/Dynamic/DySISModel.py#L121-L156"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#fs_gplib.Dynamic.DySISModel.run_epochs" title="Link to this definition"></a></dt>
 <dd><p>Run multiple independent Monte-Carlo realisations in batches.</p>
 <p>For each realisation the snapshot index is reset to the beginning and the epidemic is
 evolved through <strong>all</strong> snapshots.  Node states are <strong>re-initialised</strong> before the run.</p>

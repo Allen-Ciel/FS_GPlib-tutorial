@@ -1,4 +1,4 @@
-import sys
+
 from tqdm import tqdm
 
 from .base import DiffusionModel, Diffusion_process
@@ -29,7 +29,7 @@ class DySEIRModel(DiffusionModel):
         :math:`E^{(k)}` at each step.
     :type edge_index_list: list[torch.Tensor]
     :param seeds: Initially **infectious** seed nodes: a list of integer node IDs, or a float in
-        ``[0, 1)`` to infect that fraction of nodes uniformly at random (same convention as static
+        ``(0, 1)`` to infect that fraction of nodes uniformly at random (same convention as static
         SEIR seeds).
     :type seeds: list[int] | float
     :param infection_beta: Exposure probability :math:`\beta \in [0, 1]` for each infectious
@@ -112,11 +112,7 @@ class DySEIRModel(DiffusionModel):
             ``0``–``3``).
         :rtype: torch.Tensor
         """
-        try:
-            check_int(times=times)
-        except ValueError as e:
-            print("Caught error:", e)
-            sys.exit(1)
+        check_int(times=times)
 
         if len(self.edge_index_list) - self.model.times < times:
             raise ValueError('The number of remaining snapshots must be larger than iteration times')
@@ -153,11 +149,7 @@ class DySEIRModel(DiffusionModel):
         :rtype: torch.Tensor
         """
 
-        try:
-            check_int(epochs=epochs, batch_size=batch_size)
-        except ValueError as e:
-            print("Caught error:", e)
-            sys.exit(1)
+        check_int(epochs=epochs, batch_size=batch_size)
 
         self._init_node_status()
 

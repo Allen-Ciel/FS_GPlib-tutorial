@@ -1,4 +1,3 @@
-import sys
 from tqdm import tqdm
 
 from .base import DiffusionModel, Diffusion_process
@@ -31,7 +30,7 @@ class DySEISModel(DiffusionModel):
         :math:`T`, defining :math:`E^{(k)}` at each step.
     :type edge_index_list: list[torch.Tensor]
     :param seeds: Initially infectious seed nodes: a list of integer node IDs,
-        or a float in ``[0, 1)`` to infect that fraction of nodes uniformly at
+        or a float in ``(0, 1)`` to infect that fraction of nodes uniformly at
         random.
     :type seeds: list[int] | float
     :param infection_beta: Exposure probability :math:`\beta \in [0, 1]` for
@@ -118,11 +117,7 @@ class DySEISModel(DiffusionModel):
             ``(times, 1, N)`` (values ``0``–``2``).
         :rtype: torch.Tensor
         """
-        try:
-            check_int(times=times)
-        except ValueError as e:
-            print("Caught error:", e)
-            sys.exit(1)
+        check_int(times=times)
 
         if len(self.edge_index_list) - self.model.times < times:
             raise ValueError('The number of remaining snapshots must be larger than iteration times')
@@ -162,11 +157,8 @@ class DySEISModel(DiffusionModel):
             :math:`E` is *epochs* (values ``0``–``2``).
         :rtype: torch.Tensor
         """
-        try:
-            check_int(epochs=epochs, batch_size=batch_size)
-        except ValueError as e:
-            print("Caught error:", e)
-            sys.exit(1)
+        check_int(epochs=epochs, batch_size=batch_size)
+        
         self._init_node_status()
         epoch_groups = epochs_groups_list(epochs, batch_size)
         bar = tqdm(epoch_groups)

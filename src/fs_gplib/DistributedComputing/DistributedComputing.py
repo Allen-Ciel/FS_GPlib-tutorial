@@ -89,7 +89,7 @@ class GraphPartitioner:
                 os.makedirs(path, exist_ok=True)
                 torch.save(self.sub_data[i], f'{path}/sub_data.pt')
                 torch.save(self.sub_nodes[i], f'{path}/sub_nodes.pt')
-                del self.sub_data[i],
+                del self.sub_data[i]
             del self.sub_nodes
 
     def lpt_partition_by_columns(self, indices: torch.LongTensor, num_cols: int, n_parts: int):
@@ -113,20 +113,23 @@ class GraphPartitioner:
         """
         col_idx = indices[1]
         col_nnz = torch.bincount(col_idx, minlength=num_cols)
-
         cols_sorted = torch.argsort(col_nnz, descending=True)
         weights = col_nnz[cols_sorted]
         cumsum = torch.cumsum(weights, dim=0)
         total = float(cumsum[-1])
-
         part_bins = []
         start_idx = 0
         for j in range(1, n_parts + 1):
-            thresh = total * j / n_parts
-            end_idx = int(torch.searchsorted(cumsum, torch.tensor(thresh)).item())
+            if j == n_parts:
+                end_idx = num_cols
+            else:
+                thresh = total * j / n_parts
+                end_idx = int(torch.searchsorted(cumsum, torch.tensor(thresh), right=True).item())
+                end_idx = min(max(end_idx, start_idx + 1), num_cols)
             part_bins.append(cols_sorted[start_idx:end_idx])
             start_idx = end_idx
         return part_bins
+
 
     def _filter_edges(self,cols: list):
         """Keep only edges whose destination nodes belong to ``cols``.

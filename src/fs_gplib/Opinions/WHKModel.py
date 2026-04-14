@@ -1,8 +1,8 @@
-import sys
 from tqdm import tqdm
 import torch_scatter
 import random
 import numpy as np
+from torch_geometric.utils import remove_self_loops
 
 
 from .base import DiffusionModel, Diffusion_process
@@ -63,13 +63,7 @@ class WHKModel(DiffusionModel):
 
     def _validate_parameters(self, kwargs):
 
-        try:
-            check_parameter(epsilon=kwargs['epsilon'])
-        except ValueError as e:
-            print("Caught error:", e)
-            sys.exit(1)
-
-
+        check_float_parameter(0,1,True,True,epsilon=kwargs['epsilon'])
         if isinstance(kwargs['weight'], float):
             check_parameter(weight=kwargs['weight'])
         elif isinstance(kwargs['weight'], list):
@@ -80,6 +74,7 @@ class WHKModel(DiffusionModel):
         for param_name, value in kwargs.items():
             self.__setattr__(param_name, value)
         self.weight = torch.tensor(kwargs['weight'])
+
     def _initialize_seeds(self, seeds):
         self.num_nodes = self._get_num_nodes(self.data)
         if seeds is None:
@@ -93,6 +88,8 @@ class WHKModel(DiffusionModel):
             if max(seeds) >= 1 or min(seeds) <= -1:
                 raise ValueError('Seeds must be between -1 and 1')
             self.seeds = seeds
+        else:
+            raise ValueError('Seeds must be a list of floats or None')
 
     def _init_node_status(self):
 
@@ -136,11 +133,7 @@ class WHKModel(DiffusionModel):
         :return: Node opinions at final step, shape ``(1, N)``.
         :rtype: torch.Tensor
         """
-        try:
-            check_int(times=times)
-        except ValueError as e:
-            print("Caught error:", e)
-            sys.exit(1)
+        check_int(times=times)
 
         self.model._set_iterations(times)
         x = self.model(self.node_status)
@@ -176,11 +169,9 @@ class WHKModel(DiffusionModel):
         :return: Node opinions at final step of all epochs, shape ``(epochs, N)``.
         :rtype: torch.Tensor
         """
-        try:
-            check_int(iterations_times=iterations_times, epochs=epochs, batch_size=batch_size)
-        except ValueError as e:
-            print("Caught error:", e)
-            sys.exit(1)
+
+        check_int(iterations_times=iterations_times, epochs=epochs, batch_size=batch_size)
+
         self._init_node_status()
         epoch_groups = epochs_groups_list(epochs, batch_size)
         bar = tqdm(epoch_groups)

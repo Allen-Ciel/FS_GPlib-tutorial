@@ -34,7 +34,6 @@ bounded by the number of snapshots :math:`T =` ``len(edge_index_list)``.
 .. autoclass:: fs_gplib.Dynamic.base.DiffusionModel
    :noindex:
 
-
 Utility Methods
 ~~~~~~~~~~~~~~~
 

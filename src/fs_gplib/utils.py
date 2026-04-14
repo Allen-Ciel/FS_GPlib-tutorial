@@ -1,13 +1,14 @@
-import pickle
+import numbers
 import torch
-import gzip
-from torch_geometric.data import Data
-from torch_geometric.utils import remove_self_loops, add_self_loops
+# import pickle
+# import gzip
+# from torch_geometric.data import Data
+# from torch_geometric.utils import remove_self_loops, add_self_loops
 
 def check_parameter(**kwargs):
-    # 判断参数是否在 [0, 1) 区间内
+    # 判断参数是否在 (0, 1) 区间内
     for param_name, value in kwargs.items():
-        if not (0 <= value <= 1):
+        if not (0 < value < 1):
             raise ValueError(f"Parameter '{param_name}' must be between 0 and 1, exclusive!")
 
 def check_float_parameter(min_value, max_value, is_min_inclusive=True, is_max_inclusive=True, **kwargs):
@@ -38,8 +39,10 @@ def check_float_parameter(min_value, max_value, is_min_inclusive=True, is_max_in
 
 def check_int(**kwargs):
     for param_name, value in kwargs.items():
-        if not isinstance(value, int):
+        if not isinstance(value, int):  
             raise ValueError(f"Parameter '{param_name}' must be an integer!")
+        elif isinstance(value, int) and value <= 0:
+            raise ValueError(f"Parameter '{param_name}' must be an positive integer!")
 
 def check_int_list(**kwargs):
     for param_name, value in kwargs.items():
@@ -63,73 +66,89 @@ def epochs_groups_list(epochs, batch_size):
     return epoch_groups
 
 def check_float_list(**kwargs):
+    """要求 *list* 中每个元素均为实数float类型的数，且严格落在 ``(0, 1)``。
+
+    显式拒绝 ``bool``（``bool`` 是 ``int`` 的子类，需单独排除）。
+    """
     for param_name, value in kwargs.items():
         if not isinstance(value, list):
             raise ValueError(f"Parameter '{param_name}' must be a list!")
-        elif isinstance(value, list):
-            if all(isinstance(i, float) for i in value):
-                if max(value) >= 1.0 or min(value) <= 0.0:
-                    raise ValueError(f"Parameter '{param_name}' must be between 0 and 1!")
+        if len(value) == 0:
+            raise ValueError(
+                f"Parameter '{param_name}' must be a non-empty list of numbers in (0, 1)."
+            )
+        for idx, x in enumerate(value):
+            if isinstance(x, bool) or not isinstance(x, numbers.Real):
+                raise ValueError(
+                    f"Parameter '{param_name}' must be a list of real numbers; "
+                    f"got {type(x).__name__!r} at index {idx}."
+                )
+            xf = float(x)
+            if not (0.0 < xf < 1.0):
+                raise ValueError(
+                    f"Parameter '{param_name}' elements must be strictly between 0 and 1; "
+                    f"got {x!r} at index {idx}."
+                )
 
-def Pokec(root=None, save=False):
-    save_path = root + "/pokec.pkl"
-    if save == True:
-        file_node = root + "/soc-pokec-profiles.txt.gz"
-        nodes_list = []
-        with gzip.open(file_node, "rt") as file:
-            for line in file:
-                nodes = int(line.strip().split()[0]) - 1
-                nodes_list.append(nodes)
-        if sorted(nodes_list) == list(range(len(nodes_list))):
-            x = torch.zeros((len(nodes_list),1))
-        else:
-            raise ValueError('Wrong Nodes List!')
-        file_edge = root + "/soc-pokec-relationships.txt.gz"
-        edges_list = [[], []]
-        with gzip.open(file_edge, "rt") as file:
-            for line in file:
-                u, v = line.strip().split()
-                edges_list[0].append(int(u) - 1)
-                edges_list[1].append(int(v) - 1)
-        edge_index = torch.tensor(edges_list)
-        data = Data(x=x, edge_index=edge_index)
+# def Pokec(root=None, save=False):
+#     save_path = root + "/pokec.pkl"
+#     if save == True:
+#         file_node = root + "/soc-pokec-profiles.txt.gz"
+#         nodes_list = []
+#         with gzip.open(file_node, "rt") as file:
+#             for line in file:
+#                 nodes = int(line.strip().split()[0]) - 1
+#                 nodes_list.append(nodes)
+#         if sorted(nodes_list) == list(range(len(nodes_list))):
+#             x = torch.zeros((len(nodes_list),1))
+#         else:
+#             raise ValueError('Wrong Nodes List!')
+#         file_edge = root + "/soc-pokec-relationships.txt.gz"
+#         edges_list = [[], []]
+#         with gzip.open(file_edge, "rt") as file:
+#             for line in file:
+#                 u, v = line.strip().split()
+#                 edges_list[0].append(int(u) - 1)
+#                 edges_list[1].append(int(v) - 1)
+#         edge_index = torch.tensor(edges_list)
+#         data = Data(x=x, edge_index=edge_index)
 
-        with open(save_path, "wb") as file:
-            pickle.dump(data, file)
-    else:
-        with open(save_path, "rb") as file:
-            data = pickle.load(file)
-    return [data, None]
+#         with open(save_path, "wb") as file:
+#             pickle.dump(data, file)
+#     else:
+#         with open(save_path, "rb") as file:
+#             data = pickle.load(file)
+#     return [data, None]
 
-def uk(root=None, save=False):
-    save_path = root + "/uk-2006-08.pkl"
-    if save == True:
-        file = root + "/uk-2006-08.graph"
-        nodes_list = []
-        with open(file, "rb") as file:
-            for line in file:
-                nodes = int(line.strip().split()[0]) - 1
-                nodes_list.append(nodes)
-        if sorted(nodes_list) == list(range(len(nodes_list))):
-            x = torch.zeros((len(nodes_list),1))
-        else:
-            raise ValueError('Wrong Nodes List!')
-        file_edge = root + "/soc-pokec-relationships.txt.gz"
-        edges_list = [[], []]
-        with gzip.open(file_edge, "rt") as file:
-            for line in file:
-                u, v = line.strip().split()
-                edges_list[0].append(int(u) - 1)
-                edges_list[1].append(int(v) - 1)
-        edge_index = torch.tensor(edges_list)
-        data = Data(x=x, edge_index=edge_index)
+# def uk(root=None, save=False):
+#     save_path = root + "/uk-2006-08.pkl"
+#     if save == True:
+#         file = root + "/uk-2006-08.graph"
+#         nodes_list = []
+#         with open(file, "rb") as file:
+#             for line in file:
+#                 nodes = int(line.strip().split()[0]) - 1
+#                 nodes_list.append(nodes)
+#         if sorted(nodes_list) == list(range(len(nodes_list))):
+#             x = torch.zeros((len(nodes_list),1))
+#         else:
+#             raise ValueError('Wrong Nodes List!')
+#         file_edge = root + "/soc-pokec-relationships.txt.gz"
+#         edges_list = [[], []]
+#         with gzip.open(file_edge, "rt") as file:
+#             for line in file:
+#                 u, v = line.strip().split()
+#                 edges_list[0].append(int(u) - 1)
+#                 edges_list[1].append(int(v) - 1)
+#         edge_index = torch.tensor(edges_list)
+#         data = Data(x=x, edge_index=edge_index)
 
-        with open(save_path, "wb") as file:
-            pickle.dump(data, file)
-    else:
-        with open(save_path, "rb") as file:
-            data = pickle.load(file)
-    return [data, None]
+#         with open(save_path, "wb") as file:
+#             pickle.dump(data, file)
+#     else:
+#         with open(save_path, "rb") as file:
+#             data = pickle.load(file)
+#     return [data, None]
 
 # def Webbase(root=None, save=False, num_parts=4):
 #     # save_path = root + "/webbase.pkl"

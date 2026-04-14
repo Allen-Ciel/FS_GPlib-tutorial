@@ -96,7 +96,8 @@
 <li class="toctree-l3"><a class="reference internal" href="tutorial.html#execute-simulation">Execute simulation</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="tutorial.html#example-code">Example code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html#example-code-1-sirmodel">Example code 1: SIRModel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html#example-code-2-dysirmodel">Example code 2: DySIRModel</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tutorial.html#about-batch">About Batch</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="tutorial.html#how-to-use-batch">How to use batch</a></li>
 </ul>
@@ -326,7 +327,6 @@
 <li class="toctree-l5"><a class="reference internal" href="library/models/dynamics/DyKThreshold.html#implementation">Implementation</a></li>
 <li class="toctree-l5"><a class="reference internal" href="library/models/dynamics/DyKThreshold.html#status">Status</a></li>
 <li class="toctree-l5"><a class="reference internal" href="library/models/dynamics/DyKThreshold.html#dykerteszthresholdmodel">DyKerteszThresholdModel</a></li>
-<li class="toctree-l5"><a class="reference internal" href="library/models/dynamics/DyKThreshold.html#parameters">Parameters</a></li>
 </ul>
 </li>
 </ul>
@@ -336,11 +336,35 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="advanced.html">Advanced</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="advanced.html#distributed-computing">Distributed Computing</a></li>
-<li class="toctree-l2"><a class="reference internal" href="advanced.html#other-functions-and-parameters">Other Functions and Parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="advanced.html#ultra-large-graph-propagation">Ultra-Large Graph Propagation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="advanced.html#what-the-library-provides">What the Library Provides</a></li>
+<li class="toctree-l3"><a class="reference internal" href="advanced.html#why-partition-by-target-nodes">Why Partition by Target Nodes?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="advanced.html#partitioning-strategy">Partitioning Strategy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="advanced.html#data-layout-after-partitioning">Data Layout After Partitioning</a></li>
+<li class="toctree-l3"><a class="reference internal" href="advanced.html#recommended-workflow">Recommended Workflow</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="custom_model.html">Custom Models</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="advanced.html#distributed-partitioning-api">Distributed Partitioning API</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="advanced.html#graphpartitioner">GraphPartitioner</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="advanced.html#fs_gplib.DistributedComputing.DistributedComputing.GraphPartitioner"><code class="docutils literal notranslate"><span class="pre">GraphPartitioner</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="advanced.html#fs_gplib.DistributedComputing.DistributedComputing.GraphPartitioner.generate_partition"><code class="docutils literal notranslate"><span class="pre">GraphPartitioner.generate_partition()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="advanced.html#usage-notes">Usage Notes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="advanced.html#loading-saved-partitions">Loading Saved Partitions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="advanced.html#fs_gplib.DistributedComputing.DistributedComputing.load_partition"><code class="docutils literal notranslate"><span class="pre">load_partition()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="advanced.html#how-to-connect-a-partition-to-a-model">How to Connect a Partition to a Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="advanced.html#practical-limitations">Practical Limitations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="advanced.html#when-to-use-this-interface">When to Use This Interface</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="custom_model.html">Custom Model</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="custom_model.html#which-base-file-should-you-start-from">Which Base File Should You Start From?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="custom_model.html#two-layers-of-a-custom-model">Two Layers of a Custom Model</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="custom_model.html#diffusionmodel-simulation-lifecycle-and-public-api"><code class="docutils literal notranslate"><span class="pre">DiffusionModel</span></code>: simulation lifecycle and public API</a></li>
@@ -360,52 +384,6 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="custom_model.html#batch-parallel-and-distributed-use">Batch-Parallel and Distributed Use</a></li>
 <li class="toctree-l2"><a class="reference internal" href="custom_model.html#practical-suggestions">Practical Suggestions</a></li>
-</ul>
-</li>
-<li class="toctree-l1 current"><a class="reference internal" href="rst_template.html">RST Template Example</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="rst_template.html#section-heading">Section Heading</a></li>
-<li class="toctree-l2"><a class="reference internal" href="rst_template.html#lists">Lists</a></li>
-<li class="toctree-l2"><a class="reference internal" href="rst_template.html#code-block">Code Block</a></li>
-<li class="toctree-l2"><a class="reference internal" href="rst_template.html#table-example">Table Example</a></li>
-<li class="toctree-l2"><a class="reference internal" href="rst_template.html#hyperlink">Hyperlink</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="rst_template.html#toctree">Toctree</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="overview.html">Overview</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="overview.html#motivation">Motivation</a></li>
-<li class="toctree-l4"><a class="reference internal" href="overview.html#core-capabilities">Core Capabilities</a></li>
-<li class="toctree-l4"><a class="reference internal" href="overview.html#project-structure">Project Structure</a></li>
-<li class="toctree-l4"><a class="reference internal" href="overview.html#get-started">Get Started</a></li>
-</ul>
-</li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Installation</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#environment">Environment</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="#python-version">Python Version</a></li>
-</ul>
-</li>
-<li class="toctree-l4"><a class="reference internal" href="#install">Install</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="#install-from-testpypi">Install from TestPyPI</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#required-packages">Required Packages</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#test-installation">Test Installation</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="rst_template.html#admonitions">Admonitions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="rst_template.html#footnotes">Footnotes</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="api_example.html">API Documentation Template</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="api_example.html#mathematical-formulae">Mathematical Formulae</a></li>
-<li class="toctree-l2"><a class="reference internal" href="api_example.html#function-documentation-manual">Function Documentation (Manual)</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="api_example.html#calculate_energy"><code class="docutils literal notranslate"><span class="pre">calculate_energy()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="api_example.html#class-documentation-manual">Class Documentation (Manual)</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="api_example.html#GravNetConv"><code class="docutils literal notranslate"><span class="pre">GravNetConv</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="api_example.html#autodoc-example">Autodoc Example</a></li>
 </ul>
 </li>
 </ul>
@@ -457,7 +435,7 @@ conda<span class="w"> </span>activate<span class="w"> </span>fs_gplib_env
 <h2>Install<a class="headerlink" href="#install" title="Link to this heading"></a></h2>
 <section id="install-from-testpypi">
 <h3>Install from TestPyPI<a class="headerlink" href="#install-from-testpypi" title="Link to this heading"></a></h3>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>-i<span class="w"> </span>https://test.pypi.org/simple/<span class="w"> </span>fs-gplib<span class="o">==</span><span class="m">0</span>.10.0
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>-i<span class="w"> </span>https://test.pypi.org/simple/<span class="w"> </span>--extra-index-url<span class="w"> </span>https://pypi.org/simple<span class="w"> </span>fs-gplib
 </pre></div>
 </div>
 </section>
@@ -472,11 +450,23 @@ conda<span class="w"> </span>activate<span class="w"> </span>fs_gplib_env
 <li><p><code class="docutils literal notranslate"><span class="pre">tqdm==4.64.1</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">scipy==1.10.0</span></code></p></li>
 </ul>
-<p>FS_GPlib requires PyTorch and PyTorch Geometric (PyG). You can install them following the official instructions:</p>
+<p>FS_GPlib requires PyTorch and PyTorch Geometric (PyG).
+<code class="docutils literal notranslate"><span class="pre">torch_scatter</span></code> is additionally required when you use models that depend on scatter operators
+(currently <code class="docutils literal notranslate"><span class="pre">HKModel</span></code> and <code class="docutils literal notranslate"><span class="pre">WHKModel</span></code> in <code class="docutils literal notranslate"><span class="pre">fs_gplib.Opinions</span></code>).
+You can install PyTorch/PyG by following the official instructions:</p>
 <ul class="simple">
 <li><p>PyTorch: <a class="reference external" href="https://pytorch.org/get-started/locally/">https://pytorch.org/get-started/locally/</a></p></li>
 <li><p>PyG: <a class="reference external" href="https://pytorch-geometric.readthedocs.io/en/2.5.3/install/installation.html">https://pytorch-geometric.readthedocs.io/en/2.5.3/install/installation.html</a></p></li>
 </ul>
+<p>If you need <code class="docutils literal notranslate"><span class="pre">torch_scatter</span></code>, install the wheel that matches your PyTorch and CUDA/CPU build.
+For compatibility details and wheel links, see:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://data.pyg.org/whl/">https://data.pyg.org/whl/</a></p></li>
+</ul>
+<p>Example (CPU; change version tag to match your environment):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>torch-scatter<span class="w"> </span>-f<span class="w"> </span>https://data.pyg.org/whl/torch-2.1.2+cpu.html
+</pre></div>
+</div>
 </section>
 <section id="test-installation">
 <h3>Test Installation<a class="headerlink" href="#test-installation" title="Link to this heading"></a></h3>

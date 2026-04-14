@@ -1,4 +1,3 @@
-import sys
 from tqdm import tqdm
 
 from .base import DiffusionModel, Diffusion_process
@@ -47,11 +46,7 @@ class DySWIRModel(DiffusionModel):
 
 
     def run_iterations(self, times):
-        try:
-            check_int(times=times)
-        except ValueError as e:
-            print("Caught error:", e)
-            sys.exit(1)
+        check_int(times=times)
 
         if len(self.edge_index_list) - self.model.times < times:
             raise ValueError('The number of remaining snapshots must be larger than iteration times')
@@ -68,11 +63,7 @@ class DySWIRModel(DiffusionModel):
 
     def run_epochs(self, epochs, batch_size=200):
 
-        try:
-            check_int(epochs=epochs, batch_size=batch_size)
-        except ValueError as e:
-            print("Caught error:", e)
-            sys.exit(1)
+        check_int(epochs=epochs, batch_size=batch_size)
 
         self._init_node_status()
         epoch_groups = epochs_groups_list(epochs, batch_size)

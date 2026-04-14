@@ -1,4 +1,3 @@
-import sys
 from tqdm import tqdm
 
 from .base import DiffusionModel, Diffusion_process
@@ -27,10 +26,10 @@ class SEISctModel(DiffusionModel):
     :param infection_beta: Per-contact exposure probability
         :math:`\beta \in [0,1]` (S→E).
     :type infection_beta: float
-    :param removal_gamma: Recovery rate :math:`\gamma \in [0,1]` (I→S).
+    :param removal_gamma: Recovery rate :math:`\gamma > 0` (I→S).
         Used in :math:`1 - e^{-\Delta t^I \,\gamma}`.
     :type removal_gamma: float
-    :param latent_alpha: Incubation rate :math:`\alpha \in [0,1]` (E→I).
+    :param latent_alpha: Incubation rate :math:`\alpha > 0` (E→I).
         Used in :math:`1 - e^{-\Delta t^E \,\alpha}`.
     :type latent_alpha: float
     :param device: *(optional)* ``'cpu'`` or a CUDA device index.
@@ -64,6 +63,15 @@ class SEISctModel(DiffusionModel):
                          infection_beta=infection_beta,
                          removal_gamma=removal_gamma,
                          latent_alpha=latent_alpha)
+
+    def _validate_parameters(self, kwargs):
+        # infection_beta ∈ [0, 1]; removal_gamma > 0; latent_alpha > 0
+        check_float_parameter(0, 1, True, True, infection_beta=kwargs['infection_beta'])
+        check_float_parameter(0, float("inf"), False, True, removal_gamma=kwargs["removal_gamma"])
+        check_float_parameter(0, float("inf"), False, True, latent_alpha=kwargs["latent_alpha"])
+
+        for param_name, value in kwargs.items():
+            self.__setattr__(param_name, value)
 
 
     def _init_node_status(self):
@@ -106,11 +114,8 @@ class SEISctModel(DiffusionModel):
         :return: Node states at final step, shape ``(1, N)``.
         :rtype: torch.Tensor
         """
-        try:
-            check_int(times=times)
-        except ValueError as e:
-            print("Caught error:", e)
-            sys.exit(1)
+
+        check_int(times=times)
 
         self.model._set_iterations(times)
         out_all = self.model(self.node_status)
@@ -146,11 +151,8 @@ class SEISctModel(DiffusionModel):
         :return: Node states at final step of all epochs, shape ``(epochs, N)``.
         :rtype: torch.Tensor
         """
-        try:
-            check_int(iterations_times=iterations_times, epochs=epochs, batch_size=batch_size)
-        except ValueError as e:
-            print("Caught error:", e)
-            sys.exit(1)
+        check_int(iterations_times=iterations_times, epochs=epochs, batch_size=batch_size)
+
 
         self._init_node_status()
         epoch_groups = epochs_groups_list(epochs, batch_size)

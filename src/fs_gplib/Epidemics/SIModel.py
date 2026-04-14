@@ -1,4 +1,3 @@
-import sys
 from tqdm import tqdm
 
 from .base import DiffusionModel, Diffusion_process
@@ -87,11 +86,7 @@ class SIModel(DiffusionModel):
         :return: Node states at final step, shape ``(1, N)``.
         :rtype: torch.Tensor
         """
-        try:
-            check_int(times=times)
-        except ValueError as e:
-            print("Caught error:", e)
-            sys.exit(1)
+        check_int(times=times)
 
         self.model._set_iterations(times)
         out_all = self.model(self.node_status)
@@ -127,11 +122,7 @@ class SIModel(DiffusionModel):
         :return: Node states at final step of all epochs, shape ``(epochs, N)``.
         :rtype: torch.Tensor
         """
-        try:
-            check_int(iterations_times=iterations_times, epochs=epochs, batch_size=batch_size)
-        except ValueError as e:
-            print("Caught error:", e)
-            sys.exit(1)
+        check_int(iterations_times=iterations_times, epochs=epochs, batch_size=batch_size)
 
         self._init_node_status()
 
@@ -159,11 +150,9 @@ class SI_process(Diffusion_process):
     def __init__(self,
                  edge_index,
                  infection_beta,
-                 # iterations_times,
                  edge_attr=None):
         super().__init__(edge_index=edge_index,
                          infection_beta=infection_beta,
-                         # iterations_times=iterations_times,
                          edge_attr=edge_attr)
 
 

@@ -135,15 +135,14 @@ Implementation
 
 .. code-block:: python
 
-   import sys
-   from tqdm import tqdm
+    from tqdm import tqdm
 
-   from fs_gplib.Epidemics.base import DiffusionModel, Diffusion_process
-   from fs_gplib.utils import *
+    from fs_gplib.Epidemics.base import DiffusionModel, Diffusion_process
+    from fs_gplib.utils import *
 
 
-   class BlockedSIModel(DiffusionModel):
-       def __init__(self,
+    class BlockedSIModel(DiffusionModel):
+        def __init__(self,
                     data,
                     seeds,
                     infection_beta,
@@ -151,121 +150,112 @@ Implementation
                     device='cpu',
                     use_weight=False,
                     rand_seed=None):
-           super().__init__(
-               data=data,
-               seeds=seeds,
-               rand_seed=rand_seed,
-               device=device,
-               use_weight=use_weight,
-               infection_beta=infection_beta,
-               blocking_rate=blocking_rate,
-           )
+            super().__init__(
+                data=data,
+                seeds=seeds,
+                rand_seed=rand_seed,
+                device=device,
+                use_weight=use_weight,
+                infection_beta=infection_beta,
+                blocking_rate=blocking_rate,
+            )
 
-       def _init_node_status(self):
-           self.node_status = {
-               "I": get_binary_mask(self.data.num_nodes, self.seeds).bool().to(self.device),
-               "B": torch.zeros((self.data.num_nodes, 1), dtype=torch.bool, device=self.device),
-           }
+        def _init_node_status(self):
+            self.node_status = {
+                "I": get_binary_mask(self.data.num_nodes, self.seeds).bool().to(self.device),
+                "B": torch.zeros((self.data.num_nodes, 1), dtype=torch.bool, device=self.device),
+            }
 
-       def _set_device(self, device):
-           super()._set_device(device)
-           self.data = self.data.to(self.device)
-           self._init_node_status()
-           edge_attr = self.data.edge_attr if self.use_weight else None
-           self.model = BlockedSI_process(
-               self.data.edge_index,
-               infection_beta=self.infection_beta,
-               blocking_rate=self.blocking_rate,
-               edge_attr=edge_attr,
-           )
+        def _set_device(self, device):
+            super()._set_device(device)
+            self.data = self.data.to(self.device)
+            self._init_node_status()
+            edge_attr = self.data.edge_attr if self.use_weight else None
+            self.model = BlockedSI_process(
+                self.data.edge_index,
+                infection_beta=self.infection_beta,
+                blocking_rate=self.blocking_rate,
+                edge_attr=edge_attr,
+            )
 
-       def run_iteration(self):
-           return self.run_iterations(1)
+        def run_iteration(self):
+            return self.run_iterations(1)
 
-       def run_iterations(self, times):
-           try:
-               check_int(times=times)
-           except ValueError as e:
-               print("Caught error:", e)
-               sys.exit(1)
+        def run_iterations(self, times):
+            check_int(times=times)
 
-           self.model._set_iterations(times)
-           out_all = self.model(self.node_status)
-           self.node_status["I"] = out_all["I"].squeeze(0)
-           self.node_status["B"] = out_all["B"].squeeze(0)
-           return self._return_final(out_all)
+            self.model._set_iterations(times)
+            out_all = self.model(self.node_status)
+            self.node_status["I"] = out_all["I"].squeeze(0)
+            self.node_status["B"] = out_all["B"].squeeze(0)
+            return self._return_final(out_all)
 
-       def run_epoch(self, iterations_times):
-           return self.run_epochs(1, iterations_times, 1)
+        def run_epoch(self, iterations_times):
+            return self.run_epochs(1, iterations_times, 1)
 
-       def run_epochs(self, epochs, iterations_times, batch_size=200):
-           try:
-               check_int(
-                   epochs=epochs,
-                   iterations_times=iterations_times,
-                   batch_size=batch_size,
-               )
-           except ValueError as e:
-               print("Caught error:", e)
-               sys.exit(1)
+        def run_epochs(self, epochs, iterations_times, batch_size=200):
+            check_int(
+                    epochs=epochs,
+                    iterations_times=iterations_times,
+                    batch_size=batch_size,
+                )
 
-           self._init_node_status()
-           epoch_groups = epochs_groups_list(epochs, batch_size)
-           bar = tqdm(epoch_groups)
-           finals = []
+            self._init_node_status()
+            epoch_groups = epochs_groups_list(epochs, batch_size)
+            bar = tqdm(epoch_groups)
+            finals = []
 
-           with torch.no_grad():
-               for i, epoch_group in enumerate(bar):
-                   bar.set_description(f"Batch {i}")
-                   self.model._set_iterations(iterations_times)
-                   out_all = self.model(self.node_status, epoch_group)
-                   finals.append(self._return_final(out_all).to("cpu"))
+            with torch.no_grad():
+                for i, epoch_group in enumerate(bar):
+                    bar.set_description(f"Batch {i}")
+                    self.model._set_iterations(iterations_times)
+                    out_all = self.model(self.node_status, epoch_group)
+                    finals.append(self._return_final(out_all).to("cpu"))
 
-           return torch.cat(finals, dim=0)
+            return torch.cat(finals, dim=0)
 
-       def _return_final(self, out_all):
-           infected = out_all["I"]
-           blocked = out_all["B"]
-           final = torch.zeros_like(infected, dtype=torch.long)
-           final[infected] = 1
-           final[blocked] = 2
-           return final.squeeze(-1)
+        def _return_final(self, out_all):
+            infected = out_all["I"]
+            blocked = out_all["B"]
+            final = torch.zeros_like(infected, dtype=torch.long)
+            final[infected] = 1
+            final[blocked] = 2
+            return final.squeeze(-1)
 
 
-   class BlockedSI_process(Diffusion_process):
-       def __init__(self, edge_index, infection_beta, blocking_rate, edge_attr=None):
-           super().__init__(
-               edge_index=edge_index,
-               infection_beta=infection_beta,
-               blocking_rate=blocking_rate,
-               edge_attr=edge_attr,
-           )
+    class BlockedSI_process(Diffusion_process):
+        def __init__(self, edge_index, infection_beta, blocking_rate, edge_attr=None):
+            super().__init__(
+                edge_index=edge_index,
+                infection_beta=infection_beta,
+                blocking_rate=blocking_rate,
+                edge_attr=edge_attr,
+            )
 
-       def forward(self, node_status, epochs=1):
-           infected = node_status["I"].unsqueeze(0).repeat(epochs, 1, 1)
-           blocked = node_status["B"].unsqueeze(0).repeat(epochs, 1, 1)
+        def forward(self, node_status, epochs=1):
+            infected = node_status["I"].unsqueeze(0).repeat(epochs, 1, 1)
+            blocked = node_status["B"].unsqueeze(0).repeat(epochs, 1, 1)
 
-           while self.iterations_times > self.times:
-               susceptible = (~infected) & (~blocked)
+            while self.iterations_times > self.times:
+                susceptible = (~infected) & (~blocked)
 
-               block_rand = torch.rand_like(infected, dtype=torch.float32)
-               new_blocked = susceptible & (block_rand < self.blocking_rate)
-               blocked[new_blocked] = True
+                block_rand = torch.rand_like(infected, dtype=torch.float32)
+                new_blocked = susceptible & (block_rand < self.blocking_rate)
+                blocked[new_blocked] = True
 
-               susceptible = (~infected) & (~blocked)
-               temp = self.propagate(self.edge_index, x=infected.float())
-               infection_prob = 1 - torch.exp(temp)
-               infect_rand = torch.rand_like(infected, dtype=torch.float32)
-               new_infected = susceptible & (infect_rand < infection_prob)
-               infected[new_infected] = True
+                susceptible = (~infected) & (~blocked)
+                temp = self.propagate(self.edge_index, x=infected.float())
+                infection_prob = 1 - torch.exp(temp)
+                infect_rand = torch.rand_like(infected, dtype=torch.float32)
+                new_infected = susceptible & (infect_rand < infection_prob)
+                infected[new_infected] = True
 
-               self.times += 1
+                self.times += 1
 
-           return {"I": infected, "B": blocked}
+            return {"I": infected, "B": blocked}
 
-       def message(self, x_j):
-           return torch.log(1 - self.infection_beta * self.edge_attr * x_j)
-
+        def message(self, x_j):
+            return torch.log(1 - self.infection_beta * self.edge_attr * x_j)
 
 Usage
 ~~~~~
@@ -316,7 +306,6 @@ Implementation
 .. code-block:: python
 
    import random
-   import sys
 
    import torch_scatter
    from tqdm import tqdm
@@ -371,11 +360,8 @@ Implementation
            return self.run_iterations(1)
 
        def run_iterations(self, times):
-           try:
-               check_int(times=times)
-           except ValueError as e:
-               print("Caught error:", e)
-               sys.exit(1)
+           
+           check_int(times=times)
 
            self.model._set_iterations(times)
            out_all = self.model(self.node_status)
@@ -386,15 +372,11 @@ Implementation
            return self.run_epochs(1, iterations_times, 1)
 
        def run_epochs(self, epochs, iterations_times, batch_size=200):
-           try:
-               check_int(
-                   epochs=epochs,
-                   iterations_times=iterations_times,
-                   batch_size=batch_size,
-               )
-           except ValueError as e:
-               print("Caught error:", e)
-               sys.exit(1)
+           check_int(
+               epochs=epochs,
+               iterations_times=iterations_times,
+               batch_size=batch_size,
+           )
 
            self._init_node_status()
            epoch_groups = epochs_groups_list(epochs, batch_size)

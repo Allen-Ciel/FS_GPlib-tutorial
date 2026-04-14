@@ -1,5 +1,6 @@
 # FS_GPlib
 
+FS_GPlib is a flexible and scalable Python library for simulating graph propagation processes on complex networks, including epidemic spreading, opinion dynamics, and dynamic-network diffusion.
 
 ## Documentation
 
@@ -8,12 +9,12 @@ Online documentation: https://fs-gplib-tutorial.readthedocs.io/en/latest/
 ## Installation
 
 ```bash
-pip install -i https://test.pypi.org/simple/ fs-gplib==0.6.0
+pip install -i https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple fs-gplib
 ```
 
 If you get any environment error, try installing the following dependencies manually and then installing `fs-gplib`.
 
-The environment requires `PyTorch` and `PyG` to be installed, as shown [PyTorch](https://pytorch.org/get-started/locally/) and [PyG](https://pytorch-geometric.readthedocs.io/en/2.5.3/install/installation.html).
+`PyTorch` and `PyG` are required. `torch_scatter` is additionally required when you use models that depend on scatter operators (currently `HKModel` and `WHKModel` in `fs_gplib.Opinions`).
 
 > python==3.10\
 > torch==2.1.2\
@@ -21,6 +22,20 @@ The environment requires `PyTorch` and `PyG` to be installed, as shown [PyTorch]
 > numpy==1.24.1\
 > tqdm==4.64.1\
 > scipy==1.10.0
+
+Install PyTorch and PyG from:
+- [PyTorch install guide](https://pytorch.org/get-started/locally/)
+- [PyG install guide](https://pytorch-geometric.readthedocs.io/en/2.5.3/install/installation.html)
+
+If you need `HKModel`/`WHKModel`, install `torch-scatter` with a wheel matching your PyTorch and CUDA/CPU build.
+For wheel index and compatibility mapping, see:
+- [PyG wheel index](https://data.pyg.org/whl/)
+
+Example (CPU, change version tag to your environment):
+
+```bash
+pip install torch-scatter -f https://data.pyg.org/whl/torch-2.1.2+cpu.html
+```
 
 ## Examples
 
@@ -39,7 +54,7 @@ import random
 from torch_geometric.datasets import Planetoid
 from torch_geometric.utils import degree
 
-from fs_gplib.Epidemics.SIRModel import SIRModel
+from fs_gplib.Epidemics import SIRModel
 
 
 def degree_centrality_seeds(data, num_seeds: int):
@@ -104,7 +119,7 @@ from torch_geometric.data.data import DataEdgeAttr
 
 
 from fs_gplib.Epidemics.SIRModel import SIRModel
-from fs_gplib.DistributedComputing.DistributedComputing import (
+from fs_gplib.DistributedComputing import (
     GraphPartitioner,
     load_partition,
 )

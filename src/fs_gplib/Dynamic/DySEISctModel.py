@@ -1,4 +1,4 @@
-import sys
+
 from tqdm import tqdm
 
 from .base import DiffusionModel, Diffusion_process
@@ -32,16 +32,14 @@ class DySEISctModel(DiffusionModel):
         :math:`T`.
     :type edge_index_list: list[torch.Tensor]
     :param seeds: Initially infectious nodes: list of node IDs or a float in
-        ``[0,1)``.
+        ``(0,1)``.
     :type seeds: list[int] | float
     :param infection_beta: Exposure probability :math:`\beta` (S→E), in
         ``[0,1]``.
     :type infection_beta: float
-    :param latent_alpha: Latent parameter :math:`\alpha` for E→I, in
-        ``[0,1]``.
+    :param latent_alpha: Latent parameter :math:`\alpha > 0` for E→I.
     :type latent_alpha: float
-    :param removal_gamma: Removal parameter :math:`\gamma` for I→S, in
-        ``[0,1]``.
+    :param removal_gamma: Removal parameter :math:`\gamma > 0` for I→S.
     :type removal_gamma: float
     :param device: *(optional)* ``'cpu'`` or a CUDA device index. Defaults to
         ``'cpu'``.
@@ -73,6 +71,14 @@ class DySEISctModel(DiffusionModel):
                          removal_gamma=removal_gamma,
                          latent_alpha=latent_alpha,
                          edge_attr_list=edge_attr_list)
+    def _validate_parameters(self, kwargs):
+        # infection_beta ∈ [0, 1]; removal_gamma > 0; latent_alpha > 0
+        check_float_parameter(0, 1, True, True, infection_beta=kwargs['infection_beta'])
+        check_float_parameter(0, float("inf"), False, True, removal_gamma=kwargs["removal_gamma"])
+        check_float_parameter(0, float("inf"), False, True, latent_alpha=kwargs["latent_alpha"])
+
+        for param_name, value in kwargs.items():
+            self.__setattr__(param_name, value)
 
     def _init_node_status(self):
         self.node_status = dict()
@@ -121,11 +127,7 @@ class DySEISctModel(DiffusionModel):
             ``(times, 1, N)`` (values ``0``–``2``).
         :rtype: torch.Tensor
         """
-        try:
-            check_int(times=times)
-        except ValueError as e:
-            print("Caught error:", e)
-            sys.exit(1)
+        check_int(times=times)
 
         if len(self.edge_index_list) - self.model.times < times:
             raise ValueError('The number of remaining snapshots must be larger than iteration times')
@@ -166,11 +168,7 @@ class DySEISctModel(DiffusionModel):
         :rtype: torch.Tensor
         """
 
-        try:
-            check_int(epochs=epochs, batch_size=batch_size)
-        except ValueError as e:
-            print("Caught error:", e)
-            sys.exit(1)
+        check_int(epochs=epochs, batch_size=batch_size)
         self._init_node_status()
         epoch_groups = epochs_groups_list(epochs, batch_size)
         bar = tqdm(epoch_groups)

@@ -1,4 +1,3 @@
-import sys
 from tqdm import tqdm
 
 from .base import DiffusionModel, Diffusion_process
@@ -24,7 +23,7 @@ class MajorityRuleModel(DiffusionModel):
         :math:`G=(V,E)`.  Must contain ``num_nodes`` (:math:`|V|`).
     :type data: torch_geometric.data.Data
     :param seeds: Initial nodes with opinion ``1``.  Pass a list of node IDs,
-        a float in ``[0,1)`` to initialise that fraction of nodes chosen
+        a float in ``(0,1)`` to initialise that fraction of nodes chosen
         uniformly at random with opinion ``1``, or ``None``.
     :type seeds: list[int] | float | None
     :param q: Size of the randomly sampled discussion group.  Must be a
@@ -54,11 +53,8 @@ class MajorityRuleModel(DiffusionModel):
         '''
         :param q:int >0
         '''
-        try:
-            check_int(**kwargs)
-        except ValueError as e:
-            print("Caught error:", e)
-            sys.exit(1)
+        check_int(**kwargs)
+        
         for param_name, value in kwargs.items():
             if value > 0:
                 self.__setattr__(param_name, value)
@@ -103,11 +99,7 @@ class MajorityRuleModel(DiffusionModel):
         :return: Node opinions at final step, shape ``(1, N)``.
         :rtype: torch.Tensor
         """
-        try:
-            check_int(times=times)
-        except ValueError as e:
-            print("Caught error:", e)
-            sys.exit(1)
+        check_int(times=times)
 
         self.model._set_iterations(times)
         out_all = self.model(self.node_status)
@@ -144,11 +136,8 @@ class MajorityRuleModel(DiffusionModel):
         :rtype: torch.Tensor
         """
 
-        try:
-            check_int(iterations_times=iterations_times, epochs=epochs, batch_size=batch_size)
-        except ValueError as e:
-            print("Caught error:", e)
-            sys.exit(1)
+        check_int(iterations_times=iterations_times, epochs=epochs, batch_size=batch_size)
+        
         self._init_node_status()
         epoch_groups = epochs_groups_list(epochs, batch_size)
         bar = tqdm(epoch_groups)

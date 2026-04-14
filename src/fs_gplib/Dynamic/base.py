@@ -1,4 +1,3 @@
-import sys
 import numpy as np
 from typing import Union, List
 from torch_geometric.nn import MessagePassing
@@ -86,6 +85,7 @@ class DiffusionModel:
                  device='cpu',
                  edge_attr_list=None,
                  **kwargs):
+
         np.random.seed(rand_seed)
 
         self.use_weight = True
@@ -142,10 +142,26 @@ class DiffusionModel:
                     f"edge_index_list length ({len(edge_index_list)})."
                 )
             for k, (ei, ea) in enumerate(zip(edge_index_list, edge_attr_list)):
+                if not isinstance(ea, torch.Tensor):
+                    raise TypeError(f"edge_attr_list[{k}] must be a torch.Tensor.")
+
+                if ea.dim() != 1:
+                    raise ValueError(
+                        f"edge_attr_list[{k}] must be a 1D tensor of shape (E,), got {tuple(ea.shape)}."
+                    )
+
                 if ea.shape[0] != ei.shape[1]:
                     raise ValueError(
                         f"edge_attr_list[{k}] length ({ea.shape[0]}) does not match "
                         f"edge_index_list[{k}] edge count ({ei.shape[1]})."
+                    )
+
+                if not torch.isfinite(ea).all():
+                    raise ValueError(f"edge_attr_list[{k}] must contain only finite values.")
+
+                if not torch.all(ea > 0) or not torch.all(ea <= 1):
+                    raise ValueError(
+                        f"edge_attr_list[{k}] weights must be in the range (0, 1]."
                     )
 
     def _get_num_nodes(self):
@@ -166,7 +182,7 @@ class DiffusionModel:
 
         :param seeds: Nodes whose initial state is *Infected* (or *Activated*).
 
-            * **float in [0, 1)** – fraction of nodes selected uniformly at
+            * **float in (0, 1)** – fraction of nodes selected uniformly at
               random.
             * **list[int]** – explicit node indices.
             * **None** – no seed nodes.
@@ -178,15 +194,26 @@ class DiffusionModel:
         self.num_nodes = self.x.shape[0]
 
         if isinstance(seeds, (float, int)):
-            if not (0 <= seeds < 1):
-                raise ValueError("When seeds are decimal numbers, they must be in the range (0,1).")
+            if seeds == True or seeds == False:
+                raise ValueError("The seeds must be a decimal number in the range (0,1) or a list of integers.")
+            if not (0 < seeds < 1):
+                raise ValueError("When 'seeds' is a decimal number, it must be in the range (0,1).")
             seed_count = int(self.num_nodes * seeds)
             self.seeds = np.random.choice(range(self.num_nodes), seed_count, replace=False).tolist()
         elif isinstance(seeds, list):
-            if not all(isinstance(i, int) for i in seeds):
-                raise ValueError("When seeds are a list, the elements must be integers.")
-            if max(seeds) >= self.num_nodes:
-                raise ValueError("The maximum value in the seeds list cannot exceed the number of nodes in data.")
+            # check the type of the elements in the seeds list
+            if not all(isinstance(i, int) and i >= 0 for i in seeds):
+                raise ValueError("When 'seeds' is a list, the elements must be positive integers.")
+            # check if the seeds list is empty
+            if len(seeds) == 0:
+                raise ValueError("The seeds list cannot be empty.")
+            # check if the seeds list contains out of range indices
+            out_of_range = [s for s in seeds if s >= self.num_nodes]    
+            if out_of_range:
+                raise ValueError(
+                    f"Seed indices {out_of_range} are out of range. "
+                    f"Valid seed indices are 0 to {self.num_nodes - 1}."
+                )
             self.seeds = seeds
         elif seeds is None:
             self.seeds = seeds
@@ -230,11 +257,8 @@ class DiffusionModel:
         :type kwargs: dict
         :raises SystemExit: If any value is outside [0, 1].
         """
-        try:
-            check_float_parameter(0, 1, True, True, **kwargs)
-        except ValueError as e:
-            print("Caught error:", e)
-            sys.exit(1)
+
+        check_float_parameter(0, 1, True, True, **kwargs)
 
         for param_name, value in kwargs.items():
             self.__setattr__(param_name, value)
@@ -316,11 +340,7 @@ class DiffusionModel:
         :rtype: list
         """
 
-        try:
-            check_int(iterations_times=iterations_times, epochs=epochs)
-        except ValueError as e:
-            print("Caught error:", e)
-            sys.exit(1)
+        check_int(iterations_times=iterations_times, epochs=epochs)
 
         self._init_node_status()
         bar = tqdm(range(epochs))
@@ -333,8 +353,12 @@ class DiffusionModel:
                 final.append(out)
         return final
 
+    def run_iterations(self, iterations_times):
+        """Execute a multiple simulation steps from the current node state.
+        """
+        pass
 
-    def iteration(self):
+    def run_iteration(self):
         """Execute a single simulation step from the current node state.
 
         The internal ``node_status`` is updated in-place so that
@@ -346,6 +370,7 @@ class DiffusionModel:
         """
         pass
 
+
     def _return_final(self):
         """Post-process raw output into the final result tensor.
 
@@ -353,6 +378,7 @@ class DiffusionModel:
         (e.g. multiple boolean masks) into a single integer state tensor.
         """
         pass
+
 class Diffusion_process(MessagePassing):
     """Low-level message-passing engine for dynamic-network models.
 

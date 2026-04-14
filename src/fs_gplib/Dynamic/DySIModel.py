@@ -1,4 +1,3 @@
-import sys
 from tqdm import tqdm
 
 from .base import DiffusionModel, Diffusion_process
@@ -23,7 +22,7 @@ class DySIModel(DiffusionModel):
     :param edge_index_list: One ``edge_index`` tensor per snapshot, length :math:`T`, defining
         :math:`E^{(k)}` at each step.
     :type edge_index_list: list[torch.Tensor]
-    :param seeds: Initially infected nodes: a list of integer node IDs, or a float in ``[0, 1)``
+    :param seeds: Initially infected nodes: a list of integer node IDs, or a float in ``(0, 1)``
         to infect that fraction of nodes chosen uniformly at random.
     :type seeds: list[int] | float
     :param infection_beta: Per-contact infection probability :math:`\beta \in [0, 1]`.
@@ -92,11 +91,8 @@ class DySIModel(DiffusionModel):
         :return: States after each of the *times* steps, stacked with shape ``(times, 1, N)``.
         :rtype: torch.Tensor
         """
-        try:
-            check_int(times=times)
-        except ValueError as e:
-            print("Caught error:", e)
-            sys.exit(1)
+        check_int(times=times)
+        
         if len(self.edge_index_list) - self.model.times < times:
             raise ValueError('The number of remaining snapshots must be larger than iteration times')
         x_list = self.model(self.node_status, iterations_times=times)
@@ -132,11 +128,7 @@ class DySIModel(DiffusionModel):
         :rtype: torch.Tensor
         """
 
-        try:
-            check_int(epochs=epochs, batch_size=batch_size)
-        except ValueError as e:
-            print("Caught error:", e)
-            sys.exit(1)
+        check_int(epochs=epochs, batch_size=batch_size)
 
         self._init_node_status()
 
