@@ -2,6 +2,7 @@ from . import Epidemics
 from . import Dynamic
 from . import DistributedComputing
 from . import Opinions
+from . import InfluenceMaximization
 from . import utils
 
 
@@ -10,6 +11,7 @@ __all__ = [
     "Dynamic",
     "DistributedComputing",
     "Opinions",
+    "InfluenceMaximization",
     "utils",
 ]
 

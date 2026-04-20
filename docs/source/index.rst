@@ -40,3 +40,4 @@ If you use ``FS_GPlib`` as support to your research consider citing:
    library/index
    advanced
    custom_model
+   influence_maximization/index
