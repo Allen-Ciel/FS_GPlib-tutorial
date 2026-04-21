@@ -76,7 +76,7 @@ During the simulation, a node holds a continuous opinion value:
 HKModel
 -------
 
-.. autoclass:: fs_gplib.Opinions.HKModel
+.. autoclass:: fs_gplib.Opinions.HKModel.HKModel
    :members: run_iteration, run_iterations, run_epoch, run_epochs
    :member-order: bysource
    :show-inheritance:

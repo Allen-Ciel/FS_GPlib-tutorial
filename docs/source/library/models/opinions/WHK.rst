@@ -76,7 +76,7 @@ During the simulation, a node holds a continuous opinion value:
 WHKModel
 --------
 
-.. autoclass:: fs_gplib.Opinions.WHKModel
+.. autoclass:: fs_gplib.Opinions.WHKModel.WHKModel
    :members: run_iteration, run_iterations, run_epoch, run_epochs
    :member-order: bysource
    :show-inheritance:
