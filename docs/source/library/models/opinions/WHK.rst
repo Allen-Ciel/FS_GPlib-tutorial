@@ -1,7 +1,6 @@
 Weighted Hegselmann-Krause
 ==========================
 
-
 The WHK (Weighted Hegselmann-Krause) model [1]_ extends the classical HK model by introducing a weight parameter :math:`w` that controls the influence strength of :math:`\varepsilon`-neighbors. Each node holds an initial opinion :math:`h \in [-1,1]` and updates it in discrete rounds. At each step:
 1) :math:`\varepsilon`-neighbor identification: find the set :math:`\Gamma_\varepsilon` of each node, :math:`d_{i,j}=\left|h_i-h_j\right|\le\varepsilon`, :math:`j\in\Gamma_\varepsilon`;
 2) update the opinion value: The opinion of node :math:`i` at the next time step is updated as follows:

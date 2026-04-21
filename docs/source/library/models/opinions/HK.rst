@@ -6,7 +6,6 @@ The HK model [1]_ describes continuous opinion dynamics. Each node holds an init
 1) :math:`\epsilon` neighbor identification: find the set :math:`\Gamma_\epsilon` of each node, :math:`d_{i,j}=\left|h_i-h_j\right|\le\epsilon`, :math:`j\in\Gamma_\epsilon`;
 2) update the opinion value: The opinion of node :math:`i` at the next time step is updated as follows:
 
-
 .. math::
 
 	h_i^{\left(k\right)}=\frac{\sum_{j\in\Gamma_\epsilon}{h_j^{\left(k-1\right)}}}{\#\Gamma_\epsilon}
