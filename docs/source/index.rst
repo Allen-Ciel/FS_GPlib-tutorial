@@ -31,8 +31,8 @@ If you use ``FS_GPlib`` as support to your research consider citing:
    }
 
 .. toctree::
-   :maxdepth: 2
-   :hidden:
+   :maxdepth: 1
+
 
    overview
    installation

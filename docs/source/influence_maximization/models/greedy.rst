@@ -14,7 +14,7 @@ diffusion model.
 
 Under classical assumptions where the influence objective is monotone and
 submodular, the standard greedy algorithm provides a
-:math:`(1 - 1/e)` approximation guarantee. In engineering practice, the
+:math:`(1 - 1/e)` approximation guarantee [1]_. In engineering practice, the
 objective value is estimated by Monte-Carlo simulation. ``FS_GPlib`` provides
 both the vanilla version and a caching-enhanced variant.
 
@@ -40,3 +40,8 @@ Advanced Interface
 
 ``GreedyIMWithCaching`` exposes ``get_estimator()`` for inspecting cache
 statistics (for example total spread-estimation calls and cache size).
+
+References
+----------
+
+.. [1] Kempe D, Kleinberg J, Tardos É. Maximizing the spread of influence through a social network[C]//Proceedings of the ninth ACM SIGKDD international conference on Knowledge discovery and data mining. 2003: 137-146.

@@ -2,7 +2,7 @@ CELF
 ====
 
 CELF (Cost-Effective Lazy Forward) is a greedy acceleration strategy based on
-submodularity. Instead of recomputing every candidate's marginal gain at every
+submodularity [1]_. Instead of recomputing every candidate's marginal gain at every
 round, CELF maintains a priority queue and performs **lazy re-evaluation** only
 when necessary.
 
@@ -23,7 +23,7 @@ Available Algorithms
 ``CELFPlusPlus``
 ~~~~~~~~~~~~~~~~
 
-``CELFPlusPlus`` implements the Greedy CELF++ lazy-forward state machine.
+``CELFPlusPlus`` implements the Greedy CELF++ lazy-forward state machine [2]_.
 Each candidate keeps four cached fields:
 
 - ``mg1``: marginal gain :math:`\Delta_u(S)` with respect to current seed set.
@@ -45,3 +45,10 @@ Advanced Interface
 
 Both ``CELFIM`` and ``CELFPlusPlus`` expose ``get_estimator()`` for
 accessing spread-estimation statistics and cache usage.
+
+
+References
+----------
+
+.. [1] Leskovec J, Krause A, Guestrin C, et al. Cost-effective outbreak detection in networks[C]//Proceedings of the 13th ACM SIGKDD international conference on Knowledge discovery and data mining. 2007: 420-429.
+.. [2] Goyal A, Lu W, Lakshmanan L V S. Celf++ optimizing the greedy algorithm for influence maximization in social networks[C]//Proceedings of the 20th international conference companion on World wide web. 2011: 47-48.
