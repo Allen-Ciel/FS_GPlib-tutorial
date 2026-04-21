@@ -82,11 +82,12 @@ The following models are available:
    models/epidemics/SEIR_ct.rst
    models/epidemics/SEIS.rst
    models/epidemics/SEIS_ct.rst
-   models/epidemics/SWIR.rst
    models/epidemics/Threshold.rst
    models/epidemics/KThreshold.rst
    models/epidemics/IndependentCascades.rst
    models/epidemics/Profile.rst
    models/epidemics/ProfileThreshold.rst
+   .. models/epidemics/SWIR.rst
+
 
 

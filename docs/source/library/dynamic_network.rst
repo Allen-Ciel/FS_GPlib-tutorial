@@ -92,8 +92,7 @@ The following models are available:
    models/dynamics/DySEIR_ct.rst
    models/dynamics/DySEIS.rst
    models/dynamics/DySEIS_ct.rst
-   models/dynamics/DySWIR.rst
    models/dynamics/DyThreshold.rst
    models/dynamics/DyKThreshold.rst
-
+   .. models/dynamics/DySWIR.rst
 

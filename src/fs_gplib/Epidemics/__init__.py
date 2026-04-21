@@ -2,7 +2,7 @@ from .SIModel import SIModel
 from .SIRModel import SIRModel
 from .IndependentCascadesModel import IndependentCascadesModel
 from .SISModel import SISModel
-from .SWIRModel import SWIRModel
+# from .SWIRModel import SWIRModel # Not implemented
 from .ProfileModel import ProfileModel
 from .SEIRctModel import SEIRctModel
 from .SEIRModel import SEIRModel
