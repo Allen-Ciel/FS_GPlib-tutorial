@@ -1,0 +1,26 @@
+include pyproject.toml
+include README.md
+include LICENSE
+graft src
+
+prune src/fs_gplib.egg-info
+prune docs
+prune dataset
+prune dist
+prune jss-article-tex
+prune .venv
+prune .vscode
+prune .pytest_cache
+prune .ruff_cache
+prune tests
+exclude .gitignore
+exclude test.py
+exclude test_DY.py
+exclude BlockedSIModel.py
+exclude FJModel.py
+exclude test_IM_ndlib_celf.py
+exclude test_IM.py
+
+
+global-exclude .DS_Store
+global-exclude *.py[cod]

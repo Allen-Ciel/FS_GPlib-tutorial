@@ -7,10 +7,12 @@ __pycache__/
 *.pyc
 .DS_Store
 dataset/
-pyproject.toml
-MANIFEST.in
+# pyproject.toml
+# MANIFEST.in
 jss-article-tex/
 tests/
+test_IM_ndlib_celf.py
+test_IM.py  
 
 
 # Local IDE settings and tool caches

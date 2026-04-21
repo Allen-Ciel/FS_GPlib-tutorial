@@ -83,49 +83,70 @@ The example below shows a practical IM workflow.
 
 .. code-block:: python
 
-    import torch
-    from torch_geometric.datasets import Planetoid
-    from fs_gplib.Epidemics import SIRModel
-    from fs_gplib.InfluenceMaximization import GreedyIM, CELFIM
+    import networkx as nx
+    from torch_geometric.data import Data
+    from torch_geometric.utils import from_networkx
 
-    # 1) Load Cora graph
-    dataset = Planetoid(root="./dataset", name="Cora")
-    data = dataset[0]
+    from src.fs_gplib.Epidemics import SIRModel
+    from src.fs_gplib.InfluenceMaximization import CELFIM
 
-    # 2) Build diffusion model for Greedy (seeds must be None)
-    model = SIRModel(
-        data=data,
-        seeds=None,
-        infection_beta=0.05,
-        recovery_lambda=0.01,
-        use_weight=False
-    )
 
-    # 3) Greedy baseline
-    greedy = GreedyIM(
-        model=model,
-        seed_size=20,
-        influenced_type=[1, 2],  # Infected + Recovered
-        MC=400,
-        iterations_times=100,
-        verbose=True,
-    )
-    greedy_seeds = greedy.fit()
+    def nx_to_pyg_data_with_mapping(graph: nx.Graph) -> tuple[Data, dict, dict]:
+        """Convert a NetworkX graph to PyG data with bidirectional mappings."""
+        original_nodes = list(graph.nodes())
+        node_mapping = {node_id: idx for idx, node_id in enumerate(original_nodes)}
+        reverse_mapping = {idx: node_id for node_id, idx in node_mapping.items()}
 
-    model._set_seed(None)
-    # 4) Faster CELF alternative
-    celf = CELFIM(
-        model=model,
-        seed_size=20,
-        influenced_type=[1, 2],
-        MC=400,
-        iterations_times=100,
-        verbose=True,
-    )
-    celf_seeds = celf.fit()
+        relabeled_graph = nx.relabel_nodes(graph, node_mapping, copy=True)
+        data = from_networkx(relabeled_graph)
+        data.num_nodes = relabeled_graph.number_of_nodes()
+        return data, node_mapping, reverse_mapping
 
-    print("Greedy seeds:", greedy_seeds[:5], "...")
-    print("CELF seeds:", celf_seeds[:5], "...")
+
+    def run_im_with_api(
+        data: Data,
+        node_mapping: dict,
+        reverse_mapping: dict,
+        seed_size: int = 5,
+    ):
+        """Run influence maximization via the fs_gplib API (CELFIM + SIRModel)."""
+
+        model = SIRModel(
+            data=data,
+            seeds=None,
+            infection_beta=0.01,
+            recovery_lambda=0.005,
+        )
+
+        im = CELFIM(
+            model=model,
+            seed_size=seed_size,
+            influenced_type=[1, 2],  # In SIR, both infected and recovered count as influenced.
+            MC=1000,
+            iterations_times=50,
+            verbose=True,
+        )
+
+        selected_seeds = im.fit()
+        original_id_seeds = [reverse_mapping[s] for s in selected_seeds]
+        print(f"selected seeds (reindexed): {selected_seeds}")
+        print(f"selected seeds (original ids): {original_id_seeds}")
+        print(f"node mapping size: {len(node_mapping)}")
+        return selected_seeds
+
+
+    if __name__ == "__main__":
+        graph = nx.les_miserables_graph()
+        data, node_mapping, reverse_mapping = nx_to_pyg_data_with_mapping(graph)
+        seeds = run_im_with_api(
+            data=data,
+            node_mapping=node_mapping,
+            reverse_mapping=reverse_mapping,
+            seed_size=5,
+        )
+        print(f"seed count = {len(seeds)}")
+
+
 
 Algorithms
 ----------

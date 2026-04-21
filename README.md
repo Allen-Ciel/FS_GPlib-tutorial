@@ -1,6 +1,19 @@
 # FS_GPlib
 
-FS_GPlib is a flexible and scalable Python library for simulating graph propagation processes on complex networks, including epidemic spreading, opinion dynamics, and dynamic-network diffusion.
+<div align="center">
+<img src="docs/source/_static/logo_v2.png" alt="FS_GPlib logo" width="180" />
+<h3 align="center">Faster and more
+Scalable python library for Graph Propagation models </h3>
+
+[![TestPyPI](https://img.shields.io/badge/TestPyPI-available-orange)](https://test.pypi.org/project/fs-gplib/)
+[![Python](https://img.shields.io/badge/python-3.10-blue)](#installation)
+[![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](./LICENSE)
+[![Docs](https://readthedocs.org/projects/fs-gplib-tutorial/badge/?version=latest)](https://fs-gplib-tutorial.readthedocs.io/en/latest/)
+
+FS_GPlib is a fast and scalable Python library for simulating graph propagation processes on complex networks, covering classical diffusion and epidemic models such as Independent Cascade (IC), Linear Threshold (LT), Susceptible-Infected (SI), Susceptible-Infected-Susceptible (SIS), and Susceptible-Infected-Recovered (SIR), as well as opinion dynamics and dynamic-network diffusion.
+It supports extensible data pipelines and custom algorithm development, and integrates greedy-strategy algorithms for influence maximization tasks to facilitate both research prototyping and large-scale experimentation.
+</div>
+
 
 ## Documentation
 
@@ -268,3 +281,4 @@ if __name__ == '__main__':
    Specifies that 1000 Monte Carlo simulations will be run.
 
 
+## IM
